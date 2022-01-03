@@ -5,7 +5,7 @@ export const PA_TypeUsers = db.define(
   "PA_TYPEUSERS",
   {
     COD_TYPEUSERS: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,

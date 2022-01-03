@@ -1,4 +1,4 @@
-import PEOPLE from '../models/Pa_people'
+
 
 export const  GetProducts = (req, res) => {
   res.json({ mensaje: "get productos" });

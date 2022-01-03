@@ -11,6 +11,16 @@ export const PA_POEPLE = db.define(
       allowNull: false,
       comment: "THE PRIMARY KEY OF THE USER",
     },
+    PEOPLE: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "THE PRIMARY KEY OF THE USER",
+    },
+    TYPEUSERS: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "THE PRIMARY KEY OF THE USER",
+    },
     NAME: {
       type: Sequelize.STRING(120),
       allowNull: false,

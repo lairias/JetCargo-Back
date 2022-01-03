@@ -1,8 +1,8 @@
 //configuracion de la base de datos
 import { Sequelize } from "sequelize";
 
-module.exports = new Sequelize("craftable1", "root", "root", {
-  host: "127.0.0.1",
+module.exports = new Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
+  host: "142.44.161.115",
   ports: "3306",
   dialect: "mysql",
   poll: {
