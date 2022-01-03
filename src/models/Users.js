@@ -1,0 +1,62 @@
+import { Sequelize } from "sequelize";
+import db from "../config/database";
+
+export const PA_POEPLE = db.define(
+  "users",
+  {
+    COD_USER: {
+      type: Sequelize.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+      comment: "THE PRIMARY KEY OF THE USER",
+    },
+    NAME: {
+      type: Sequelize.STRING(120),
+      allowNull: false,
+      comment: "THE NAME OF THE USER",
+    },
+    _TOKEN: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "TOKEN DE ACCESO",
+    },
+    IND_USR: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "IND OF THE USER TO ACCESS THE SYSTEM, 0=INACTIVE 1=ACTIVE",
+    },
+    IND_INS: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: 1,
+      comment: "IND OF THE FIRST TIME IN THE SYSTEM.",
+    },
+    USR_ADD: {
+      type: Sequelize.STRING(30),
+      allowNull: false,
+      comment: "USER THAT ADDED THIS ROW	",
+    },
+    USR_UPD: {
+      type: Sequelize.STRING(30),
+      comment: "USER WHO MODIFIED THIS ROW	",
+    },
+    DAT_ADD: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      comment: "DATE THAT THIS ROW WERE ADDED	",
+    },
+    DAT_UPD: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
+      comment: "DATE THIS ROW WAS MODIFIED	",
+    },
+  },
+  {
+    createdAt: false,
+    updatedAt: false,
+  }
+);
