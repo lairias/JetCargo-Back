@@ -1,6 +1,13 @@
 import { PA_POEPLE } from "../../models/Pa_people";
 import { PA_TypeUsers } from "../../models/Pa_tipeUsers";
 import { USERS } from "../../models/Users";
+import {PA_CITIES  } from "../../models/Pa_cities";
+import { PA_COUNTRIES } from "../../models/Pa_countries";
+import { PA_CUSTOMES } from "../../models/Pa_customes";
+import { PA_EMAIL } from "../../models/Pa_email";
+import { PA_PHONE } from "../../models/Pa_phones";
+import { PA_STATES } from "../../models/Pa_states";
+
 import {Sequelize} from "sequelize"
 import db from './index'
 
@@ -8,8 +15,8 @@ PA_TypeUsers.hasOne(USERS, {
   foreignKey: "COD_TYPEUSERS",
   onDelete: "CASCADE",
 });
-// users.hasOne(people)
 
+// users.hasOne(people)
 // PA_TypeUsers.hasOne(users);
 // people.hasMany(users);
 
