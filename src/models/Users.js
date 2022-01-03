@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_POEPLE = db.define(
+export const USERS = db.define(
   "users",
   {
     COD_USER: {
@@ -11,16 +11,7 @@ export const PA_POEPLE = db.define(
       allowNull: false,
       comment: "THE PRIMARY KEY OF THE USER",
     },
-    PEOPLE: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "THE PRIMARY KEY OF THE USER",
-    },
-    TYPEUSERS: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "THE PRIMARY KEY OF THE USER",
-    },
+
     NAME: {
       type: Sequelize.STRING(120),
       allowNull: false,

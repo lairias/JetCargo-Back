@@ -1,13 +1,17 @@
-import people from  "../../models/Pa_people";
-import typeusers from"../../models/Pa_tipeUsers";
-import users from "../../models/Users";
+import { PA_POEPLE } from "../../models/Pa_people";
+import { PA_TypeUsers } from "../../models/Pa_tipeUsers";
+import { USERS } from "../../models/Users";
 import {Sequelize} from "sequelize"
 import db from './index'
-// users.hasOne(typeusers)
+
+PA_TypeUsers.hasOne(USERS, {
+  foreignKey: "COD_TYPEUSERS",
+  onDelete: "CASCADE",
+});
 // users.hasOne(people)
 
-// typeusers.belongsTo(users)
-// people.belongsTo(users);
+// PA_TypeUsers.hasOne(users);
+// people.hasMany(users);
 
 //  typeusers.hasMany(users, {
 //   foreignKey: "COD_TYPEUSERS", // Name for new column added to Bar
@@ -44,7 +48,7 @@ import db from './index'
 
 
 const Team = db.define("Team", {clubId:{
-      type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT,autoIncrement:true,
       primaryKey: true}, name: Sequelize.STRING, });
 const Player = db.define("Player", { name: Sequelize.STRING });
 
