@@ -1,6 +1,4 @@
 import { Sequelize } from "sequelize";
-
-
 import db from "../config/database";
 
  const BO_LOCKER = db.define(

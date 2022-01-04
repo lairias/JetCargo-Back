@@ -12,22 +12,13 @@ export const USERS = db.define(
       comment: "THE PRIMARY KEY OF THE USER",
     },
 
-    NAME: {
+    EMAIL: {
       type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "THE NAME OF THE USER",
+      unique: true,
+      comment: "THE EMAIL OF THE USER",
     },
-    LOCK: {
-      type: Sequelize.STRING(120),
-      allowNull: false,
-      comment: "THE NAME OF THE USER",
-    },
-    NAME: {
-      type: Sequelize.STRING(120),
-      allowNull: false,
-      comment: "THE NAME OF THE USER",
-    },
-    _TOKEN: {
+    API_TOKEN: {
       type: Sequelize.STRING(255),
       allowNull: false,
       comment: "TOKEN DE ACCESO",
