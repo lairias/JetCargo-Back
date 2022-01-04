@@ -4,7 +4,7 @@ import db from "../config/database";
 export const PA_STATES = db.define(
   "PA_STATES",
   {
-    COD_PEOPLE: {
+    COD_STATE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
@@ -21,7 +21,7 @@ export const PA_STATES = db.define(
       allowNull: false,
       comment: "DESCRIPTION OF THE STATE",
     },
-  
+
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -38,9 +38,7 @@ export const PA_STATES = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
+
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

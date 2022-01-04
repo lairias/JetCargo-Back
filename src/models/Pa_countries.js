@@ -2,14 +2,14 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_COUNTRIES = db.define(
-  "PA_PEOPLE",
+  "PA_COUNTRIES",
   {
     COD__COUNTRIES: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE PERSON",
+      comment: "COD OF THE COUNTRY",
     },
     NAM_COUNTRY: {
       type: Sequelize.STRING(50),
@@ -21,7 +21,7 @@ export const PA_COUNTRIES = db.define(
       allowNull: false,
       comment: "DESCRIPTION OF THE COUNTRY",
     },
-   
+
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -38,9 +38,7 @@ export const PA_COUNTRIES = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
+
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

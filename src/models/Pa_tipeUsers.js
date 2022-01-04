@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_TypeUsers = db.define(
-  "PA_TYPEUSERS",
+  "PA_TYPEUSER",
   {
     COD_TYPEUSERS: {
       type: Sequelize.BIGINT,
@@ -18,7 +18,7 @@ export const PA_TypeUsers = db.define(
       comment: "THE NAME OF THE TYPE OF USER",
     },
     DES_TYPE: {
-      type: Sequelize.ENUM("ID", "PASSPORT", "LICENSE"),
+      type: Sequelize.STRING(250),
       allowNull: false,
       comment: "DESCRIPTION OF THE TYPE OF USER",
     },
@@ -38,9 +38,7 @@ export const PA_TypeUsers = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
+
       comment: "DATE THIS ROW WAS MODIFIED",
     },
   },

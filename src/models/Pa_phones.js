@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_PHONE = db.define(
-  "PA_PHONE",
+export const PA_PHONES = db.define(
+  "PA_PHONES",
   {
     COD_PHONE: {
       type: Sequelize.BIGINT,
@@ -38,9 +38,6 @@ export const PA_PHONE = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
       comment: "DATE THIS ROW WAS MODIFIED",
     },
   },

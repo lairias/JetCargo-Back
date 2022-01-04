@@ -1,17 +1,50 @@
+import { USERS } from "../models/Users";
 
+export const  GetUser = async (req, res,next) => {
+  try{
 
-export const  GetProducts = (req, res) => {
-  res.json({ mensaje: "get productos" });
+  }catch(error){
+    console.log(error)
+    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    next();
+  }
 };
-export const  GetProduct = (req, res) => {
-  res.json({ mensaje: "get productos" });
+export const  GetUsers = async (req, res,next) => {
+  try{
+  //  const users = await  USERS.findAll()
+   const users = await USERS.sequelize.query("CALL  SHOW_USERS");
+   res.status(200).json(users)
+  }catch(error){
+    console.log(error)
+    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    next();
+  }
 };
-export const  UpdateProduct = (req, res) => {
-  res.json({ mensaje: "get productos" });
+export const  UpdateUser = async (req, res,next) => {
+  try{
+
+  }catch(error){
+    console.log(error)
+    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    next();
+  }
 };
-export const  DeleteProduct = (req, res) => {
-  res.json({ mensaje: "get productos" });
+export const  DeleteUser = async (req, res,next) => {
+  try{
+
+  }catch(error){
+    console.log(error)
+    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    next();
+  }
 };
-export const  CreateProduct = (req, res) => {
-  res.json({ mensaje: "get productos" });
+export const  CreateUser = async (req, res,next) => {
+  try{
+
+  }catch(error){
+    console.log(error)
+    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    next();
+  }
+  
 };

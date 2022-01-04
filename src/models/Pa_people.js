@@ -36,16 +36,6 @@ export const PA_POEPLE = db.define(
       allowNull: false,
       comment: "THE LAST NAME OF A PERSON",
     },
-    SEX: {
-      type: Sequelize.ENUM("M", "W", "F", "D"),
-      allowNull: false,
-      comment: "THE SEX OF A PERSON	",
-    },
-    IND_CIVIL: {
-      type: Sequelize.ENUM("S", "M", "W"),
-      allowNull: false,
-      comment: "THE CIVILIAN STATUS OF A PERSON",
-    },
     AGE: {
       type: Sequelize.STRING(20),
       allowNull: false,
@@ -72,9 +62,6 @@ export const PA_POEPLE = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },
