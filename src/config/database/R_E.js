@@ -7,6 +7,7 @@ import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { PA_EMAIL } from "../../models/Pa_email";
 import { PA_PHONE } from "../../models/Pa_phones";
 import { PA_STATES } from "../../models/Pa_states";
+import { BO_LOCKER } from "../../models/BO_locker";
 
 import {Sequelize} from "sequelize"
 import db from './index'

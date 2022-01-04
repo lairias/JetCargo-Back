@@ -1,49 +1,37 @@
 import { Sequelize } from "sequelize";
+
+
 import db from "../config/database";
 
-export const USERS = db.define(
-  "users",
+ const BO_LOCKER = db.define(
+  "BO_LOCKER",
   {
     COD_USER: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "THE PRIMARY KEY OF THE USER",
+      comment: "COD OF THE PERSON",
     },
 
-    NAME: {
+    NAME_LOCKER: {
       type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "THE NAME OF THE USER",
+      unique: true,
+      comment: "THE NAME OF THE LOCKER",
     },
-    LOCK: {
+    CLAVE: {
       type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "THE NAME OF THE USER",
+      comment: "THE PASSWORD OF THE USER",
     },
-    NAME: {
-      type: Sequelize.STRING(120),
-      allowNull: false,
-      comment: "THE NAME OF THE USER",
-    },
-    _TOKEN: {
-      type: Sequelize.STRING(255),
-      allowNull: false,
-      comment: "TOKEN DE ACCESO",
-    },
-    IND_USR: {
+    IND_LOCK: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
-      comment: "IND OF THE USER TO ACCESS THE SYSTEM, 0=INACTIVE 1=ACTIVE",
+      comment: "THE NAME OF THE USER",
     },
-    IND_INS: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: 1,
-      comment: "IND OF THE FIRST TIME IN THE SYSTEM.",
-    },
+
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -60,9 +48,7 @@ export const USERS = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
+      
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },
@@ -71,3 +57,6 @@ export const USERS = db.define(
     updatedAt: false,
   }
 );
+
+
+export default BO_LOCKER;
