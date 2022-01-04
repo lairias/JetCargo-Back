@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const USERS = db.define(
-  "USER",
+  "users",
   {
     COD_USER: {
       type: Sequelize.BIGINT,
