@@ -1,59 +1,86 @@
-import BO_LOCKER from "../models/BO_locker";
+import { USERS } from "../models/Users";
 import middleware from "../middleware";
-import config  from "../config"
+import config from "../config"
 import JWT from "jsonwebtoken";
 export const singUp = async (req, res, next) =>
+// 200 ok
+// 201 Created
+// 202 Accepted
+// 400 bad resquefa
+// 401 no autenticado
+// 404 no fund
+// 500 internal server error
+
 {
   try
   {
-    const { NAME_LOCKER, CLAVE } = req.body;
-    const Locker = await BO_LOCKER.create({
-      NAME_LOCKER,
-      CLAVE: await middleware.encrptPassword(CLAVE),
+    const { EMAIL, PAS_USER } = req.body;
+
+    const User = await USERS.create({
+      EMAIL,
+      PAS_USER: await middleware.encrptPassword(PAS_USER),
       USR_ADD: "admin",
     });
-    const token = JWT.sign({ id: Locker.COD_USER }, config.JwrSecret, {
+    const token = await JWT.sign({ id: User.COD_USER }, config.JwrSecret, {
       expiresIn: 86400,
-    });
+    })
 
-    res.status(200).json({
+    USERS.update(
+      { API_TOKEN: token },
+      {
+        where: {
+          COD_USER: User.COD_USER,
+        },
+      }
+    )
+
+    res.status(201).json({
       token,
     });
   } catch (error)
   {
+    res
+      .status(501)
+      .json({ message: "Error al momento de procesar la peticion " })
+
     console.log(error);
     next();
   }
 };
 
-export const singIn = async (req, res) =>
+export const singIn = async (req, res, next) =>
 {
-  const { NAME_LOCKER,CLAVE } = req.body;
-  try{
-    const UserFond = await BO_LOCKER.findOne({
+  const { EMAIL, PAS_USER } = req.body;
+  console.log(req.headers["x-access-token"])
+  try
+  {
+    const UserFond = await USERS.findOne({
       where: {
-        NAME_LOCKER
+        EMAIL,
       },
     });
 
-    if(!UserFond) return res
-      .status(400)
+    if (!UserFond) return res
+      .status(401)
       .json({ token: null, message: "Pass o User invalidos" });
 
-    if(! await middleware.compararPassword(CLAVE, UserFond.CLAVE)) return res
-      .status(400)
-      .json({ token: null, message: "Pass o User invalidos" });
-    console.log(UserFond)
+    if (!(await middleware.compararPassword(PAS_USER, UserFond.PAS_USER)))
+      return res
+        .status(401)
+        .json({ token: null, message: "Pass o User invalidos" });
+    const token = JWT.sign({ id: UserFond.COD_USER }, config.JwrSecret, {
+      expiresIn: 86400,
+    });
 
-     const token = JWT.sign({ id: UserFond.COD_USER }, config.JwrSecret, {
-       expiresIn: 86400,
-     });
+    res.status(200).json({
+      token
+    });
 
-      res.status(200).json({
-       token
-      });
-
-  }catch(error){
+  } catch (error)
+  {
+    res
+      .status(501)
+      .json({ message: "Error al momento de procesar la peticion " });
     console.log(error)
     next();
   }

@@ -32,7 +32,7 @@ export const USERS = db.define(
     },
     API_TOKEN: {
       type: Sequelize.STRING(255),
-      allowNull: false,
+    
       comment: "TOKEN DE ACCESO",
     },
     IND_USR: {

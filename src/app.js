@@ -7,7 +7,7 @@ import Auth from "./routes/auth.routes";
 
 import sequelise from './config/database'
 import  "./config/database/R_E"
-sequelise.sync()
+sequelise.sync({ force: true });
 
 const app = express();
 app.use(morgan('dev'));

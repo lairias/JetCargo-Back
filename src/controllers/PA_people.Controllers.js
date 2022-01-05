@@ -5,7 +5,7 @@ export const  GetUser = async (req, res,next) => {
 
   }catch(error){
     console.log(error)
-    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    res.status(501).json({message:"Error al momento de procesar la peticion "})
     next();
   }
 };
@@ -16,7 +16,7 @@ export const  GetUsers = async (req, res,next) => {
    res.status(200).json(users)
   }catch(error){
     console.log(error)
-    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    res.status(501).json({message:"Error al momento de procesar la peticion "})
     next();
   }
 };
@@ -25,7 +25,7 @@ export const  UpdateUser = async (req, res,next) => {
 
   }catch(error){
     console.log(error)
-    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    res.status(501).json({message:"Error al momento de procesar la peticion "})
     next();
   }
 };
@@ -34,7 +34,7 @@ export const  DeleteUser = async (req, res,next) => {
 
   }catch(error){
     console.log(error)
-    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    res.status(501).json({message:"Error al momento de procesar la peticion "})
     next();
   }
 };
@@ -43,7 +43,7 @@ export const  CreateUser = async (req, res,next) => {
 
   }catch(error){
     console.log(error)
-    res.status(404).json({message:"Error al momento de procesar la peticion "})
+    res.status(501).json({message:"Error al momento de procesar la peticion "})
     next();
   }
   
