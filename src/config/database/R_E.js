@@ -2,7 +2,7 @@ import { PA_POEPLE } from "../../models/Pa_people";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { USERS } from "../../models/Users";
 import { PA_ADDRES } from "../../models/Pa_addres";
-import {PA_CITIES  } from "../../models/Pa_cities";
+import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { PA_EMAIL } from "../../models/Pa_email";
@@ -15,17 +15,12 @@ import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
 import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 
-
 /**Entidad Relacioens de tablas */
 import { REL_PEOPLE_PHONE } from "../../models/relations/REL_people_phone";
 import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 
-
-import {Sequelize} from "sequelize"
-import db from './index'
-
-
-
+import { Sequelize } from "sequelize";
+import db from "./index";
 
 PA_EMAIL.belongsToMany(PA_POEPLE, {
   through: REL_PEOPLE_EMAIL,
@@ -40,25 +35,23 @@ PA_POEPLE.belongsToMany(PA_EMAIL, {
   onDelete: "CASCADE",
 });
 
-
 PA_PHONES.belongsToMany(PA_POEPLE, {
-    through: REL_PEOPLE_PHONE,
-    foreignKey: "COD_PHONE",
-    onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE"
+  through: REL_PEOPLE_PHONE,
+  foreignKey: "COD_PHONE",
+  onDelete: "CASCADE",
+  comment: "COD OF TYPE OF PEOPLE",
 });
 PA_POEPLE.belongsToMany(PA_PHONES, {
-    through: REL_PEOPLE_PHONE,
-    foreignKey: "COD_PEOPLE",
+  through: REL_PEOPLE_PHONE,
+  foreignKey: "COD_PEOPLE",
   onDelete: "CASCADE",
   comment: "COD OF TYPE OF PHONES",
 });
 
-
 PA_TypeUsers.hasMany(USERS, {
   foreignKey: "COD_TIPUSERS",
   onDelete: "CASCADE",
-  comment:"COD OF TYPE OF USERS",
+  comment: "COD OF TYPE OF USERS",
 });
 PA_POEPLE.hasMany(USERS, {
   foreignKey: "COD_PEOPLE",
@@ -80,4 +73,3 @@ PA_STATES.hasMany(PA_CITIES, {
   onDelete: "CASCADE",
   comment: "COD OF TYPE OF CITIES",
 });
-

@@ -32,7 +32,7 @@ export const USERS = db.define(
     },
     API_TOKEN: {
       type: Sequelize.STRING(255),
-    
+
       comment: "TOKEN DE ACCESO",
     },
     IND_USR: {
@@ -58,7 +58,7 @@ export const USERS = db.define(
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",
     },
-    
+
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

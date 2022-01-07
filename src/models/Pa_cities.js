@@ -3,7 +3,8 @@ import db from "../config/database";
 
 export const PA_CITIES = db.define(
   "PA_cities",
-  {    COD_CITY: {
+  {
+    COD_CITY: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
@@ -61,7 +62,7 @@ export const PA_CITIES = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-    
+
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

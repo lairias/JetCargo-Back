@@ -1,6 +1,5 @@
 // import { Sequelize } from "sequelize";
 // import db from "../config/database";
-
 //  const BO_LOCKER = db.define(
 //   "BO_LOCKER",
 //   {
@@ -11,7 +10,6 @@
 //       allowNull: false,
 //       comment: "COD OF THE PERSON",
 //     },
-
 //     NAME_LOCKER: {
 //       type: Sequelize.STRING(120),
 //       allowNull: false,
@@ -29,7 +27,6 @@
 //       defaultValue: true,
 //       comment: "THE NAME OF THE USER",
 //     },
-
 //     USR_ADD: {
 //       type: Sequelize.STRING(30),
 //       allowNull: false,
@@ -46,7 +43,6 @@
 //     },
 //     DAT_UPD: {
 //       type: Sequelize.DATE,
-
 //       comment: "DATE THIS ROW WAS MODIFIED	",
 //     },
 //   },
@@ -55,5 +51,5 @@
 //     updatedAt: false,
 //   }
 // );
-
 // export default BO_LOCKER;
+"use strict";

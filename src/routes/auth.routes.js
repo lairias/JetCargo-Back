@@ -1,5 +1,5 @@
-import  {Router} from 'express'
-import {singIn,singUp} from '../controllers/Auth.controllers'
+import { Router } from "express";
+import { singIn, singUp } from "../controllers/Auth.controllers";
 
 const router = Router();
 

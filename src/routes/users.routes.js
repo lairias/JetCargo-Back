@@ -1,4 +1,5 @@
-import {Router} from 'express'
+import { Router } from "express";
+import { verifyToken } from "../middleware/verifySignup";
 import {
   CreateUser,
   DeleteUser,
@@ -10,7 +11,7 @@ import {
 const router = Router();
 router.post("/", CreateUser);
 router.get("/:COD_USER", GetUser);
-router.get("/", GetUsers);
+router.get("/", verifyToken , GetUsers);
 router.put("/:COD_USER", UpdateUser);
 router.delete("/:COD_USER", DeleteUser);
 

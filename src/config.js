@@ -1,3 +1,3 @@
 export default {
-    JwrSecret: "palabraSecreta"
-}
+  JwrSecret: "palabraSecreta",
+};

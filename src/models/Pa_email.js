@@ -21,7 +21,7 @@ export const PA_EMAIL = db.define(
       allowNull: false,
       comment: "P:personal O:office",
     },
- 
+
     USR_UPD: {
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",
@@ -33,7 +33,7 @@ export const PA_EMAIL = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-    
+
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

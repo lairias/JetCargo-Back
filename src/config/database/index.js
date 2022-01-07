@@ -12,5 +12,3 @@ module.exports = new Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
     idle: 10000,
   },
 });
-
-

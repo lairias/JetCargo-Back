@@ -1,11 +1,11 @@
 const path = require("path");
 module.exports = {
-  entry: {
-    app: ["@babel/polyfill", "./src/models/Pa_people.js"],
-  },
   mode: "'development'",
+  entry: {
+    app: ["@babel/polyfill", "./build/app.js"],
+  },
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.join(__dirname, "build"),
     filename: "js/app.bundle.js",
   },
 };
