@@ -25,64 +25,62 @@ import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 
 
 
-//Relacion de uno a uno
-/**
- * Foo.hasOne(Bar, {
-  onDelete: 'RESTRICT',
-  onUpdate: 'RESTRICT'
-})
- * Bar.belongsTo(Foo)
- */
+// //Relacion de uno a uno
+// /**
+//  * Foo.hasOne(Bar, {
+//   onDelete: 'RESTRICT',
+//   onUpdate: 'RESTRICT'
+// })
+//  * Bar.belongsTo(Foo)
+//  */
 
-//Relacion de uno a muchos
-/*
- * Team.hasMoany(Player, {
-  onDelete: 'RESTRICT',
-  onUpdate: 'RESTRICT'
-})
- * Player.belongsTo(Team)
-*/
+// //Relacion de uno a muchos
+// /*
+//  * Team.hasMoany(Player, {
+//   onDelete: 'RESTRICT',
+//   onUpdate: 'RESTRICT'
+// })
+//  * Player.belongsTo(Team)
+// */
 
-//Relacion de muchos a muchos 
+// //Relacion de muchos a muchos 
 
-/**
- * 
- * Movie.belongsToMany(Actor, { through: 'ActorMovies' });
-Actor.belongsToMany(Movie, { through: 'ActorMovies' });
- * 
- */
-
-
-//Carga diferida
-/**
- * const awesomeCaptain = await Captain.findOne({
-  where: {
-    name: "Jack Sparrow"
-  }
-});
-// Do stuff with the fetched captain
-console.log('Name:', awesomeCaptain.name);
-console.log('Skill Level:', awesomeCaptain.skillLevel);
-// Now we want information about his ship!
-const hisShip = await awesomeCaptain.getShip();
-// Do stuff with the ship
-console.log('Ship Name:', hisShip.name);
- * 
- */
-//Carga ansiosa
-/**
-const awesomeCaptain = await Captain.findOne({
-  where: {
-    name: "Jack Sparrow"
-  },
-  include: Ship
-});
-// Now the ship comes with it
-console.log('Name:', awesomeCaptain.name);
- * 
- */
+// /**
+//  * 
+//  * Movie.belongsToMany(Actor, { through: 'ActorMovies' });
+// Actor.belongsToMany(Movie, { through: 'ActorMovies' });
+//  * 
+//  */
 
 
+// //Carga diferida
+// /**
+//  * const awesomeCaptain = await Captain.findOne({
+//   where: {
+//     name: "Jack Sparrow"
+//   }
+// });
+// // Do stuff with the fetched captain
+// console.log('Name:', awesomeCaptain.name);
+// console.log('Skill Level:', awesomeCaptain.skillLevel);
+// // Now we want information about his ship!
+// const hisShip = await awesomeCaptain.getShip();
+// // Do stuff with the ship
+// console.log('Ship Name:', hisShip.name);
+//  * 
+//  */
+// //Carga ansiosa
+// /**
+// const awesomeCaptain = await Captain.findOne({
+//   where: {
+//     name: "Jack Sparrow"
+//   },
+//   include: Ship
+// });
+// // Now the ship comes with it
+// console.log('Name:', awesomeCaptain.name);
+//  * 
+//  */
 
 //Relaciones de personas con las tablas de informacion necesaria
 PA_EMAIL.belongsToMany(PA_POEPLE, {
@@ -197,3 +195,83 @@ USERS.belongsToMany(PA_TypeUsers, {
 });
 
 
+
+// //Insertando los roles iniciales
+
+
+// //////
+
+///////////////Roles
+
+PA_TypeUsers.create({
+          NOM_TYPE:"ADMIN",
+          DES_TYPE: " Perfil administrador",
+          USR_ADD: "admin",
+        });
+
+        PA_TypeUsers.create({
+          NOM_TYPE:"CLIENTE",
+          DES_TYPE: " Perfil cliente",
+          USR_ADD: "admin",
+        });
+        
+        PA_TypeUsers.create({
+          NOM_TYPE:"EMPLEADO",
+          DES_TYPE: " Perfil empleado",
+          USR_ADD: "admin",
+        });
+        
+        /////////////////////Permisos
+
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "admin.crear",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "admin.view",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "admin.update",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "admin.delete",
+          USR_ADD: "admin",
+        });
+
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "empleado.crear",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "empleado.view",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "empleado.update",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "empleado.delete",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "cliente.crear",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "cliente.view",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "cliente.update",
+          USR_ADD: "admin",
+        });
+        SE_PERMISOS.create({
+          NAM_PERMISOS: "cliente.delete",
+          USR_ADD: "admin",
+        });
+        
+
+    

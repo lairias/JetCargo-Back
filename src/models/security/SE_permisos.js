@@ -12,7 +12,7 @@ export const SE_PERMISOS = db.define(
       comment: "COD OF THE PERMISOS",
     },
     NAM_PERMISOS: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.STRING(120),
       allowNull: false,
       unique: true,
       comment: "NAME OF PERMISSIONS",
