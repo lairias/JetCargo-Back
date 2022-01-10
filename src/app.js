@@ -5,6 +5,7 @@ import Users from "./routes/users.routes";
 import Auth from "./routes/auth.routes";
 import cors from "cors"
 
+<<<<<<< HEAD
 import sequelise from "./config/database";
 import "./config/database/R_E";
 import {
@@ -12,6 +13,11 @@ import {
   CreatePermisos,
   CreatePemisoHasRol,
 } from "./config/database/Seeder";
+=======
+// import sequelise from "./config/database";
+// import "./config/database/R_E";
+// sequelise.sync({ force: true });
+>>>>>>> cbb6b3c35f64cc27fc2b6132d2d5ec8169b737a4
 
   CreateRole()
   CreatePermisos();

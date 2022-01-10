@@ -54,7 +54,8 @@ import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 
 
 
-//Relaciones de personas con las tablas de informacion necesaria
+const relaciones = ()=>{
+  //Relaciones de personas con las tablas de informacion necesaria
 PA_EMAIL.belongsToMany(PA_POEPLE, {
   through: REL_PEOPLE_EMAIL,
   foreignKey: "COD_EMAIL",
@@ -154,6 +155,7 @@ SE_PERMISOS.belongsToMany(PA_TypeUsers, {
   comment: "COD OF TYPE OF PEOPLE",
 });
 
+
 PA_TypeUsers.belongsToMany(SE_PERMISOS, {
   through: MODEL_TYPEUSER_HAS_PERMISOS,
   foreignKey: {
@@ -209,4 +211,139 @@ USERS.hasMany(MODEL_HAS_ROLES, {
     name: "COD_USER",
   },
 });
+
+
+}
+
+const insertat =async  ()=>{
+  
+await PA_TypeUsers.create({
+  NOM_TYPE: "ADMIN",
+  DES_TYPE: " Perfil administrador",
+  USR_ADD: "admin",
+});
+
+await PA_TypeUsers.create({
+  NOM_TYPE: "CLIENTE",
+  DES_TYPE: " Perfil cliente",
+  USR_ADD: "admin",
+});
+
+await PA_TypeUsers.create({
+  NOM_TYPE: "EMPLEADO",
+  DES_TYPE: " Perfil empleado",
+  USR_ADD: "admin",
+});
+
+/////////////////////Permisos
+
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "admin.crear",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "admin.view",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "admin.update",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "admin.delete",
+  USR_ADD: "admin",
+});
+
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "empleado.crear",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "empleado.view",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "empleado.update",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "empleado.delete",
+  USR_ADD: "admin",
+});
+
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "cliente.crear",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "cliente.view",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "cliente.update",
+  USR_ADD: "admin",
+});
+await SE_PERMISOS.create({
+  NAM_PERMISOS: "cliente.delete",
+  USR_ADD: "admin",
+});
+        
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 1,
+  COD_TYPEUSERS: 1,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 2,
+  COD_TYPEUSERS: 1,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 3,
+  COD_TYPEUSERS: 1,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 4,
+  COD_TYPEUSERS: 1,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 5,
+  COD_TYPEUSERS: 2,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 6,
+  COD_TYPEUSERS: 2,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 7,
+  COD_TYPEUSERS: 2,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 8,
+  COD_TYPEUSERS: 2,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 9,
+  COD_TYPEUSERS: 3,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 10,
+  COD_TYPEUSERS: 3,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 11,
+  COD_TYPEUSERS: 3,
+});
+MODEL_TYPEUSER_HAS_PERMISOS.create({
+  COD_PERMISOS: 12,
+  COD_TYPEUSERS: 3,
+});
+    
+}
+
+const relaciones_has_roles =  ()=>{
+
+
+}
+
+relaciones()
+insertat()
 
