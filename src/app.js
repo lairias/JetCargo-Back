@@ -5,9 +5,9 @@ import Users from "./routes/users.routes";
 import Auth from "./routes/auth.routes";
 import cors from "cors"
 
-import sequelise from "./config/database";
-import "./config/database/R_E";
-sequelise.sync({ force: true });
+// import sequelise from "./config/database";
+// import "./config/database/R_E";
+// sequelise.sync({ force: true });
 
 const app = express();
 app.use(cors());
