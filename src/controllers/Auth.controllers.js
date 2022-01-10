@@ -1,7 +1,11 @@
 import { USERS } from "../models/Users";
+import { PA_POEPLE} from "../models/Pa_people";
+import  {QueryTypes} from"sequelize";
 import middleware from "../middleware";
 import config from "../config";
+import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
+import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
 export const singUp = async (req, res, next) =>
   // 200 ok
   // 201 Created
@@ -10,20 +14,45 @@ export const singUp = async (req, res, next) =>
   // 401 no autenticado
   // 404 no fund
   // 500 internal server error
-
   {
     try {
-      const { EMAIL, PAS_USER } = req.body;
-
-      const User = await USERS.create({
+      const {
+        ID,
+        TIP_DOCUMENT,
+        FRISTNAME,
+        MIDDLENAME,
+        LASTNAME,
+        AGE,
+        TIP_PERSON,
+        USR_ADD,
         EMAIL,
-        PAS_USER: await middleware.encrptPassword(PAS_USER),
-        USR_ADD: "admin",
-      });
-      const token = await JWT.sign({ id: User.COD_USER }, config.JwrSecret, {
+        PAS_USER,
+        ROL,
+      } = req.body;
+const User = await USERS.create({
+  EMAIL,
+  PAS_USER: await middleware.encrptPassword(PAS_USER),
+  USR_ADD,
+});
+await PA_POEPLE.create({
+  ID,
+  TIP_DOCUMENT,
+  FRISTNAME,
+  MIDDLENAME,
+  LASTNAME,
+  AGE,
+  TIP_PERSON,
+  USR_ADD,
+});
+ await MODEL_HAS_ROLES.create({
+  COD_TYPEUSERS: ROL,
+  COD_USER: User.COD_USER,
+});
+
+
+const token = await JWT.sign({ id: User.COD_USER }, config.JwrSecret, {
         expiresIn: 86400,
       });
-
       USERS.update(
         { API_TOKEN: token },
         {
@@ -32,23 +61,21 @@ export const singUp = async (req, res, next) =>
           },
         }
       );
-
       res.status(201).json({
         token,
       });
     } catch (error) {
+      console.log(error);
       res
         .status(501)
         .json({ message: "Error al momento de procesar la peticion " });
-
-      console.log(error);
       next();
     }
   };
 
 export const singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
-  console.log(req.headers["x-access-token"]);
+
   try {
     const UserFond = await USERS.findOne({
       where: {
@@ -65,6 +92,7 @@ export const singIn = async (req, res, next) => {
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
+
     const token = JWT.sign({ id: UserFond.COD_USER }, config.JwrSecret, {
       expiresIn: 86400,
     });

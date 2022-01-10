@@ -7,8 +7,17 @@ import cors from "cors"
 
 import sequelise from "./config/database";
 import "./config/database/R_E";
-sequelise.sync({ force: true });
+import {
+  CreateRole,
+  CreatePermisos,
+  CreatePemisoHasRol,
+} from "./config/database/Seeder";
 
+  CreateRole()
+  CreatePermisos();
+  CreatePemisoHasRol()
+
+  // sequelise.sync({ force: true });
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
