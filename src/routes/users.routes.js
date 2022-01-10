@@ -11,7 +11,7 @@ import {
 const router = Router();
 router.post("/", CreateUser);
 router.get("/:COD_USER", GetUser);
-router.get("/" , GetUsers);
+router.get("/", GetUsers);
 router.put("/:COD_USER", UpdateUser);
 router.delete("/:COD_USER", DeleteUser);
 

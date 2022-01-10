@@ -20,4 +20,3 @@ export const MODEL_HAS_ROLES = db.define(
     updatedAt: false,
   }
 );
-;

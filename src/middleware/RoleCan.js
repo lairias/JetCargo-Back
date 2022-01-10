@@ -1,3 +1,3 @@
-export const AdminView  = async (req,res,next)=>{
-    User
-}
+export const AdminView = async (req, res, next) => {
+  User;
+};

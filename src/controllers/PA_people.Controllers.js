@@ -1,8 +1,8 @@
 import { USERS } from "../models/Users";
-import sequelize from "../config/database"
+import sequelize from "../config/database";
 import { PA_TypeUsers } from "../models/Pa_typeUsers";
 import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
-import { PA_POEPLE } from "../models/Pa_people"
+import { PA_POEPLE } from "../models/Pa_people";
 import { SE_PERMISOS } from "../models/security/SE_permisos";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
 import { Router } from "express";
