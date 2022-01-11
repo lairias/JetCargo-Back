@@ -1,6 +1,5 @@
 import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
-import { QueryTypes } from "sequelize";
 import middleware from "../middleware";
 import config from "../config";
 import sequelize from "../config/database";
@@ -29,34 +28,33 @@ export const singUp = async (req, res, next) =>
         PAS_USER,
         ROL,
       } = req.body;
-      const User = await USERS.create({
-        EMAIL,
-        PAS_USER: await middleware.encrptPassword(PAS_USER),
-        USR_ADD,
-      });
-      await PA_POEPLE.create({
-        ID,
-        TIP_DOCUMENT,
-        FRISTNAME,
-        MIDDLENAME,
-        LASTNAME,
-        AGE,
-        TIP_PERSON,
-        USR_ADD,
-      });
-      await MODEL_HAS_ROLES.create({
-        COD_TYPEUSERS: ROL,
-        COD_USER: User.COD_USER,
-      });
 
-      const token = await JWT.sign({ id: User.COD_USER }, config.JwrSecret, {
+    const User = sequelize.query(
+      "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
+      {
+        replacements: {
+          ID,
+          TIP_DOCUMENT,
+          FRISTNAME,
+          MIDDLENAME,
+          LASTNAME,
+          AGE,
+          TIP_PERSON,
+          USR_ADD,
+          EMAIL,
+          PAS_USER: await middleware.encrptPassword(PAS_USER),
+          ROL,
+        },
+      }
+    );
+      const token = await JWT.sign({ id: EMAIL }, config.JwrSecret, {
         expiresIn: 86400,
       });
       USERS.update(
         { API_TOKEN: token },
         {
           where: {
-            COD_USER: User.COD_USER,
+            EMAIL,
           },
         }
       );

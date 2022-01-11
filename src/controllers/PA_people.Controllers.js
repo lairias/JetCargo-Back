@@ -42,6 +42,33 @@ export const GetUsers = async (req, res, next) => {
     next();
   }
 };
+export const GetUser = async (req, res, next) => {
+  try {
+    //  const users = await  USERS.findAll()
+    // const users = await sequelize.query("CALL  SHOW_USERS");
+    // const users = await PA_POEPLE.findAll({
+    //   include: USERS,
+    // });
+    const users = await USERS.findAll({
+      include: [
+        {
+          model: MODEL_HAS_ROLES,
+        },
+        {
+          model: PA_TypeUsers,
+        },
+      ],
+    });
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(501)
+      .json({ message: "Error al momento de procesar la peticion " });
+    next();
+  }
+};
 export const UpdateUser = async (req, res, next) => {
   try {
   } catch (error) {
