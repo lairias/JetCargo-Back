@@ -4,87 +4,103 @@ import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
+
 export const CreateRole = async () => {
+  const count = await PA_TypeUsers.count()
+  if(count > 0 ){
+return ;
+  } else{
   try {
-      await Promise.all([
-        await PA_TypeUsers.create({
-          NOM_TYPE: "ADMIN",
-          DES_TYPE: " Perfil administrador",
-          USR_ADD: "admin",
-        }),
-        await PA_TypeUsers.create({
-          NOM_TYPE: "CLIENTE",
-          DES_TYPE: " Perfil cliente",
-          USR_ADD: "admin",
-        }),
-        await PA_TypeUsers.create({
-          NOM_TYPE: "EMPLEADO",
-          DES_TYPE: " Perfil empleado",
-          USR_ADD: "admin",
-        }),
-      ]);
+    await Promise.all([
+      await PA_TypeUsers.create({
+        NOM_TYPE: "ADMIN",
+        DES_TYPE: " Perfil administrador",
+        USR_ADD: "admin",
+      }),
+      await PA_TypeUsers.create({
+        NOM_TYPE: "CLIENTE",
+        DES_TYPE: " Perfil cliente",
+        USR_ADD: "admin",
+      }),
+      await PA_TypeUsers.create({
+        NOM_TYPE: "EMPLEADO",
+        DES_TYPE: " Perfil empleado",
+        USR_ADD: "admin",
+      }),
+    ]);
   } catch (error) {
     console.log(error);
   }
+  }
+  
+
 };
 export const CreatePemisoHasRol = async () => {
-  try {
-await Promise.all([
-await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 1,
-        COD_TYPEUSERS: 1,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 2,
-        COD_TYPEUSERS: 1,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 3,
-        COD_TYPEUSERS: 1,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 4,
-        COD_TYPEUSERS: 1,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 5,
-        COD_TYPEUSERS: 2,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 6,
-        COD_TYPEUSERS: 2,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 7,
-        COD_TYPEUSERS: 2,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 8,
-        COD_TYPEUSERS: 2,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 9,
-        COD_TYPEUSERS: 3,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 10,
-        COD_TYPEUSERS: 3,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 11,
-        COD_TYPEUSERS: 3,
-      }),
-      await MODEL_TYPEUSER_HAS_PERMISOS.create({
-        COD_PERMISOS: 12,
-        COD_TYPEUSERS: 3,
-      }),
-])
-      
-  } catch (error) {
-    console.log(error);
-  }
+   const count = await MODEL_TYPEUSER_HAS_PERMISOS.count();
+   if (count > 0) {
+     return;
+   } else {
+     try {
+       await Promise.all([
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 1,
+           COD_TYPEUSERS: 1,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 2,
+           COD_TYPEUSERS: 1,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 3,
+           COD_TYPEUSERS: 1,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 4,
+           COD_TYPEUSERS: 1,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 5,
+           COD_TYPEUSERS: 2,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 6,
+           COD_TYPEUSERS: 2,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 7,
+           COD_TYPEUSERS: 2,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 8,
+           COD_TYPEUSERS: 2,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 9,
+           COD_TYPEUSERS: 3,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 10,
+           COD_TYPEUSERS: 3,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 11,
+           COD_TYPEUSERS: 3,
+         }),
+         await MODEL_TYPEUSER_HAS_PERMISOS.create({
+           COD_PERMISO: 12,
+           COD_TYPEUSERS: 3,
+         }),
+       ]);
+     } catch (error) {
+       console.log(error);
+     }
+   }
 };
 export const CreatePermisos = async () => {
+   const count = await SE_PERMISOS.count();
+   if (count > 0) {
+     return;
+   } else {
   try {
  await  Promise.all([
  await SE_PERMISOS.create({
@@ -141,9 +157,14 @@ export const CreatePermisos = async () => {
   } catch (error) {
     console.log(error);
   }
+   }
 };
-
 export const CreateContries = async () => {
+
+     const count = await PA_COUNTRIES.count();
+   if (count > 0) {
+     return;
+   } else {
   try {
     await Promise.all([
       await PA_COUNTRIES.create({
@@ -160,9 +181,13 @@ export const CreateContries = async () => {
   } catch (error) {
     console.log(error);
   }
+    }
 };
-
 export const CreateStates = async () => {
+     const count = await PA_STATES.count();
+   if (count > 0) {
+     return;
+   } else {
   try {
     await Promise.all([
       await PA_STATES.create({
@@ -361,9 +386,13 @@ export const CreateStates = async () => {
   } catch (error) {
     console.log(error);
   }
+   }
 };
-
 export const CreateCities = async () => {
+   const count = await PA_CITIES.count();
+   if (count > 0) {
+     return;
+   } else {
   try {
     await Promise.all([
       await PA_CITIES.create({
@@ -722,4 +751,5 @@ export const CreateCities = async () => {
   } catch (error) {
     console.log(error);
   }
+    }
 };

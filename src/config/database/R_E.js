@@ -52,53 +52,53 @@ import { REL_PEOPLE_ADDRES } from "../../models/relations/REL_people_addres";
 
 const relaciones = async() => {
   //Relaciones de personas con las tablas de informacion necesaria
-  PA_EMAIL.belongsToMany(PA_POEPLE, {
+  await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF PEOPLE",
   });
 
-  PA_POEPLE.belongsToMany(PA_EMAIL, {
+  await PA_POEPLE.belongsToMany(PA_EMAIL, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_PEOPLE",
     comment: "COD OF TYPE OF EMAIL",
     onDelete: "CASCADE",
   });
 
-  PA_PHONES.belongsToMany(PA_POEPLE, {
+  await PA_PHONES.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF PEOPLE",
   });
 
-  PA_POEPLE.belongsToMany(PA_PHONES, {
+  await PA_POEPLE.belongsToMany(PA_PHONES, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF PHONES",
   });
 
-  PA_POEPLE.hasMany(USERS, {
+  await PA_POEPLE.hasMany(USERS, {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF USERS",
   });
 
-  PA_CITIES.hasMany(PA_ADDRES, {
+  await PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF USERS",
   });
 
-  PA_COUNTRIES.hasMany(PA_STATES, {
+  await PA_COUNTRIES.hasMany(PA_STATES, {
     foreignKey: "COD_COUNTRY",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF STATES",
   });
 
-  PA_STATES.hasMany(PA_CITIES, {
+  await PA_STATES.hasMany(PA_CITIES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF CITIES",
@@ -106,7 +106,7 @@ const relaciones = async() => {
 
   // Relaciones de tablas de roles
 
-  SE_PERMISOS.belongsToMany(USERS, {
+  await SE_PERMISOS.belongsToMany(USERS, {
     through: MODEL_HAS_PERMISOS,
     foreignKey: {
       name: "COD_PERMISO",
@@ -115,7 +115,7 @@ const relaciones = async() => {
     comment: "COD OF TYPE OF PEOPLE",
   });
 
-  USERS.belongsToMany(SE_PERMISOS, {
+  await USERS.belongsToMany(SE_PERMISOS, {
     through: MODEL_HAS_PERMISOS,
     foreignKey: {
       name: "COD_USER",
@@ -124,19 +124,19 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  SE_PERMISOS.hasMany(MODEL_HAS_PERMISOS, {
+  await SE_PERMISOS.hasMany(MODEL_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_PERMISO",
     },
   });
-  USERS.hasMany(MODEL_HAS_PERMISOS, {
+  await USERS.hasMany(MODEL_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_USER",
     },
   });
 
   //***************** */
-  PA_ADDRES.belongsToMany(PA_POEPLE, {
+  await PA_ADDRES.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_ADDRES,
     foreignKey: {
       name: "COD_ADDRESS",
@@ -145,7 +145,7 @@ const relaciones = async() => {
     comment: "COD OF ADDRES",
   });
 
-  PA_POEPLE.belongsToMany(PA_ADDRES, {
+  await PA_POEPLE.belongsToMany(PA_ADDRES, {
     through: REL_PEOPLE_ADDRES,
     foreignKey: {
       name: "COD_PEOPLE",
@@ -154,19 +154,19 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  PA_ADDRES.hasMany(REL_PEOPLE_ADDRES, {
+  await PA_ADDRES.hasMany(REL_PEOPLE_ADDRES, {
     foreignKey: {
       name: "COD_ADDRESS",
     },
   });
-  PA_POEPLE.hasMany(REL_PEOPLE_ADDRES, {
+  await PA_POEPLE.hasMany(REL_PEOPLE_ADDRES, {
     foreignKey: {
       name: "COD_PEOPLE",
     },
   });
 
   /********** ********************************************************************************/
-  SE_PERMISOS.belongsToMany(PA_TypeUsers, {
+  await SE_PERMISOS.belongsToMany(PA_TypeUsers, {
     through: MODEL_TYPEUSER_HAS_PERMISOS,
     foreignKey: {
       name: "COD_PERMISO",
@@ -174,7 +174,7 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  PA_TypeUsers.belongsToMany(SE_PERMISOS, {
+  await PA_TypeUsers.belongsToMany(SE_PERMISOS, {
     through: MODEL_TYPEUSER_HAS_PERMISOS,
     foreignKey: {
       name: "COD_TYPEUSERS",
@@ -182,13 +182,13 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  SE_PERMISOS.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
+  await SE_PERMISOS.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_PERMISO",
     },
   });
 
-  PA_TypeUsers.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
+  await PA_TypeUsers.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_TYPEUSERS",
     },
@@ -197,7 +197,7 @@ const relaciones = async() => {
 
 
   /********************************************************************* */
-  PA_TypeUsers.belongsToMany(USERS, {
+  await PA_TypeUsers.belongsToMany(USERS, {
     through: MODEL_HAS_ROLES,
     foreignKey: {
       name: "COD_TYPEUSERS",
@@ -206,7 +206,7 @@ const relaciones = async() => {
     comment: "COD OF TYPE OF PEOPLE",
   });
 
-  USERS.belongsToMany(PA_TypeUsers, {
+  await USERS.belongsToMany(PA_TypeUsers, {
     through: MODEL_HAS_ROLES,
     foreignKey: {
       name: "COD_USER",
@@ -215,12 +215,12 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  PA_TypeUsers.hasMany(MODEL_HAS_ROLES, {
+  await PA_TypeUsers.hasMany(MODEL_HAS_ROLES, {
     foreignKey: {
       name: "COD_TYPEUSERS",
     },
   });
-  USERS.hasMany(MODEL_HAS_ROLES, {
+  await USERS.hasMany(MODEL_HAS_ROLES, {
     foreignKey: {
       name: "COD_USER",
     },
