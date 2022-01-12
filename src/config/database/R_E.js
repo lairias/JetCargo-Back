@@ -15,11 +15,13 @@ import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
 import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
+
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 
 /**Entidad Relacioens de tablas */
 import { REL_PEOPLE_PHONE } from "../../models/relations/REL_people_phone";
 import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
+import { REL_PEOPLE_ADDRES } from "../../models/relations/REL_people_addres";
 
 // //Relacion de uno a uno
 // /**
@@ -48,7 +50,7 @@ import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 //  *
 //  */
 
-const relaciones = () => {
+const relaciones = async() => {
   //Relaciones de personas con las tablas de informacion necesaria
   PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
@@ -107,7 +109,7 @@ const relaciones = () => {
   SE_PERMISOS.belongsToMany(USERS, {
     through: MODEL_HAS_PERMISOS,
     foreignKey: {
-      name: "COD_PERMISOS",
+      name: "COD_PERMISO",
     },
     onDelete: "CASCADE",
     comment: "COD OF TYPE OF PEOPLE",
@@ -124,7 +126,7 @@ const relaciones = () => {
 
   SE_PERMISOS.hasMany(MODEL_HAS_PERMISOS, {
     foreignKey: {
-      name: "COD_USER",
+      name: "COD_PERMISO",
     },
   });
   USERS.hasMany(MODEL_HAS_PERMISOS, {
@@ -133,13 +135,43 @@ const relaciones = () => {
     },
   });
 
+  //***************** */
+  PA_ADDRES.belongsToMany(PA_POEPLE, {
+    through: REL_PEOPLE_ADDRES,
+    foreignKey: {
+      name: "COD_ADDRESS",
+    },
+    onDelete: "CASCADE",
+    comment: "COD OF ADDRES",
+  });
+
+  PA_POEPLE.belongsToMany(PA_ADDRES, {
+    through: REL_PEOPLE_ADDRES,
+    foreignKey: {
+      name: "COD_PEOPLE",
+    },
+    comment: "COD OF PEOPLE",
+    onDelete: "CASCADE",
+  });
+
+  PA_ADDRES.hasMany(REL_PEOPLE_ADDRES, {
+    foreignKey: {
+      name: "COD_ADDRESS",
+    },
+  });
+  PA_POEPLE.hasMany(REL_PEOPLE_ADDRES, {
+    foreignKey: {
+      name: "COD_PEOPLE",
+    },
+  });
+
+  /********** ********************************************************************************/
   SE_PERMISOS.belongsToMany(PA_TypeUsers, {
     through: MODEL_TYPEUSER_HAS_PERMISOS,
     foreignKey: {
-      name: "COD_PERMISOS",
+      name: "COD_PERMISO",
     },
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE",
   });
 
   PA_TypeUsers.belongsToMany(SE_PERMISOS, {
@@ -147,18 +179,12 @@ const relaciones = () => {
     foreignKey: {
       name: "COD_TYPEUSERS",
     },
-    comment: "COD OF TYPE OF EMAIL",
     onDelete: "CASCADE",
   });
 
   SE_PERMISOS.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
     foreignKey: {
-      name: "COD_PERMISOS",
-    },
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.hasMany(SE_PERMISOS, {
-    foreignKey: {
-      name: "COD_PERMISOS",
+      name: "COD_PERMISO",
     },
   });
 
@@ -168,6 +194,9 @@ const relaciones = () => {
     },
   });
 
+
+
+  /********************************************************************* */
   PA_TypeUsers.belongsToMany(USERS, {
     through: MODEL_HAS_ROLES,
     foreignKey: {
@@ -198,129 +227,4 @@ const relaciones = () => {
   });
 };
 
-const insertat = async () => {
-  await PA_TypeUsers.create({
-    NOM_TYPE: "ADMIN",
-    DES_TYPE: " Perfil administrador",
-    USR_ADD: "admin",
-  });
-
-  await PA_TypeUsers.create({
-    NOM_TYPE: "CLIENTE",
-    DES_TYPE: " Perfil cliente",
-    USR_ADD: "admin",
-  });
-
-  await PA_TypeUsers.create({
-    NOM_TYPE: "EMPLEADO",
-    DES_TYPE: " Perfil empleado",
-    USR_ADD: "admin",
-  });
-
-  /////////////////////Permisos
-
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "admin.crear",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "admin.view",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "admin.update",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "admin.delete",
-    USR_ADD: "admin",
-  });
-
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "empleado.crear",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "empleado.view",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "empleado.update",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "empleado.delete",
-    USR_ADD: "admin",
-  });
-
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "cliente.crear",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "cliente.view",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "cliente.update",
-    USR_ADD: "admin",
-  });
-  await SE_PERMISOS.create({
-    NAM_PERMISOS: "cliente.delete",
-    USR_ADD: "admin",
-  });
-
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 1,
-    COD_TYPEUSERS: 1,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 2,
-    COD_TYPEUSERS: 1,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 3,
-    COD_TYPEUSERS: 1,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 4,
-    COD_TYPEUSERS: 1,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 5,
-    COD_TYPEUSERS: 2,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 6,
-    COD_TYPEUSERS: 2,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 7,
-    COD_TYPEUSERS: 2,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 8,
-    COD_TYPEUSERS: 2,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 9,
-    COD_TYPEUSERS: 3,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 10,
-    COD_TYPEUSERS: 3,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 11,
-    COD_TYPEUSERS: 3,
-  });
-  MODEL_TYPEUSER_HAS_PERMISOS.create({
-    COD_PERMISOS: 12,
-    COD_TYPEUSERS: 3,
-  });
-};
-
-const relaciones_has_roles = () => {};
-
-relaciones();
-insertat();
+relaciones()

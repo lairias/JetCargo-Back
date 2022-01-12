@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../../config/database";
 
-export const REL_PEOPLE_EMAIL = db.define(
-  "REL_people_email",
+export const REL_PEOPLE_ADDRES = db.define(
+  "REL_people_addres",
   {
-    COD_REL_PEOEMAIL: {
+    COD_REL_PEOADDRES: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,

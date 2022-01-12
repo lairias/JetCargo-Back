@@ -11,7 +11,7 @@ export const PA_STATES = db.define(
       allowNull: false,
       comment: "COD OF THE CITY",
     },
-    NAME_STATE: {
+    NAM_STATE: {
       type: Sequelize.STRING(100),
       allowNull: false,
       comment: "NAME OF THE STATE",

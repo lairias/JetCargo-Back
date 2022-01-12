@@ -23,7 +23,6 @@ export const PA_CITIES = db.define(
     },
     POS_CODE: {
       type: Sequelize.INTEGER(32),
-      allowNull: false,
       comment: "POSTAL CODE OF THE CITY",
     },
     POPULATION: {

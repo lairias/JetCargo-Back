@@ -12,7 +12,7 @@ export const PA_COUNTRIES = db.define(
       comment: "COD OF THE COUNTRY",
     },
     NAM_COUNTRY: {
-      type: Sequelize.STRING(50),
+      type: Sequelize.STRING(80),
       allowNull: false,
       comment: "NAME OF THE COUNTRY",
     },
@@ -38,7 +38,6 @@ export const PA_COUNTRIES = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

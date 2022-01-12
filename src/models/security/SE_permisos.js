@@ -4,7 +4,7 @@ import db from "../../config/database";
 export const SE_PERMISOS = db.define(
   "SE_permisos",
   {
-    COD_PERMISOS: {
+    COD_PERMISO: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
