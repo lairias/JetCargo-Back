@@ -61,7 +61,6 @@ export const PA_CITIES = db.define(
     },
     DAT_UPD: {
       type: Sequelize.DATE,
-
       comment: "DATE THIS ROW WAS MODIFIED	",
     },
   },

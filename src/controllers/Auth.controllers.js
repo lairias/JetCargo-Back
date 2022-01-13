@@ -29,7 +29,7 @@ export const singUp = async (req, res, next) =>
         ROL,
       } = req.body;
 
-    const User = sequelize.query(
+    const User = await sequelize.query(
       "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
       {
         replacements: {
@@ -47,6 +47,7 @@ export const singUp = async (req, res, next) =>
         },
       }
     );
+    console.log(User)
       const token = await JWT.sign({ id: EMAIL }, config.JwrSecret, {
         expiresIn: 86400,
       });
@@ -72,28 +73,23 @@ export const singUp = async (req, res, next) =>
 
 export const singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
-
   try {
     const UserFond = await USERS.findOne({
       where: {
         EMAIL,
       },
     });
-
     if (!UserFond)
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
-
     if (!(await middleware.compararPassword(PAS_USER, UserFond.PAS_USER)))
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
-
     const token = JWT.sign({ id: UserFond.COD_USER }, config.JwrSecret, {
       expiresIn: 86400,
     });
-
     res.status(200).json({
       token,
     });

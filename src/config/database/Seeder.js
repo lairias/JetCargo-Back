@@ -5,7 +5,7 @@ import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 
-export const CreateRole = async () => {
+ const CreateRole = async () => {
   const count = await PA_TypeUsers.count()
   if(count > 0 ){
 return ;
@@ -35,7 +35,7 @@ return ;
   
 
 };
-export const CreatePemisoHasRol = async () => {
+ const CreatePemisoHasRol = async () => {
    const count = await MODEL_TYPEUSER_HAS_PERMISOS.count();
    if (count > 0) {
      return;
@@ -96,7 +96,7 @@ export const CreatePemisoHasRol = async () => {
      }
    }
 };
-export const CreatePermisos = async () => {
+ const CreatePermisos = async () => {
    const count = await SE_PERMISOS.count();
    if (count > 0) {
      return;
@@ -159,7 +159,7 @@ export const CreatePermisos = async () => {
   }
    }
 };
-export const CreateContries = async () => {
+ const CreateContries = async () => {
 
      const count = await PA_COUNTRIES.count();
    if (count > 0) {
@@ -183,7 +183,7 @@ export const CreateContries = async () => {
   }
     }
 };
-export const CreateStates = async () => {
+ const CreateStates = async () => {
      const count = await PA_STATES.count();
    if (count > 0) {
      return;
@@ -388,7 +388,7 @@ export const CreateStates = async () => {
   }
    }
 };
-export const CreateCities = async () => {
+ const CreateCities = async () => {
    const count = await PA_CITIES.count();
    if (count > 0) {
      return;
@@ -404,7 +404,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "8 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 1,
+        COD_STATE: 1,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Trujillo",
@@ -415,7 +415,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 10 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 2,
+        COD_STATE: 2,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Comayagua",
@@ -426,7 +426,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 21 Municipios ",
         USR_ADD: "admin",
-        PA_STATES: 3,
+        COD_STATE: 3,
       }),
 
       await PA_CITIES.create({
@@ -438,7 +438,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 23 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 4,
+        COD_STATE: 4,
       }),
       await PA_CITIES.create({
         NAM_CITY: "San Pedro Sula",
@@ -449,7 +449,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 12 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 5,
+        COD_STATE: 5,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Choluteca",
@@ -460,7 +460,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 16 municipios",
         USR_ADD: "admin",
-        PA_STATES: 6,
+        COD_STATE: 6,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Yuscaran",
@@ -471,7 +471,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 19 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 7,
+        COD_STATE: 7,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Tegucigalpa",
@@ -482,7 +482,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 28 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 8,
+        COD_STATE: 8,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Puerto Lempira",
@@ -493,7 +493,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 6 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 9,
+        COD_STATE: 9,
       }),
       await PA_CITIES.create({
         NAM_CITY: "La Esperanza",
@@ -504,7 +504,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 17 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 10,
+        COD_STATE: 10,
       }),
       await PA_CITIES.create({
         NAM_CITY: "La Paz",
@@ -515,7 +515,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 19 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 11,
+        COD_STATE: 11,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Gracias",
@@ -526,7 +526,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 28 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 12,
+        COD_STATE: 12,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Nueva Ocotepeque",
@@ -537,7 +537,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 16 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 13,
+        COD_STATE: 13,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Juticalpa",
@@ -548,7 +548,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 23 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 14,
+        COD_STATE: 14,
       }),
       await PA_CITIES.create({
         NAM_CITY: "SantaBarbara",
@@ -559,7 +559,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 23 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 15,
+        COD_STATE: 15,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Nacaome",
@@ -570,7 +570,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 9 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 16,
+        COD_STATE: 16,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Yoro",
@@ -581,7 +581,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 11 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 17,
+        COD_STATE: 17,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Roatan",
@@ -592,7 +592,7 @@ export const CreateCities = async () => {
         TIMEZONE: "-6",
         DES_CITY: "Tiene 4 Municipios",
         USR_ADD: "admin",
-        PA_STATES: 18,
+        COD_STATE: 18,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Ahuachapan",
@@ -603,7 +603,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Ahuachapán",
         USR_ADD: "admin",
-        PA_STATES: 19,
+        COD_STATE: 19,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Sensuntepeque",
@@ -614,7 +614,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Sensuntepeque",
         USR_ADD: "admin",
-        PA_STATES: 20,
+        COD_STATE: 20,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Chalatenango",
@@ -625,7 +625,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Chalatenango",
         USR_ADD: "admin",
-        PA_STATES: 21,
+        COD_STATE: 21,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Cojutepeque",
@@ -636,7 +636,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Cojutepeque",
         USR_ADD: "admin",
-        PA_STATES: 22,
+        COD_STATE: 22,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Santa Tecla",
@@ -647,7 +647,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Santa Tecla",
         USR_ADD: "admin",
-        PA_STATES: 23,
+        COD_STATE: 23,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Zacatecoluca",
@@ -658,7 +658,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Zacatecoluca",
         USR_ADD: "admin",
-        PA_STATES: 24,
+        COD_STATE: 24,
       }),
       await PA_CITIES.create({
         NAM_CITY: "La Union",
@@ -669,7 +669,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "La Unión",
         USR_ADD: "admin",
-        PA_STATES: 25,
+        COD_STATE: 25,
       }),
       await PA_CITIES.create({
         NAM_CITY: "San Francisco",
@@ -679,7 +679,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "San Francisco",
         USR_ADD: "admin",
-        PA_STATES: 26,
+        COD_STATE: 26,
       }),
       await PA_CITIES.create({
         NAM_CITY: "San Miguel",
@@ -690,7 +690,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "San Miguel",
         USR_ADD: "admin",
-        PA_STATES: 27,
+        COD_STATE: 27,
       }),
       await PA_CITIES.create({
         NAM_CITY: "San Salvador",
@@ -701,7 +701,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "San Salvador",
         USR_ADD: "admin",
-        PA_STATES: 28,
+        COD_STATE: 28,
       }),
       await PA_CITIES.create({
         NAM_CITY: "San Vicente",
@@ -712,7 +712,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "San Vicente",
         USR_ADD: "admin",
-        PA_STATES: 29,
+        COD_STATE: 29,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Santa Ana",
@@ -723,7 +723,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Santa Ana",
         USR_ADD: "admin",
-        PA_STATES: 30,
+        COD_STATE: 30,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Sonsonate",
@@ -734,7 +734,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Sonsonate",
         USR_ADD: "admin",
-        PA_STATES: 31,
+        COD_STATE: 31,
       }),
       await PA_CITIES.create({
         NAM_CITY: "Usulutan",
@@ -745,7 +745,7 @@ export const CreateCities = async () => {
         TIMEZONE: "UTC-06:00",
         DES_CITY: "Usulután",
         USR_ADD: "admin",
-        PA_STATES: 32,
+        COD_STATE: 32,
       }),
     ]);
   } catch (error) {
@@ -753,3 +753,12 @@ export const CreateCities = async () => {
   }
     }
 };
+
+
+CreateRole()
+CreatePermisos()
+CreatePemisoHasRol()
+
+CreateContries()
+CreateStates()
+CreateCities()

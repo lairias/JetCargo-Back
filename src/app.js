@@ -1,39 +1,32 @@
+//**Importaciones del sistema del server */
 import express from "express";
 import morgan from "morgan";
+import cors from "cors"
+//**Importaciones de las rutas del server */
 import Users from "./routes/users.routes";
 import Auth from "./routes/auth.routes";
 import Roles  from "./routes/Roles.routes";
-import cors from "cors"
+import Cities from "./routes/Cities.routes"
+import State from "./routes/States.routes"
+import Country from "./routes/Country.routes"
+//**Importaciones de Seeder*/
 import sequelise from "./config/database/index"
 import "./config/database/R_E";
-
-import {
-  CreateRole,
-  CreatePermisos,
-  CreatePemisoHasRol,CreateContries,CreateStates,CreateCities
-} from "./config/database/Seeder";
-
-// import sequelise from "./config/database";
-
-sequelise.sync({ force: true });
-// CreateRole()
-// CreatePermisos();
-// CreatePemisoHasRol()
-// CreateContries()
-// CreateStates()
-// CreateCities()
-
+import  "./config/database/Seeder";
+// sequelise.sync({ force: true, alter : true });
+//**Ajustes*/
 const app = express();
 app.use(cors());
+//**Middleware*/
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ mensaje: "Welcome" });
-});
-
+//**Rutas */
 app.use("/api/roles", Roles);
 app.use("/api/users", Users);
 app.use("/api/auth", Auth);
+app.use("/api/cities", Cities);
+app.use("/api/states", State);
+app.use("/api/country", Country);
 
 export default app;
