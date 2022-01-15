@@ -1,59 +1,66 @@
-// import { Sequelize } from "sequelize";
-// import db from "../config/database";
+import { Sequelize } from "sequelize";
+import db from "../config/database";
 
-//  const BO_LOCKER = db.define(
-//   "BO_LOCKER",
-//   {
-//     COD_USER: {
-//       type: Sequelize.BIGINT,
-//       primaryKey: true,
-//       autoIncrement: true,
-//       allowNull: false,
-//       comment: "COD OF THE PERSON",
-//     },
+ const BO_LOCKER = db.define(
+  "BO_LOCKER",
+  {
+    COD_LOCKER: {
+      type: Sequelize.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+      comment: "COD OF THE LOCKER",
+    },
+    
+    COD_PEOPLE: {
+        type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE PEOPLE",
+    },
 
-//     NAME_LOCKER: {
-//       type: Sequelize.STRING(120),
-//       allowNull: false,
-//       unique: true,
-//       comment: "THE NAME OF THE LOCKER",
-//     },
-//     CLAVE: {
-//       type: Sequelize.STRING(120),
-//       allowNull: false,
-//       comment: "THE PASSWORD OF THE USER",
-//     },
-//     IND_LOCK: {
-//       type: Sequelize.BOOLEAN,
-//       allowNull: false,
-//       defaultValue: true,
-//       comment: "THE NAME OF THE USER",
-//     },
+    NUM_LOCKER: {
+      type: Sequelize.STRING(60),
+      allowNull: false,
+      comment: "NUM OF LOCKER",
+    },
 
-//     USR_ADD: {
-//       type: Sequelize.STRING(30),
-//       allowNull: false,
-//       comment: "USER THAT ADDED THIS ROW	",
-//     },
-//     USR_UPD: {
-//       type: Sequelize.STRING(30),
-//       comment: "USER WHO MODIFIED THIS ROW	",
-//     },
-//     DAT_ADD: {
-//       type: Sequelize.DATE,
-//       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-//       comment: "DATE THAT THIS ROW WERE ADDED	",
-//     },
-//     DAT_UPD: {
-//       type: Sequelize.DATE,
+    IND_LOCK: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "THE NAME OF THE USER",
+    },
 
-//       comment: "DATE THIS ROW WAS MODIFIED	",
-//     },
-//   },
-//   {
-//     createdAt: false,
-//     updatedAt: false,
-//   }
-// );
+    TYP_LOCK: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "THE NAME OF THE USER",
+    },
 
-// export default BO_LOCKER;
+    USR_ADD: {
+      type: Sequelize.STRING(30),
+      allowNull: false,
+      comment: "USER THAT ADDED THIS ROW	",
+    },
+    USR_UPD: {
+      type: Sequelize.STRING(30),
+      comment: "USER WHO MODIFIED THIS ROW	",
+    },
+    DAT_ADD: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      comment: "DATE THAT THIS ROW WERE ADDED	",
+    },
+    DAT_UPD: {
+      type: Sequelize.DATE,
+      comment: "DATE THIS ROW WAS MODIFIED	",
+    },
+  },
+  {
+    createdAt: false,
+    updatedAt: false,
+  }
+);
+
+export default BO_LOCKER;

@@ -1,30 +1,46 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_STATES = db.define(
-  "PA_state",
-  {
-    COD_STATE: {
+const PAY_INVOICE = db.define(
+  "PAY_Invoice",
+  { COD_INVOICE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE CITY",
+      comment: "COD OF THE LOCKER",
     },
-    COD_COUNTRY: {
+    COD_PEOPLE: {
       type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "COD OF THE COUNTRY",
+      comment: "COD OF THE SHIPPING COST",
     },
-    NAM_STATE: {
-      type: Sequelize.STRING(100),
+    COD_SHIPPINGCOST: {
+      type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "NAME OF THE STATE",
+      comment: "COD OF THE SHIPPING COST",
     },
-    DES_STATE: {
-      type: Sequelize.STRING(1000),
+    COD_PAYMENTMETHOD: {
+      type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "DESCRIPTION OF THE STATE",
+      comment: "COD OF THE SHIPPING COST",
+    },
+    NUM_LOCKER: {
+      type: Sequelize.STRING(60),
+      allowNull: false,
+      comment: "NUM OF LOCKER",
+    },
+    IND_LOCK: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "THE NAME OF THE USER",
+    },
+    TYP_LOCK: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "THE NAME OF THE USER",
     },
 
     USR_ADD: {
@@ -51,3 +67,5 @@ export const PA_STATES = db.define(
     updatedAt: false,
   }
 );
+
+export default PAY_INVOICE;

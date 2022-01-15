@@ -11,6 +11,11 @@ export const PA_ADDRES = db.define(
       allowNull: false,
       comment: "COD OF THE PERSON",
     },
+    COD_CITY: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE CITY",
+    },
     TYP_ADDRESS: {
       type: Sequelize.ENUM("H", "W", "A"),
       allowNull: false,

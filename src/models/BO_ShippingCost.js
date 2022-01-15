@@ -1,32 +1,31 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_STATES = db.define(
-  "PA_state",
+const BO_SHIPPINGCOST = db.define(
+  "BO_shippingcost",
   {
-    COD_STATE: {
+    COD_SHIPPINGCOST: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE CITY",
+      comment: "COD OF THE SHIPPING COST ",
     },
-    COD_COUNTRY: {
+    COD_PACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "COD OF THE COUNTRY",
+      comment: "COD OF THE PACKAGE",
     },
-    NAM_STATE: {
-      type: Sequelize.STRING(100),
+    COST_DELIVERY: {
+      type: Sequelize.STRING(60),
       allowNull: false,
-      comment: "NAME OF THE STATE",
+      comment: "COST DELIVERY OF THE SHIPPING COST",
     },
-    DES_STATE: {
-      type: Sequelize.STRING(1000),
+    COST_INTRODUCTION: {
+      type: Sequelize.STRING(60),
       allowNull: false,
-      comment: "DESCRIPTION OF THE STATE",
+      comment: "COST OF INTRODUCTION OF THE SHIPPING COST",
     },
-
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -51,3 +50,5 @@ export const PA_STATES = db.define(
     updatedAt: false,
   }
 );
+
+export default BO_SHIPPINGCOST;

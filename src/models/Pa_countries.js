@@ -4,7 +4,7 @@ import db from "../config/database";
 export const PA_COUNTRIES = db.define(
   "PA_countries",
   {
-    COD__COUNTRIES: {
+    COD_COUNTRY: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,

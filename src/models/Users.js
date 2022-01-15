@@ -11,6 +11,11 @@ export const USERS = db.define(
       allowNull: false,
       comment: "THE PRIMARY KEY OF THE USER",
     },
+    COD_PEOPLE: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE PERSON",
+    },
 
     EMAIL: {
       type: Sequelize.STRING(120),

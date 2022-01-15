@@ -1,41 +1,28 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_STATES = db.define(
-  "PA_state",
+const BO_TRACKING = db.define(
+  "BO_Tracking",
   {
-    COD_STATE: {
+    COD_TRACKING: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE CITY",
-    },
-    COD_COUNTRY: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF THE COUNTRY",
-    },
-    NAM_STATE: {
-      type: Sequelize.STRING(100),
-      allowNull: false,
-      comment: "NAME OF THE STATE",
-    },
-    DES_STATE: {
-      type: Sequelize.STRING(1000),
-      allowNull: false,
-      comment: "DESCRIPTION OF THE STATE",
+      comment: "COD OF THE TRACKING",
     },
 
-    USR_ADD: {
-      type: Sequelize.STRING(30),
+    COD_PACKAGE: {
+      type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "USER THAT ADDED THIS ROW	",
+      comment: "COD OF THE PACKAGE",
     },
-    USR_UPD: {
-      type: Sequelize.STRING(30),
-      comment: "USER WHO MODIFIED THIS ROW	",
+    DES_TRACKING:{
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "DESCRICTION  OF TRACKING",
     },
+    
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -51,3 +38,5 @@ export const PA_STATES = db.define(
     updatedAt: false,
   }
 );
+
+export default BO_TRACKING;

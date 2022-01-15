@@ -1,32 +1,26 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_STATES = db.define(
-  "PA_state",
+const BO_CATPACKAGE = db.define(
+  "BO_LOCKER",
   {
-    COD_STATE: {
+    COD_CATPACKAGE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE CITY",
+      comment: "COD OF THE PACKAGE CATEGORY ",
     },
-    COD_COUNTRY: {
-      type: Sequelize.BIGINT,
+    NAM_CATPACKAGE: {
+      type: Sequelize.STRING(60),
       allowNull: false,
-      comment: "COD OF THE COUNTRY",
+      comment: "NAME OF THE PACKAGE CATEGORY",
     },
-    NAM_STATE: {
-      type: Sequelize.STRING(100),
+    DES_CATPACKAGE: {
+      type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "NAME OF THE STATE",
+      comment: "DESCRIPTION OF THE PACKAGE CATEGORY",
     },
-    DES_STATE: {
-      type: Sequelize.STRING(1000),
-      allowNull: false,
-      comment: "DESCRIPTION OF THE STATE",
-    },
-
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
@@ -51,3 +45,5 @@ export const PA_STATES = db.define(
     updatedAt: false,
   }
 );
+
+export default BO_CATPACKAGE;

@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_CITIES = db.define(
-  "PA_cities",
+  "PA_city",
   {
     COD_CITY: {
       type: Sequelize.BIGINT,
@@ -10,6 +10,11 @@ export const PA_CITIES = db.define(
       autoIncrement: true,
       allowNull: false,
       comment: "COD OF THE CITY",
+    },
+    COD_STATE: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE STATE",
     },
     NAM_CITY: {
       type: Sequelize.STRING(100),

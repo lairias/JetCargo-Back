@@ -29,25 +29,25 @@ export const singUp = async (req, res, next) =>
         ROL,
       } = req.body;
 
-    const User = await sequelize.query(
-      "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
-      {
-        replacements: {
-          ID,
-          TIP_DOCUMENT,
-          FRISTNAME,
-          MIDDLENAME,
-          LASTNAME,
-          AGE,
-          TIP_PERSON,
-          USR_ADD,
-          EMAIL,
-          PAS_USER: await middleware.encrptPassword(PAS_USER),
-          ROL,
-        },
-      }
-    );
-    console.log(User)
+      const User = await sequelize.query(
+        "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
+        {
+          replacements: {
+            ID,
+            TIP_DOCUMENT,
+            FRISTNAME,
+            MIDDLENAME,
+            LASTNAME,
+            AGE,
+            TIP_PERSON,
+            USR_ADD,
+            EMAIL,
+            PAS_USER: await middleware.encrptPassword(PAS_USER),
+            ROL,
+          },
+        }
+      );
+      console.log(User);
       const token = await JWT.sign({ id: EMAIL }, config.JwrSecret, {
         expiresIn: 86400,
       });

@@ -3,13 +3,12 @@ import { PA_TypeUsers } from "../../models/Pa_typeUsers"; //roles
 import { USERS } from "../../models/Users";
 import { PA_ADDRES } from "../../models/Pa_addres";
 import { PA_CITIES } from "../../models/Pa_cities";
+import { PA_STATES } from "../../models/Pa_states";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_EMAIL } from "../../models/Pa_email";
 import { PA_PHONES } from "../../models/Pa_phones";
-import { PA_STATES } from "../../models/Pa_states";
 
 import { PA_CUSTOMES } from "../../models/Pa_customes";
-import { BO_LOCKER } from "../../models/BO_locker";
 import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
 
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
@@ -22,6 +21,27 @@ import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_ha
 import { REL_PEOPLE_PHONE } from "../../models/relations/REL_people_phone";
 import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 import { REL_PEOPLE_ADDRES } from "../../models/relations/REL_people_addres";
+
+
+
+
+//**Tablas de paquetes */
+import { BO_SHIPPINGCOST } from "../../models/BO_ShippingCost";
+import { BO_CATPACKAGE } from "../../models/BO_catPackage";
+import { BO_LOCKER } from "../../models/BO_locker";
+import { BO_PACKAGE } from "../../models/BO_package";
+import { BO_TRACKING } from "../../models/BO_tracking";
+import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
+
+
+//Tablas de Pago
+import { PAY_INVOICE } from "../../models/Pay_Invoice";
+import { BO_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
+
+
+
+
+
 
 // //Relacion de uno a uno
 // /**
@@ -56,13 +76,11 @@ const relaciones = async() => {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE",
   });
 
   await PA_POEPLE.belongsToMany(PA_EMAIL, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_PEOPLE",
-    comment: "COD OF TYPE OF EMAIL",
     onDelete: "CASCADE",
   });
 
@@ -70,39 +88,33 @@ const relaciones = async() => {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE",
   });
 
   await PA_POEPLE.belongsToMany(PA_PHONES, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PHONES",
   });
 
   await PA_POEPLE.hasMany(USERS, {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF USERS",
   });
 
   await PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF USERS",
   });
-
-  await PA_COUNTRIES.hasMany(PA_STATES, {
-    foreignKey: "COD_COUNTRY",
-    onDelete: "CASCADE",
-    comment: "COD OF TYPE OF STATES",
-  });
-
+  
   await PA_STATES.hasMany(PA_CITIES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF CITIES",
   });
+  await PA_COUNTRIES.hasMany(PA_STATES, {
+    foreignKey: "COD_COUNTRY",
+    onDelete: "CASCADE",
+  });
+
 
   // Relaciones de tablas de roles
 
@@ -112,7 +124,6 @@ const relaciones = async() => {
       name: "COD_PERMISO",
     },
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE",
   });
 
   await USERS.belongsToMany(SE_PERMISOS, {
@@ -120,7 +131,6 @@ const relaciones = async() => {
     foreignKey: {
       name: "COD_USER",
     },
-    comment: "COD OF TYPE OF EMAIL",
     onDelete: "CASCADE",
   });
 
@@ -142,7 +152,6 @@ const relaciones = async() => {
       name: "COD_ADDRESS",
     },
     onDelete: "CASCADE",
-    comment: "COD OF ADDRES",
   });
 
   await PA_POEPLE.belongsToMany(PA_ADDRES, {
@@ -150,7 +159,6 @@ const relaciones = async() => {
     foreignKey: {
       name: "COD_PEOPLE",
     },
-    comment: "COD OF PEOPLE",
     onDelete: "CASCADE",
   });
 
@@ -203,7 +211,6 @@ const relaciones = async() => {
       name: "COD_TYPEUSERS",
     },
     onDelete: "CASCADE",
-    comment: "COD OF TYPE OF PEOPLE",
   });
 
   await USERS.belongsToMany(PA_TypeUsers, {
@@ -211,7 +218,6 @@ const relaciones = async() => {
     foreignKey: {
       name: "COD_USER",
     },
-    comment: "COD OF TYPE OF EMAIL",
     onDelete: "CASCADE",
   });
 

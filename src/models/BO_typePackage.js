@@ -1,32 +1,26 @@
 import { Sequelize } from "sequelize";
-import db from "../config/database";
+import db from "../config/database/index";
 
-export const PA_STATES = db.define(
-  "PA_state",
+export const BO_TYPEPACKAGE = db.define(
+  "BO_typePackage",
   {
-    COD_STATE: {
+    COD_TYPEPACKAGE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE CITY",
+      comment: "COD OF THE TYPE OF PACKAGE",
     },
-    COD_COUNTRY: {
-      type: Sequelize.BIGINT,
+    NAM_TYPEPACKAGE: {
+      type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "COD OF THE COUNTRY",
+      comment: "NAME OF THE TYPE OF PACKAGE",
     },
-    NAM_STATE: {
-      type: Sequelize.STRING(100),
+    DES_TYPEPACKAGE: {
+      type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "NAME OF THE STATE",
+      comment: "VALIDACION DE TOKEN PARA RESETEO",
     },
-    DES_STATE: {
-      type: Sequelize.STRING(1000),
-      allowNull: false,
-      comment: "DESCRIPTION OF THE STATE",
-    },
-
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
