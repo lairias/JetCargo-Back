@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database/index";
 
 export const BO_TYPEPACKAGE = db.define(
-  "BO_typePackage",
+  "BO_TypePackage",
   {
     COD_TYPEPACKAGE: {
       type: Sequelize.BIGINT,

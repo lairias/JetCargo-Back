@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-const BO_SHIPPINGCOST = db.define(
-  "BO_shippingcost",
+export const BO_SHIPPINGCOST = db.define(
+  "BO_ShippingCost",
   {
     COD_SHIPPINGCOST: {
       type: Sequelize.BIGINT,
@@ -51,4 +51,3 @@ const BO_SHIPPINGCOST = db.define(
   }
 );
 
-export default BO_SHIPPINGCOST;

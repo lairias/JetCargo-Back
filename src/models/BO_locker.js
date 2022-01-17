@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
- const BO_LOCKER = db.define(
-  "BO_LOCKER",
+export  const BO_LOCKER = db.define(
+  "BO_Loker",
   {
     COD_LOCKER: {
       type: Sequelize.BIGINT,
@@ -24,18 +24,17 @@ import db from "../config/database";
       comment: "NUM OF LOCKER",
     },
 
-    IND_LOCK: {
+    IND_LOCKER: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
-      comment: "THE NAME OF THE USER",
+      comment: "STATUS OF LOCKER",
     },
 
-    TYP_LOCK: {
-      type: Sequelize.BOOLEAN,
+    TYP_LOCKER: {
+      type: Sequelize.STRING(80),
       allowNull: false,
-      defaultValue: true,
-      comment: "THE NAME OF THE USER",
+      comment: "TYPE OF LOCKER",
     },
 
     USR_ADD: {
@@ -63,4 +62,3 @@ import db from "../config/database";
   }
 );
 
-export default BO_LOCKER;

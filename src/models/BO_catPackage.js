@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-const BO_CATPACKAGE = db.define(
-  "BO_LOCKER",
+ export const BO_CATPACKAGE = db.define(
+  "BO_CatPackage",
   {
     COD_CATPACKAGE: {
       type: Sequelize.BIGINT,
@@ -46,4 +46,3 @@ const BO_CATPACKAGE = db.define(
   }
 );
 
-export default BO_CATPACKAGE;

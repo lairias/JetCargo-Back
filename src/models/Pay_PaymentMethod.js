@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-const BO_PAYMENTMETHOD = db.define(
-  "PA_PaymentMethod",
+export const PAY_PAYMENTMETHOD = db.define(
+  "PAY_PaymentMethod",
   {
     COD_PAYMENTMETHOD: {
       type: Sequelize.BIGINT,
@@ -40,4 +40,3 @@ const BO_PAYMENTMETHOD = db.define(
   }
 );
 
-export default BO_PAYMENTMETHOD;

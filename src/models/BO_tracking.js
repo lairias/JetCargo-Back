@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-const BO_TRACKING = db.define(
+export const BO_TRACKING = db.define(
   "BO_Tracking",
   {
     COD_TRACKING: {
@@ -39,4 +39,3 @@ const BO_TRACKING = db.define(
   }
 );
 
-export default BO_TRACKING;

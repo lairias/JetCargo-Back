@@ -36,7 +36,7 @@ import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
 
 //Tablas de Pago
 import { PAY_INVOICE } from "../../models/Pay_Invoice";
-import { BO_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
+import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
 
 
 
@@ -100,6 +100,7 @@ const relaciones = async() => {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
+  
 
   await PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
@@ -231,6 +232,53 @@ const relaciones = async() => {
       name: "COD_USER",
     },
   });
+
+
+  /******************************* */
+await PA_POEPLE.hasMany(BO_LOCKER, {
+  foreignKey: "COD_PEOPLE",
+  onDelete: "CASCADE",
+});
+
+await BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
+  foreignKey: "COD_PACKAGE",
+  onDelete: "CASCADE",
+});
+await BO_PACKAGE.hasMany(BO_TRACKING, {
+  foreignKey: "COD_PACKAGE",
+  onDelete: "CASCADE",
+});
+await PA_POEPLE.hasMany(PAY_PAYMENTMETHOD, {
+  foreignKey: "COD_PEOPLE",
+  onDelete: "CASCADE",
+});
+await PA_POEPLE.hasMany(PAY_INVOICE, {
+  foreignKey: "COD_PEOPLE",
+  onDelete: "CASCADE",
+});
+await BO_SHIPPINGCOST.hasMany(PAY_INVOICE, {
+  foreignKey: "COD_SHIPPINGCOST",
+  onDelete: "CASCADE",
+});
+await PAY_PAYMENTMETHOD.hasMany(PAY_INVOICE, {
+  foreignKey: "COD_PAYMENTMETHOD",
+  onDelete: "CASCADE",
+});
+
+
+await BO_CATPACKAGE.hasMany(BO_PACKAGE, {
+  foreignKey: "COD_CATPACKAGE",
+  onDelete: "CASCADE",
+});
+await BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
+  foreignKey: "COD_TYPEPACKAGE",
+  onDelete: "CASCADE",
+});
+await BO_LOCKER.hasMany(BO_PACKAGE, {
+  foreignKey: "COD_LOCKER",
+  onDelete: "CASCADE",
+});
+
 };
 
 relaciones()

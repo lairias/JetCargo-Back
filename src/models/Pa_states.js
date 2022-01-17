@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_STATES = db.define(
-  "PA_state",
+  "PA_State",
   {
     COD_STATE: {
       type: Sequelize.BIGINT,

@@ -21,15 +21,15 @@ import {
   CreateStates,
   CreateCities,
 } from "./config/database/Seeder";
-sequelise.sync({ force: true, alter : true });
+// sequelise.sync({ force: true, alter : true });
 
-// CreateRole();
-// CreatePermisos();
-// CreatePemisoHasRol();
+CreateRole();
+CreatePermisos();
+CreatePemisoHasRol();
 
-// CreateContries();
-// CreateStates();
-// CreateCities();
+CreateContries();
+CreateStates();
+CreateCities();
 
 // **Ajustes*/
 const app = express();

@@ -12,7 +12,7 @@ export const BO_PACKAGE = db.define(
       comment: "COD OF THE PACKAGE",
     },
 
-    COD_CATEPACKAGE: {
+    COD_CATPACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PACKAGE CATEGORY",

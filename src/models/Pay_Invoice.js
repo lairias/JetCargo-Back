@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-const PAY_INVOICE = db.define(
+export const PAY_INVOICE = db.define(
   "PAY_Invoice",
   { COD_INVOICE: {
       type: Sequelize.BIGINT,
@@ -68,4 +68,3 @@ const PAY_INVOICE = db.define(
   }
 );
 
-export default PAY_INVOICE;

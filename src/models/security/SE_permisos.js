@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../../config/database";
 
 export const SE_PERMISOS = db.define(
-  "SE_permisos",
+  "SE_Permisos",
   {
     COD_PERMISO: {
       type: Sequelize.BIGINT,

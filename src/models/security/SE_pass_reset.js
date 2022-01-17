@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../../config/database";
 
 export const Se_PASS_RESET = db.define(
-  "SE_pass_reset",
+  "SE_PassReset",
   {
     EMAIL: {
       type: Sequelize.STRING(120),

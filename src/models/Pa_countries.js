@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_COUNTRIES = db.define(
-  "PA_countries",
+  "PA_Countries",
   {
     COD_COUNTRY: {
       type: Sequelize.BIGINT,
