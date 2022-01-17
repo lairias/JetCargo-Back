@@ -9,6 +9,7 @@ import Roles from "./routes/Roles.routes";
 import Cities from "./routes/Cities.routes";
 import State from "./routes/States.routes";
 import Country from "./routes/Country.routes";
+import CatPackage from "./routes/CatPackage.routes";
 //**Importaciones de Seeder*/
 import sequelise from "./config/database/index";
 
@@ -44,5 +45,6 @@ app.use("/api/auth", Auth);
 app.use("/api/cities", Cities);
 app.use("/api/states", State);
 app.use("/api/country", Country);
+app.use("/api/catpackage", CatPackage);
 
 export default app;
