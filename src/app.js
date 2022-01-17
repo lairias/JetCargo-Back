@@ -22,7 +22,6 @@ import {
   CreateCities,
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true, alter : true });
-
 CreateRole();
 CreatePermisos();
 CreatePemisoHasRol();
