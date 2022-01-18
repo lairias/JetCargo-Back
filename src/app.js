@@ -10,6 +10,7 @@ import Cities from "./routes/Cities.routes";
 import State from "./routes/States.routes";
 import Country from "./routes/Country.routes";
 import CatPackage from "./routes/CatPackage.routes";
+import Lockers from "./routes/Lockers.routes";
 //**Importaciones de Seeder*/
 import sequelise from "./config/database/index";
 
@@ -46,5 +47,6 @@ app.use("/api/cities", Cities);
 app.use("/api/states", State);
 app.use("/api/country", Country);
 app.use("/api/catpackage", CatPackage);
+app.use("/api/locker", Lockers);
 
 export default app;
