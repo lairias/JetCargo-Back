@@ -15,8 +15,9 @@ export const GetCountries = async (req, res, next) => {
 };
 
 export const GetCountry = async (req, res, next) => {
+  const {COD_COUNTRY} = req.params;
   try {
-    const cities = await PA_COUNTRIES.findbyPk();
+    const cities = await PA_COUNTRIES.findByPk( COD_COUNTRY);
     res.status(200).json(cities);
   } catch (error) {
     console.log(error);
@@ -26,9 +27,20 @@ export const GetCountry = async (req, res, next) => {
     next();
   }
 };
+
 export const CreateCountry = async (req, res, next) => {
+  const {NAM_COUNTRY,DES_COUNTRY,USR_ADD} = req.body;
   try {
-    const cities = await PA_COUNTRIES.findbyPk();
+    const cities = await sequelize.query(
+      "CALL INS_COUNTRY(:NAM_COUNTRY,:DES_COUNTRY,:USR_ADD)",
+      {
+        replacements: {
+          NAM_COUNTRY,
+          DES_COUNTRY,
+          USR_ADD
+        },
+      }
+    );
     res.status(200).json(cities);
   } catch (error) {
     console.log(error);
@@ -39,8 +51,11 @@ export const CreateCountry = async (req, res, next) => {
   }
 };
 export const DeleteCountrie = async (req, res, next) => {
+  const {COD_COUNTRY} = req.params;
   try {
-    const cities = await PA_COUNTRIES.findbyPk();
+    const cities = await PA_COUNTRIES.destroy({where:{
+      COD_COUNTRY
+    }});
     res.status(200).json(cities);
   } catch (error) {
     console.log(error);
@@ -51,8 +66,19 @@ export const DeleteCountrie = async (req, res, next) => {
   }
 };
 export const UpdateCountrie = async (req, res, next) => {
+   const { NAM_COUNTRY, DES_COUNTRY, USR_UPD } = req.body;
+   const { COD_COUNTRY } = req.params;
   try {
-    const cities = await PA_COUNTRIES.findbyPk();
+  const cities = await sequelize.query(
+    "CALL UPD_COUNTRY(:COD_COUNTRY,:NAM_COUNTRY,:DES_COUNTRY,:USR_UPD)",
+    { replacements: {
+        COD_COUNTRY,
+        NAM_COUNTRY,
+        DES_COUNTRY,
+        USR_UPD,
+      },
+    }
+  );
     res.status(200).json(cities);
   } catch (error) {
     console.log(error);
