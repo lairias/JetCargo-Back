@@ -90,19 +90,41 @@ export const DeletePackage = async (req, res, next) => {
   }
 };
 export const UpdatePackage = async (req, res, next) => {
-  const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, IND_LOCKER, USR_UPD } = req.body;
+  const {
+    COD_CATPACKAGE,
+    COD_TYPEPACKAGE,
+    COD_LOCKER,
+    NOM_PACKAGE,
+    NUM_PACKAGE,
+    HEIGHT_PACKAGE,
+    WIDTH_PACKAGE,
+    LENGTH_PACKAGE,
+    WEIGHT_PACKAGE,
+    PRICE_PACKAGE,
+    VOL_PACKAGE,
+    IND_PACKAGE,
+    USR_UPD,
+  } = req.body;
   const { COD_PACKAGE } = req.params;
   try {
     const cities = await sequelize.query(
-      "CALL UPD_LOCKER(:COD_PACKAGE,:COD_PEOPLE,:NUM_LOCKER,:TYP_LOCKER,:USR_UPD,:IND_LOCKER)",
+      "CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)",
       {
         replacements: {
           COD_PACKAGE,
-          COD_PEOPLE,
-          NUM_LOCKER,
-          TYP_LOCKER,
+          COD_CATPACKAGE,
+          COD_TYPEPACKAGE,
+          COD_LOCKER,
+          NOM_PACKAGE,
+          NUM_PACKAGE,
+          HEIGHT_PACKAGE,
+          WIDTH_PACKAGE,
+          LENGTH_PACKAGE,
+          WEIGHT_PACKAGE,
+          PRICE_PACKAGE,
+          VOL_PACKAGE,
+          IND_PACKAGE,
           USR_UPD,
-          IND_LOCKER,
         },
       }
     );
