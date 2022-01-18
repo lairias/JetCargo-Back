@@ -6,13 +6,12 @@ import {
   GetPassReset,
   UpdatePassReset,
 } from "../controllers/PassReset.Controllers";
-
+import { verifyTokenPass } from "../middleware/verifyPassReset";
 const router = Router();
 
 router.post("/", CreatePassReset);
-router.get("/", GetAllPassReset);
+router.get("/", [verifyTokenPass], GetAllPassReset);
 router.get("/:EMAIL", GetPassReset);
 router.delete("/:EMAIL", DeletePassReset);
-router.put("/:EMAIL", UpdatePassReset);
 
 export default router;

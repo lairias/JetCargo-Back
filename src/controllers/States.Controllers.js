@@ -4,7 +4,7 @@ import sequelize from "../config/database/index";
 
 export const GetStates = async (req, res, next) => {
   try {
-    const cities = await PA_STATES.findAll({});
+    const cities = await PA_STATES.findAll({ offset: 5, limit: 5 });
     res.status(200).json(cities);
   } catch (error) {
     console.log(error);
