@@ -5,6 +5,7 @@ import config from "../config";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
 import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
+ import "dotenv/config";
 export const singUp = async (req, res, next) =>
   // 200 ok
   // 201 Created
@@ -28,7 +29,6 @@ export const singUp = async (req, res, next) =>
         PAS_USER,
         ROL,
       } = req.body;
-
       await sequelize.query(
         "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
         {
@@ -47,10 +47,15 @@ export const singUp = async (req, res, next) =>
           },
         }
       );
+      const User = await USERS.findOne({where:{EMAIL}});
 
-      const token = await JWT.sign({ email: EMAIL }, config.JwrSecret, {
-        expiresIn: 86400,
-      });
+      const token = await JWT.sign(
+        { id: User.COD_USER },
+        process.env.JWTSECRET,
+        {
+          expiresIn: 86400,
+        }
+      );
 
       USERS.update(
         { API_TOKEN: token },
@@ -90,7 +95,8 @@ export const singIn = async (req, res, next) => {
         .json({ token: null, message: "Pass o User invalidos" });
     const token = JWT.sign(
       { email: UserFond.EMAIL, id: UserFond.COD_USER },
-      config.JwrSecret,{
+      process.env.JWTSECRET,
+      {
         expiresIn: 86400,
       }
     );
