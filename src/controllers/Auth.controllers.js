@@ -1,5 +1,6 @@
 import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
+import { transport,configTransportVery } from "../email";
 import {encrptPassword, compararPassword} from "../helpers/bcrypt";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
@@ -61,6 +62,16 @@ export const singUp = async (req, res, next) =>
             EMAIL,
           },
         }
+      );
+      await transport.sendMail(
+        configTransportVery(
+          FRISTNAME,
+          LASTNAME,
+          EMAIL.replace("@", "%40"),
+          token,
+          req.headers.host,
+          User.COD_USER
+        )
       );
       res.status(201).json({
         token,
