@@ -2,7 +2,7 @@ import {Se_PASS_RESET} from "../models/security/SE_pass_reset"
 import {USERS} from "../models/Users"
 
 import JWT from "jsonwebtoken"
-import middleware from "../middleware"
+import { encrptPassword, compararPassword } from "../helpers/bcrypt";
 import config from "../config";
 
 import sequelize from "../config/database/index";

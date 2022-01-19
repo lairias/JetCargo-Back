@@ -17,6 +17,7 @@ import PassReset from "./routes/PassReset.routes";
 //**Importaciones de Seeder*/
 import sequelise from "./config/database/index";
 
+import "./helpers/generate_keys"
 import "./config/database/R_E";
 import {
   CreateRole,

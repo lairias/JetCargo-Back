@@ -1,6 +1,6 @@
 import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
-import middleware from "../middleware";
+import {encrptPassword, compararPassword} from "../helpers/bcrypt";
 import config from "../config";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
@@ -42,7 +42,7 @@ export const singUp = async (req, res, next) =>
             TIP_PERSON,
             USR_ADD,
             EMAIL,
-            PAS_USER: await middleware.encrptPassword(PAS_USER),
+            PAS_USER: await encrptPassword(PAS_USER),
             ROL,
           },
         }
@@ -84,7 +84,7 @@ export const singIn = async (req, res, next) => {
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
-    if (!(await middleware.compararPassword(PAS_USER, UserFond.PAS_USER)))
+    if (!(await compararPassword(PAS_USER, UserFond.PAS_USER)))
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
