@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   CreatePassReset,
   DeletePassReset,
-  GetAllPassReset,
+  ForgotPassword,
   GetPassReset,
   UpdatePassReset,
 } from "../controllers/PassReset.Controllers";
@@ -10,7 +10,7 @@ import { verifyTokenPass } from "../middleware/verifyPassReset";
 const router = Router();
 
 router.post("/", CreatePassReset);
-router.get("/", [verifyTokenPass], GetAllPassReset);
+router.get("/reset-password/:COD_USER/:CORREO/:TOKEN", [verifyTokenPass], ForgotPassword);
 router.get("/:EMAIL", GetPassReset);
 router.delete("/:EMAIL", DeletePassReset);
 

@@ -3,7 +3,6 @@ import { PA_STATES } from "../models/Pa_states";
 import sequelize from "../config/database/index";
 
 export const GetCitiesForCountry = async (req, res, next) => {
-  const { COD_COUNTRY } = req.params;
   try {
     const cities = await PA_STATES.findAll({
       include: { PA_CITIES },

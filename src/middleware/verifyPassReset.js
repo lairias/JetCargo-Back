@@ -1,17 +1,21 @@
 import jwt from "jsonwebtoken";
-import config from "../config";
 import { USERS } from "../models/Users";
+import "dotenv/config"
 
 //Falta mejorar la seguridad de la validacion de secrert entre JWT
-export const verifyTokenPass = async (req, res) => {
+export const verifyTokenPass = async (req, res,next) => {
   try {
     const token = req.headers["x-pass-reset-token"];
-    if (!token) return res.status(403).json({ message: "No token provided" });
-    const decode = jwt.verify(token, config.JwrSecret_PassReset);
+  if (!token) return res.status(403).json({ message: "No token provided" });
 
-      return res.status(404).json({ message: "no user no activo" });
+    const { id } = jwt.verify(token, process.env.JWTSECRETPASSWORD);
+    const lock = await USERS.findByPk(id);
+    req.userIdR = id;
+    if (!lock) return res.status(404).json({ message: "no user found" });
+    if (!lock.IND_USR) return res.status(404).json({ message: "no user no activo" });
+    next()
   } catch (error) {
     console.log(error);
     return res.status(501).json({ message: "Erro al procesar la petición" });
   }
-};
+ }

@@ -1,7 +1,6 @@
 import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
 import {encrptPassword, compararPassword} from "../helpers/bcrypt";
-import config from "../config";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
 import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
@@ -48,7 +47,6 @@ export const singUp = async (req, res, next) =>
         }
       );
       const User = await USERS.findOne({where:{EMAIL}});
-
       const token = await JWT.sign(
         { id: User.COD_USER },
         process.env.JWTSECRET,
@@ -56,7 +54,6 @@ export const singUp = async (req, res, next) =>
           expiresIn: 86400,
         }
       );
-
       USERS.update(
         { API_TOKEN: token },
         {
@@ -76,7 +73,6 @@ export const singUp = async (req, res, next) =>
       next();
     }
   };
-
 export const singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
   try {
@@ -94,7 +90,7 @@ export const singIn = async (req, res, next) => {
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
     const token = JWT.sign(
-      { email: UserFond.EMAIL, id: UserFond.COD_USER },
+      {  id: UserFond.COD_USER },
       process.env.JWTSECRET,
       {
         expiresIn: 86400,
