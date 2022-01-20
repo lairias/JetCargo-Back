@@ -17,6 +17,11 @@ export const SE_PERMISOS = db.define(
       unique: true,
       comment: "NAME OF PERMISSIONS",
     },
+    DES_PERMISOS: {
+      type: Sequelize.STRING(120),
+      allowNull: false,
+      comment: "DESCRIPTION OF PERMISSO",
+    },
   },
   {
     createdAt: false,

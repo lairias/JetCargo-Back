@@ -103,54 +103,310 @@ export const CreatePermisos = async () => {
       await Promise.all([
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.crear",
-          USR_ADD: "admin",
+          DES_PERMISOS:"Crear administrador"
         }),
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.view",
-          USR_ADD: "admin",
+          DES_PERMISOS:"Ver administrador"
         }),
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.update",
-          USR_ADD: "admin",
+          DES_PERMISOS:"Actualizar administrador"
         }),
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.delete",
-          USR_ADD: "admin",
+          DES_PERMISOS:"Eliminar administrador"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "city.crear",
+          DES_PERMISOS:"Crear ciudad"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "city.view",
+          DES_PERMISOS:"Ver ciudad"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "city.update",
+          DES_PERMISOS:"Actualizar ciudad"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "city.delete",
+          DES_PERMISOS:"Eliminar ciudad"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "categoripaquete.crear",
+          DES_PERMISOS:"Crear categoria de paquetes"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "categoripaquete.view",
+          DES_PERMISOS:"Ver categoria de paquetes"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "categoripaquete.update",
+          DES_PERMISOS:"Actualizar categoria de paquetes"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "categoripaquete.delete",
+          DES_PERMISOS:"Eliminar categoria de paquetes"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "locker.crear",
+          DES_PERMISOS:"Crear Locker"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "locker.view",
+          DES_PERMISOS:"Ver Locker"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "locker.update",
+          DES_PERMISOS:"Actualizar Locker"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "locker.delete",
+          DES_PERMISOS:"Eliminar Locker"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "package.crear",
+          DES_PERMISOS:"Crear Package"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "package.view",
+          DES_PERMISOS:"Ver Package"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "package.update",
+          DES_PERMISOS:"Actualizar Package"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "package.delete",
+          DES_PERMISOS:"Eliminar Package"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "costodeenvio.crear",
+          DES_PERMISOS:"Crear Costo de envio"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "costodeenvio.view",
+          DES_PERMISOS:"Ver Costo de envio"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "costodeenvio.update",
+          DES_PERMISOS:"Actualizar Costo de envio"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "costodeenvio.delete",
+          DES_PERMISOS:"Eliminar Costo de envio"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "tracking.crear",
+          DES_PERMISOS:"Crear tracking"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "tracking.view",
+          DES_PERMISOS:"Ver tracking"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "tracking.update",
+          DES_PERMISOS:"Actualizar tracking"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "tracking.delete",
+          DES_PERMISOS:"Eliminar tracking"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typepackage.crear",
+          DES_PERMISOS:"Crear tipo de paquete"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typepackage.view",
+          DES_PERMISOS:"Ver tipo de paquete"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typepackage.update",
+          DES_PERMISOS:"Actualizar tipo de paquete"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typepackage.delete",
+          DES_PERMISOS:"Eliminar tipo de paquete"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "addres.crear",
+          DES_PERMISOS:"Crear dirrección"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "addres.view",
+          DES_PERMISOS:"Ver dirrección"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "addres.update",
+          DES_PERMISOS:"Actualizar dirrección"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "addres.delete",
+          DES_PERMISOS:"Eliminar dirrección"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "country.crear",
+          DES_PERMISOS:"Crear país"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "country.view",
+          DES_PERMISOS:"Ver país"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "country.update",
+          DES_PERMISOS:"Actualizar país"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "country.delete",
+          DES_PERMISOS:"Eliminar país"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "customes.crear",
+          DES_PERMISOS:"Crear cliente"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "customes.view",
+          DES_PERMISOS:"Ver cliente"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "customes.update",
+          DES_PERMISOS:"Actualizar cliente"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "customes.delete",
+          DES_PERMISOS:"Eliminar cliente"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "email.crear",
+          DES_PERMISOS:"Crear email"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "email.view",
+          DES_PERMISOS:"Ver email"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "email.update",
+          DES_PERMISOS:"Actualizar email"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "email.delete",
+          DES_PERMISOS:"Eliminar email"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "people.crear",
+          DES_PERMISOS:"Crear personas"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "people.view",
+          DES_PERMISOS:"Ver personas"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "people.update",
+          DES_PERMISOS:"Actualizar personas"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "people.delete",
+          DES_PERMISOS:"Eliminar personas"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "phone.crear",
+          DES_PERMISOS:"Crear teléfono"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "phone.view",
+          DES_PERMISOS:"Ver teléfono"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "phone.update",
+          DES_PERMISOS:"Actualizar teléfono"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "phone.delete",
+          DES_PERMISOS:"Eliminar teléfono"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "states.crear",
+          DES_PERMISOS:"Crear departamento"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "states.view",
+          DES_PERMISOS:"Ver departamento"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "states.update",
+          DES_PERMISOS:"Actualizar departamento"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "states.delete",
+          DES_PERMISOS:"Eliminar departamento"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typeuser.crear",
+          DES_PERMISOS:"Crear rol"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typeuser.view",
+          DES_PERMISOS:"Ver rol"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typeuser.update",
+          DES_PERMISOS:"Actualizar rol"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "typeuser.delete",
+          DES_PERMISOS:"Eliminar rol"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "user.crear",
+          DES_PERMISOS:"Crear usuario"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "user.view",
+          DES_PERMISOS:"Ver usuario"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "user.update",
+          DES_PERMISOS:"Actualizar usuario"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "user.delete",
+          DES_PERMISOS:"Eliminar usuario"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "methopay.crear",
+          DES_PERMISOS:"Crear metodo de pago"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "methopay.view",
+          DES_PERMISOS:"Ver metodo de pago"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "methopay.update",
+          DES_PERMISOS:"Actualizar metodo de pago"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "methopay.delete",
+          DES_PERMISOS:"Eliminar metodo de pago"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "invoice.crear",
+          DES_PERMISOS:"Crear factura"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "invoice.view",
+          DES_PERMISOS:"Ver factura"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "invoice.update",
+          DES_PERMISOS:"Actualizar factura"
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "invoice.delete",
+          DES_PERMISOS:"Eliminar factura"
         }),
 
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "empleado.crear",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "empleado.view",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "empleado.update",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "empleado.delete",
-          USR_ADD: "admin",
-        }),
 
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "cliente.crear",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "cliente.view",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "cliente.update",
-          USR_ADD: "admin",
-        }),
-        await SE_PERMISOS.create({
-          NAM_PERMISOS: "cliente.delete",
-          USR_ADD: "admin",
-        }),
       ]);
     } catch (error) {
       console.log(error);

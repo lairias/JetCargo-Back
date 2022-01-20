@@ -26,7 +26,7 @@ export const USERS = db.define(
     EMAIL_VERIFIED: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: 1,
+      defaultValue: false,
       comment: "THE EMAIL OF THE USER",
     },
     PAS_USER: {
@@ -43,13 +43,13 @@ export const USERS = db.define(
     IND_USR: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
       comment: "IND OF THE USER TO ACCESS THE SYSTEM, 0=INACTIVE 1=ACTIVE",
     },
     IND_INS: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
       comment: "IND OF THE FIRST TIME IN THE SYSTEM.",
     },
 
