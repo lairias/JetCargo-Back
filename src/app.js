@@ -15,6 +15,7 @@ import Lockers from "./routes/Lockers.routes";
 import TypePackage from "./routes/TypePackage.routes";
 import Package from "./routes/Package.routes";
 import PassReset from "./routes/PassReset.routes";
+import Email from "./routes/Email.routes";
 //**Importaciones de Seeder*/
 import sequelise from "./config/database/index";
 
@@ -55,5 +56,6 @@ app.use("/api/locker", Lockers);
 app.use("/api/package", Package);
 app.use("/api/typepackage", TypePackage);
 app.use("/api/passreset", PassReset);
+app.use("/api/email", Email);
 
 export default app;
