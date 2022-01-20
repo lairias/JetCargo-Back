@@ -73,7 +73,7 @@ export const ForgotPassword = async (req, res, next) => {
       where: { API_TOKEN: TOKEN },
     });
     await USERS.update(
-      { PAS_USER: PASS },
+      { PAS_USER: encrptPassword(PASS) },
       {
         where: {
           COD_USER,

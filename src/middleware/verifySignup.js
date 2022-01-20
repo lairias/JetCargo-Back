@@ -4,7 +4,7 @@ import { USERS } from "../models/Users";
 
 export const verifyToken = async (req, res,next) => {
   try {
-    const token = req.headers["x-access-token"];
+    const token = req.headers["x-access-token"]  ;
     if (!token) return res.status(403).json({ message: "No token provided" });
     const { id } = jwt.verify(token, process.env.JWTSECRET);  
     req.userId = id;
@@ -14,8 +14,8 @@ export const verifyToken = async (req, res,next) => {
     return res.status(501).json({ message: "Erro al procesar la petición" });
   }
 };
-export const verifyIndUser = async (req, res,next) => {
 
+export const verifyIndUser = async (req, res,next) => {
   try {
       const User = await USERS.findByPk(req.userId);
       if (!User) return res.status(404).json({ message: "no user found" });

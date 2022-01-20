@@ -4,6 +4,7 @@ import { transport,configTransportVery } from "../email";
 import {encrptPassword, compararPassword} from "../helpers/bcrypt";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
+    import { LocalStorage } from "node-localstorage";
 import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
  import "dotenv/config";
 export const singUp = async (req, res, next) =>
@@ -14,6 +15,8 @@ export const singUp = async (req, res, next) =>
   // 401 no autenticado
   // 404 no fund
   // 500 internal server error
+  
+  
   {
     try {
       const {
@@ -85,6 +88,8 @@ export const singUp = async (req, res, next) =>
     }
   };
 export const singIn = async (req, res, next) => {
+var localStorage = new LocalStorage("./scratch");
+
   const { EMAIL, PAS_USER } = req.body;
   try {
     const UserFond = await USERS.findOne({
@@ -107,6 +112,8 @@ export const singIn = async (req, res, next) => {
         expiresIn: 86400,
       }
     );
+    //Setting localStorage Item
+    localStorage.setItem("_token", token); 
     res.status(200).json({
       token,
     });

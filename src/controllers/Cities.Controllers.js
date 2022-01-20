@@ -1,6 +1,7 @@
 import { PA_CITIES } from "../models/Pa_cities";
 import { PA_STATES } from "../models/Pa_states";
 import sequelize from "../config/database/index";
+import { LocalStorage } from "node-localstorage";
 
 export const GetCitiesForCountry = async (req, res, next) => {
   try {
@@ -17,6 +18,8 @@ export const GetCitiesForCountry = async (req, res, next) => {
   }
 };
 export const GetCities = async (req, res, next) => {
+
+  
   try {
     const cities = await PA_CITIES.findAll();
     res.status(200).json(cities);
