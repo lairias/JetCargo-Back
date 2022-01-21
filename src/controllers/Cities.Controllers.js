@@ -1,7 +1,7 @@
 import { PA_CITIES } from "../models/Pa_cities";
 import { PA_STATES } from "../models/Pa_states";
 import sequelize from "../config/database/index";
-import { LocalStorage } from "node-localstorage";
+import { HttpError } from "../helpers/handleError";
 
 export const GetCitiesForCountry = async (req, res, next) => {
   try {
@@ -10,10 +10,7 @@ export const GetCitiesForCountry = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };
@@ -24,10 +21,7 @@ export const GetCities = async (req, res, next) => {
     const cities = await PA_CITIES.findAll();
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };
@@ -46,18 +40,6 @@ export const CreateCity = async (req, res, next) => {
   } = req.body;
 
   try {
-    // const cities = await PA_CITIES.create({
-    //   NAM_CITY,
-    //   ZIP_CODE,
-    //   POS_CODE,
-    //   POPULATION,
-    //   CURRENCY,
-    //   TIMEZONE,
-    //   DES_CITY,
-    //   USR_ADD,
-    //   COD_STATE,
-    // });
-
     const cities = await sequelize.query(
       `CALL INS_CITIES(
       :NAM_CITY,
@@ -83,12 +65,9 @@ export const CreateCity = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+    return  res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };
@@ -137,10 +116,7 @@ export const UpdateCity = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };
@@ -155,10 +131,7 @@ export const DeleteCity = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };
@@ -173,10 +146,7 @@ export const GetCity = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+   HttpError(res, error);
     next();
   }
 };

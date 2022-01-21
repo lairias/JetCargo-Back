@@ -1,9 +1,7 @@
 import "@babel/polyfill";
-//**Importaciones del sistema del server */
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-//**Importaciones de las rutas del server */
 import Users from "./routes/users.routes";
 import Auth from "./routes/auth.routes";
 import Roles from "./routes/Roles.routes";
@@ -16,7 +14,6 @@ import TypePackage from "./routes/TypePackage.routes";
 import Package from "./routes/Package.routes";
 import PassReset from "./routes/PassReset.routes";
 import Email from "./routes/Email.routes";
-//**Importaciones de Seeder*/
 import sequelise from "./config/database/index";
 
 import "./config/database/R_E";
@@ -28,23 +25,17 @@ import {
   CreateStates,
   CreateCities,
 } from "./config/database/Seeder";
-sequelise.sync({ force: true, alter : true });
+// sequelise.sync({ force: true, alter : true });
 CreateRole();
 CreatePermisos();
 CreatePemisoHasRol();
-
 CreateContries();
 CreateStates();
 CreateCities();
-
-// **Ajustes*/
 const app = express();
 app.use(cors());
-//**Middleware*/
 app.use(morgan("dev"));
 app.use(express.json());
-
-//**Rutas */
 app.use("/api/roles", Roles);
 app.use("/api/users", Users);
 app.use("/api/auth", Auth);

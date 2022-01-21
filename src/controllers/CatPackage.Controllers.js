@@ -1,15 +1,13 @@
 import sequelize from "../config/database/index";
 import { BO_CATPACKAGE } from "../models/BO_catPackage";
 
+import { HttpError } from "../helpers/handleError";
 export const GetCatPackages = async (req, res, next) => {
   try {
     const cities = await BO_CATPACKAGE.findAll();
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
     next();
   }
 };
@@ -19,10 +17,7 @@ export const GetCatPackage = async (req, res, next) => {
     const cities = await BO_CATPACKAGE.findByPk(COD_CATPACKAGE);
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
     next();
   }
 };
@@ -37,10 +32,7 @@ USR_ADD,
       }});
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
     next();
   }
 };
@@ -61,10 +53,7 @@ export const UpdateCatPackage = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
     next();
   }
 };
@@ -79,10 +68,7 @@ export const DeleteCatPackage = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
     next();
   }
 };

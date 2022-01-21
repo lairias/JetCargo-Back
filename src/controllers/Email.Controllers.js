@@ -1,5 +1,6 @@
 import {USERS} from "../models/Users"
 import {Op} from "sequelize"
+import { HttpError } from "../helpers/handleError";
 export const VeryEmail = async (req, res, next) => {
     const {EMAIL,TOKEN,COD_USER} = req.params;
 
@@ -19,10 +20,7 @@ export const VeryEmail = async (req, res, next) => {
     res.status(201).json({ message:"Correo confirmado"
     });
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };

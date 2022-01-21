@@ -1,15 +1,14 @@
 import { BO_PACKAGE } from "../models/BO_package";
 import sequelize from "../config/database/index";
+import { HttpError } from "../helpers/handleError";
+HttpError(res, error);
 
 export const GetPackages = async (req, res, next) => {
   try {
     const cities = await BO_PACKAGE.findAll();
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -20,10 +19,7 @@ export const GetPackage = async (req, res, next) => {
     const cities = await BO_PACKAGE.findByPk(COD_PACKAGE);
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -65,10 +61,7 @@ export const CreatePackage = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -82,10 +75,7 @@ export const DeletePackage = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -130,10 +120,7 @@ export const UpdatePackage = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };

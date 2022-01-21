@@ -1,37 +1,19 @@
+//
 import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
+import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
+
+import { HttpError } from "../helpers/handleError";
+
 import { transport,configTransportVery } from "../email";
 import {encrptPassword, compararPassword} from "../helpers/bcrypt";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
-    import { LocalStorage } from "node-localstorage";
-import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
  import "dotenv/config";
+
 export const singUp = async (req, res, next) =>
-  // 200 ok
-  // 201 Created
-  // 202 Accepted
-  // 400 bad resquefa
-  // 401 no autenticado
-  // 404 no fund
-  // 500 internal server error
-  
-  
-  {
-    try {
-      const {
-        ID,
-        TIP_DOCUMENT,
-        FRISTNAME,
-        MIDDLENAME,
-        LASTNAME,
-        AGE,
-        TIP_PERSON,
-        USR_ADD,
-        EMAIL,
-        PAS_USER,
-        ROL,
-      } = req.body;
+{ try {
+      const {ID,TIP_DOCUMENT,FRISTNAME,MIDDLENAME,LASTNAME, AGE,TIP_PERSON,USR_ADD,EMAIL,PAS_USER,ROL} = req.body;
       await sequelize.query(
         "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
         {
@@ -80,16 +62,12 @@ export const singUp = async (req, res, next) =>
         token,
       });
     } catch (error) {
-      console.log(error);
-      res
-        .status(501)
-        .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res,error);
       next();
     }
   };
-export const singIn = async (req, res, next) => {
-var localStorage = new LocalStorage("./scratch");
 
+export const singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
   try {
     const UserFond = await USERS.findOne({
@@ -101,10 +79,17 @@ var localStorage = new LocalStorage("./scratch");
       return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
-    if (!(await compararPassword(PAS_USER, UserFond.PAS_USER)))
-      return res
+        if (!(await compararPassword(PAS_USER, UserFond.PAS_USER)))
+        return res
         .status(401)
         .json({ token: null, message: "Pass o User invalidos" });
+        if (!UserFond.IND_USR) return res
+          .status(401)
+          .json({ token: null, message: "User no activo" });
+        if (!UserFond.EMAIL_VERIFIED)
+          return res
+            .status(401)
+            .json({ token: null, message: "Confirme su correo electrónico" });
     const token = JWT.sign(
       {  id: UserFond.COD_USER },
       process.env.JWTSECRET,
@@ -112,16 +97,11 @@ var localStorage = new LocalStorage("./scratch");
         expiresIn: 86400,
       }
     );
-    //Setting localStorage Item
-    localStorage.setItem("_token", token); 
     res.status(200).json({
       token,
     });
   } catch (error) {
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
-    console.log(error);
+    HttpError(res.error)
     next();
   }
 };

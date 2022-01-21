@@ -11,7 +11,6 @@ export const transport = nodemailer.createTransport({
 
 const Fecha = new Date().getFullYear()
 export const configTransportVery = (nombre, apellido, email, token, host, id) => {
-  
   return {
     from: `Nodemailer <${process.env.MAIL_FROM_ADDRESS}>`,
     to: `Nodemailer <${email.replace("%40", "@")}>`,

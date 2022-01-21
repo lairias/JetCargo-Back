@@ -5,15 +5,7 @@ import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
 import { PA_POEPLE } from "../models/Pa_people";
 import { SE_PERMISOS } from "../models/security/SE_permisos";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
-import { Router } from "express";
-import { singIn, singUp } from "../controllers/Auth.controllers";
-
-const router = Router();
-
-router.post("/signup", singUp);
-router.post("/signin", singIn);
-
-export default router;
+import { HttpError } from "../helpers/handleError";
 
 export const GetUsers = async (req, res, next) => {
   try {
@@ -35,10 +27,7 @@ export const GetUsers = async (req, res, next) => {
 
     res.status(200).json(users);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+  HttpError(res, error);
     next();
   }
 };
@@ -62,40 +51,28 @@ export const GetUser = async (req, res, next) => {
 
     res.status(200).json(users);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+  HttpError(res, error);
     next();
   }
 };
 export const UpdateUser = async (req, res, next) => {
   try {
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+  HttpError(res, error);
     next();
   }
 };
 export const DeleteUser = async (req, res, next) => {
   try {
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+  HttpError(res, error);
     next();
   }
 };
 export const CreateUser = async (req, res, next) => {
   try {
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+  HttpError(res, error);
     next();
   }
 };

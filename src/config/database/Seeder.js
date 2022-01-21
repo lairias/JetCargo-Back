@@ -53,9 +53,294 @@ export const CreatePemisoHasRol = async () => {
           COD_TYPEUSERS: 1,
         }),
         await MODEL_TYPEUSER_HAS_PERMISOS.create({
-          COD_PERMISO: 4,
+          COD_PERMISO: 5,
           COD_TYPEUSERS: 1,
         }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 6,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 7,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 8,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 9,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 10,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 11,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 12,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 13,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 14,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 15,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 16,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 17,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 18,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 19,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 20,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 21,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 22,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 23,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 24,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 25,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 26,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 27,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 28,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 29,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 30,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 31,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 32,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 33,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 34,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 35,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 36,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 37,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 38,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 39,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 40,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 41,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 42,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 43,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 44,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 45,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 46,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 47,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 48,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 49,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 50,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 51,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 52,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 53,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 54,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 55,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 56,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 57,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 58,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 59,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 60,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 61,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 62,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 63,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 64,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 65,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 66,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 67,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 68,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 69,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 70,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 71,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 72,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 73,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 74,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 75,
+          COD_TYPEUSERS: 1,
+        }),
+        await MODEL_TYPEUSER_HAS_PERMISOS.create({
+          COD_PERMISO: 76,
+          COD_TYPEUSERS: 1,
+        }),
+      
         await MODEL_TYPEUSER_HAS_PERMISOS.create({
           COD_PERMISO: 5,
           COD_TYPEUSERS: 2,

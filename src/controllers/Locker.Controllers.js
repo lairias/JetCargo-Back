@@ -1,15 +1,12 @@
 import { BO_LOCKER } from "../models/BO_locker";
 import sequelize from "../config/database/index";
-
+import { HttpError } from "../helpers/handleError";
 export const GetLokers = async (req, res, next) => {
   try {
     const cities = await BO_LOCKER.findAll();
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -20,10 +17,7 @@ export const GetLoker = async (req, res, next) => {
     const cities = await BO_LOCKER.findByPk(COD_LOCKER);
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -44,10 +38,7 @@ export const CreateLoker = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -61,10 +52,7 @@ export const DeleteLoker = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };
@@ -87,10 +75,7 @@ export const UpdateLoker = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+    HttpError(res, error);
     next();
   }
 };

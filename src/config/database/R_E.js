@@ -37,7 +37,8 @@ import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
 //Tablas de Pago
 import { PAY_INVOICE } from "../../models/Pay_Invoice";
 import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
-
+import { LOG_ERROR } from "../../models/LOG_Errores";
+import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 
 
 
@@ -96,10 +97,11 @@ const relaciones = async() => {
     onDelete: "CASCADE",
   });
 
-  await PA_POEPLE.hasMany(USERS, {
-    foreignKey: "COD_PEOPLE",
+  await USERS.hasMany(LOGINFALLIDOS, {
+    foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
+  
   
 
   await PA_CITIES.hasMany(PA_ADDRES, {

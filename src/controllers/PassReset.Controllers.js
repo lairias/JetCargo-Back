@@ -7,6 +7,7 @@ import { encrptPassword, compararPassword } from "../helpers/bcrypt";
 import { transport, configTransportResetPass } from "../email";
 import "dotenv/config";
 import sequelize from "../config/database/index";
+import { HttpError } from "../helpers/handleError";
 export const CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
@@ -58,13 +59,11 @@ export const CreatePassReset = async (req, res, next) => {
     }
     res.status(200).json({ token });
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+HttpError(res, error);
     next();
   }
 };
+
 export const ForgotPassword = async (req, res, next) => {
   const { TOKEN, COD_USER, CORREO } = req.params;
   const {PASS} = req.body
@@ -85,10 +84,7 @@ export const ForgotPassword = async (req, res, next) => {
     const cities = await Se_PASS_RESET.findAll();
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+HttpError(res, error);
     next();
   }
 };
@@ -103,13 +99,11 @@ export const GetPassReset = async (req, res, next) => {
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+HttpError(res, error);
     next();
   }
 };
+
 export const UpdatePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   const { API_TOKEN } = req.body;
@@ -125,26 +119,20 @@ export const UpdatePassReset = async (req, res, next) => {
     );
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+HttpError(res, error);
     next();
   }
 };
+
 export const DeletePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
-
   try {
     const cities = await Se_PASS_RESET.destroy({
       where: { EMAIL },
     });
     res.status(200).json(cities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(501)
-      .json({ message: "Error al momento de procesar la peticion " });
+HttpError(res, error);
     next();
   }
 };
