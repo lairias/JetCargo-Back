@@ -7,11 +7,14 @@ import {
   DeleteCatPackage,
 } from "../controllers/CatPackage.Controllers";
 
+import {CatPackageCreate,CatPackageView,CatPackageDelete,CatPackageUpdate} from "../middleware/permissions/CatPackage.Permission"
+import {verifyIndUser,verifyToken} from "../middleware/verifySignup";
+
 const router = Router();
-router.get("/", GetCatPackages);
-router.get("/:COD_CATPACKAGE", GetCatPackage);
-router.post("/", CreateCatPackage);
-router.put("/:COD_CATPACKAGE", UpdateCatPackage);
-router.delete("/:COD_CATPACKAGE", DeleteCatPackage);
+router.get("/", [verifyToken, verifyIndUser, CatPackageView], GetCatPackages);
+router.get("/:COD_CATPACKAGE",[verifyToken, verifyIndUser, CatPackageView], GetCatPackage);
+router.post("/",[verifyToken, verifyIndUser, CatPackageCreate], CreateCatPackage);
+router.put("/:COD_CATPACKAGE",[verifyToken, verifyIndUser, CatPackageUpdate], UpdateCatPackage);
+router.delete("/:COD_CATPACKAGE", [verifyToken, verifyIndUser, CatPackageDelete], DeleteCatPackage);
 
 export default router;

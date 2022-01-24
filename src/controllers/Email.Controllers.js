@@ -1,6 +1,7 @@
 import {USERS} from "../models/Users"
 import {Op} from "sequelize"
 import { HttpError } from "../helpers/handleError";
+
 export const VeryEmail = async (req, res, next) => {
     const {EMAIL,TOKEN,COD_USER} = req.params;
 

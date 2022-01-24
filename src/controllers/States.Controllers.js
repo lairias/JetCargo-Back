@@ -1,7 +1,7 @@
 import { Op } from "sequelize";
 import { PA_STATES } from "../models/Pa_states";
 import { HttpError } from "../helpers/handleError";
-
+import sequelize from "../config/database/index";
 export const GetStates = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({ offset: 5, limit: 5 });
@@ -14,13 +14,9 @@ export const GetStates = async (req, res, next) => {
 export const GetStatesForCountry = async (req, res, next) => {
   const { COD_COUNTRY } = req.params;
   try {
-    const cities = await PA_STATES.findAll({
-      where: {
-        COD_COUNTRY: {
-          [Op.eq]: COD_COUNTRY,
-        },
-      },
-    });
+   const cities = await sequelize.query("CALL SHOW_STATES_COUNTRY(:COD_COUNTRY)", {
+     replacements: { COD_COUNTRY },
+   });
     res.status(200).json(cities);
   } catch (error) {
    HttpError(res, error);

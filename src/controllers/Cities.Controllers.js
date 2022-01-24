@@ -3,10 +3,11 @@ import { PA_STATES } from "../models/Pa_states";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
 
-export const GetCitiesForCountry = async (req, res, next) => {
+export const GetCitiesForState = async (req, res, next) => {
+  const { COD_STATE } = req.params;
   try {
-    const cities = await PA_STATES.findAll({
-      include: { PA_CITIES },
+    const cities = await sequelize.query("CALL SHOW_CITY_STATE(:COD_STATE)", {
+      replacements: { COD_STATE },
     });
     res.status(200).json(cities);
   } catch (error) {
@@ -15,8 +16,6 @@ export const GetCitiesForCountry = async (req, res, next) => {
   }
 };
 export const GetCities = async (req, res, next) => {
-
-  
   try {
     const cities = await PA_CITIES.findAll();
     res.status(200).json(cities);

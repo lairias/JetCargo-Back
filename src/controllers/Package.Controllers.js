@@ -1,7 +1,6 @@
 import { BO_PACKAGE } from "../models/BO_package";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
-HttpError(res, error);
 
 export const GetPackages = async (req, res, next) => {
   try {

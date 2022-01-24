@@ -1,6 +1,5 @@
 import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
 import sequelize from "../config/database/index";
-import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
 export const GetTypePackages = async (req, res, next) => {
   try {
