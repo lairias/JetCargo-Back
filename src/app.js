@@ -13,6 +13,7 @@ import Lockers from "./routes/Lockers.routes";
 import TypePackage from "./routes/TypePackage.routes";
 import Package from "./routes/Package.routes";
 import PassReset from "./routes/PassReset.routes";
+import People from "./routes/People.routes";
 import Email from "./routes/Email.routes";
 import sequelise from "./config/database/index";
 
@@ -48,5 +49,6 @@ app.use("/api/package", Package);
 app.use("/api/typepackage", TypePackage);
 app.use("/api/passreset", PassReset);
 app.use("/api/email", Email);
+app.use("/api/people", People);
 
 export default app;

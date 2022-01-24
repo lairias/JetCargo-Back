@@ -1,76 +1,86 @@
-import { USERS } from "../models/Users";
+import {PA_POEPLE} from "../models/Pa_people";
 import sequelize from "../config/database";
-import { PA_TypeUsers } from "../models/Pa_typeUsers";
-import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
-import { PA_POEPLE } from "../models/Pa_people";
-import { SE_PERMISOS } from "../models/security/SE_permisos";
-import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
 import { HttpError } from "../helpers/handleError";
 
-export const GetUsers = async (req, res, next) => {
+export const GetPeoples = async (req, res, next) => {
   try {
-    //  const users = await  USERS.findAll()
-    // const users = await sequelize.query("CALL  SHOW_USERS");
-    // const users = await PA_POEPLE.findAll({
-    //   include: USERS,
-    // });
-    const users = await USERS.findAll({
-      include: [
-        {
-          model: MODEL_HAS_ROLES,
-        },
-        {
-          model: PA_TypeUsers,
-        },
-      ],
-    });
+    const people = await PA_POEPLE.findAll();
+    return res.status(200).json(people);
+  } catch (error) {
+  HttpError(res, error);
+    next();
+  }
+};
+export const GetPeople = async (req, res, next) => {
+  const {COD_PEOPLE} = req.params;
+  try {
+    const people = await PA_POEPLE.findByPk(COD_PEOPLE);
+    return res.status(200).json(people);
+  } catch (error) {
+  HttpError(res, error);
+    next();
+  }
+};
+export const DeletePeople = async (req, res, next) => {
+  const { COD_PEOPLE } = req.params;
+  try {
+    const people = await PA_POEPLE.destroy({ where: { COD_PEOPLE } });
+    return res.status(200).json(people);
+  } catch (error) {
+  HttpError(res, error);
+    next();
+  }
+};
 
-    res.status(200).json(users);
+export const CreatePeople = async (req, res, next) => {
+  const {
+    ID,
+    TIP_DOCUMENT,
+    FRISTNAME,
+    MIDDLENAME,
+    LASTNAME,
+    AGE,
+    TIP_PERSON,
+    USR_ADD,
+  } = req.body;
+  try {
+    const people = await sequelize.query(
+      "CALL INS_PEOPLE( :ID, :TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:TIP_PERSON,:USR_ADD)",
+      {replacements: {ID,TIP_DOCUMENT,FRISTNAME,MIDDLENAME,LASTNAME, AGE,TIP_PERSON,USR_ADD}});
+    return res.status(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
   }
 };
-export const GetUser = async (req, res, next) => {
+export const UpdatePeople = async (req, res, next) => {
+    const {
+      ID,
+      TIP_DOCUMENT,
+      FRISTNAME,
+      MIDDLENAME,
+      LASTNAME,
+      AGE,
+      TIP_PERSON,
+      USR_UPD,
+    } = req.body;
+    const {COD_PEOPLE} = req.params;
   try {
-    //  const users = await  USERS.findAll()
-    // const users = await sequelize.query("CALL  SHOW_USERS");
-    // const users = await PA_POEPLE.findAll({
-    //   include: USERS,
-    // });
-    const users = await USERS.findAll({
-      include: [
-        {
-          model: MODEL_HAS_ROLES,
-        },
-        {
-          model: PA_TypeUsers,
-        },
-      ],
-    });
-
-    res.status(200).json(users);
-  } catch (error) {
-  HttpError(res, error);
-    next();
-  }
-};
-export const UpdateUser = async (req, res, next) => {
-  try {
-  } catch (error) {
-  HttpError(res, error);
-    next();
-  }
-};
-export const DeleteUser = async (req, res, next) => {
-  try {
-  } catch (error) {
-  HttpError(res, error);
-    next();
-  }
-};
-export const CreateUser = async (req, res, next) => {
-  try {
+  const people = await sequelize.query(
+    "CALL UPD_PEOPLE( :COD_PEOPLE,:ID, :TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:TIP_PERSON,:USR_UPD)",
+    {replacements: { COD_PEOPLE,
+        ID,
+        TIP_DOCUMENT,
+        FRISTNAME,
+        MIDDLENAME,
+        LASTNAME,
+        AGE,
+        TIP_PERSON,
+        USR_UPD,
+      },
+    }
+  );
+    return res.status(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
