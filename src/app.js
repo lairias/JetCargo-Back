@@ -27,12 +27,12 @@ import {
   CreateCities,
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true, alter : true });
-CreateRole();
-CreatePermisos();
-CreatePemisoHasRol();
-CreateContries();
-CreateStates();
-CreateCities();
+// CreateRole();
+// CreatePermisos();
+// CreatePemisoHasRol();
+// CreateContries();
+// CreateStates();
+// CreateCities();
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));

@@ -12,11 +12,9 @@ import {TypeUserCreate,TypeUserView,TypeUserUpdate,TypeUserDelete} from "../midd
 
 const router = Router();
 router.post("/", [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles], CreateRole);
-
-router.get("/:COD_ROLE", [verifyToken, verifyIndUser, TypeUserCreate], GetRole);
-
-router.get("/", [verifyToken, verifyIndUser, TypeUserCreate], GetRoles);
-router.put("/:COD_ROLE", UpdateRole);
-router.delete("/:COD_ROLE", DeleteRole);
+router.get("/:COD_TYPEUSERS", [verifyToken, verifyIndUser, TypeUserView], GetRole);
+router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);
+router.put("/:COD_TYPEUSERS",UpdateRole);
+router.delete("/:COD_TYPEUSERS",[verifyToken, verifyIndUser, TypeUserDelete], DeleteRole);
 
 export default router;

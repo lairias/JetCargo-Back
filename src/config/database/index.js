@@ -9,4 +9,5 @@ module.exports = new Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
     acquire: 30000,
     idle: 10000,
   },
+  logging: false,
 });
