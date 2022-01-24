@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { USERS } from "../models/Users";
  import "dotenv/config";
+import { HttpError } from "../helpers/handleError";
 
 export const verifyToken = async (req, res,next) => {
   try {
@@ -10,8 +11,8 @@ export const verifyToken = async (req, res,next) => {
     req.userId = id;
     next()
   } catch (error) {
-    console.log(error);
-    return res.status(501).json({ message: "Erro al procesar la petición" });
+    HttpError(res, error);
+    next();
   }
 };
 
@@ -23,8 +24,8 @@ export const verifyIndUser = async (req, res,next) => {
         return res.status(404).json({ message: "no user no activo" });
     next()
   } catch (error) {
-    console.log(error);
-    return res.status(501).json({ message: "Erro al procesar la petición" });
+     HttpError(res, error);
+    next()
   }
 };
 

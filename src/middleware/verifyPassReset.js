@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { USERS } from "../models/Users";
 import "dotenv/config"
+import { HttpError } from "../helpers/handleError";
 
 //Falta mejorar la seguridad de la validacion de secrert entre JWT
 export const verifyTokenPass = async (req, res,next) => {
@@ -15,7 +16,7 @@ export const verifyTokenPass = async (req, res,next) => {
     if (!lock.IND_USR) return res.status(404).json({ message: "no user no activo" });
     next()
   } catch (error) {
-    console.log(error);
-    return res.status(501).json({ message: "Erro al procesar la petición" });
+    HttpErrorr(res, error);
+    next();
   }
  }
