@@ -5,7 +5,7 @@ export const CheckDuplicateEmail = async(req,res,next)=>{
 
     const {EMAIL} = req.body;
     try{
-     if(await USERS.findOne({where: {EMAIL}})) return res.status(400).json({message:"Correo electrónico no disponible"})
+     if(await USERS.findOne({where: {EMAIL}})) return res.sendStatus(400).json({message:"Correo electrónico no disponible"})
      next()
  }catch(error){
        HttpError(res, error);

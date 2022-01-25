@@ -5,7 +5,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetPackages = async (req, res, next) => {
   try {
     const cities = await BO_PACKAGE.findAll();
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -16,7 +16,7 @@ export const GetPackage = async (req, res, next) => {
   const { COD_PACKAGE } = req.params;
   try {
     const cities = await BO_PACKAGE.findByPk(COD_PACKAGE);
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -58,7 +58,7 @@ export const CreatePackage = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -72,7 +72,7 @@ export const DeletePackage = async (req, res, next) => {
         COD_PACKAGE,
       },
     });
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -117,7 +117,7 @@ export const UpdatePackage = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();

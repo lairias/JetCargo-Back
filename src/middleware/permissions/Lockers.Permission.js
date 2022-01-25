@@ -8,7 +8,7 @@ export const LockerView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "locker.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -22,7 +22,7 @@ export const LockerCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "locker.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -36,7 +36,7 @@ export const LockerUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "locker.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -50,7 +50,7 @@ export const LockerDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "locker.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

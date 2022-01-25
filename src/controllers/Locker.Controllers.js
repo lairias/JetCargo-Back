@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetLokers = async (req, res, next) => {
   try {
     const cities = await BO_LOCKER.findAll();
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -15,7 +15,7 @@ export const GetLoker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
     const cities = await BO_LOCKER.findByPk(COD_LOCKER);
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -36,7 +36,7 @@ export const CreateLoker = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -50,7 +50,7 @@ export const DeleteLoker = async (req, res, next) => {
         COD_LOCKER,
       },
     });
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -73,7 +73,7 @@ export const UpdateLoker = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();

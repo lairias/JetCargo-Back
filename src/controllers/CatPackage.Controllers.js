@@ -5,7 +5,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetCatPackages = async (req, res, next) => {
   try {
     const cities = await BO_CATPACKAGE.findAll();
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res,error);
     next();
@@ -15,7 +15,7 @@ export const GetCatPackage = async (req, res, next) => {
     const { COD_CATPACKAGE } = req.params;
   try {
     const cities = await BO_CATPACKAGE.findByPk(COD_CATPACKAGE);
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res,error);
     next();
@@ -30,7 +30,7 @@ NAM_CATPACKAGE,
 DES_CATPACKAGE,
 USR_ADD,
       }});
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res,error);
     next();
@@ -51,7 +51,7 @@ export const UpdateCatPackage = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res,error);
     next();
@@ -66,7 +66,7 @@ export const DeleteCatPackage = async (req, res, next) => {
         COD_CATPACKAGE,
       },
     });
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res,error);
     next();

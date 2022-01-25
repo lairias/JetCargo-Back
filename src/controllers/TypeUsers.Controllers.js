@@ -6,7 +6,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetTypeUsers = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -15,7 +15,7 @@ export const GetTypeUsers = async (req, res, next) => {
 export const CreateTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     next();
   }
@@ -23,7 +23,7 @@ export const CreateTypeUser = async (req, res, next) => {
 export const DeleteTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     next();
   }
@@ -31,7 +31,7 @@ export const DeleteTypeUser = async (req, res, next) => {
 export const UpdateTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     next();
   }
@@ -39,7 +39,7 @@ export const UpdateTypeUser = async (req, res, next) => {
 export const GetTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     next();
   }

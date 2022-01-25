@@ -7,7 +7,7 @@ export const VeryEmail = async (req, res, next) => {
 
   try {
     const User = await USERS.findOne({ where: { EMAIL } });
-    if(!User) return res.status(404).json({message:"Usuario no encontrado"})
+    if(!User) return res.sendStatus(404).json({message:"Usuario no encontrado"})
 
   await USERS.update(
     { API_TOKEN: null, IND_USR: 1, EMAIL_VERIFIED: 1 },
@@ -18,7 +18,7 @@ export const VeryEmail = async (req, res, next) => {
       },
     }
   );
-    res.status(201).json({ message:"Correo confirmado"
+   return  res.sendStatus(201).json({ message:"Correo confirmado"
     });
   } catch (error) {
     HttpError(res, error);

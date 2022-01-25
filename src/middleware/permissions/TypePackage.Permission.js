@@ -8,7 +8,7 @@ export const TypePackageView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "typepackage.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -22,7 +22,7 @@ export const TypePackageCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "typepackage.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-    return res.status(403).json({ message: "Acceso no Autorizado" });
+    return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -36,7 +36,7 @@ export const TypePackageUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "typepackage.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -50,7 +50,7 @@ export const TypePackageDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "typepackage.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

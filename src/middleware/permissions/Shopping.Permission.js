@@ -8,7 +8,7 @@ export const ShoppingView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "costodeenvio.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -23,7 +23,7 @@ export const ShoppingCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "costodeenvio.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -37,7 +37,7 @@ export const ShoppingUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "costodeenvio.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -51,7 +51,7 @@ export const ShoppingDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "costodeenvio.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

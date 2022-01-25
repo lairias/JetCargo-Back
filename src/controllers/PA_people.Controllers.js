@@ -5,7 +5,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetPeoples = async (req, res, next) => {
   try {
     const people = await PA_POEPLE.findAll();
-    return res.status(200).json(people);
+    return res.sendStatus(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
@@ -15,7 +15,7 @@ export const GetPeople = async (req, res, next) => {
   const {COD_PEOPLE} = req.params;
   try {
     const people = await PA_POEPLE.findByPk(COD_PEOPLE);
-    return res.status(200).json(people);
+    return res.sendStatus(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
@@ -25,7 +25,7 @@ export const DeletePeople = async (req, res, next) => {
   const { COD_PEOPLE } = req.params;
   try {
     const people = await PA_POEPLE.destroy({ where: { COD_PEOPLE } });
-    return res.status(200).json(people);
+    return res.sendStatus(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
@@ -47,7 +47,7 @@ export const CreatePeople = async (req, res, next) => {
     const people = await sequelize.query(
       "CALL INS_PEOPLE( :ID, :TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:TIP_PERSON,:USR_ADD)",
       {replacements: {ID,TIP_DOCUMENT,FRISTNAME,MIDDLENAME,LASTNAME, AGE,TIP_PERSON,USR_ADD}});
-    return res.status(200).json(people);
+    return res.sendStatus(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();
@@ -80,7 +80,7 @@ export const UpdatePeople = async (req, res, next) => {
       },
     }
   );
-    return res.status(200).json(people);
+    return res.sendStatus(200).json(people);
   } catch (error) {
   HttpError(res, error);
     next();

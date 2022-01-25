@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetCountries = async (req, res, next) => {
   try {
     const cities = await PA_COUNTRIES.findAll();
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -15,7 +15,7 @@ export const GetCountry = async (req, res, next) => {
   const {COD_COUNTRY} = req.params;
   try {
     const cities = await PA_COUNTRIES.findByPk( COD_COUNTRY);
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -35,7 +35,7 @@ export const CreateCountry = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -47,7 +47,7 @@ export const DeleteCountrie = async (req, res, next) => {
     const cities = await PA_COUNTRIES.destroy({where:{
       COD_COUNTRY
     }});
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -67,7 +67,7 @@ export const UpdateCountrie = async (req, res, next) => {
       },
     }
   );
-    res.status(200).json(cities);
+   return  res.sendStatus(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();

@@ -12,7 +12,7 @@ export const GetTracking = async (req, res, next) => {
 export const GetTrackings = async (req, res, next) => {
   try {
      await PA_TypeUsers.findAll();
-    res.status(200).json();
+  return  res.sendStatus(200).json();
   } catch (error) {
     HttpError(res, error);
     next();

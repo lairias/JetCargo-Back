@@ -9,7 +9,7 @@ export const GetCitiesForState = async (req, res, next) => {
     const cities = await sequelize.query("CALL SHOW_CITY_STATE(:COD_STATE)", {
       replacements: { COD_STATE },
     });
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -18,7 +18,7 @@ export const GetCitiesForState = async (req, res, next) => {
 export const GetCities = async (req, res, next) => {
   try {
     const cities = await PA_CITIES.findAll();
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -64,7 +64,7 @@ export const CreateCity = async (req, res, next) => {
         },
       }
     );
-    return  res.status(200).json(cities);
+    return   res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -113,7 +113,7 @@ export const UpdateCity = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -128,7 +128,7 @@ export const DeleteCity = async (req, res, next) => {
         COD_CITY,
       },
     });
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -143,7 +143,7 @@ export const GetCity = async (req, res, next) => {
         COD_CITY,
       },
     });
-    res.status(200).json(cities);
+    return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();

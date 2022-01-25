@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetTypePackages = async (req, res, next) => {
   try {
     const cities = await BO_TYPEPACKAGE.findAll();
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -15,7 +15,7 @@ export const GetTypePackage = async (req, res, next) => {
   const { COD_TYPEPACKAGE } = req.params;
   try {
     const cities = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -35,7 +35,7 @@ export const CreateTypePackage = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -49,7 +49,7 @@ export const DeleteTypePackage = async (req, res, next) => {
         COD_TYPEPACKAGE,
       },
     });
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();
@@ -70,7 +70,7 @@ export const UpdateTypePackage = async (req, res, next) => {
         },
       }
     );
-    res.status(200).json(cities);
+   return res.sendStatus(200).json(cities);
   } catch (error) {
    HttpError(res, error);
     next();

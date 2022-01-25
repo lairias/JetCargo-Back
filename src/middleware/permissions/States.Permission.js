@@ -13,7 +13,7 @@ export const StatesView = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -32,7 +32,7 @@ export const StatesCreate = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -51,7 +51,7 @@ export const StatesUpdate = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -70,7 +70,7 @@ export const StatesDelete = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.status(403).json({ message: "Acceso no Autorizado" });
+      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

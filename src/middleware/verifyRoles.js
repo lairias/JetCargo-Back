@@ -5,11 +5,11 @@ export const verifyRoles = async (req, res, next) => {
   try {
   if (await PA_TypeUsers.findOne({ where: { NOM_TYPE } }))
     return res
-      .status(404)
+      .sendStatus(404)
       .json({ message: "Nombre de rol no disponible" });
   next();
   } catch (error) {
     console.log(error);
-    return res.status(501).json({ message: "Erro al procesar la petición" });
+    return res.sendStatus(501).json({ message: "Erro al procesar la petición" });
   }
 };

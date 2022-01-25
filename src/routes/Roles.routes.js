@@ -14,7 +14,7 @@ const router = Router();
 router.post("/", [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles], CreateRole);
 router.get("/:COD_TYPEUSERS", [verifyToken, verifyIndUser, TypeUserView], GetRole);
 router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);
-router.put("/:COD_TYPEUSERS",UpdateRole);
+router.put("/:COD_TYPEUSERS", [verifyToken, verifyIndUser], UpdateRole);
 router.delete("/:COD_TYPEUSERS",[verifyToken, verifyIndUser, TypeUserDelete], DeleteRole);
 
 export default router;

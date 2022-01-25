@@ -6,7 +6,7 @@ import { HttpError } from "../helpers/handleError";
 export const verifyToken = async (req, res,next) => {
   try {
     const token = req.headers["x-access-token"]  ;
-    if (!token) return res.status(403).json({ message: "No token provided" });
+    if (!token) return res.sendStatus(403).json({ message: "No token provided" });
     const { id } = jwt.verify(token, process.env.JWTSECRET);  
     req.userId = id;
     next()
@@ -19,9 +19,9 @@ export const verifyToken = async (req, res,next) => {
 export const verifyIndUser = async (req, res,next) => {
   try {
       const User = await USERS.findByPk(req.userId);
-      if (!User) return res.status(404).json({ message: "no user found" });
+      if (!User) return res.sendStatus(404).json({ message: "no user found" });
       if (!User.IND_USR)
-        return res.status(404).json({ message: "no user no activo" });
+        return res.sendStatus(404).json({ message: "no user no activo" });
     next()
   } catch (error) {
      HttpError(res, error);

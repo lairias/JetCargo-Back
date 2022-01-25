@@ -58,7 +58,7 @@ export const singUp = async (req, res, next) =>
           User.COD_USER
         )
       );
-      res.status(201).json({
+      return res.sendStatus(201).json({
         token,
       });
     } catch (error) {
@@ -77,18 +77,18 @@ export const singIn = async (req, res, next) => {
     });
     if (!UserFond)
       return res
-        .status(401)
+        .sendStatus(401)
         .json({ token: null, message: "Pass o User invalidos" });
         if (!(await compararPassword(PAS_USER, UserFond.PAS_USER)))
         return res
-        .status(401)
+        .sendStatus(401)
         .json({ token: null, message: "Pass o User invalidos" });
         if (!UserFond.IND_USR) return res
-          .status(401)
+          .sendStatus(401)
           .json({ token: null, message: "User no activo" });
         if (!UserFond.EMAIL_VERIFIED)
           return res
-            .status(401)
+            .sendStatus(401)
             .json({ token: null, message: "Confirme su correo electrónico" });
     const token = JWT.sign(
       {  id: UserFond.COD_USER },
@@ -97,7 +97,7 @@ export const singIn = async (req, res, next) => {
         expiresIn: 86400,
       }
     );
-    res.status(200).json({
+    return res.sendStatus(200).json({
       token,
     });
   } catch (error) {
