@@ -1,7 +1,5 @@
 //
 import { USERS } from "../models/Users";
-import { PA_POEPLE } from "../models/Pa_people";
-import { MODEL_HAS_ROLES } from "../models/relations/MODEL_has_typeUser";
 
 import { HttpError } from "../helpers/handleError";
 
@@ -26,24 +24,29 @@ export const singUp = async (req, res, next) => {
       PAS_USER,
       ROL,
     } = req.body;
-    await sequelize.query(
-      "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
-      {
-        replacements: {
-          ID,
-          TIP_DOCUMENT,
-          FRISTNAME,
-          MIDDLENAME,
-          LASTNAME,
-          AGE,
-          TIP_PERSON,
-          USR_ADD,
-          EMAIL,
-          PAS_USER: await encrptPassword(PAS_USER),
-          ROL,
-        },
-      }
-    );
+    await sequelize
+      .query(
+        "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
+        {
+          replacements: {
+            ID,
+            TIP_DOCUMENT,
+            FRISTNAME,
+            MIDDLENAME,
+            LASTNAME,
+            AGE,
+            TIP_PERSON,
+            USR_ADD,
+            EMAIL,
+            PAS_USER: await encrptPassword(PAS_USER),
+            ROL,
+          },
+        }
+      )
+      .catch((error) => {
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
     const User = await USERS.findOne({ where: { EMAIL } });
     const token = await JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET, {
       expiresIn: 86400,

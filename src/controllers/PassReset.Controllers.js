@@ -3,11 +3,12 @@ import { USERS } from "../models/Users";
 import { PA_POEPLE } from "../models/Pa_people";
 
 import JWT from "jsonwebtoken";
-import { encrptPassword, compararPassword } from "../helpers/bcrypt";
+import { encrptPassword } from "../helpers/bcrypt";
 import { transport, configTransportResetPass } from "../email";
 import "dotenv/config";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
+
 export const CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
@@ -108,16 +109,18 @@ export const UpdatePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   const { API_TOKEN } = req.body;
   try {
-    const cities = await sequelize.query(
-      "CALL INS_PASS_RESET(:EMAIL,:API_TOKEN)",
-      {
-        replacements: {
-          EMAIL,
-          API_TOKEN,
-        },
-      }
-    );
-    return res.status(200).json(cities);
+   await sequelize
+     .query("CALL INS_PASS_RESET(:EMAIL,:API_TOKEN)", {
+       replacements: {
+         EMAIL,
+         API_TOKEN,
+       },
+     }).catch((error) => {
+       console.log(error);
+       HttpError(res, error);
+       throw res.sendStatus(500);
+     });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -127,10 +130,10 @@ export const UpdatePassReset = async (req, res, next) => {
 export const DeletePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
-    const cities = await Se_PASS_RESET.destroy({
+    await Se_PASS_RESET.destroy({
       where: { EMAIL },
     });
-    return res.status(200).json(cities);
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();

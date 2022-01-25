@@ -39,8 +39,9 @@ export const CreateCity = async (req, res, next) => {
   } = req.body;
 
   try {
-    const cities = await sequelize.query(
-      `CALL INS_CITIES(
+    const cities = await sequelize
+      .query(
+        `CALL INS_CITIES(
       :NAM_CITY,
       :ZIP_CODE,
       :POS_CODE,
@@ -50,21 +51,26 @@ export const CreateCity = async (req, res, next) => {
       :DES_CITY,
       :USR_ADD,
      :COD_STATE)`,
-      {
-        replacements: {
-          NAM_CITY,
-          ZIP_CODE,
-          POS_CODE,
-          POPULATION,
-          CURRENCY,
-          TIMEZONE,
-          DES_CITY,
-          USR_ADD,
-          COD_STATE,
-        },
-      }
-    );
-    return res.status(200).json(cities);
+        {
+          replacements: {
+            NAM_CITY,
+            ZIP_CODE,
+            POS_CODE,
+            POPULATION,
+            CURRENCY,
+            TIMEZONE,
+            DES_CITY,
+            USR_ADD,
+            COD_STATE,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -86,8 +92,9 @@ export const UpdateCity = async (req, res, next) => {
 
   const { COD_CITY } = req.params;
   try {
-    const cities = await sequelize.query(
-      `CALL UPD_CITIES(
+    const cities = await sequelize
+      .query(
+        `CALL UPD_CITIES(
         :COD_CITY,
       :NAM_CITY,
       :ZIP_CODE,
@@ -98,22 +105,27 @@ export const UpdateCity = async (req, res, next) => {
       :DES_CITY,
       :USR_UPD,
      :COD_STATE)`,
-      {
-        replacements: {
-          COD_CITY,
-          NAM_CITY,
-          ZIP_CODE,
-          POS_CODE,
-          POPULATION,
-          CURRENCY,
-          TIMEZONE,
-          DES_CITY,
-          USR_UPD,
-          COD_STATE,
-        },
-      }
-    );
-    return res.status(200).json(cities);
+        {
+          replacements: {
+            COD_CITY,
+            NAM_CITY,
+            ZIP_CODE,
+            POS_CODE,
+            POPULATION,
+            CURRENCY,
+            TIMEZONE,
+            DES_CITY,
+            USR_UPD,
+            COD_STATE,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -128,7 +140,7 @@ export const DeleteCity = async (req, res, next) => {
         COD_CITY,
       },
     });
-    return res.status(200).json(cities);
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();

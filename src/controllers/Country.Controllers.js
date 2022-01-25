@@ -26,16 +26,19 @@ export const GetCountry = async (req, res, next) => {
 export const CreateCountry = async (req, res, next) => {
   const { NAM_COUNTRY, DES_COUNTRY, USR_ADD } = req.body;
   try {
-    const cities = await sequelize.query(
-      "CALL INS_COUNTRY(:NAM_COUNTRY,:DES_COUNTRY,:USR_ADD)",
-      {
+    const cities = await sequelize
+      .query("CALL INS_COUNTRY(:NAM_COUNTRY,:DES_COUNTRY,:USR_ADD)", {
         replacements: {
           NAM_COUNTRY,
           DES_COUNTRY,
           USR_ADD,
         },
-      }
-    );
+      })
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);
@@ -49,6 +52,10 @@ export const DeleteCountrie = async (req, res, next) => {
       where: {
         COD_COUNTRY,
       },
+    }).catch((error) => {
+      console.log(error);
+      HttpError(res, error);
+      throw res.sendStatus(500);
     });
     return res.status(200).json(cities);
   } catch (error) {

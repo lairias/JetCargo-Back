@@ -1,6 +1,7 @@
 import { PA_TypeUsers } from "../models/Pa_typeUsers";
 import { HttpError } from "../helpers/handleError";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
+
 import {
   RolesForeachPermiso,
   RolesForeachAllPermiso,
@@ -56,7 +57,7 @@ export const DeleteRole = async (req, res, next) => {
     await PA_TypeUsers.destroy({
       where: { COD_TYPEUSERS },
     });
-    return res.status(200);
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();

@@ -50,12 +50,12 @@ export const CreateLoker = async (req, res, next) => {
 export const DeleteLoker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
-    const cities = await BO_LOCKER.destroy({
+     await BO_LOCKER.destroy({
       where: {
         COD_LOCKER,
       },
     });
-    return res.status(200).json(cities);
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -82,7 +82,7 @@ export const UpdateLoker = async (req, res, next) => {
       ).catch(_ => {
         throw res.sendStatus(500);
       });
-    return res.status(200).json(cities);
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();

@@ -19,7 +19,7 @@ export const VeryEmail = async (req, res, next) => {
         },
       }
     );
-    return res.status(201).json({ message: "Correo confirmado" });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();

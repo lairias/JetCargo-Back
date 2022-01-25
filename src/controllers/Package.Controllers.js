@@ -39,26 +39,32 @@ export const CreatePackage = async (req, res, next) => {
     USR_ADD,
   } = req.body;
   try {
-    const cities = await sequelize.query(
-      "CALL INS_PACKAGE(:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:USR_ADD)",
-      {
-        replacements: {
-          COD_CATPACKAGE,
-          COD_TYPEPACKAGE,
-          COD_LOCKER,
-          NOM_PACKAGE,
-          NUM_PACKAGE,
-          HEIGHT_PACKAGE,
-          WIDTH_PACKAGE,
-          LENGTH_PACKAGE,
-          WEIGHT_PACKAGE,
-          PRICE_PACKAGE,
-          VOL_PACKAGE,
-          USR_ADD,
-        },
-      }
-    );
-    return res.status(200).json(cities);
+     await sequelize
+      .query(
+        "CALL INS_PACKAGE(:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:USR_ADD)",
+        {
+          replacements: {
+            COD_CATPACKAGE,
+            COD_TYPEPACKAGE,
+            COD_LOCKER,
+            NOM_PACKAGE,
+            NUM_PACKAGE,
+            HEIGHT_PACKAGE,
+            WIDTH_PACKAGE,
+            LENGTH_PACKAGE,
+            WEIGHT_PACKAGE,
+            PRICE_PACKAGE,
+            VOL_PACKAGE,
+            USR_ADD,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -67,12 +73,12 @@ export const CreatePackage = async (req, res, next) => {
 export const DeletePackage = async (req, res, next) => {
   const { COD_PACKAGE } = req.params;
   try {
-    const cities = await BO_PACKAGE.destroy({
+    await BO_PACKAGE.destroy({
       where: {
         COD_PACKAGE,
       },
     });
-    return res.status(200).json(cities);
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -96,28 +102,34 @@ export const UpdatePackage = async (req, res, next) => {
   } = req.body;
   const { COD_PACKAGE } = req.params;
   try {
-    const cities = await sequelize.query(
-      "CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)",
-      {
-        replacements: {
-          COD_PACKAGE,
-          COD_CATPACKAGE,
-          COD_TYPEPACKAGE,
-          COD_LOCKER,
-          NOM_PACKAGE,
-          NUM_PACKAGE,
-          HEIGHT_PACKAGE,
-          WIDTH_PACKAGE,
-          LENGTH_PACKAGE,
-          WEIGHT_PACKAGE,
-          PRICE_PACKAGE,
-          VOL_PACKAGE,
-          IND_PACKAGE,
-          USR_UPD,
-        },
-      }
-    );
-    return res.status(200).json(cities);
+     await sequelize
+      .query(
+        "CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)",
+        {
+          replacements: {
+            COD_PACKAGE,
+            COD_CATPACKAGE,
+            COD_TYPEPACKAGE,
+            COD_LOCKER,
+            NOM_PACKAGE,
+            NUM_PACKAGE,
+            HEIGHT_PACKAGE,
+            WIDTH_PACKAGE,
+            LENGTH_PACKAGE,
+            WEIGHT_PACKAGE,
+            PRICE_PACKAGE,
+            VOL_PACKAGE,
+            IND_PACKAGE,
+            USR_UPD,
+          },
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
