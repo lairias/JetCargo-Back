@@ -13,7 +13,7 @@ export const StatesView = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -24,15 +24,16 @@ export const StatesView = async (req, res, next) => {
 export const StatesCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
-      "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)", 
-      {        replacements: {
+      "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
+      {
+        replacements: {
           COD_USER: req.userId,
           NAM_PERMISO: "states.crear",
         },
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -51,7 +52,7 @@ export const StatesUpdate = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -70,7 +71,7 @@ export const StatesDelete = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

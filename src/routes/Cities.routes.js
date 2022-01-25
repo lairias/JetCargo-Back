@@ -7,7 +7,7 @@ import {
   GetCitiesForState,
 } from "../controllers/Cities.Controllers";
 
-import {verifyToken,verifyIndUser} from "../middleware/verifySignup"
+import { verifyToken, verifyIndUser } from "../middleware/verifySignup";
 import {
   CityView,
   CityCreate,
@@ -18,7 +18,11 @@ import {
 const router = Router();
 
 router.get("/", [verifyToken, verifyIndUser, CityView], GetCities);
-router.get("/state/:COD_STATE", [verifyToken, verifyIndUser, CityView], GetCitiesForState);
+router.get(
+  "/state/:COD_STATE",
+  [verifyToken, verifyIndUser, CityView],
+  GetCitiesForState
+);
 router.post("/", [verifyToken, CityCreate], CreateCity);
 router.put("/:COD_CITY", [verifyToken, CityUpdate], UpdateCity);
 router.delete("/:COD_CITY", [verifyToken, CityDelete], DeleteCity);

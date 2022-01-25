@@ -39,4 +39,3 @@ export const PAY_PAYMENTMETHOD = db.define(
     updatedAt: false,
   }
 );
-

@@ -1,16 +1,23 @@
-import nodemailer from "nodemailer"
-import "dotenv/config"
+import nodemailer from "nodemailer";
+import "dotenv/config";
 export const transport = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
   auth: {
     user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD
+    pass: process.env.MAIL_PASSWORD,
   },
 });
 
-const Fecha = new Date().getFullYear()
-export const configTransportVery = (nombre, apellido, email, token, host, id) => {
+const Fecha = new Date().getFullYear();
+export const configTransportVery = (
+  nombre,
+  apellido,
+  email,
+  token,
+  host,
+  id
+) => {
   return {
     from: `Nodemailer <${process.env.MAIL_FROM_ADDRESS}>`,
     to: `Nodemailer <${email.replace("%40", "@")}>`,
@@ -120,12 +127,19 @@ enlace en tu navegador: <span class="break-all" style="box-sizing: border-box; f
   };
 };
 
-export const configTransportResetPass = (nombre,apellido,email,token,host,id)=> {
-    return {
-      from: `Nodemailer <${process.env.MAIL_FROM_ADDRESS}>`,
-      to: `Nodemailer <${email.replace("%40", "@")}>`,
-      subject: "Notificación de restablecimiento de contraseña",
-      html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+export const configTransportResetPass = (
+  nombre,
+  apellido,
+  email,
+  token,
+  host,
+  id
+) => {
+  return {
+    from: `Nodemailer <${process.env.MAIL_FROM_ADDRESS}>`,
+    to: `Nodemailer <${email.replace("%40", "@")}>`,
+    subject: "Notificación de restablecimiento de contraseña",
+    html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -236,4 +250,5 @@ en su navegador: <span class="break-all" style="box-sizing: border-box; font-fam
 </table>
 </body>
 </html>`,
-    }; }
+  };
+};

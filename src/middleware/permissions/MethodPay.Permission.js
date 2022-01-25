@@ -8,7 +8,7 @@ export const MethoPayView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "methopay.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -23,7 +23,7 @@ export const MethoPayCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "methopay.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -37,7 +37,7 @@ export const MethoPayUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "methopay.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -51,7 +51,7 @@ export const MethoPayDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "methopay.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

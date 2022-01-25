@@ -8,7 +8,7 @@ export const InvoiceView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "invoice.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -22,7 +22,7 @@ export const InvoiceCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "invoice.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -36,7 +36,7 @@ export const InvoiceUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "invoice.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -50,7 +50,7 @@ export const InvoiceDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "invoice.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

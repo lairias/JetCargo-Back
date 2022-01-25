@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export  const BO_LOCKER = db.define(
+export const BO_LOCKER = db.define(
   "BO_Loker",
   {
     COD_LOCKER: {
@@ -11,9 +11,9 @@ export  const BO_LOCKER = db.define(
       allowNull: false,
       comment: "COD OF THE LOCKER",
     },
-    
+
     COD_PEOPLE: {
-        type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PEOPLE",
     },
@@ -61,4 +61,3 @@ export  const BO_LOCKER = db.define(
     updatedAt: false,
   }
 );
-

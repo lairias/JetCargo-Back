@@ -50,4 +50,3 @@ export const BO_SHIPPINGCOST = db.define(
     updatedAt: false,
   }
 );
-

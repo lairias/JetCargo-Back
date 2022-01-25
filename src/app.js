@@ -15,6 +15,7 @@ import Package from "./routes/Package.routes";
 import PassReset from "./routes/PassReset.routes";
 import People from "./routes/People.routes";
 import Email from "./routes/Email.routes";
+
 import sequelise from "./config/database/index";
 
 import "./config/database/R_E";

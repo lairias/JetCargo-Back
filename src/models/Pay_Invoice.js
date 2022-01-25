@@ -3,7 +3,8 @@ import db from "../config/database";
 
 export const PAY_INVOICE = db.define(
   "PAY_Invoice",
-  { COD_INVOICE: {
+  {
+    COD_INVOICE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
@@ -67,4 +68,3 @@ export const PAY_INVOICE = db.define(
     updatedAt: false,
   }
 );
-

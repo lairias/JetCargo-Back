@@ -15,7 +15,7 @@ export const CreatePassReset = async (req, res, next) => {
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     if (!UserFond)
       return res
-        .sendStatus(401)
+        .status(401)
         .json({ token: null, message: "User no encontrado" });
     const correo = UserFond.EMAIL;
     const token = JWT.sign(
@@ -57,16 +57,16 @@ export const CreatePassReset = async (req, res, next) => {
       );
       await Se_PASS_RESET.create({ EMAIL, API_TOKEN: token });
     }
-    return res.sendStatus(200).json({ token });
+    return res.status(200).json({ token });
   } catch (error) {
-HttpError(res, error);
+    HttpError(res, error);
     next();
   }
 };
 
 export const ForgotPassword = async (req, res, next) => {
   const { TOKEN, COD_USER, CORREO } = req.params;
-  const {PASS} = req.body
+  const { PASS } = req.body;
   try {
     const UserReset = await Se_PASS_RESET.findOne({
       where: { API_TOKEN: TOKEN },
@@ -79,12 +79,12 @@ export const ForgotPassword = async (req, res, next) => {
         },
       }
     );
-    await Se_PASS_RESET.destroy({ where: {EMAIL:CORREO} });
-    if (!UserReset) return res.sendStatus(404).json({ message: "Token no valido" });
+    await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
+    if (!UserReset) return res.status(404).json({ message: "Token no valido" });
     const cities = await Se_PASS_RESET.findAll();
-   return  res.sendStatus(200).json(cities);
+    return res.status(200).json(cities);
   } catch (error) {
-HttpError(res, error);
+    HttpError(res, error);
     next();
   }
 };
@@ -97,9 +97,9 @@ export const GetPassReset = async (req, res, next) => {
         EMAIL,
       },
     });
- return    res.sendStatus(200).json(cities);
+    return res.status(200).json(cities);
   } catch (error) {
-HttpError(res, error);
+    HttpError(res, error);
     next();
   }
 };
@@ -117,9 +117,9 @@ export const UpdatePassReset = async (req, res, next) => {
         },
       }
     );
-   return  res.sendStatus(200).json(cities);
+    return res.status(200).json(cities);
   } catch (error) {
-HttpError(res, error);
+    HttpError(res, error);
     next();
   }
 };
@@ -130,9 +130,9 @@ export const DeletePassReset = async (req, res, next) => {
     const cities = await Se_PASS_RESET.destroy({
       where: { EMAIL },
     });
-  return  res.sendStatus(200).json(cities);
+    return res.status(200).json(cities);
   } catch (error) {
-HttpError(res, error);
+    HttpError(res, error);
     next();
   }
 };

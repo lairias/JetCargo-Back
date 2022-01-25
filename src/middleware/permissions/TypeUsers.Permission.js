@@ -13,7 +13,7 @@ export const TypeUserView = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -33,7 +33,7 @@ export const TypeUserCreate = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -52,7 +52,7 @@ export const TypeUserUpdate = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -71,7 +71,7 @@ export const TypeUserDelete = async (req, res, next) => {
       }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

@@ -17,12 +17,12 @@ export const BO_TRACKING = db.define(
       allowNull: false,
       comment: "COD OF THE PACKAGE",
     },
-    DES_TRACKING:{
+    DES_TRACKING: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "DESCRICTION  OF TRACKING",
     },
-    
+
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -38,4 +38,3 @@ export const BO_TRACKING = db.define(
     updatedAt: false,
   }
 );
-

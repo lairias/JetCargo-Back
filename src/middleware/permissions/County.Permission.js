@@ -8,7 +8,7 @@ export const CountryView = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "country.view" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -22,7 +22,7 @@ export const CountryCreate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "country.crear" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -36,7 +36,7 @@ export const CountryUpdate = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "country.update" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);
@@ -50,7 +50,7 @@ export const CountryDelete = async (req, res, next) => {
       { replacements: { COD_USER: req.userId, NAM_PERMISO: "country.delete" } }
     );
     if (!JSON.stringify(permiso[0]))
-      return res.sendStatus(403).json({ message: "Acceso no Autorizado" });
+      return res.status(403).json({ message: "Acceso no Autorizado" });
     next();
   } catch (error) {
     HttpError(res, error);

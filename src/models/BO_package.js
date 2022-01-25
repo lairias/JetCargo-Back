@@ -100,4 +100,3 @@ export const BO_PACKAGE = db.define(
     updatedAt: false,
   }
 );
-

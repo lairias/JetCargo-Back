@@ -22,9 +22,6 @@ import { REL_PEOPLE_PHONE } from "../../models/relations/REL_people_phone";
 import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
 import { REL_PEOPLE_ADDRES } from "../../models/relations/REL_people_addres";
 
-
-
-
 //**Tablas de paquetes */
 import { BO_SHIPPINGCOST } from "../../models/BO_ShippingCost";
 import { BO_CATPACKAGE } from "../../models/BO_catPackage";
@@ -33,16 +30,11 @@ import { BO_PACKAGE } from "../../models/BO_package";
 import { BO_TRACKING } from "../../models/BO_tracking";
 import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
 
-
 //Tablas de Pago
 import { PAY_INVOICE } from "../../models/Pay_Invoice";
 import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
 import { LOG_ERROR } from "../../models/LOG_Errores";
 import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
-
-
-
-
 
 // //Relacion de uno a uno
 // /**
@@ -71,7 +63,7 @@ import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 //  *
 //  */
 
-const relaciones = async() => {
+const relaciones = async () => {
   //Relaciones de personas con las tablas de informacion necesaria
   await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
@@ -101,14 +93,12 @@ const relaciones = async() => {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
-  
-  
 
   await PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
   });
-  
+
   await PA_STATES.hasMany(PA_CITIES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
@@ -117,7 +107,6 @@ const relaciones = async() => {
     foreignKey: "COD_COUNTRY",
     onDelete: "CASCADE",
   });
-
 
   // Relaciones de tablas de roles
 
@@ -205,8 +194,6 @@ const relaciones = async() => {
     },
   });
 
-
-
   /********************************************************************* */
   await PA_TypeUsers.belongsToMany(USERS, {
     through: MODEL_HAS_ROLES,
@@ -235,52 +222,49 @@ const relaciones = async() => {
     },
   });
 
-
   /******************************* */
-await PA_POEPLE.hasMany(BO_LOCKER, {
-  foreignKey: "COD_PEOPLE",
-  onDelete: "CASCADE",
-});
+  await PA_POEPLE.hasMany(BO_LOCKER, {
+    foreignKey: "COD_PEOPLE",
+    onDelete: "CASCADE",
+  });
 
-await BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
-  foreignKey: "COD_PACKAGE",
-  onDelete: "CASCADE",
-});
-await BO_PACKAGE.hasMany(BO_TRACKING, {
-  foreignKey: "COD_PACKAGE",
-  onDelete: "CASCADE",
-});
-await PA_POEPLE.hasMany(PAY_PAYMENTMETHOD, {
-  foreignKey: "COD_PEOPLE",
-  onDelete: "CASCADE",
-});
-await PA_POEPLE.hasMany(PAY_INVOICE, {
-  foreignKey: "COD_PEOPLE",
-  onDelete: "CASCADE",
-});
-await BO_SHIPPINGCOST.hasMany(PAY_INVOICE, {
-  foreignKey: "COD_SHIPPINGCOST",
-  onDelete: "CASCADE",
-});
-await PAY_PAYMENTMETHOD.hasMany(PAY_INVOICE, {
-  foreignKey: "COD_PAYMENTMETHOD",
-  onDelete: "CASCADE",
-});
+  await BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
+    foreignKey: "COD_PACKAGE",
+    onDelete: "CASCADE",
+  });
+  await BO_PACKAGE.hasMany(BO_TRACKING, {
+    foreignKey: "COD_PACKAGE",
+    onDelete: "CASCADE",
+  });
+  await PA_POEPLE.hasMany(PAY_PAYMENTMETHOD, {
+    foreignKey: "COD_PEOPLE",
+    onDelete: "CASCADE",
+  });
+  await PA_POEPLE.hasMany(PAY_INVOICE, {
+    foreignKey: "COD_PEOPLE",
+    onDelete: "CASCADE",
+  });
+  await BO_SHIPPINGCOST.hasMany(PAY_INVOICE, {
+    foreignKey: "COD_SHIPPINGCOST",
+    onDelete: "CASCADE",
+  });
+  await PAY_PAYMENTMETHOD.hasMany(PAY_INVOICE, {
+    foreignKey: "COD_PAYMENTMETHOD",
+    onDelete: "CASCADE",
+  });
 
-
-await BO_CATPACKAGE.hasMany(BO_PACKAGE, {
-  foreignKey: "COD_CATPACKAGE",
-  onDelete: "CASCADE",
-});
-await BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
-  foreignKey: "COD_TYPEPACKAGE",
-  onDelete: "CASCADE",
-});
-await BO_LOCKER.hasMany(BO_PACKAGE, {
-  foreignKey: "COD_LOCKER",
-  onDelete: "CASCADE",
-});
-
+  await BO_CATPACKAGE.hasMany(BO_PACKAGE, {
+    foreignKey: "COD_CATPACKAGE",
+    onDelete: "CASCADE",
+  });
+  await BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
+    foreignKey: "COD_TYPEPACKAGE",
+    onDelete: "CASCADE",
+  });
+  await BO_LOCKER.hasMany(BO_PACKAGE, {
+    foreignKey: "COD_LOCKER",
+    onDelete: "CASCADE",
+  });
 };
 
-relaciones()
+relaciones();

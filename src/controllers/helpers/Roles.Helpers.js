@@ -9,7 +9,6 @@ export const RolesForeachPermiso = (PERMISSION, COD_TYPEUSERS) => {
         COD_TYPEUSERS: COD_TYPEUSERS,
       });
     });
-    return;
   } catch (error) {
     console.log(error);
     return;
@@ -24,7 +23,6 @@ export const RolesForeachAllPermiso = async (COD_TYPEUSERS) => {
         COD_TYPEUSERS: COD_TYPEUSERS,
       });
     });
-    return;
   } catch (error) {
     console.log(error);
     return;
