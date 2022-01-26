@@ -7,9 +7,7 @@ export const verifyTokenPass = async (req, res, next) => {
   const {TOKEN} = req.params
   try {
 
-    console.log(verifyTokenDate(TOKEN));
-
-     if (verifyTokenDate(TOKEN)) return res.status(403).json({ message: "Token expirado" });
+     if (!verifyTokenDate(TOKEN)) return res.status(403).json({ message: "Token expirado" });
     const { id } = jwt.verify(TOKEN, process.env.JWTSECRETPASSWORD);
     const lock = await USERS.findByPk(id);
     req.userIdR = id;
