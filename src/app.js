@@ -15,9 +15,7 @@ import Package from "./routes/Package.routes";
 import PassReset from "./routes/PassReset.routes";
 import People from "./routes/People.routes";
 import Email from "./routes/Email.routes";
-
 import sequelise from "./config/database/index";
-
 import "./config/database/R_E";
 import {
   CreateRole,
@@ -27,13 +25,13 @@ import {
   CreateStates,
   CreateCities,
 } from "./config/database/Seeder";
-// sequelise.sync({ force: true, alter : true });
-// CreateRole();
-// CreatePermisos();
-// CreatePemisoHasRol();
-// CreateContries();
-// CreateStates();
-// CreateCities();
+// sequelise.sync({ force: true });
+CreateRole();
+CreatePermisos();
+CreatePemisoHasRol();
+CreateContries();
+CreateStates();
+CreateCities();
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));

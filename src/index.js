@@ -1,6 +1,5 @@
 import app from "./app";
 import db from "./config/database";
-
 async function main() {
   await db
     .authenticate()

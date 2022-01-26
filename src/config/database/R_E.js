@@ -7,6 +7,7 @@ import { PA_STATES } from "../../models/Pa_states";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_EMAIL } from "../../models/Pa_email";
 import { PA_PHONES } from "../../models/Pa_phones";
+import  {SE_SEGURIDAD}  from "../../models/security/Se_seguridad";
 
 import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";

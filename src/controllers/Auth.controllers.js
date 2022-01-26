@@ -48,9 +48,7 @@ export const singUp = async (req, res, next) => {
         throw res.sendStatus(500);
       });
     const User = await USERS.findOne({ where: { EMAIL } });
-    const token = await JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET, {
-      expiresIn: 86400,
-    });
+    const token = await JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET, );
     USERS.update(
       { API_TOKEN: token },
       {
@@ -100,9 +98,7 @@ export const singIn = async (req, res, next) => {
       return res
         .status(401)
         .json({ token: null, message: "Confirme su correo electrónico" });
-    const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET, {
-      expiresIn: 86400,
-    });
+    const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET);
     return res.status(200).json({
       token,
     });
