@@ -71,16 +71,16 @@ export const ForgotPassword = async (req, res, next) => {
     const UserReset = await Se_PASS_RESET.findOne({
       where: { API_TOKEN: TOKEN },
     });
+    if (!UserReset) return res.status(203).json({ message: "Token no valido" });
     await USERS.update(
-      { PAS_USER: encrptPassword(PASS) },
+      { PAS_USER: await encrptPassword(PASS) },
       {
         where: {
           COD_USER,
         },
       }
     );
-    await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
-    if (!UserReset) return res.status(404).json({ message: "Token no valido" });
+      await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
     return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
@@ -90,11 +90,8 @@ export const ForgotPassword = async (req, res, next) => {
 export const GetPassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
-    const cities = await Se_PASS_RESET.findAll({
-      WHERE: {
-        EMAIL,
-      },
-    });
+    const cities = await Se_PASS_RESET.findByPk(EMAIL);
+    if (!cities) return res.status(403)
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);

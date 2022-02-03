@@ -6,7 +6,7 @@ export const CheckDuplicateEmail = async (req, res, next) => {
   try {
     if (await USERS.findOne({ where: { EMAIL } }))
       return res
-        .status(400)
+        .status(203)
         .json({ message: "Correo electrónico no disponible" });
     next();
   } catch (error) {
