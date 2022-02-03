@@ -4,7 +4,6 @@ import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
-
 export const CreateRole = async () => {
   const count = await PA_TypeUsers.count();
   if (count > 0) {

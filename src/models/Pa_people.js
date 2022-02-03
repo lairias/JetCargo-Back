@@ -41,6 +41,11 @@ export const PA_POEPLE = db.define(
       allowNull: false,
       comment: "THE AGE OF A PERSON",
     },
+    DAT_BIRTH: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      comment: "DATE OF BIRTH",
+    },
     TIP_PERSON: {
       type: Sequelize.ENUM("N", "J"),
       allowNull: false,

@@ -99,6 +99,14 @@ const relaciones = async () => {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
   });
+  await PA_COUNTRIES.hasMany(PA_ADDRES, {
+    foreignKey: "COD_COUNTRY",
+    onDelete: "CASCADE",
+  });
+  await PA_STATES.hasMany(PA_ADDRES, {
+    foreignKey: "COD_STATE",
+    onDelete: "CASCADE",
+  });
 
   await PA_STATES.hasMany(PA_CITIES, {
     foreignKey: "COD_STATE",

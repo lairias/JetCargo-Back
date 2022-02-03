@@ -1,10 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
-
 export const PA_PHONES = db.define(
   "PA_Phone",
-  {
-    COD_PHONE: {
+  {COD_PHONE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
@@ -17,7 +15,6 @@ export const PA_PHONES = db.define(
       comment: "NUMBER OF AREA TO CALL",
     },
     NUM_PHONE: {
-      //   type: Sequelize.ENUM("ID", "PASSPORT", "LICENSE"),
       type: Sequelize.INTEGER(10),
       allowNull: false,
       comment: "PHONE NUMBER OF THE PERSON",

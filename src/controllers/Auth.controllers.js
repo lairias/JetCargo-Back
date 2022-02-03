@@ -18,15 +18,21 @@ export const singUp = async (req, res, next) => {
       MIDDLENAME,
       LASTNAME,
       AGE,
-      TIP_PERSON,
-      USR_ADD,
       EMAIL,
       PAS_USER,
       ROL,
+      DAT_BIRTH,
+      COD_COUNTRY,
+      COD_STATE,
+      COD_CITY,
+      DES_ADDRESS,
+      NUM_AREA,
+      NUM_PHONE,
+      USR_ADD
     } = req.body;
     await sequelize
       .query(
-        "CALL INS_USER(:ID, :TIP_DOCUMENT,:FRISTNAME, :MIDDLENAME, :LASTNAME, :AGE, :TIP_PERSON, :USR_ADD, :EMAIL, :PAS_USER, :ROL)",
+        "CALL INS_USER(:ID,:TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:EMAIL,:PAS_USER,:ROL,:DAT_BIRTH,:COD_COUNTRY,:COD_STATE,:COD_CITY,:DES_ADDRESS,:NUM_AREA,:NUM_PHONE, :USR_ADD)",
         {
           replacements: {
             ID,
@@ -35,15 +41,22 @@ export const singUp = async (req, res, next) => {
             MIDDLENAME,
             LASTNAME,
             AGE,
-            TIP_PERSON,
-            USR_ADD,
             EMAIL,
             PAS_USER: await encrptPassword(PAS_USER),
             ROL,
+            DAT_BIRTH,
+            COD_COUNTRY,
+            COD_STATE,
+            COD_CITY,
+            DES_ADDRESS,
+            NUM_AREA,
+            NUM_PHONE,
+            USR_ADD
           },
         }
       )
       .catch((error) => {
+        console.log(error);
         HttpError(res, error);
         throw res.sendStatus(500);
       });
@@ -84,20 +97,25 @@ export const singIn = async (req, res, next) => {
         EMAIL,
       },
     });
+
     if (!UserFond)
       return res
-        .status(401)
+        .status(203)
         .json({ token: null, message: "Pass o User invalidos" });
+        
     if (!(await compararPassword(PAS_USER, UserFond.PAS_USER)))
       return res
-        .status(401)
+        .status(203)
         .json({ token: null, message: "Pass o User invalidos" });
+
     if (!UserFond.IND_USR)
-      return res.status(401).json({ token: null, message: "User no activo" });
+      return res.status(203).json({ token: null, message: "User no activo" });
+
     if (!UserFond.EMAIL_VERIFIED)
       return res
-        .status(401)
+        .status(203)
         .json({ token: null, message: "Confirme su correo electrónico" });
+        
     const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET);
     return res.status(200).json({
       token,
@@ -107,3 +125,48 @@ export const singIn = async (req, res, next) => {
     next();
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

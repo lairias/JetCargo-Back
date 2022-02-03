@@ -16,7 +16,16 @@ export const USERS = db.define(
       allowNull: false,
       comment: "COD OF THE PERSON",
     },
-
+    COD_PEOPLE: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE PERSON",
+    },
+    PROFILE_PHOTO_PATH: {
+      type: Sequelize.STRING(250),
+      allowNull: false,
+      comment: " PROFILE PHOTO PATH",
+    },
     EMAIL: {
       type: Sequelize.STRING(120),
       allowNull: false,

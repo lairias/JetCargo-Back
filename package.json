@@ -7,7 +7,8 @@
     "bd-import": "node src/config/database/import.js",
     "build": "babel src --out-dir build",
     "babel-node": "babel-node --presets=@babel/preset-env",
-    "dev": "nodemon --exec npm run babel-node src/index.js"
+    "dev": "nodemon --exec npm run babel-node src/index.js",
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",

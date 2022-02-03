@@ -23,3 +23,5 @@ export const REL_PEOPLE_PHONE = db.define(
     updatedAt: false,
   }
 );
+
+//**/SET FOREIGN_KEY_CHECKS = OFF */

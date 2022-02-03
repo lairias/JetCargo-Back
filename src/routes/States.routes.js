@@ -19,7 +19,6 @@ const router = Router();
 
 router.get(
   "/country/:COD_COUNTRY",
-  [verifyToken, verifyIndUser, StatesView],
   GetStatesForCountry
 );
 router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);

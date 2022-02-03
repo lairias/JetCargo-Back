@@ -13,10 +13,7 @@ export const CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
     const UserFond = await USERS.findOne({ where: { EMAIL } });
-    if (!UserFond)
-      return res
-        .status(401)
-        .json({ token: null, message: "User no encontrado" });
+    if (!UserFond)return res.sendStatus(400)
     const timeToken = await SE_SEGURIDAD.findByPk(2);
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     const token = JWT.sign(
@@ -61,7 +58,7 @@ export const CreatePassReset = async (req, res, next) => {
       );
       await Se_PASS_RESET.create({ EMAIL, API_TOKEN: token });
     }
-    return res.status(200).json({ token });
+    return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
     next();
@@ -71,7 +68,19 @@ export const ForgotPassword = async (req, res, next) => {
   const { TOKEN, COD_USER, CORREO } = req.params;
   const { PASS } = req.body;
   try {
-   
+    const UserReset = await Se_PASS_RESET.findOne({
+      where: { API_TOKEN: TOKEN },
+    });
+    await USERS.update(
+      { PAS_USER: encrptPassword(PASS) },
+      {
+        where: {
+          COD_USER,
+        },
+      }
+    );
+    await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
+    if (!UserReset) return res.status(404).json({ message: "Token no valido" });
     return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);

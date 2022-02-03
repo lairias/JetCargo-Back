@@ -15,7 +15,7 @@ import {
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 
 const router = Router();
-router.get("/", [verifyToken, verifyIndUser, CountryView], GetCountries);
+router.get("/", GetCountries);
 router.get(
   "/:COD_COUNTRY",
   [verifyToken, verifyIndUser, CountryView],
