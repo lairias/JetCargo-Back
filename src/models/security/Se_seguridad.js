@@ -9,23 +9,23 @@ export const SE_SEGURIDAD = db.define(
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      comment: "COD OF THE PERMISOS",
+      comment: "COD OF THE SEGURIDAD",
     },
     NAM_SEGURIDAD: {
       type: Sequelize.STRING(120),
       allowNull: false,
       unique: true,
-      comment: "NAME OF PERMISSIONS",
+      comment: "NAME OF SEGURIDAD",
     },
     DATO_SEGURIDAD: {
       type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "DESCRIPTION OF PERMISSO",
+      comment: "DESCRIPTION OF SEGURIDAD",
     },
     DES_SEGURIDAD: {
       type: Sequelize.STRING(120),
       allowNull: false,
-      comment: "DESCRIPTION OF PERMISSO",
+      comment: "DESCRIPTION OF SEGURIDAD",
     },
   },
   {

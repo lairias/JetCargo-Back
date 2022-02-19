@@ -18,7 +18,7 @@ import {
 const router = Router();
 router.post(
   "/",
-  [verifyToken, verifyIndUser, verifyRoles],
+  [verifyToken, verifyIndUser, TypeUserCreate],
   CreateRole
 );
 router.get(
@@ -26,6 +26,7 @@ router.get(
   [verifyToken, verifyIndUser, TypeUserView],
   GetRole
 );
+
 router.get("/", 
   [verifyToken, verifyIndUser, TypeUserView], 
   GetRoles
@@ -33,7 +34,7 @@ router.get("/",
 
 router.put(
   "/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser],
+  [verifyToken, verifyIndUser,TypeUserUpdate],
   UpdateRole
 );
 router.delete(

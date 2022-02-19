@@ -1,8 +1,6 @@
 //
 import { USERS } from "../models/Users";
-
 import { HttpError } from "../helpers/handleError";
-
 import { transport, configTransportVery } from "../email";
 import { encrptPassword, compararPassword } from "../helpers/bcrypt";
 import sequelize from "../config/database";
@@ -91,13 +89,13 @@ export const singUp = async (req, res, next) => {
 
 export const singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
+  console.log(req.body)
   try {
     const UserFond = await USERS.findOne({
       where: {
         EMAIL,
       },
     });
-
     if (!UserFond)
       return res
         .status(203)
@@ -115,13 +113,21 @@ export const singIn = async (req, res, next) => {
       return res
         .status(203)
         .json({ token: null, message: "Confirme su correo electrónico" });
+
+        const PermissionUser = await sequelize.query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)",{
+          replacements: {
+              COD_USER: UserFond.COD_USER
+          }
+      } );
         
     const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET);
     return res.status(200).json({
       token,
+      PermissionUser
+      
     });
   } catch (error) {
-    HttpError(res.error);
+    HttpError(res, error);
     next();
   }
 };

@@ -4,6 +4,7 @@ import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
+import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
 export const CreateRole = async () => {
   const count = await PA_TypeUsers.count();
   if (count > 0) {
@@ -395,11 +396,13 @@ export const CreateContries = async () => {
         await PA_COUNTRIES.create({
           NAM_COUNTRY: "Honduras",
           DES_COUNTRY: "Pais Centroamericano",
+          AREA_COUNTRY: "504",
           USR_ADD: "admin",
         }),
         await PA_COUNTRIES.create({
           NAM_COUNTRY: "El Salvador",
           DES_COUNTRY: "Pais Centroamericano",
+          AREA_COUNTRY: "503",
           USR_ADD: "admin",
         }),
       ]);
@@ -978,3 +981,28 @@ export const CreateCities = async () => {
     }
   }
 };
+
+export const CreateSeguri = async ()=>{
+  const count = await SE_SEGURIDAD.count();
+  if (count > 0 ){
+    return;
+  }else{
+    try{
+
+    await  Promise.all([
+      SE_SEGURIDAD.create({
+        NAM_SEGURIDAD: "tiempo de token",
+        DATO_SEGURIDAD: "7200",
+        DES_SEGURIDAD:  "Tiempo de reset token"
+      }),
+      SE_SEGURIDAD.create({
+        NAM_SEGURIDAD: "tiempo de reset password token",
+        DATO_SEGURIDAD: "7200",
+        DES_SEGURIDAD:  "Tiempo de reset token para password"
+      })
+      ])
+    }catch(erro){
+      console.log(erro)
+    }
+  }
+}

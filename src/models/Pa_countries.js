@@ -21,6 +21,11 @@ export const PA_COUNTRIES = db.define(
       allowNull: false,
       comment: "DESCRIPTION OF THE COUNTRY",
     },
+    AREA_COUNTRY: {
+      type: Sequelize.STRING(40),
+      allowNull: false,
+      comment: "AREA OF THE COUNTRY",
+    },
 
     USR_ADD: {
       type: Sequelize.STRING(30),

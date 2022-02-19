@@ -1,7 +1,7 @@
 import { PA_TypeUsers } from "../models/Pa_typeUsers";
 import { HttpError } from "../helpers/handleError";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
-
+import sequelize from "../config/database";
 import {
   RolesForeachPermiso,
   RolesForeachAllPermiso,
@@ -11,7 +11,8 @@ export const GetRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
-    res.status(200).json(role);
+    const permisos = await sequelize.query(`CALL SHOW_PERMISOS_TYPEUSER(${COD_TYPEUSERS}) `);
+    res.status(200).json({role,permisos});
   } catch (error) {
     console.log(error);
   }
@@ -19,7 +20,7 @@ export const GetRole = async (req, res, next) => {
 
 export const GetRoles = async (req, res, next) => {
   try {
-    const role = await PA_TypeUsers.findAll();
+    const role = await sequelize.query("CALL COUNT_TYPE_USERS_ALL_PERMISOS()");
     res.status(200).json(role);
   } catch (error) {
     console.log(error);

@@ -23,7 +23,6 @@ export const USERS = db.define(
     },
     PROFILE_PHOTO_PATH: {
       type: Sequelize.STRING(250),
-      allowNull: false,
       comment: " PROFILE PHOTO PATH",
     },
     EMAIL: {

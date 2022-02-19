@@ -71,7 +71,10 @@ export const ForgotPassword = async (req, res, next) => {
     const UserReset = await Se_PASS_RESET.findOne({
       where: { API_TOKEN: TOKEN },
     });
-    if (!UserReset) return res.status(203).json({ message: "Token no valido" });
+    console.log(UserReset)
+    if (!UserReset) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
+    if (UserReset == null) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
+    await Se_PASS_RESET.destroy({ where: { EMAIL:CORREO}});
     await USERS.update(
       { PAS_USER: await encrptPassword(PASS) },
       {
@@ -80,7 +83,6 @@ export const ForgotPassword = async (req, res, next) => {
         },
       }
     );
-      await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
     return res.sendStatus(200)
   } catch (error) {
     HttpError(res, error);
@@ -91,7 +93,7 @@ export const GetPassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
     const cities = await Se_PASS_RESET.findByPk(EMAIL);
-    if (!cities) return res.status(403)
+    if (!cities) return res.status(203).json({message:"Link no valido"})
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);
