@@ -22,11 +22,11 @@ export const verifyToken = async (req, res, next) => {
 export const verifyIndUser = async (req, res, next) => {
   try {
     if (!req.userId)
-      return res.status(404).json({ message: "Token no valido" });
+      return res.status(203).json({ message: "Token no valido" });
     const User = await USERS.findByPk(req.userId);
-    if (!User) return res.status(404).json({ message: "no user found" });
+    if (!User) return res.status(203).json({ message: "no user found" });
     if (!User.IND_USR)
-      return res.status(404).json({ message: "no user no activo" });
+      return res.status(203).json({ message: "no user no activo" });
     next();
   } catch (error) {
     HttpError(res, error);
