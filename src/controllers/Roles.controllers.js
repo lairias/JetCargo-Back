@@ -21,9 +21,9 @@ export const GetRole = async (req, res, next) => {
 export const GetRoles = async (req, res, next) => {
   try {
     const role = await sequelize.query("CALL COUNT_TYPE_USERS_ALL_PERMISOS()");
-    res.status(200).json(role);
+    if(!role) return res.status(203).json({ok:false, message: "No hay roles"});
+    res.status(200).json({ok:true, role});
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }

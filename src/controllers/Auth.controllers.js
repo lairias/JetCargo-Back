@@ -119,6 +119,7 @@ export const singIn = async (req, res, next) => {
       const PeopleFond = await PA_POEPLE.findOne({where: { COD_PEOPLE : UserFond.COD_PEOPLE }})
     const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET);
     return res.status(200).json({
+      ok:true,
       COD_USER : UserFond.COD_USER, IMG_FHOTO: UserFond.PROFILE_PHOTO_PATH, NAME:PeopleFond.FRISTNAME, LASTNAME:PeopleFond.LASTNAME ,
       token,
       PermissionUser,
@@ -132,9 +133,9 @@ export const singIn = async (req, res, next) => {
 export const RevalidarToken = async (req, res, next) => {
   try {
     if (!req.userId)
-      return res.status(203).json({ message: "Token no valido" });
+      return res.status(203).json({ok:false, message: "Token no valido" });
     const User = await USERS.findByPk(req.userId);
-    if (!User) return res.status(203).json({ message: "Token no valido" });
+    if (!User) return res.status(203).json({ok:false, message: "Token no valido" });
     const PermissionUser = await sequelize.query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)",{
       replacements: {
           COD_USER: User.COD_USER
@@ -143,6 +144,7 @@ export const RevalidarToken = async (req, res, next) => {
   const PeopleFond = await PA_POEPLE.findOne({where: { COD_PEOPLE : User.COD_PEOPLE }})
 const token = JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET);
 return res.status(200).json({
+  ok:true,
   COD_USER : User.COD_USER, IMG_FHOTO: User.PROFILE_PHOTO_PATH, NAME:PeopleFond.FRISTNAME, LASTNAME:PeopleFond.LASTNAME ,
   token,
   PermissionUser,
