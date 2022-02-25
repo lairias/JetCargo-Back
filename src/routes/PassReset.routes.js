@@ -5,6 +5,7 @@ import {
   ForgotPassword,
   GetPassReset,
   UpdatePassReset,
+  VeryTokenReset,
 } from "../controllers/PassReset.Controllers";
 import { verifyTokenPass } from "../middleware/verifyPassReset";
 const router = Router();

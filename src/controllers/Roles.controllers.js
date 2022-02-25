@@ -12,7 +12,7 @@ export const GetRole = async (req, res, next) => {
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
     const permisos = await sequelize.query(`CALL SHOW_PERMISOS_TYPEUSER(${COD_TYPEUSERS}) `);
-    res.status(200).json({role,permisos});
+    res.status(200).json({ok:true,role,permisos});
   } catch (error) {
     console.log(error);
   }

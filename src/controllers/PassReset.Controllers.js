@@ -71,7 +71,6 @@ export const ForgotPassword = async (req, res, next) => {
     const UserReset = await Se_PASS_RESET.findOne({
       where: { API_TOKEN: TOKEN },
     });
-    console.log(UserReset)
     if (!UserReset) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
     if (UserReset == null) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
     await Se_PASS_RESET.destroy({ where: { EMAIL:CORREO}});
