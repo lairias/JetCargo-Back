@@ -24,8 +24,8 @@ export const GetPeople = async (req, res, next) => {
 export const DeletePeople = async (req, res, next) => {
   const { COD_PEOPLE } = req.params;
   try {
-  await PA_POEPLE.destroy({ where: { COD_PEOPLE } });
-    return res.sendStatus(200)
+    await PA_POEPLE.destroy({ where: { COD_PEOPLE } });
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -65,7 +65,7 @@ export const CreatePeople = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -106,7 +106,7 @@ export const UpdatePeople = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();

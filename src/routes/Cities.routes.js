@@ -19,11 +19,7 @@ const router = Router();
 
 router.get("/", GetCities);
 
-
-router.get(
-  "/state/:COD_STATE",
-  GetCitiesForState
-);
+router.get("/state/:COD_STATE", GetCitiesForState);
 
 router.post("/", [verifyToken, CityCreate], CreateCity);
 router.put("/:COD_CITY", [verifyToken, CityUpdate], UpdateCity);

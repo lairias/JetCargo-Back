@@ -26,20 +26,20 @@ export const GetLoker = async (req, res, next) => {
 export const CreateLoker = async (req, res, next) => {
   const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, USR_ADD } = req.body;
   try {
-    await sequelize.query(
-      "CALL INS_LOCKER(:COD_PEOPLE,:NUM_LOCKER,:TYP_LOCKER, :USR_ADD)",
-      {replacements: {
+    await sequelize
+      .query("CALL INS_LOCKER(:COD_PEOPLE,:NUM_LOCKER,:TYP_LOCKER, :USR_ADD)", {
+        replacements: {
           COD_PEOPLE,
           NUM_LOCKER,
           TYP_LOCKER,
           USR_ADD,
         },
-      }
-    ).catch (error=>{
-      console.log(error)
-      HttpError(res, error);
-      throw res.sendStatus(500);
-    }) 
+      })
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
@@ -50,12 +50,12 @@ export const CreateLoker = async (req, res, next) => {
 export const DeleteLoker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
-     await BO_LOCKER.destroy({
+    await BO_LOCKER.destroy({
       where: {
         COD_LOCKER,
       },
     });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -79,10 +79,11 @@ export const UpdateLoker = async (req, res, next) => {
             IND_LOCKER,
           },
         }
-      ).catch(_ => {
+      )
+      .catch((_) => {
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();

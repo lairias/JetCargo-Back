@@ -1,4 +1,5 @@
 import sequelize from "../config/database";
+import {SE_PERMISOS} from "../models/security/SE_permisos";
 import { Op } from "sequelize";
 import { HttpError } from "../helpers/handleError";
 
@@ -17,7 +18,7 @@ export const VeryEmail = async (req, res, next) => {
         },
       }
     );
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -25,15 +26,13 @@ export const VeryEmail = async (req, res, next) => {
 };
 
 export const GetPermissionUser = async (req, res, next) => {
-  const { COD_USER } = req.params;
   try {
-    const PermissionUser = await sequelize.query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)",{
-        replacements: {
-            COD_USER
-        }
-    } );
-    if (!PermissionUser) return res.status(203).json({ message: "Correo electrónico no encontrado", found: null });
-    return res.status(200).json(PermissionUser)
+    const PermissionUser = await SE_PERMISOS.findAll();
+    if (!PermissionUser)
+      return res
+        .status(203)
+        .json({ message: "Erro de procesp", ok:false });
+    return res.status(200).json({PermissionUser, ok:true});
   } catch (error) {
     HttpError(res, error);
     next();

@@ -11,8 +11,10 @@ export const GetRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
-    const permisos = await sequelize.query(`CALL SHOW_PERMISOS_TYPEUSER(${COD_TYPEUSERS}) `);
-    res.status(200).json({ok:true,role,permisos});
+    const permisos = await sequelize.query(
+      `CALL SHOW_PERMISOS_TYPEUSER(${COD_TYPEUSERS}) `
+    );
+    res.status(200).json({ ok: true, role, permisos });
   } catch (error) {
     console.log(error);
   }
@@ -21,8 +23,9 @@ export const GetRole = async (req, res, next) => {
 export const GetRoles = async (req, res, next) => {
   try {
     const role = await sequelize.query("CALL COUNT_TYPE_USERS_ALL_PERMISOS()");
-    if(!role) return res.status(203).json({ok:false, message: "No hay roles"});
-    res.status(200).json({ok:true, role});
+    if (!role)
+      return res.status(203).json({ ok: false, message: "No hay roles" });
+    res.status(200).json({ ok: true, role });
   } catch (error) {
     HttpError(res, error);
     next();

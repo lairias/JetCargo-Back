@@ -10,8 +10,10 @@ import {
 import { verifyTokenPass } from "../middleware/verifyPassReset";
 const router = Router();
 router.post("/", CreatePassReset);
-router.post( "/reset-password/:COD_USER/:CORREO/:TOKEN",
-  [verifyTokenPass],ForgotPassword
+router.post(
+  "/reset-password/:COD_USER/:CORREO/:TOKEN",
+  [verifyTokenPass],
+  ForgotPassword
 );
 router.get("/:EMAIL", GetPassReset);
 router.delete("/:EMAIL", DeletePassReset);

@@ -9,7 +9,11 @@ import {
 
 const router = Router();
 
-router.get("/", [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles],GetTypeUsers);
+router.get(
+  "/",
+  [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles],
+  GetTypeUsers
+);
 router.post("/", CreateTypeUser);
 router.delete("/:COD_TYPEUSER", DeleteTypeUser);
 router.put("/:COD_TYPEUSER", UpdateTypeUser);

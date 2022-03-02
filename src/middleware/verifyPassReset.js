@@ -4,9 +4,15 @@ import "dotenv/config";
 import { HttpError } from "../helpers/handleError";
 import { verifyTokenDate } from "./tokens/verifyToken.Date";
 export const verifyTokenPass = async (req, res, next) => {
-  const {TOKEN} = req.params
+  const { TOKEN } = req.params;
   try {
-    if (!verifyTokenDate(TOKEN)) return res.status(202).json({ message: "Tiempo de recuperación de contraseña caducado. Intenta de nuevo" });
+    if (!verifyTokenDate(TOKEN))
+      return res
+        .status(202)
+        .json({
+          message:
+            "Tiempo de recuperación de contraseña caducado. Intenta de nuevo",
+        });
     const { id } = jwt.verify(TOKEN, process.env.JWTSECRETPASSWORD);
     const lock = await USERS.findByPk(id);
     req.userIdR = id;

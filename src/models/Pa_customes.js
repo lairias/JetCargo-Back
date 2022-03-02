@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const PA_CUSTOMES = db.define(
-  "PA_TypCustomers",
+  "PA_Customers",
   {
     COD_TYPCUST: {
       type: Sequelize.BIGINT,
@@ -11,23 +11,20 @@ export const PA_CUSTOMES = db.define(
       allowNull: false,
       comment: "THE PRIMARY KEY OF THE TYPE OF CUSTOMERS",
     },
-    NOM_TYPCUST: {
-      type: Sequelize.STRING(120),
+
+    COD_USER: {
+      type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "THE ID OF THE PERSON, IT COULD THE PASSPORT OR NATIONAL ID",
+      comment: "THRE CODE KEY OF THE USER",
     },
-    DES_TYPCUST: {
-      type: Sequelize.ENUM("ID", "PASSPORT", "LICENSE"),
-      allowNull: false,
-      comment: "DESCRIPTION OF THE TYPE OF CUSTOMER",
-    },
+
     IND_TYPCUST: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
       comment: "IND OF THE TYPE OF CUSTOMER",
     },
-
+    
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,

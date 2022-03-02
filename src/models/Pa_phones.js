@@ -2,7 +2,8 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 export const PA_PHONES = db.define(
   "PA_Phone",
-  {COD_PHONE: {
+  {
+    COD_PHONE: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,

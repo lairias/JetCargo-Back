@@ -16,25 +16,18 @@ import {
 } from "../middleware/permissions/TypeUsers.Permission";
 
 const router = Router();
-router.post(
-  "/",
-  [verifyToken, verifyIndUser, TypeUserCreate],
-  CreateRole
-);
+router.post("/", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
 router.get(
   "/:COD_TYPEUSERS",
   [verifyToken, verifyIndUser, TypeUserView],
   GetRole
 );
 
-router.get("/", 
-  [verifyToken, verifyIndUser, TypeUserView], 
-  GetRoles
-);
+router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);
 
 router.put(
   "/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser,TypeUserUpdate],
+  [verifyToken, verifyIndUser, TypeUserUpdate],
   UpdateRole
 );
 router.delete(

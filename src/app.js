@@ -2,14 +2,15 @@ import "@babel/polyfill";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import multer from "multer"
-import path from "path"
+import multer from "multer";
+import path from "path";
 import Users from "./routes/users.routes";
 import Auth from "./routes/auth.routes";
 import Roles from "./routes/Roles.routes";
 import Cities from "./routes/Cities.routes";
 import State from "./routes/States.routes";
 import Country from "./routes/Country.routes";
+import Customers from "./routes/Customers.routes";
 import CatPackage from "./routes/CatPackage.routes";
 import Lockers from "./routes/Lockers.routes";
 import TypePackage from "./routes/TypePackage.routes";
@@ -27,7 +28,7 @@ import {
   CreateContries,
   CreateStates,
   CreateCities,
-  CreateSeguri
+  CreateSeguri,
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true });
 CreateRole();
@@ -37,20 +38,24 @@ CreateContries();
 CreateStates();
 CreateCities();
 CreateSeguri();
+
 const storage = multer.diskStorage({
-  destination: path.join(__dirname,"public/upload")
-})
+  destination: path.join(__dirname, "public/upload"),
+});
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(multer({dest:path.join(__dirname,"public/upload")}).single("path_image"));
+app.use(
+  multer({ dest: path.join(__dirname, "public/upload") }).single("path_image")
+);
 app.use("/api/roles", Roles);
 app.use("/api/users", Users);
 app.use("/api/auth", Auth);
 app.use("/api/cities", Cities);
 app.use("/api/states", State);
 app.use("/api/country", Country);
+app.use("/api/customers", Customers);
 app.use("/api/catpackage", CatPackage);
 app.use("/api/locker", Lockers);
 app.use("/api/package", Package);

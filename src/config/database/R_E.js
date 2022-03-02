@@ -7,15 +7,15 @@ import { PA_STATES } from "../../models/Pa_states";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_EMAIL } from "../../models/Pa_email";
 import { PA_PHONES } from "../../models/Pa_phones";
-import  {SE_SEGURIDAD}  from "../../models/security/Se_seguridad";
+import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
 
 import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
 
+
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
 import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
-
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 
 /**Entidad Relacioens de tablas */
@@ -37,35 +37,7 @@ import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
 import { LOG_ERROR } from "../../models/LOG_Errores";
 import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 
-// //Relacion de uno a uno
-// /**
-//  * Foo.hasOne(Bar, {
-//   onDelete: 'RESTRICT',
-//   onUpdate: 'RESTRICT'
-// })
-//  * Bar.belongsTo(Foo)
-//  */
-
-// //Relacion de uno a muchos
-// /*
-//  * Team.hasMoany(Player, {
-//   onDelete: 'RESTRICT',
-//   onUpdate: 'RESTRICT'
-// })
-//  * Player.belongsTo(Team)
-// */
-
-// //Relacion de muchos a muchos
-
-// /**
-//  *
-//  * Movie.belongsToMany(Actor, { through: 'ActorMovies' });
-// Actor.belongsToMany(Movie, { through: 'ActorMovies' });
-//  *
-//  */
-
 const relaciones = async () => {
-  //Relaciones de personas con las tablas de informacion necesaria
   await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
@@ -99,10 +71,12 @@ const relaciones = async () => {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
   });
+
   await PA_COUNTRIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_COUNTRY",
     onDelete: "CASCADE",
   });
+
   await PA_STATES.hasMany(PA_ADDRES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
@@ -236,7 +210,10 @@ const relaciones = async () => {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-
+  await USERS.hasMany(PA_CUSTOMES, {
+    foreignKey: "COD_USER",
+    onDelete: "CASCADE",
+  });
   await BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",

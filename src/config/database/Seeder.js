@@ -10,7 +10,6 @@ export const CreateRole = async () => {
   if (count > 0) {
     return;
   } else {
-    
     try {
       await Promise.all([
         await PA_TypeUsers.create({
@@ -40,35 +39,45 @@ export const CreatePemisoHasRol = async () => {
     return;
   } else {
     try {
-      const admin = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76]
-      const cliente = [2,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62,68,72,76]
-      const empleado = [15,22,26,27,58,66,70,71,72,73,74,75,76]
+      const admin = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+        57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+        75, 76,
+      ];
+      const cliente = [
+        2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 68, 72,
+        76,
+      ];
+      const empleado = [15, 22, 26, 27, 58, 66, 70, 71, 72, 73, 74, 75, 76];
 
       await Promise.all([
-        admin.forEach(async(element)=>{
+        admin.forEach(async (element) => {
           await MODEL_TYPEUSER_HAS_PERMISOS.create({
             COD_PERMISO: element,
             COD_TYPEUSERS: 1,
-          })
+          });
         }),
-        cliente.forEach(async(element)=>{
+        cliente.forEach(async (element) => {
           await MODEL_TYPEUSER_HAS_PERMISOS.create({
             COD_PERMISO: element,
             COD_TYPEUSERS: 2,
-          })
+          });
         }),
-        empleado.forEach(async(element)=>{
+        empleado.forEach(async (element) => {
           await MODEL_TYPEUSER_HAS_PERMISOS.create({
             COD_PERMISO: element,
             COD_TYPEUSERS: 3,
-          })
-        })
+          });
+        }),
       ]);
     } catch (error) {
       console.log(error);
     }
   }
 };
+
 export const CreatePermisos = async () => {
   const count = await SE_PERMISOS.count();
   if (count > 0) {
@@ -982,27 +991,27 @@ export const CreateCities = async () => {
   }
 };
 
-export const CreateSeguri = async ()=>{
+export const CreateSeguri = async () => {
   const count = await SE_SEGURIDAD.count();
-  if (count > 0 ){
+  if (count > 0) {
     return;
-  }else{
-    try{
-
-    await  Promise.all([
-      SE_SEGURIDAD.create({
-        NAM_SEGURIDAD: "tiempo de token",
-        DATO_SEGURIDAD: "7200",
-        DES_SEGURIDAD:  "Tiempo de reset token"
-      }),
-      SE_SEGURIDAD.create({
-        NAM_SEGURIDAD: "tiempo de reset password token",
-        DATO_SEGURIDAD: "7200",
-        DES_SEGURIDAD:  "Tiempo de reset token para password"
-      })
-      ])
-    }catch(erro){
-      console.log(erro)
+  } else {
+    try {
+      await Promise.all([
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "tiempo de token",
+          DATO_SEGURIDAD: "7200",
+          DES_SEGURIDAD: "Tiempo de reset token",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "tiempo de reset password token",
+          DATO_SEGURIDAD: "7200",
+          DES_SEGURIDAD: "Tiempo de reset token para password",
+        }),
+      ]);
+    } catch (erro) {
+      console.log(erro);
     }
   }
-}
+};
+

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { VeryEmail,GetEmail } from "../controllers/Email.Controllers";
+import { VeryEmail, GetEmail } from "../controllers/Email.Controllers";
 
 const router = Router();
 

@@ -125,7 +125,7 @@ export const UpdateCity = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -140,7 +140,7 @@ export const DeleteCity = async (req, res, next) => {
         COD_CITY,
       },
     });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();

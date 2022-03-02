@@ -17,10 +17,7 @@ import {
 
 const router = Router();
 
-router.get(
-  "/country/:COD_COUNTRY",
-  GetStatesForCountry
-);
+router.get("/country/:COD_COUNTRY", GetStatesForCountry);
 router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);
 router.post("/", [verifyToken, verifyIndUser, StatesCreate], CreateState);
 router.delete(

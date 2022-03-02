@@ -6,6 +6,6 @@ import {
 
 import {verifyIndUser, verifyToken} from "../middleware/verifySignup";
 const router = Router();
-router.get("/user/:COD_USER", GetPermissionUser);
+router.get("/",[verifyToken, verifyIndUser ], GetPermissionUser);
 
 export default router;

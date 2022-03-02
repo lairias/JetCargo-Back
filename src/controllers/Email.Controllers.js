@@ -17,7 +17,7 @@ export const VeryEmail = async (req, res, next) => {
         },
       }
     );
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -27,10 +27,13 @@ export const VeryEmail = async (req, res, next) => {
 export const GetEmail = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
-    const User = await USERS.findByPk( EMAIL);
-    if (!User) return res.status(203).json({ message: "Correo electrónico no encontrado", found: null });
+    const User = await USERS.findByPk(EMAIL);
+    if (!User)
+      return res
+        .status(203)
+        .json({ message: "Correo electrónico no encontrado", found: null });
 
-    return res.status(200).json({found: true})
+    return res.status(200).json({ found: true });
   } catch (error) {
     HttpError(res, error);
     next();

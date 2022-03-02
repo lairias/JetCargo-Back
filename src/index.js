@@ -10,6 +10,3 @@ async function main() {
   });
 }
 main();
-
-
-

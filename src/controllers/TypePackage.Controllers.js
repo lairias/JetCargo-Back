@@ -50,7 +50,7 @@ export const CreateTypePackage = async (req, res, next) => {
 export const DeleteTypePackage = async (req, res, next) => {
   const { COD_TYPEPACKAGE } = req.params;
   try {
-   await BO_TYPEPACKAGE.destroy({
+    await BO_TYPEPACKAGE.destroy({
       where: {
         COD_TYPEPACKAGE,
       },

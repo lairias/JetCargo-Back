@@ -39,7 +39,7 @@ export const CreatePackage = async (req, res, next) => {
     USR_ADD,
   } = req.body;
   try {
-     await sequelize
+    await sequelize
       .query(
         "CALL INS_PACKAGE(:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:USR_ADD)",
         {
@@ -64,7 +64,7 @@ export const CreatePackage = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -78,7 +78,7 @@ export const DeletePackage = async (req, res, next) => {
         COD_PACKAGE,
       },
     });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -102,7 +102,7 @@ export const UpdatePackage = async (req, res, next) => {
   } = req.body;
   const { COD_PACKAGE } = req.params;
   try {
-     await sequelize
+    await sequelize
       .query(
         "CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)",
         {
@@ -129,7 +129,7 @@ export const UpdatePackage = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();

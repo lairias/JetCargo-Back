@@ -7,13 +7,13 @@ import { transport, configTransportResetPass } from "../email";
 import "dotenv/config";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
-import {SE_SEGURIDAD} from "../models/security/Se_seguridad"
+import { SE_SEGURIDAD } from "../models/security/Se_seguridad";
 
 export const CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
     const UserFond = await USERS.findOne({ where: { EMAIL } });
-    if (!UserFond)return res.sendStatus(400)
+    if (!UserFond) return res.sendStatus(400);
     const timeToken = await SE_SEGURIDAD.findByPk(2);
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     const token = JWT.sign(
@@ -58,7 +58,7 @@ export const CreatePassReset = async (req, res, next) => {
       );
       await Se_PASS_RESET.create({ EMAIL, API_TOKEN: token });
     }
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -71,9 +71,15 @@ export const ForgotPassword = async (req, res, next) => {
     const UserReset = await Se_PASS_RESET.findOne({
       where: { API_TOKEN: TOKEN },
     });
-    if (!UserReset) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
-    if (UserReset == null) return res.status(203).json({ message: "Enlace no valido, por favor intentar de nuevo" });
-    await Se_PASS_RESET.destroy({ where: { EMAIL:CORREO}});
+    if (!UserReset)
+      return res
+        .status(203)
+        .json({ message: "Enlace no valido, por favor intentar de nuevo" });
+    if (UserReset == null)
+      return res
+        .status(203)
+        .json({ message: "Enlace no valido, por favor intentar de nuevo" });
+    await Se_PASS_RESET.destroy({ where: { EMAIL: CORREO } });
     await USERS.update(
       { PAS_USER: await encrptPassword(PASS) },
       {
@@ -82,7 +88,7 @@ export const ForgotPassword = async (req, res, next) => {
         },
       }
     );
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -92,7 +98,7 @@ export const GetPassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
     const cities = await Se_PASS_RESET.findByPk(EMAIL);
-    if (!cities) return res.status(203).json({message:"Link no valido"})
+    if (!cities) return res.status(203).json({ message: "Link no valido" });
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);
@@ -104,18 +110,19 @@ export const UpdatePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   const { API_TOKEN } = req.body;
   try {
-   await sequelize
-     .query("CALL INS_PASS_RESET(:EMAIL,:API_TOKEN)", {
-       replacements: {
-         EMAIL,
-         API_TOKEN,
-       },
-     }).catch((error) => {
-       console.log(error);
-       HttpError(res, error);
-       throw res.sendStatus(500);
-     });
-    return res.sendStatus(200)
+    await sequelize
+      .query("CALL INS_PASS_RESET(:EMAIL,:API_TOKEN)", {
+        replacements: {
+          EMAIL,
+          API_TOKEN,
+        },
+      })
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
@@ -128,7 +135,7 @@ export const DeletePassReset = async (req, res, next) => {
     await Se_PASS_RESET.destroy({
       where: { EMAIL },
     });
-    return res.sendStatus(200)
+    return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
     next();
