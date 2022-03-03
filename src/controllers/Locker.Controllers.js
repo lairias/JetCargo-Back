@@ -1,6 +1,7 @@
 import { BO_LOCKER } from "../models/BO_locker";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
+import { REL_CUSTOMER_LOKER } from "../models/relations/REL_customer_locker";
 
 export const GetLokers = async (req, res, next) => {
   try {
@@ -22,6 +23,29 @@ export const GetLoker = async (req, res, next) => {
     next();
   }
 };
+export const GetLokerByPeople = async (req, res, next) => {
+  const { COD_LOCKER } = req.params;
+  try {
+    const cities = await BO_LOCKER.findByPk(COD_LOCKER);
+    return res.status(200).json(cities);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+export const GetLokerByCustomer = async (req, res, next) => {
+  const { COD_CUSTOMER } = req.params;
+  try {
+    const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
+      replacements: { COD_CUSTOMER },
+    })
+    if(!JSON.stringify(lokerCustomer[0])) return res.status(200).json({ok:false, locker: false});
+    return res.status(200).json({ok:true,locker : lokerCustomer});
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 
 export const CreateLoker = async (req, res, next) => {
   const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, USR_ADD } = req.body;
@@ -36,10 +60,22 @@ export const CreateLoker = async (req, res, next) => {
         },
       })
       .catch((error) => {
-        console.log(error);
         HttpError(res, error);
         throw res.sendStatus(500);
       });
+    return res.sendStatus(200);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+export const CreateLokerCustomers = async (req, res, next) => {
+  const { COD_CUSTOMER, COD_LOCKER} = req.body;
+  try {
+    await REL_CUSTOMER_LOKER.create({
+      COD_CUSTOMER,
+      COD_LOCKER,
+    })
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);

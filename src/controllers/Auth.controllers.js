@@ -7,6 +7,8 @@ import { encrptPassword, compararPassword } from "../helpers/bcrypt";
 import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
 import "dotenv/config";
+import { PA_CUSTOMES } from "../models/Pa_customes";
+import { REL_CUSTOMER_LOKER } from "../models/relations/REL_customer_locker";
 
 export const singUp = async (req, res, next) => {
   try {
@@ -118,7 +120,7 @@ export const singIn = async (req, res, next) => {
         },
       }
     );
-
+   const CustomerUser = await PA_CUSTOMES.findOne({ where: { COD_USER: UserFond.COD_USER } });
     const PeopleFond = await PA_POEPLE.findOne({
       where: { COD_PEOPLE: UserFond.COD_PEOPLE },
     });
@@ -131,6 +133,7 @@ export const singIn = async (req, res, next) => {
       LASTNAME: PeopleFond.LASTNAME,
       token,
       PermissionUser,
+      CustomerUser
     });
   } catch (error) {
     HttpError(res, error);
@@ -153,6 +156,7 @@ export const RevalidarToken = async (req, res, next) => {
         },
       }
     );
+    const CustomerUser = await PA_CUSTOMES.findOne({ where: { COD_USER: User.COD_USER } });
     const PeopleFond = await PA_POEPLE.findOne({
       where: { COD_PEOPLE: User.COD_PEOPLE },
     });
@@ -165,6 +169,7 @@ export const RevalidarToken = async (req, res, next) => {
       LASTNAME: PeopleFond.LASTNAME,
       token,
       PermissionUser,
+      CustomerUser
     });
   } catch (error) {
     HttpError(res, error);

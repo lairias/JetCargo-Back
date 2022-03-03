@@ -4,7 +4,7 @@ import db from "../config/database";
 export const PA_CUSTOMES = db.define(
   "PA_Customers",
   {
-    COD_TYPCUST: {
+    COD_CUSTOMER: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,

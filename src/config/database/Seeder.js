@@ -1,10 +1,13 @@
 import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
+import { PA_POEPLE } from "../../models/Pa_people";
 import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
+import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
+import { USERS } from "../../models/Users";
 export const CreateRole = async () => {
   const count = await PA_TypeUsers.count();
   if (count > 0) {
@@ -1014,4 +1017,42 @@ export const CreateSeguri = async () => {
     }
   }
 };
-
+export const CreateUser = async () => {
+  const count = await USERS.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([ 
+        PA_POEPLE.create({
+          ID:"08011999813042",
+          TIP_DOCUMENT:"PASSPORT",
+          FRISTNAME:"Alejandro",
+          MIDDLENAME:"Luis",
+          LASTNAME:"Gonzalez",
+          AGE:20,
+          DAT_BIRTH:"1999-01-01",
+          TIP_PERSON:"N",
+          USR_ADD:"admin",
+        }),
+        USERS.create({
+          COD_PEOPLE: 1,
+          PROFILE_PHOTO_PATH: null,
+          EMAIL:"lairias@unah.hn",
+          EMAIL_VERIFIED: true,
+          PAS_USER: "$2b$10$OMXC9dSjkSaNyF4PjQzPJObvw/SWnKlXCb7s2hlBzHhzTkk.gQzgm",
+          IND_USR: true,
+          IND_INS:true,
+          USR_ADD:"admin"
+         
+        }),
+        MODEL_HAS_PERMISOS.create({
+          COD_TYPEUSERS : 1,
+          COD_USER: 1,
+           })
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};

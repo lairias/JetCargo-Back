@@ -29,6 +29,7 @@ import {
   CreateStates,
   CreateCities,
   CreateSeguri,
+  CreateUser
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true });
 CreateRole();
@@ -38,6 +39,7 @@ CreateContries();
 CreateStates();
 CreateCities();
 CreateSeguri();
+CreateUser();
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "public/upload"),
