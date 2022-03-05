@@ -24,7 +24,6 @@ export const PA_CUSTOMES = db.define(
       defaultValue: true,
       comment: "IND OF THE TYPE OF CUSTOMER",
     },
-    
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,

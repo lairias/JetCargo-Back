@@ -1,9 +1,10 @@
 import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
+import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { PA_POEPLE } from "../../models/Pa_people";
 import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
-import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
+import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
@@ -1041,14 +1042,19 @@ export const CreateUser = async () => {
           EMAIL:"lairias@unah.hn",
           EMAIL_VERIFIED: true,
           PAS_USER: "$2b$10$OMXC9dSjkSaNyF4PjQzPJObvw/SWnKlXCb7s2hlBzHhzTkk.gQzgm",
-          IND_USR: true,
+          IND_USR:true,
           IND_INS:true,
           USR_ADD:"admin"
          
         }),
-        MODEL_HAS_PERMISOS.create({
+        MODEL_HAS_ROLES.create({
           COD_TYPEUSERS : 1,
           COD_USER: 1,
+           }),
+           PA_CUSTOMES.create({
+            COD_USER: 1,
+            USR_ADD:"admin",
+
            })
       ]);
     } catch (erro) {

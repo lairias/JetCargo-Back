@@ -2,11 +2,23 @@ import { BO_LOCKER } from "../models/BO_locker";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
 import { REL_CUSTOMER_LOKER } from "../models/relations/REL_customer_locker";
+import { AsignacionLokerCustomers, transport } from "../email";
 
 export const GetLokers = async (req, res, next) => {
   try {
-    const cities = await BO_LOCKER.findAll();
-    return res.status(200).json(cities);
+    const lockers = await BO_LOCKER.findAll();
+    if(!lockers) return res.status(200).json({ok:false, lockers});
+    return res.status(200).json({ok:true, lockers});
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+export const GetLokersind = async (req, res, next) => {
+  try {
+    const lockersInd = await BO_LOCKER.findAll({ where: { IND_LOCKER: true } });
+    if(!lockersInd) return res.status(200).json({ok:false, lockersInd});
+    return res.status(200).json({ok:true, lockersInd});
   } catch (error) {
     HttpError(res, error);
     next();
@@ -33,14 +45,28 @@ export const GetLokerByPeople = async (req, res, next) => {
     next();
   }
 };
+
 export const GetLokerByCustomer = async (req, res, next) => {
   const { COD_CUSTOMER } = req.params;
   try {
-    const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
-      replacements: { COD_CUSTOMER },
-    })
-    if(!JSON.stringify(lokerCustomer[0])) return res.status(200).json({ok:false, locker: false});
-    return res.status(200).json({ok:true,locker : lokerCustomer});
+      const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
+        replacements: { COD_CUSTOMER },
+      })
+      if(!JSON.stringify(lokerCustomer[0])) return res.status(200).json({ok:false, locker: false});
+      return res.status(200).json({ok:true,locker : lokerCustomer});
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+export const CreateLokerByCustomer = async (req, res, next) => {
+  const { COD_CUSTOMER } = req.params;
+  try {
+      const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
+        replacements: { COD_CUSTOMER },
+      })
+      if(!JSON.stringify(lokerCustomer[0])) return res.status(200).json({ok:false, locker: false});
+      return res.status(200).json({ok:true,locker : lokerCustomer});
   } catch (error) {
     HttpError(res, error);
     next();
@@ -69,14 +95,26 @@ export const CreateLoker = async (req, res, next) => {
     next();
   }
 };
+
 export const CreateLokerCustomers = async (req, res, next) => {
-  const { COD_CUSTOMER, COD_LOCKER} = req.body;
+  const { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME} = req.body;
+  console.log(req.body);
   try {
-    await REL_CUSTOMER_LOKER.create({
+    const locker = await REL_CUSTOMER_LOKER.create({
       COD_CUSTOMER,
       COD_LOCKER,
+    });
+    const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
+      replacements: { COD_CUSTOMER },
     })
-    return res.sendStatus(200);
+    const numero_casillero = lokerCustomer[0].NUM_LOCKER;
+    console.log(numero_casillero);
+    await transport.sendMail(
+      AsignacionLokerCustomers(
+          FRISTNAME, LASTNAME , numero_casillero
+      )
+    );
+    return res.status(200).json({ok:true, locker});
   } catch (error) {
     HttpError(res, error);
     next();

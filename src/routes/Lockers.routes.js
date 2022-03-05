@@ -6,8 +6,10 @@ import {
   GetLokerByPeople,
   GetLokerByCustomer,
   UpdateLoker,
+  GetLokersind,
   CreateLoker,
-  CreateLokerCustomers
+  CreateLokerCustomers,
+  CreateLokerByCustomer,
 } from "../controllers/Locker.Controllers";
 import {
   LockerCreate,
@@ -18,6 +20,7 @@ import {
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.get("/", [verifyToken, verifyIndUser, LockerView], GetLokers);
+router.get("/ind", [verifyToken, verifyIndUser, LockerView], GetLokersind);
 router.get("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerView], GetLoker);
 
 router.get("/people/:COD_PEOPLE", [verifyToken, verifyIndUser, LockerView], GetLokerByPeople);

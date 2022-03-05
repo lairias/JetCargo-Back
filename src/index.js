@@ -1,7 +1,7 @@
 import app from "./app";
 import db from "./config/database";
 import {ApolloServer} from "apollo-server-express"
-import {typeDefs} from "../src/types/typeDefs"
+import {typeDefs} from "../src/types/typeDefs/typeDefs"
 import {resolvers} from "../src/graphql/resolvers"
 async function main() {
 

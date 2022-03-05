@@ -14,8 +14,6 @@ type Mutation{
     createUser( PROFILE_PHOTO_PATH: String): User
 }
 `
-
-
 module.exports = {
     typeDefs
 }

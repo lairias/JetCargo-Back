@@ -8,7 +8,6 @@ import sequelize from "../config/database";
 import JWT from "jsonwebtoken";
 import "dotenv/config";
 import { PA_CUSTOMES } from "../models/Pa_customes";
-import { REL_CUSTOMER_LOKER } from "../models/relations/REL_customer_locker";
 
 export const singUp = async (req, res, next) => {
   try {

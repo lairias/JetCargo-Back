@@ -37,8 +37,27 @@ import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
 import { LOG_ERROR } from "../../models/LOG_Errores";
 import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 import { REL_CUSTOMER_LOKER } from "../../models/relations/REL_customer_locker";
+import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
 
 const relaciones = async () => {
+  
+  await BO_LOCKER.belongsToMany(PA_CUSTOMES, {
+    through: REL_PACKAGE_LOKER,
+    foreignKey: "COD_LOCKER",
+    onDelete: "CASCADE",
+  });
+
+  await PA_CUSTOMES.belongsToMany(BO_LOCKER, {
+    through: REL_PACKAGE_LOKER,
+    foreignKey: "COD_CUSTOMER",
+    onDelete: "CASCADE",
+  });
+  await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
+    foreignKey: "COD_PACKAGE",
+    onDelete: "CASCADE",
+  });
+
+
   await BO_LOCKER.belongsToMany(PA_CUSTOMES, {
     through: REL_CUSTOMER_LOKER,
     foreignKey: "COD_LOCKER",
@@ -51,6 +70,9 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
   
+
+
+
   await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
