@@ -26,7 +26,12 @@ export const PA_STATES = db.define(
       allowNull: false,
       comment: "DESCRIPTION OF THE STATE",
     },
-
+    IND_STATE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF COUNTRY",
+    },
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,

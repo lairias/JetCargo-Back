@@ -41,19 +41,21 @@ import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
 
 const relaciones = async () => {
   
-  await BO_LOCKER.belongsToMany(PA_CUSTOMES, {
-    through: REL_PACKAGE_LOKER,
-    foreignKey: "COD_LOCKER",
+ 
+  await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
+    foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
   });
-
-  await PA_CUSTOMES.belongsToMany(BO_LOCKER, {
-    through: REL_PACKAGE_LOKER,
+  await PA_CUSTOMES.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_CUSTOMER",
     onDelete: "CASCADE",
   });
-  await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
-    foreignKey: "COD_PACKAGE",
+  await BO_LOCKER.hasMany(REL_PACKAGE_LOKER, {
+    foreignKey: "COD_LOCKER",
+    onDelete: "CASCADE",
+  });
+  await BO_TRACKING.hasMany(REL_PACKAGE_LOKER, {
+    foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
 
@@ -280,10 +282,6 @@ const relaciones = async () => {
   });
   await BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
     foreignKey: "COD_TYPEPACKAGE",
-    onDelete: "CASCADE",
-  });
-  await BO_LOCKER.hasMany(BO_PACKAGE, {
-    foreignKey: "COD_LOCKER",
     onDelete: "CASCADE",
   });
 };

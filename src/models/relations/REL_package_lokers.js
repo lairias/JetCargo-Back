@@ -26,6 +26,11 @@ export const REL_PACKAGE_LOKER = db.define(
         allowNull: false,
         comment: "COD OF TYPE OF CUTOMER",
       },
+      COD_TRACKING: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        comment: "COD OF TYPE OF TRACKING",
+      },
       
     DAT_ADD: {
       type: Sequelize.DATE,

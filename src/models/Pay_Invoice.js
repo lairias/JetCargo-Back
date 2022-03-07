@@ -31,6 +31,12 @@ export const PAY_INVOICE = db.define(
       allowNull: false,
       comment: "NUM OF LOCKER",
     },
+    IND_INVOICE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF INVOICE",
+    },
     IND_LOCK: {
       type: Sequelize.BOOLEAN,
       allowNull: false,

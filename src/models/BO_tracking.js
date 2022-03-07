@@ -22,7 +22,12 @@ export const BO_TRACKING = db.define(
       allowNull: false,
       comment: "DESCRICTION  OF TRACKING",
     },
-
+    IND_TRACKING: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF COUNTRY",
+    },
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

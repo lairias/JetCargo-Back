@@ -23,7 +23,12 @@ export const PAY_PAYMENTMETHOD = db.define(
       allowNull: false,
       comment: "DESCRICTION  OF PAYMENT METHOD",
     },
-
+    IND_PAYMENT: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF PAYMENT METHOD",
+    },
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

@@ -12,6 +12,21 @@ export const GetPackages = async (req, res, next) => {
   }
 };
 
+export const GetPackageLokerByCustomer = async (req, res, next) => {
+  const { COD_CUSTOMER, COD_LOCKER } = req.params;
+  console.log(req.params)
+  try {
+      const packageLokerCustomer = await sequelize.query("CALL SHOW_PACKAGE_CUSTOMER(:COD_CUSTOMER,:COD_LOCKER)", {
+        replacements: { COD_CUSTOMER,COD_LOCKER}});
+
+      if(!JSON.stringify(packageLokerCustomer[0])) return res.status(200).json({ok:false, packageLokerCustomer: false});
+      return res.status(200).json({ok:true, packageLokerCustomer});
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+
 export const GetPackage = async (req, res, next) => {
   const { COD_PACKAGE } = req.params;
   try {

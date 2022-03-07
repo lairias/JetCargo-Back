@@ -29,7 +29,10 @@ import {
   CreateStates,
   CreateCities,
   CreateSeguri,
-  CreateUser
+  CreateUser,
+  CreateCatPackage,
+  CreateTypePackage,
+  CreateLocker
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true });
 CreateRole();
@@ -40,17 +43,16 @@ CreateStates();
 CreateCities();
 CreateSeguri();
 CreateUser();
+ CreateCatPackage();
+ CreateTypePackage();
+ CreateLocker();
 
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, "public/upload"),
-});
+const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload"),});
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(
-  multer({ dest: path.join(__dirname, "public/upload") }).single("path_image")
-);
+app.use(multer({ dest: path.join(__dirname, "public/upload") }).single("path_image"));
 app.use("/api/roles", Roles);
 app.use("/api/users", Users);
 app.use("/api/auth", Auth);

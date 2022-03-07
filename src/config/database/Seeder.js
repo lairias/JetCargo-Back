@@ -1,3 +1,6 @@
+import { BO_CATPACKAGE } from "../../models/BO_catPackage";
+import { BO_LOCKER } from "../../models/BO_locker";
+import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
 import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_CUSTOMES } from "../../models/Pa_customes";
@@ -36,6 +39,7 @@ export const CreateRole = async () => {
       console.log(error);
     }
   }
+  
 };
 export const CreatePemisoHasRol = async () => {
   const count = await MODEL_TYPEUSER_HAS_PERMISOS.count();
@@ -1018,6 +1022,7 @@ export const CreateSeguri = async () => {
     }
   }
 };
+
 export const CreateUser = async () => {
   const count = await USERS.count();
   if (count > 0) {
@@ -1056,6 +1061,69 @@ export const CreateUser = async () => {
             USR_ADD:"admin",
 
            })
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};
+
+export const CreateCatPackage = async () => {
+  const count = await BO_CATPACKAGE.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([ 
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Electrodumesticos",
+          DES_CATPACKAGE: "Categoria 1",
+          IND_CATPACKAGE: true,
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadoras",
+          DES_CATPACKAGE: "Categoria 2",
+          IND_CATPACKAGE: true,
+          USR_ADD:"admin",
+        }),
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};
+export const CreateTypePackage = async () => {
+  const count = await BO_TYPEPACKAGE.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([ 
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Electrodumesticos",
+          DES_TYPEPACKAGE: "Tipo 1",
+          USR_ADD:"admin",
+        }),
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};
+export const CreateLocker = async () => {
+  const count = await BO_LOCKER.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([ 
+        BO_LOCKER.create({
+          COD_PEOPLE: 1,
+          NUM_LOCKER: "TGU-00145",
+          TYP_LOCKER: "Caja",
+          USR_ADD:"admin",
+        }),
       ]);
     } catch (erro) {
       console.log(erro);

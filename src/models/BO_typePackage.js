@@ -21,6 +21,12 @@ export const BO_TYPEPACKAGE = db.define(
       allowNull: false,
       comment: "VALIDACION DE TOKEN PARA RESETEO",
     },
+    IND_TYPEPACKAGE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF TYPE PACKAGE ",
+    },
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,

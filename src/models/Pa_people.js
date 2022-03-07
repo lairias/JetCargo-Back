@@ -56,6 +56,12 @@ export const PA_POEPLE = db.define(
       allowNull: false,
       comment: "USER THAT ADDED THIS ROW	",
     },
+    IND_PEOPLE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF PEOPLE",
+    },
     USR_UPD: {
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",

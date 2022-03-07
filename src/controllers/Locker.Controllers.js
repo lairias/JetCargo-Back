@@ -91,13 +91,14 @@ export const CreateLoker = async (req, res, next) => {
       });
     return res.sendStatus(200);
   } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }
 };
 
 export const CreateLokerCustomers = async (req, res, next) => {
-  const { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME} = req.body;
+  const { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME, EMAIL} = req.body;
   console.log(req.body);
   try {
     const locker = await REL_CUSTOMER_LOKER.create({
@@ -108,10 +109,12 @@ export const CreateLokerCustomers = async (req, res, next) => {
       replacements: { COD_CUSTOMER },
     })
     const numero_casillero = lokerCustomer[0].NUM_LOCKER;
-    console.log(numero_casillero);
     await transport.sendMail(
       AsignacionLokerCustomers(
-          FRISTNAME, LASTNAME , numero_casillero
+          FRISTNAME,
+          LASTNAME, 
+          numero_casillero,
+          EMAIL,
       )
     );
     return res.status(200).json({ok:true, locker});

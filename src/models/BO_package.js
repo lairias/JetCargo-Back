@@ -23,11 +23,6 @@ export const BO_PACKAGE = db.define(
       allowNull: false,
       comment: "COD OF THE TYPE OF PACKAGE",
     },
-    COD_LOCKER: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF THE LOCKER",
-    },
     NOM_PACKAGE: {
       type: Sequelize.STRING(120),
       allowNull: false,

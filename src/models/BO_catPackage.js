@@ -21,6 +21,12 @@ export const BO_CATPACKAGE = db.define(
       allowNull: false,
       comment: "DESCRIPTION OF THE PACKAGE CATEGORY",
     },
+    IND_CATPACKAGE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF THE PACKAGE CATEGORY",
+    },
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,
