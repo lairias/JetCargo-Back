@@ -18,9 +18,19 @@ export const BO_TRACKING = db.define(
       comment: "COD OF THE PACKAGE",
     },
     DES_TRACKING: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.STRING(255),
       allowNull: false,
       comment: "DESCRICTION  OF TRACKING",
+    },
+    CARRIER_CODE: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "DESCRICTION  OF TRACKING",
+    },
+    NUM_TRACKING: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "NUMBER OF TRACKING",
     },
     IND_TRACKING: {
       type: Sequelize.BOOLEAN,
