@@ -36,12 +36,12 @@ export const BO_TYPEPACKAGE = db.define(
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",
     },
-    DAT_ADD: {
+    DAT_ADD_TYPEPACKAGE: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       comment: "DATE THAT THIS ROW WERE ADDED	",
     },
-    DAT_UPD: {
+    DAT_UPD_TYPEPACKAGE: {
       type: Sequelize.DATE,
       comment: "DATE THIS ROW WAS MODIFIED	",
     },

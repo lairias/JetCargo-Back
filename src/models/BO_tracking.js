@@ -11,18 +11,17 @@ export const BO_TRACKING = db.define(
       allowNull: false,
       comment: "COD OF THE TRACKING",
     },
-
     COD_PACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PACKAGE",
     },
-    DES_TRACKING: {
-      type: Sequelize.STRING(255),
+    COD_SERVICE: {
+      type: Sequelize.BIGINT,
       allowNull: false,
       comment: "DESCRICTION  OF TRACKING",
     },
-    CARRIER_CODE: {
+    DES_TRACKING: {
       type: Sequelize.STRING(255),
       allowNull: false,
       comment: "DESCRICTION  OF TRACKING",
@@ -38,12 +37,12 @@ export const BO_TRACKING = db.define(
       defaultValue: true,
       comment: "STATUS OF COUNTRY",
     },
-    DAT_ADD: {
+    DAT_ADD_TRACKING: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       comment: "DATE THAT THIS ROW WERE ADDED	",
     },
-    DAT_UPD: {
+    DAT_UPD_TRACKING: {
       type: Sequelize.DATE,
       comment: "DATE THIS ROW WAS MODIFIED	",
     },

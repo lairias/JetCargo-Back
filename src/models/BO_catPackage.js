@@ -36,12 +36,12 @@ export const BO_CATPACKAGE = db.define(
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",
     },
-    DAT_ADD: {
+    DAT_ADD_CATPACKAGE: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       comment: "DATE THAT THIS ROW WERE ADDED	",
     },
-    DAT_UPD: {
+    DAT_UPD_CATPACKAGE: {
       type: Sequelize.DATE,
       comment: "DATE THIS ROW WAS MODIFIED	",
     },

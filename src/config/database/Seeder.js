@@ -1,6 +1,7 @@
 import { BO_CATPACKAGE } from "../../models/BO_catPackage";
 import { BO_LOCKER } from "../../models/BO_locker";
 import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
+import { DE_SERVICE } from "../../models/DE_service";
 import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_CUSTOMES } from "../../models/Pa_customes";
@@ -41,6 +42,7 @@ export const CreateRole = async () => {
   }
   
 };
+
 export const CreatePemisoHasRol = async () => {
   const count = await MODEL_TYPEUSER_HAS_PERMISOS.count();
   if (count > 0) {
@@ -403,6 +405,7 @@ export const CreatePermisos = async () => {
     }
   }
 };
+
 export const CreateContries = async () => {
   const count = await PA_COUNTRIES.count();
   if (count > 0) {
@@ -422,12 +425,19 @@ export const CreateContries = async () => {
           AREA_COUNTRY: "503",
           USR_ADD: "admin",
         }),
+        await PA_COUNTRIES.create({
+          NAM_COUNTRY: "Estados Unidos",
+          DES_COUNTRY: "Estados Unidos de América",
+          AREA_COUNTRY: " ",
+          USR_ADD: "admin",
+        }),
       ]);
     } catch (error) {
       console.log(error);
     }
   }
 };
+
 export const CreateStates = async () => {
   const count = await PA_STATES.count();
   if (count > 0) {
@@ -627,12 +637,20 @@ export const CreateStates = async () => {
           USR_ADD: "admin",
           COD_COUNTRY: 2,
         }),
+        await PA_STATES.create({
+          NAM_STATE: "Florida",
+          DES_STATE: "Florida",
+          AREA_STATE : "32000 - 34999",
+          USR_ADD: "admin",
+          COD_COUNTRY: 3,
+        }),
       ]);
     } catch (error) {
       console.log(error);
     }
   }
 };
+
 export const CreateCities = async () => {
   const count = await PA_CITIES.count();
   if (count > 0) {
@@ -1093,6 +1111,7 @@ export const CreateCatPackage = async () => {
     }
   }
 };
+
 export const CreateTypePackage = async () => {
   const count = await BO_TYPEPACKAGE.count();
   if (count > 0) {
@@ -1111,6 +1130,72 @@ export const CreateTypePackage = async () => {
     }
   }
 };
+
+export const CreateService = async () => {
+  const count = await DE_SERVICE.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([ 
+
+        DE_SERVICE.create({
+          SERVICE_NAME: "Amazon",
+          SERVICE_CODE: "amazon",
+          SERVICE_PHONE: null,
+          SERVICE_URL:"https://track.amazon.in/tracking",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/amazon-in.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "DHL Express",
+          SERVICE_CODE: "dhl",
+          SERVICE_PHONE: null,
+          SERVICE_URL:"http://www.dhl.com",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/dhl.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "UPS",
+          SERVICE_CODE: "ups",
+          SERVICE_PHONE: "+1 800 742 5877",
+          SERVICE_URL:"https://www.ups.com/",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/ups.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "Fedex",
+          SERVICE_CODE: "fedex",
+          SERVICE_PHONE: "+1 800 247 4747",
+          SERVICE_URL:"https://www.fedex.com",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/fedex.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "TNT",
+          SERVICE_CODE: "tnt",
+          SERVICE_PHONE: null,
+          SERVICE_URL:"http://www.tnt.com/",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/tnt.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "DHL Poland Domestic",
+          SERVICE_CODE: "dhl-poland",
+          SERVICE_PHONE: null,
+          SERVICE_URL:"https://www.logistics.dhl",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/dhl-es.png",
+        }),
+        DE_SERVICE.create({
+          SERVICE_NAME: "Mexico Post",
+          SERVICE_CODE: "correos-mexico",
+          SERVICE_PHONE: "(55) 5340 3300",
+          SERVICE_URL:"http://www.tnt.com/",
+          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/tnt.png",
+        }),
+        
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};
+
 export const CreateLocker = async () => {
   const count = await BO_LOCKER.count();
   if (count > 0) {

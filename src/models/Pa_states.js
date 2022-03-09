@@ -32,6 +32,10 @@ export const PA_STATES = db.define(
       defaultValue: true,
       comment: "STATUS OF COUNTRY",
     },
+    AREA_STATE: {
+      type: Sequelize.STRING(40),
+      comment: "AREA OF THE STATE",
+    },
     USR_ADD: {
       type: Sequelize.STRING(30),
       allowNull: false,

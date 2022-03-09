@@ -32,7 +32,8 @@ import {
   CreateUser,
   CreateCatPackage,
   CreateTypePackage,
-  CreateLocker
+  CreateLocker,
+  CreateService
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true });
 CreateRole();
@@ -46,6 +47,7 @@ CreateUser();
  CreateCatPackage();
  CreateTypePackage();
  CreateLocker();
+ CreateService();
 
 const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload"),});
 const app = express();

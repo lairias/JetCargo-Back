@@ -13,6 +13,13 @@ import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
 
 
+import { DE_ORDEN } from "../../models/DE_orden";
+import { DE_SERVICE } from "../../models/DE_service";
+import { DE_TRACKING_INFORMATION } from "../../models/DE_trackingInformation";
+import { REL_ORDEN_TRACKING } from "../../models/relations/REL_orden_tracking";
+
+
+
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
 import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
@@ -41,7 +48,48 @@ import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
 
 const relaciones = async () => {
   
- 
+  
+  
+  await DE_ORDEN.belongsToMany(BO_TRACKING, {
+    through: REL_ORDEN_TRACKING,
+    foreignKey: "COD_ORDEN",
+    onDelete: "CASCADE",
+  });
+  await BO_TRACKING.belongsToMany(DE_ORDEN, {
+    through: REL_ORDEN_TRACKING,
+    foreignKey: "COD_TRACKING",
+    onDelete: "CASCADE",
+  });
+
+  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_DESTINATION_COUNTRY",
+    onDelete: "CASCADE",
+  });
+  
+  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_ORGIGIN_COUNTRY",
+    onDelete: "CASCADE",
+  });
+  
+  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_DESTINATION_CITY",
+    onDelete: "CASCADE",
+  });
+  
+  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_ORGIGIN_CITY",
+    onDelete: "CASCADE",
+  });
+  
+  await DE_SERVICE.hasMany(BO_TRACKING, {
+    foreignKey: "COD_SERVICE",
+    onDelete: "CASCADE",
+  });
+  
+
+
+
+
   await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
