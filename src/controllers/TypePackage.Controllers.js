@@ -3,8 +3,8 @@ import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
 export const GetTypePackages = async (req, res, next) => {
   try {
-    const cities = await BO_TYPEPACKAGE.findAll();
-    return res.status(200).json(cities);
+    const typePackage = await BO_TYPEPACKAGE.findAll();
+    return res.status(200).json({ok: true, typePackage});
   } catch (error) {
     HttpError(res, error);
     next();

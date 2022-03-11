@@ -1120,8 +1120,83 @@ export const CreateTypePackage = async () => {
     try {
       await Promise.all([ 
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Electrodumesticos",
-          DES_TYPEPACKAGE: "Tipo 1",
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Anillos y cadenas de oro,aritos",
+          DES_TYPEPACKAGE: "2",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Anillos y cadenas de plata,aritos",
+          DES_TYPEPACKAGE: "3",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Cadenas, Dijes, Anillos, Aritos ( Bisutería / Enchapado",
+          DES_TYPEPACKAGE: "4",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorio Para Celulares Cobertor, Fundas, Estuches.",
+          DES_TYPEPACKAGE: "5",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Fajas",
+          DES_TYPEPACKAGE: "6",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
+          USR_ADD:"admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_TYPEPACKAGE: "1",
           USR_ADD:"admin",
         }),
       ]);

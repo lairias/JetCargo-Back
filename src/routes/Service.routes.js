@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { GetTrackingsNumberService } from "../controllers/Tracking.Controllers";
+import { GetService } from "../controllers/Service.controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.get(
-  "/search/:COD_SERVICE/:NUM_TRACKING",
+  "/",
   [verifyToken, verifyIndUser, ],
-  GetTrackingsNumberService
+  GetService
 );
 export default router;
