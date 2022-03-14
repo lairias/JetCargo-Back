@@ -11,30 +11,35 @@ export const DE_TRACKING_INFORMATION = db.define(
       allowNull: false,
       comment: "COD OF THE DELIVERY SERVICE",
     },
+    COD_ORDEN: {
+        type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE ORDER",
+    },
     COD_DESTINATION_COUNTRY: {
         type: Sequelize.BIGINT,
       allowNull: false,
+      comment: "COD OF THE DESTINATION COUNTRY",
     },
     COD_ORGIGIN_COUNTRY: {
         type: Sequelize.BIGINT,
         allowNull: false,
+        comment: "COD OF THE ORIGIN COUNTRY",
     },
     COD_DESTINATION_CITY: {
         type: Sequelize.BIGINT,
       allowNull: false,
+      comment: "COD OF THE DESTINATION CITY",
     },
     COD_ORGIGIN_CITY: {
         type: Sequelize.BIGINT,
         allowNull: false,
+        comment: "COD OF THE ORIGIN CITY",
     },
     CHECKPOINT_DELIVERY_STATUS: {
       type: Sequelize.ENUM("PENDING", "DELIVERED", "FAILED"),
-    },
-    SERVICE_URL: {
-      type: Sequelize.STRING(255),
-    },
-    SERVICE_LOGO: {
-      type: Sequelize.STRING(255),
+      defaultValue: "PENDING",
+      allowNull: false,
     },
     DAT_ADD_TRACKINFORMATION: {
         type: Sequelize.DATE,

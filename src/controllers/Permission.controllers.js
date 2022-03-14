@@ -2,6 +2,7 @@ import sequelize from "../config/database";
 import {SE_PERMISOS} from "../models/security/SE_permisos";
 import { Op } from "sequelize";
 import { HttpError } from "../helpers/handleError";
+import { USERS } from "../models/Users";
 
 export const VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;

@@ -47,9 +47,6 @@ import { REL_CUSTOMER_LOKER } from "../../models/relations/REL_customer_locker";
 import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
 
 const relaciones = async () => {
-  
-  
-  
   await DE_ORDEN.belongsToMany(BO_TRACKING, {
     through: REL_ORDEN_TRACKING,
     foreignKey: "COD_ORDEN",
@@ -60,7 +57,10 @@ const relaciones = async () => {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-
+  await BO_TRACKING.hasMany(DE_ORDEN, {
+    foreignKey: "COD_TRACKING",
+    onDelete: "CASCADE",
+  });
   await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
     foreignKey: "COD_DESTINATION_COUNTRY",
     onDelete: "CASCADE",
@@ -86,10 +86,6 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
   
-
-
-
-
   await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
@@ -106,52 +102,41 @@ const relaciones = async () => {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-
-
   await BO_LOCKER.belongsToMany(PA_CUSTOMES, {
     through: REL_CUSTOMER_LOKER,
     foreignKey: "COD_LOCKER",
     onDelete: "CASCADE",
   });
-
   await PA_CUSTOMES.belongsToMany(BO_LOCKER, {
     through: REL_CUSTOMER_LOKER,
     foreignKey: "COD_CUSTOMER",
     onDelete: "CASCADE",
   });
   
-
-
-
   await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
     onDelete: "CASCADE",
   });
-
   await PA_POEPLE.belongsToMany(PA_EMAIL, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-
   await PA_PHONES.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
   });
-
   await PA_POEPLE.belongsToMany(PA_PHONES, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-
   await USERS.hasMany(LOGINFALLIDOS, {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
-
   await PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",

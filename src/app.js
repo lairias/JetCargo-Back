@@ -22,6 +22,7 @@ import People from "./routes/People.routes";
 import Email from "./routes/Email.routes";
 import Permission from "./routes/Permission.routes";
 import sequelise from "./config/database/index";
+import { v4 as uuidv4 } from 'uuid';
 import "./config/database/R_E";
 import {
   CreateRole,
@@ -51,12 +52,16 @@ CreateUser();
  CreateLocker();
  CreateService();
 
-const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload"),});
+const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload/img"),
+  filename: (req, file, cb) => {
+    cb(null, "JetCargo_IMG"+"-" + uuidv4() + path.extname(file.originalname));
+  }
+});
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(multer({ dest: path.join(__dirname, "public/upload") }).single("path_image"));
+app.use(multer(storage).single("path_image"));
 app.use("/api/roles", Roles);
 app.use("/api/service", Service);
 app.use("/api/tracking", Tracking);

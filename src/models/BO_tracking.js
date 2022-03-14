@@ -27,7 +27,7 @@ export const BO_TRACKING = db.define(
       comment: "DESCRICTION  OF TRACKING",
     },
     NUM_TRACKING: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.STRING(255),
       allowNull: false,
       comment: "NUMBER OF TRACKING",
     },

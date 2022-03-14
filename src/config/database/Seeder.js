@@ -1092,19 +1092,197 @@ export const CreateCatPackage = async () => {
     return;
   } else {
     try {
+     
       await Promise.all([ 
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Electrodumesticos",
-          DES_CATPACKAGE: "Categoria 1",
-          IND_CATPACKAGE: true,
+          NAM_CATPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          DES_CATPACKAGE: "1",
           USR_ADD:"admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Computadoras",
-          DES_CATPACKAGE: "Categoria 2",
-          IND_CATPACKAGE: true,
+          NAM_CATPACKAGE: "Accesorios Personales Anillos y cadenas de oro,aritos",
+          DES_CATPACKAGE: "2",
           USR_ADD:"admin",
         }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Accesorios Personales Anillos y cadenas de plata,aritos",
+          DES_CATPACKAGE: "3",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Accesorios Personales Cadenas, Dijes, Anillos, Aritos ( Bisutería / Enchapado",
+          DES_CATPACKAGE: "4",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Accesorio Para Celulares Cobertor, Fundas, Estuches.",
+          DES_CATPACKAGE: "5",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Accesorios Personales Fajas",
+          DES_CATPACKAGE: "6",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Articulos Varios Bolsones, Bolsos, Carteras, Maletas, Maletines.",
+          DES_CATPACKAGE: "7",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Articulos de Fiesta Mascaras, Disfraces, etc.",
+          DES_CATPACKAGE: "8",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Articulos de Navidad Articulos de Navidad",
+          DES_CATPACKAGE: "9",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Bicicleta / Motocicleta Pedales, Manubrios, Horquillas, Loderas, Asientos",
+          DES_CATPACKAGE: "10",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadora Monitores LCD p/ computadoras",
+          DES_CATPACKAGE: "11",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadora MotherBoard,discos duro interno,externo,tarjetas de sonido",
+          DES_CATPACKAGE: "12",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadora Mouse, Teclado",
+          DES_CATPACKAGE: "13",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadora Tablet,Ipad,Laptop,y comp. de escritorio",
+          DES_CATPACKAGE: "14",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Computadora Router,Switch(tambien los extenda),lector de memoria Usb",
+          DES_CATPACKAGE: "15",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Herramientas para Manicura Herramientas para manicura",
+          DES_CATPACKAGE: "16",
+          USR_ADD:"admin",
+        }),
+
+
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Herramientas Manuales formones,sierras manuales,martillos,desarmadores",
+          DES_CATPACKAGE: "17",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Herramientas Taladros,sierras,martillos electrivos",
+          DES_CATPACKAGE: "17",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Alfombras plasticas,caucho o material textil para carros o casa",
+          DES_CATPACKAGE: "18",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Adornos de metal,madera,yeso,bronce,plastico etc",
+          DES_CATPACKAGE: "19",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Adornos de ceramica(porcelana)",
+          DES_CATPACKAGE: "20",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Sillas,asientos,muebles",
+          DES_CATPACKAGE: "21",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Coches y sillas para el transporte de niños",
+          DES_CATPACKAGE: "22",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar CD Musica,Audio",
+          DES_CATPACKAGE: "23",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Videos,peliculas",
+          DES_CATPACKAGE: "24",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Video Juegos,Consola de video Juego,controles para video juego",
+          DES_CATPACKAGE: "25",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Cuadros",
+          DES_CATPACKAGE: "26",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar DVD Player",
+          DES_CATPACKAGE: "27",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Equipos de sonido",
+          DES_CATPACKAGE: "28",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Camaras digitales,video camaras",
+          DES_CATPACKAGE: "29",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Camaras fotograficas,video camaras",
+          DES_CATPACKAGE: "30",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Camaras de seguridad",
+          DES_CATPACKAGE: "31",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Camaras de video",
+          DES_CATPACKAGE: "32",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Lamparas de mesa o sala",
+          DES_CATPACKAGE: "33",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Lamparas de cocina",
+          DES_CATPACKAGE: "34",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Lamparas de dormitorio",
+          DES_CATPACKAGE: "35",
+          USR_ADD:"admin",
+        }),
+        BO_CATPACKAGE.create({
+          NAM_CATPACKAGE: "Hogar Lamparas de comedor",
+          DES_CATPACKAGE: "36",
+          USR_ADD:"admin",
+        }),
+
+
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1120,85 +1298,23 @@ export const CreateTypePackage = async () => {
     try {
       await Promise.all([ 
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
+          NAM_TYPEPACKAGE: "Envió en avión",
           DES_TYPEPACKAGE: "1",
           USR_ADD:"admin",
         }),
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Anillos y cadenas de oro,aritos",
+          NAM_TYPEPACKAGE: "Envió en barco",
           DES_TYPEPACKAGE: "2",
           USR_ADD:"admin",
         }),
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Anillos y cadenas de plata,aritos",
+          NAM_TYPEPACKAGE: "Envió en express",
           DES_TYPEPACKAGE: "3",
           USR_ADD:"admin",
         }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Cadenas, Dijes, Anillos, Aritos ( Bisutería / Enchapado",
-          DES_TYPEPACKAGE: "4",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorio Para Celulares Cobertor, Fundas, Estuches.",
-          DES_TYPEPACKAGE: "5",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Fajas",
-          DES_TYPEPACKAGE: "6",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
-          DES_TYPEPACKAGE: "1",
-          USR_ADD:"admin",
-        }),
+       
+
+
       ]);
     } catch (erro) {
       console.log(erro);

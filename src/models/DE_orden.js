@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const DE_ORDEN = db.define(
-  "DE_ORDEN",
+  "DE_ordenes",
   {
     COD_ORDEN: {
       type: Sequelize.BIGINT,
@@ -11,7 +11,6 @@ export const DE_ORDEN = db.define(
       allowNull: false,
       comment: "COD OF THE LOCKER",
     },
-
     COD_TRACKING: {
       type: Sequelize.BIGINT,
       allowNull: false,
@@ -25,7 +24,14 @@ export const DE_ORDEN = db.define(
     CHECKPOINT_STATUS: {
         type: Sequelize.ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED'),
       allowNull: false,
+      defaultValue: 'PENDING',
       comment: "COD OF THE PEOPLE",
+    },
+    IND_ORDEN: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF ORDEN",
     },
     ARCHIVED: {
         type: Sequelize.BOOLEAN,
@@ -33,7 +39,6 @@ export const DE_ORDEN = db.define(
         defaultValue: false,
       comment: "COD OF THE PEOPLE",
     },
-    
     DAT_ADD_ORDEN: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -45,7 +50,7 @@ export const DE_ORDEN = db.define(
     },
   },
   {
-    createdAt: false,
-    updatedAt: false,
+  createdAt: false,
+  updatedAt: false,
   }
 );
