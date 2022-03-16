@@ -31,6 +31,11 @@ export const BO_TRACKING = db.define(
       allowNull: false,
       comment: "NUMBER OF TRACKING",
     },
+    RECEIVED_TRACKING:{
+      type: Sequelize.ENUM("PENDING","RECEIVED","DELIVERED","CANCELED", "IN_PROGRESS"),
+      defaultValue: "PENDING",
+      allowNull: false,
+    }, 
     IND_TRACKING: {
       type: Sequelize.BOOLEAN,
       allowNull: false,

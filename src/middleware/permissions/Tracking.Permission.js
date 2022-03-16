@@ -80,11 +80,14 @@ export const TrackingDelete = async (req, res, next) => {
 };
 export const TrackingNotOrden = async (req, res, next) => {
   try {
+    const count = await sequelize.query(
+      "CALL COUNT_TRACKING_NOT_ORDEN()",
+          );
     const tracking = await sequelize.query(
       "CALL SHOW_TRACKING_NOT_ORDEN()",
           );
-    if (!JSON.stringify(tracking[0])) return res.status(203).json({ ok:false, tracking:false });
-    return res.status(203).json({ ok:true, tracking });
+    if (!JSON.stringify(tracking[0])) return res.status(203).json({ ok:false, tracking:false, count:0 });
+    return res.status(203).json({ ok:true, tracking , count });
     next();
   } catch (error) {
     HttpError(res, error);
