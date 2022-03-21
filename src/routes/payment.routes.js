@@ -4,9 +4,9 @@ CancelCreateOrden,CaptureOrden,CreateOrden
 } from "../controllers/Payment.Controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
-router.get("/create-orden", [verifyToken, verifyIndUser, LockerView], CreateOrden);
-router.get("/capture-orden", [verifyToken, verifyIndUser, LockerView], CancelCreateOrden,CaptureOrden,CreateOrden
+router.post("/create-orden", [verifyToken, verifyIndUser], CreateOrden);
+router.get("/capture-orden", [verifyToken, verifyIndUser], CancelCreateOrden,CaptureOrden,CreateOrden
 );
-router.get("/cancel-create-orden", [verifyToken, verifyIndUser, LockerView], CancelCreateOrden);
+router.get("/cancel-create-orden", [verifyToken, verifyIndUser], CancelCreateOrden);
 
 export default router;

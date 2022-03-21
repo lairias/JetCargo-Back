@@ -2,6 +2,7 @@ import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
 import sequelize from "../config/database/index";
 import { HttpError } from "../helpers/handleError";
 import {PAPAL_API,PAPAL_API_CLIENTE,PAPAL_API_SECRET} from "../config/database/Paypal/config"
+import axios from "axios";
 export const CreateOrden = async (req, res, next) => {
   try {
       const orden = {
@@ -19,13 +20,30 @@ export const CreateOrden = async (req, res, next) => {
                 cancel_url: "https://localhost:3000/payment/cancel"
             }
         };
-      const {data} = await  axios.post(`${PAPAL_API}/v2/checkout/orders`, orden, {
-            auth: {
+        const params = new URLSearchParams();
+    params.append("grant_type", "client_credentials");
+    
+        const {
+            data: { access_token },
+          } = await axios.post(
+            "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+            params,
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              auth: {
                 username: PAPAL_API_CLIENTE,
-                password: PAPAL_API_SECRET
+                password: PAPAL_API_SECRET,
+              },
             }
-        })
-        console.log(data);
+          );
+      const {data} = await  axios.post(`${PAPAL_API}/v2/checkout/orders`, orden, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+        res.send(data)
   } catch (error) {
     HttpError(res, error);
     next();
