@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^3.6.3",
+    "axios": "^0.26.1",
     "babel-loader": "^8.2.3",
     "babel-node": "^0.0.1-security",
     "bcrypt": "^5.0.1",

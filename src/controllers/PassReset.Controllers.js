@@ -14,7 +14,7 @@ export const CreatePassReset = async (req, res, next) => {
   try {
     const UserFond = await USERS.findOne({ where: { EMAIL } });
     if (!UserFond) return res.sendStatus(400);
-    const timeToken = await SE_SEGURIDAD.findByPk(2);
+    const timeToken = await SE_SEGURIDAD.findByPk(1);
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     const token = JWT.sign(
       { email: UserFond.EMAIL, id: UserFond.COD_USER },

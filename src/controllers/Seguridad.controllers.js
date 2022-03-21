@@ -1,13 +1,12 @@
 import { HttpError } from "../helpers/handleError";
-import { SE_PERMISOS } from "../models/security/SE_permisos";
+import { SE_SEGURIDAD } from "../models/security/Se_seguridad";
 
 
 export const GetSeguridadID = async (req, res, next) => {
-  const { COD_PERMISO } = req.params;
+  const { COD_SEGURIDAD } = req.params;
   try {
-    const permiso = await SE_PERMISOS.findByPk(COD_PERMISO);
-    if(!JSON.stringify(permiso[0]))  res.status(203).json({ ok: false , permiso :false });
-    res.status(200).json({ ok: true , permiso });
+    const permiso = await SE_SEGURIDAD.findByPk( COD_SEGURIDAD);
+    return res.status(200).json(permiso);
   } catch (error) {
     HttpError(res, error);
     console.log(error);

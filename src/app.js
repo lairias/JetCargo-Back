@@ -42,16 +42,21 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
+// //----------------
 CreatePemisoHasRol();
 CreateContries();
+// //----------------
 CreateStates();
+// //----------------
 CreateCities();
+// //----------------
 CreateSeguri();
 CreateUser();
- CreateCatPackage();
- CreateTypePackage();
- CreateLocker();
- CreateService();
+// //----------------
+CreateCatPackage();
+CreateTypePackage();
+CreateLocker();
+CreateService();
 
 const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload/img"),
   filename: (req, file, cb) => {

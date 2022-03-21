@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
+import { DatosInicioCoreo } from "../utils/Index";
+
 export const transport = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
@@ -7,7 +9,7 @@ export const transport = nodemailer.createTransport({
     user: process.env.MAIL_USERNAME,
     pass: process.env.MAIL_PASSWORD,
   },
-});
+}); 
 
 const Fecha = new Date().getFullYear();
 export const configTransportVery = (
@@ -32,7 +34,6 @@ export const configTransportResetPass = (
   email,
   token,
   host,
-  id,
   time
 ) => {
   return {

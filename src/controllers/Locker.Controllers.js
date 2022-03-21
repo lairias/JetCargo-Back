@@ -59,19 +59,7 @@ export const GetLokerByCustomer = async (req, res, next) => {
     next();
   }
 };
-export const CreateLokerByCustomer = async (req, res, next) => {
-  const { COD_CUSTOMER } = req.params;
-  try {
-      const lokerCustomer = await sequelize.query("CALL SHOW_LOCKER_CUSTOMER(:COD_CUSTOMER)", {
-        replacements: { COD_CUSTOMER },
-      })
-      if(!JSON.stringify(lokerCustomer[0])) return res.status(200).json({ok:false, locker: false});
-      return res.status(200).json({ok:true,locker : lokerCustomer});
-  } catch (error) {
-    HttpError(res, error);
-    next();
-  }
-};
+
 
 export const CreateLoker = async (req, res, next) => {
   const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, USR_ADD } = req.body;

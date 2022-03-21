@@ -11,13 +11,11 @@ export const BO_PACKAGE = db.define(
       allowNull: false,
       comment: "COD OF THE PACKAGE",
     },
-
     COD_CATPACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PACKAGE CATEGORY",
     },
-
     COD_TYPEPACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
@@ -63,23 +61,26 @@ export const BO_PACKAGE = db.define(
       defaultValue: " ",
       comment: "PRICE OF PACKAGE",
     },
+    PAYMENT_CANCELLED: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+      comment: "PRICE OF PACKAGE",
+    },
     VOL_PACKAGE: {
       type: Sequelize.STRING(60),
       allowNull: false,
       defaultValue: " ",
       comment: "VOLUME FO PACKAGE",
     },
-
     IND_PACKAGE: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
       comment: "STATUS OF PACKAGE",
     },
-
     USR_ADD: {
       type: Sequelize.STRING(30),
-      allowNull: false,
       comment: "USER THAT ADDED THIS ROW	",
     },
     USR_UPD: {

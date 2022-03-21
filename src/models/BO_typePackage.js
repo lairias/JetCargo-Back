@@ -23,12 +23,17 @@ export const BO_TYPEPACKAGE = db.define(
     },
     IMG_TYPEPACKAGE: {
       type: Sequelize.STRING(255),
-      comment: "VALIDACION DE TOKEN PARA RESETEO",
+      comment: "IMAGEN DE TOKEN PARA RESETEO",
     },
     IND_TYPEPACKAGE: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
+      comment: "STATUS OF TYPE PACKAGE ",
+    },
+    PREC_TYPEPACKAGE: {
+      type: Sequelize.STRING(120),
+      allowNull: false,
       comment: "STATUS OF TYPE PACKAGE ",
     },
     USR_ADD: {

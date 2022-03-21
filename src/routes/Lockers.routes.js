@@ -9,7 +9,6 @@ import {
   GetLokersind,
   CreateLoker,
   CreateLokerCustomers,
-  CreateLokerByCustomer,
 } from "../controllers/Locker.Controllers";
 import {
   LockerCreate,

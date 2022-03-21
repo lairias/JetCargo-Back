@@ -38,6 +38,7 @@ export const GetPackage = async (req, res, next) => {
   }
 };
 
+
 export const CreatePackage = async (req, res, next) => {
   const {
     COD_CATPACKAGE,

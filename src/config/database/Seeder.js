@@ -1034,6 +1034,41 @@ export const CreateSeguri = async () => {
           DATO_SEGURIDAD: "7200",
           DES_SEGURIDAD: "Tiempo de reset token para password",
         }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Nombre del usuario",
+          DATO_SEGURIDAD: "info@jetcargo.vip",
+          DES_SEGURIDAD: "Tiempo de reset token para password",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Servidor entrante",
+          DATO_SEGURIDAD: "mail.jetcargo.vip",
+          DES_SEGURIDAD: "Direccion de entrada del servidor",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Servidor entrante IMAP PORT",
+          DATO_SEGURIDAD: "993",
+          DES_SEGURIDAD: "Puerto de entrada IMAP al servidor",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Servidor entrante POP3 PORT",
+          DATO_SEGURIDAD: "995",
+          DES_SEGURIDAD: "Puerto de entrada POP3 al servidor",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Servidor de correo",
+          DATO_SEGURIDAD: "mail.jetcargo.vip",
+          DES_SEGURIDAD: "ireccion de entrada del correo",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Servidor entrante SMTP PORT",
+          DATO_SEGURIDAD: "465",
+          DES_SEGURIDAD: "Puerto de entrada SMPT al servidor",
+        }),
+        SE_SEGURIDAD.create({
+          NAM_SEGURIDAD: "Tasa de cambio del dolar",
+          DATO_SEGURIDAD: "24.6677",
+          DES_SEGURIDAD: "Tasa de cambio de dolares a lempiras",
+        }),
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1298,18 +1333,21 @@ export const CreateTypePackage = async () => {
     try {
       await Promise.all([ 
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en avión",
-          DES_TYPEPACKAGE: "1",
+          NAM_TYPEPACKAGE: "Envió en Aéreo",
+          DES_TYPEPACKAGE: "Entrega en 3 semanas, mayor a 30 libras",
+          PREC_TYPEPACKAGE: "4",
           USR_ADD:"admin",
         }),
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en barco",
-          DES_TYPEPACKAGE: "2",
+          NAM_TYPEPACKAGE: "Envió en Marítimo",
+          DES_TYPEPACKAGE: "Entrega en 2 semanas",
+          PREC_TYPEPACKAGE: "6",
           USR_ADD:"admin",
         }),
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en express",
-          DES_TYPEPACKAGE: "3",
+          NAM_TYPEPACKAGE: "Envió en Express",
+          DES_TYPEPACKAGE: "Entrega en 4 días, salida los jueves entregando los martes",
+          PREC_TYPEPACKAGE: "10",
           USR_ADD:"admin",
         }),
        
