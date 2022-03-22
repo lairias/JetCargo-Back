@@ -45,6 +45,7 @@ export const GetTrackingsNumberService = async (req, res, next) => {
 
 export const GetTracking_not_orden = async (req, res, next) => {
   const { COD_TRACKING,COD_PACKAGE,NUM_LOCKER, COD_CUSTOMER } = req.params;
+  console.log("funciona")
   try {
     const cities = await sequelize.query("CALL SHOW_TRACKING_PACKAGE_NOT_ORDEN_ID(:COD_TRACKING,:COD_PACKAGE,:NUM_LOCKER,:COD_CUSTOMER)", {
       replacements: { COD_TRACKING,COD_PACKAGE,NUM_LOCKER,COD_CUSTOMER},

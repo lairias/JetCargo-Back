@@ -5,8 +5,9 @@ CancelCreateOrden,CaptureOrden,CreateOrden
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.post("/create-orden", [verifyToken, verifyIndUser], CreateOrden);
-router.get("/capture-orden", [verifyToken, verifyIndUser], CancelCreateOrden,CaptureOrden,CreateOrden
+router.get("/capture-orden/:COD_CUSTOMER/:NAM_TRACKING/:COD_PACKAGE", [verifyToken, verifyIndUser], CaptureOrden,
 );
 router.get("/cancel-create-orden", [verifyToken, verifyIndUser], CancelCreateOrden);
 
 export default router;
+
