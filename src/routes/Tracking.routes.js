@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { CreateTracking, GetTrackingsNumberService, UpdateTracking,GetTracking_not_orden } from "../controllers/Tracking.Controllers";
-import { TrackingNotOrden } from "../middleware/permissions/Tracking.Permission";
+import { CreateTracking, GetTrackingsNumberService,GetTrackingsNumber, UpdateTracking,GetTracking_not_orden, TrackingNotOrden} from "../controllers/Tracking.Controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.get(
@@ -9,10 +8,17 @@ router.get(
   GetTrackingsNumberService
 );
 router.get(
-  "/",
+  "/search/:NUM_TRACKING",
+  [verifyToken, verifyIndUser, ],
+  GetTrackingsNumber
+);
+
+router.get(
+  "/:COD_TYPEPACKAGE/:RECEIVED_TRACKING",
   [verifyToken, verifyIndUser, ],
   TrackingNotOrden
 );
+
 router.get(
   "/:COD_TRACKING/:COD_PACKAGE/:NUM_LOCKER/:COD_CUSTOMER",
   [verifyToken, verifyIndUser, ],

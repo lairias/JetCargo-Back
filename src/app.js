@@ -43,17 +43,17 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// //----------------
+// // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// //----------------
+// // //----------------
 CreateStates();
-// //----------------
+// // //----------------
 CreateCities();
-// //----------------
+// // //----------------
 CreateSeguri();
 CreateUser();
-// //----------------
+// // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();

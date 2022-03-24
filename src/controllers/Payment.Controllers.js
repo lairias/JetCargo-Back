@@ -1,5 +1,6 @@
 import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
 import { HttpError } from "../helpers/handleError";
+import { v4 as uuidv4 } from 'uuid';
 import {
   PAPAL_API,
   PAPAL_API_CLIENTE,
@@ -9,9 +10,9 @@ import axios from "axios";
 import "dotenv/config";
 import { DE_ORDEN } from "../models/DE_orden";
 import { BO_PACKAGE } from "../models/BO_package";
+import { BO_TRACKING } from "../models/BO_tracking";
 export const CreateOrden = async (req, res, next) => {
-  const { DataTrackinNotOrden } = req.body;
-  console.log(req.body);
+  const {mensaje, DataTrackinNotOrden } = req.body;
   try {
     const orden = {
       intent: "CAPTURE",
@@ -21,8 +22,7 @@ export const CreateOrden = async (req, res, next) => {
             value: parseFloat(DataTrackinNotOrden[0].PRICE_PACKAGE),
             currency_code: "USD",
           },
-          description: `Tracking-N°:${DataTrackinNotOrden[0].NUM_TRACKING} Loker-N°:${DataTrackinNotOrden[0].NUM_LOCKER} Paquete-N°:${DataTrackinNotOrden[0].NUM_PACKAGE} 
-                Descripción:${DataTrackinNotOrden[0].NOM_PACKAGE} - ${DataTrackinNotOrden[0].DES_TRACKING}`,
+          description: mensaje,
         },
       ],
       application_context: {
@@ -30,8 +30,8 @@ export const CreateOrden = async (req, res, next) => {
         landing_page: "LOGIN",
         shipping_preference: "GET_FROM_FILE",
         user_action: "PAY_NOW",
-        return_url: `${process.env.API_BACK}:${process.env.PORT_API}`,
-        cancel_url: "https://localhost:3000/payment/cancel",
+        return_url: `${process.env.API_BACK}:${process.env.PORT_API}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
+        cancel_url: "http://localhost:3000/payment/cancel",
       },
     };
     const params = new URLSearchParams();
@@ -69,12 +69,12 @@ export const CreateOrden = async (req, res, next) => {
 };
 export const CaptureOrden = async (req, res, next) => {
   try {
-    const { COD_CUSTOMER, NAM_TRACKING, COD_PACKAGE } = req.params;
+    const { COD_CUSTOMER, COD_TRACKING, COD_PACKAGE } = req.params;
     const { token, PayerID } = req.query;
 
     if (!COD_CUSTOMER)
       return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
-    if (!NAM_TRACKING)
+    if (!COD_TRACKING)
       return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
     if (!COD_PACKAGE)
       return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
@@ -111,16 +111,19 @@ export const CaptureOrden = async (req, res, next) => {
     );
     await DE_ORDEN.create({
       COD_TRACKING,
-      NUM_ORDEN,
+      NUM_ORDEN : uuidv4(),
       CHECKPOINT_STATUS: "IN_PROGRESS",
     });
-  await  BO_PACKAGE.update({
+    const tracking = await BO_TRACKING.update({
+      RECEIVED_TRACKING: "IN_PROGRESS",
+    },{where:{COD_TRACKING}});
+ const boPackage = await  BO_PACKAGE.update({
       PAYMENT_CANCELLED : true
     },
     {where:{COD_PACKAGE}})
 
-    return res.json(respuesta.data);
-    //  return res.redirect("http://localhost:8000/admin/respaldos");
+
+     return res.redirect(`http://localhost:3000/admin/locker/${tracking.NUM_TRACKING}`);
   } catch (error) {
     HttpError(res, error);
     next();

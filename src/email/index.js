@@ -3,13 +3,23 @@ import "dotenv/config";
 import { DatosInicioCoreo } from "../utils/Index";
 
 export const transport = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
+  host: "smtp.mailtrap.io",
+  port: 2525,
   auth: {
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-  },
+    user: "d6e18533cfdad8",
+    pass: "d5ac5f34a0bc2e"
+  }
+  
 }); 
+
+// export const transport = nodemailer.createTransport({
+//   host: process.env.MAIL_HOST,
+//   port: process.env.MAIL_PORT,
+//   auth: {
+//     user: process.env.MAIL_USERNAME,
+//     pass: process.env.MAIL_PASSWORD,
+//   },
+// }); 
 
 const Fecha = new Date().getFullYear();
 export const configTransportVery = (

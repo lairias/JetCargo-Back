@@ -6,6 +6,32 @@ import {BO_TRACKING} from "../models/Bo_tracking";
 import {BO_PACKAGE} from "../models/BO_package";
 import {BO_TYPEPACKAGE} from "../models/BO_typePackage";
 
+
+export const TrackingNotOrden = async (req, res, next) => {
+  const { COD_TYPEPACKAGE,RECEIVED_TRACKING } = req.params;
+  try {
+    const count = await sequelize.query(
+      "CALL COUNT_TRACKING_NOT_ORDEN()",
+          );
+    const tracking = await sequelize.query(
+      "CALL SHOW_TRACKING_NOT_ORDEN(:COD_TYPEPACKAGE,:RECEIVED_TRACKING)",
+      {
+        replacements: {
+          COD_TYPEPACKAGE,
+          RECEIVED_TRACKING
+        },
+      }
+          );
+    if (!JSON.stringify(tracking[0])) return res.status(203).json({ ok:false, tracking:false, count:0 });
+    return res.status(203).json({ ok:true, tracking , count });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+
+
+
 export const GetTracking = async (req, res, next) => {
   try {
   } catch (error) {
@@ -17,6 +43,18 @@ export const GetTrackings = async (req, res, next) => {
   try {
     await PA_TypeUsers.findAll();
     return res.status(200).json();
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+export const GetTrackingsNumber = async (req, res, next) => {
+  const {  NUM_TRACKING } = req.params;
+  try {
+    const tracking = await BO_TRACKING.findOne({
+      where: { NUM_TRACKING },
+    });
+    return res.status(200).json({ ok: true, Number_tracking: tracking });
   } catch (error) {
     HttpError(res, error);
     next();
