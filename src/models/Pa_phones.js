@@ -22,7 +22,6 @@ export const PA_PHONES = db.define(
     },
     USR_ADD: {
       type: Sequelize.STRING(30),
-      allowNull: false,
       comment: "USER THAT ADDED THIS ROW",
     },
     USR_UPD: {

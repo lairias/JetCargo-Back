@@ -23,6 +23,8 @@ import People from "./routes/People.routes";
 import Email from "./routes/Email.routes";
 import Permission from "./routes/Permission.routes";
 import Seguridad from "./routes/seguridad.routes";
+import Phone from "./routes/Phone.routes";
+
 import sequelise from "./config/database/index";
 import { v4 as uuidv4 } from 'uuid';
 import "./config/database/R_E";
@@ -43,17 +45,17 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // //----------------
+// // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // //----------------
+// // // // // // //----------------
 CreateStates();
-// // //----------------
+// // // // // // //----------------
 CreateCities();
-// // //----------------
+// // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // //----------------
+// // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();
@@ -72,6 +74,7 @@ app.use(multer(storage).single("path_image"));
 app.use("/api/roles", Roles);
 app.use("/api/service", Service);
 app.use("/api/tracking", Tracking);
+app.use("/api/phone", Phone);
 app.use("/api/users", Users);
 app.use("/api/seguridad", Seguridad);
 app.use("/api/auth", Auth);

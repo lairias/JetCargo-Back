@@ -45,6 +45,7 @@ import { LOG_ERROR } from "../../models/LOG_Errores";
 import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 import { REL_CUSTOMER_LOKER } from "../../models/relations/REL_customer_locker";
 import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
+import { REL_LOCKER_PHONE } from "../../models/relations/REL_locker_phone";
 
 const relaciones = async () => {
   await DE_ORDEN.belongsToMany(BO_TRACKING, {
@@ -133,6 +134,20 @@ const relaciones = async () => {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
+
+
+  await BO_LOCKER.belongsToMany(PA_PHONES, {
+    through: REL_LOCKER_PHONE,
+    foreignKey: "COD_LOCKER",
+    onDelete: "CASCADE",
+  });
+  await PA_PHONES.belongsToMany(BO_LOCKER, {
+    through: REL_LOCKER_PHONE,
+    foreignKey: "COD_PHONE",
+    onDelete: "CASCADE",
+  });
+
+
   await USERS.hasMany(LOGINFALLIDOS, {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",

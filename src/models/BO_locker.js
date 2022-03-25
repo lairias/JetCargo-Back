@@ -23,6 +23,11 @@ export const BO_LOCKER = db.define(
       allowNull: false,
       comment: "NUM OF LOCKER",
     },
+    ADDRES_LOCKER: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "ADDRES OF LOCKER",
+    },
 
     IND_LOCKER: {
       type: Sequelize.BOOLEAN,

@@ -6,9 +6,11 @@ import { PA_CITIES } from "../../models/Pa_cities";
 import { PA_COUNTRIES } from "../../models/Pa_countries";
 import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { PA_POEPLE } from "../../models/Pa_people";
+import { PA_PHONES } from "../../models/Pa_phones";
 import { PA_STATES } from "../../models/Pa_states";
 import { PA_TypeUsers } from "../../models/Pa_typeUsers";
 import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
+import { REL_LOCKER_PHONE } from "../../models/relations/REL_locker_phone";
 import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
@@ -54,7 +56,7 @@ export const CreatePemisoHasRol = async () => {
         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
-        75, 76,
+        75, 76,77,78,79,80,81,82,83,84,85,86,87,89,90,91,92,93,94,95,96,97
       ];
       const cliente = [
         2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 68, 72,
@@ -95,10 +97,104 @@ export const CreatePermisos = async () => {
   } else {
     try {
       await Promise.all([
+     
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.inicio",
+          DES_PERMISOS: "Ver administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.seguimiento",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.seguimiento.express",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.seguimiento.avion",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.seguimiento.maritimo",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.roles",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.categorias",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.seguridad",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.paypal",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.usurario",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.customers",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.people",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.lockers",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "dasboard.packages",
+          DES_PERMISOS: "Crear administrador",
+        }),
+
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "profile.view",
+          DES_PERMISOS: "Ver administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "notificaciones.view",
+          DES_PERMISOS: "Ver administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "profile.edit",
+          DES_PERMISOS: "Ver administrador",
+        }),
+        
+        
+
+
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguimiento.crear",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguimiento.view",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguimiento.update",
+          DES_PERMISOS: "Crear administrador",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguimiento.delete",
+          DES_PERMISOS: "Crear administrador",
+        }),
+
+
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.crear",
           DES_PERMISOS: "Crear administrador",
         }),
+
+        
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.view",
           DES_PERMISOS: "Ver administrador",
@@ -1435,8 +1531,17 @@ export const CreateLocker = async () => {
         BO_LOCKER.create({
           COD_PEOPLE: 1,
           NUM_LOCKER: "TGU-00145",
-          TYP_LOCKER: "Caja",
+          TYP_LOCKER: "8109 NW 60TH ST",
+          ADDRES_LOCKER: "Miami, FL 33166",
           USR_ADD:"admin",
+        }),
+        PA_PHONES.create({
+          NUM_AREA: "305",
+          NUM_PHONE: "8109",
+           }),
+        REL_LOCKER_PHONE.create({
+          COD_LOCKER: 1,
+          COD_PHONE: 1,
         }),
       ]);
     } catch (erro) {
