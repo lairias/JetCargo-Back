@@ -1533,6 +1533,7 @@ export const CreateLocker = async () => {
           NUM_LOCKER: "TGU-00145",
           TYP_LOCKER: "8109 NW 60TH ST",
           ADDRES_LOCKER: "Miami, FL 33166",
+          TEL_LOCKER: "6319133067",
           USR_ADD:"admin",
         }),
         PA_PHONES.create({

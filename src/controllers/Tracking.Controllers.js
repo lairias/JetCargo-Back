@@ -5,19 +5,47 @@ import RandomCode from "random-codes";
 import {BO_TRACKING} from "../models/Bo_tracking";
 import {BO_PACKAGE} from "../models/BO_package";
 import {BO_TYPEPACKAGE} from "../models/BO_typePackage";
+import {SendMessage} from "../config/Twilio/Send_msm";
+import { PA_POEPLE } from "../models/Pa_people";
+import { REL_PEOPLE_PHONE } from "../models/relations/REL_people_phone";
+import { USERS } from "../models/Users";
+import { PA_PHONES } from "../models/Pa_phones";
+import { DE_SERVICE } from "../models/DE_service";
 
-
-export const TrackingNotOrden = async (req, res, next) => {
+export const TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE,RECEIVED_TRACKING } = req.params;
   try {
     const count = await sequelize.query(
       "CALL COUNT_TRACKING_NOT_ORDEN()",
           );
     const tracking = await sequelize.query(
-      "CALL SHOW_TRACKING_NOT_ORDEN(:COD_TYPEPACKAGE,:RECEIVED_TRACKING)",
+      "CALL SHOW_TRACKING_NOT_ORDEN_TYPEPACKAGE(:COD_TYPEPACKAGE,:RECEIVED_TRACKING)",
       {
         replacements: {
           COD_TYPEPACKAGE,
+          RECEIVED_TRACKING
+        },
+      }
+          );
+    if (!JSON.stringify(tracking[0])) return res.status(203).json({ ok:false, tracking:false, count:0 });
+    return res.status(203).json({ ok:true, tracking , count });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+
+
+export const TrackingNotOrden = async (req, res, next) => {
+  const { RECEIVED_TRACKING } = req.params;
+  try {
+    const count = await sequelize.query(
+      "CALL COUNT_TRACKING_NOT_ORDEN()",
+          );
+    const tracking = await sequelize.query(
+      "CALL SHOW_TRACKING_NOT_ORDEN(:RECEIVED_TRACKING)",
+      {
+        replacements: {
           RECEIVED_TRACKING
         },
       }
@@ -109,13 +137,13 @@ export const UpdateTracking = async (req, res, next) => {
   NUM_TRACKING,
   DES_TRACKING,
   COD_PACKAGE,
+  COD_USER,
   checbox,
   } = req.body;
   const {COD_TRACKING} = req.params;
   try {
-    console.log(req.body)
     const CatPackage = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
-    const Tracking = await BO_TRACKING.update({
+    const tracking = await BO_TRACKING.update({
       COD_SERVICE,
       DES_TRACKING,
       NUM_TRACKING,
@@ -127,7 +155,7 @@ export const UpdateTracking = async (req, res, next) => {
         COD_TRACKING
       } });
       const PRICE_PACKAGE = parseFloat(CatPackage.PREC_TYPEPACKAGE) * parseFloat(WEIGHT_PACKAGE);
-    const Package = await BO_PACKAGE.update({
+     await BO_PACKAGE.update({
       COD_CATPACKAGE,
       COD_TYPEPACKAGE,
       NOM_PACKAGE,
@@ -141,6 +169,14 @@ export const UpdateTracking = async (req, res, next) => {
       where: {
         COD_PACKAGE
       }})
+
+      const User = await USERS.findByPk(COD_USER);
+      const people = await PA_POEPLE.findByPk(User.COD_PEOPLE);
+      const RelPhone = await REL_PEOPLE_PHONE.findOne({ where: { COD_PEOPLE:User.COD_PEOPLE }});
+      const phone = await PA_PHONES.findByPk(RelPhone.COD_PHONE);
+      const servicio = await DE_SERVICE.findByPk(COD_SERVICE)
+      const message = `Hola ${people.FRISTNAME} ${people.LASTNAME}, le saluda Jetcargo para informarle que su paquete ${NUM_TRACKING} por el servicio de ${servicio.SERVICE_NAME}, estaremos en espera a que usted realice el pago.`;
+      await SendMessage(message,`+${phone.NUM_AREA}${phone.NUM_PHONE}`);
   } catch (error) {
     console.log(error);
     HttpError(res, error);

@@ -40,6 +40,12 @@ export const PA_CITIES = db.define(
       allowNull: false,
       comment: "CURRENCY OF THE CITY",
     },
+    IND_CITY: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF COUNTRY",
+    },
     TIMEZONE: {
       type: Sequelize.STRING(20),
       allowNull: false,

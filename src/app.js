@@ -24,6 +24,7 @@ import Email from "./routes/Email.routes";
 import Permission from "./routes/Permission.routes";
 import Seguridad from "./routes/seguridad.routes";
 import Phone from "./routes/Phone.routes";
+import Message from "./routes/Messaje.routes";
 
 import sequelise from "./config/database/index";
 import { v4 as uuidv4 } from 'uuid';
@@ -45,17 +46,17 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // // // // // // //----------------
+// // // // // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // // // // // //----------------
+// // // // // // // // // //----------------
 CreateStates();
-// // // // // // //----------------
+// // // // // // // // // //----------------
 CreateCities();
-// // // // // // //----------------
+// // // // // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // // // // // //----------------
+// // // // // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();
@@ -66,6 +67,7 @@ const storage = multer.diskStorage({destination: path.join(__dirname, "public/up
     cb(null, "JetCargo_IMG"+"-" + uuidv4() + path.extname(file.originalname));
   }
 });
+
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
@@ -91,5 +93,6 @@ app.use("/api/passreset", PassReset);
 app.use("/api/email", Email);
 app.use("/api/people", People);
 app.use("/api/permission", Permission);
+app.use("/api/message", Message);
 
 export default app;

@@ -13,6 +13,7 @@ import { BO_PACKAGE } from "../models/BO_package";
 import { BO_TRACKING } from "../models/BO_tracking";
 export const CreateOrden = async (req, res, next) => {
   const {mensaje, DataTrackinNotOrden } = req.body;
+  console.log(mensaje,DataTrackinNotOrden);
   try {
     const orden = {
       intent: "CAPTURE",
@@ -122,8 +123,7 @@ export const CaptureOrden = async (req, res, next) => {
     },
     {where:{COD_PACKAGE}})
 
-
-     return res.redirect(`http://localhost:3000/admin/locker/${tracking.NUM_TRACKING}`);
+     return res.redirect(`http://${process.env.API_FROND}:${process.env.PORT_FROND}/admin/locker/${tracking.NUM_TRACKING}`);
   } catch (error) {
     HttpError(res, error);
     next();

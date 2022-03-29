@@ -11,13 +11,11 @@ export const BO_LOCKER = db.define(
       allowNull: false,
       comment: "COD OF THE LOCKER",
     },
-
     COD_PEOPLE: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PEOPLE",
     },
-
     NUM_LOCKER: {
       type: Sequelize.STRING(60),
       allowNull: false,
@@ -28,14 +26,17 @@ export const BO_LOCKER = db.define(
       allowNull: false,
       comment: "ADDRES OF LOCKER",
     },
-
+    TEL_LOCKER: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "ADDRES OF LOCKER",
+    },
     IND_LOCKER: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: true,
       comment: "STATUS OF LOCKER",
     },
-
     TYP_LOCKER: {
       type: Sequelize.STRING(80),
       allowNull: false,

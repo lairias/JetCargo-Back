@@ -33,44 +33,30 @@ export const BO_PACKAGE = db.define(
     },
     HEIGHT_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "HEIGHT OF PACKAGE",
     },
     WIDTH_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "WIDTH OF PACKAGE",
     },
     LENGTH_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "LENGTH OF PACKAGE",
     },
     WEIGHT_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "WEIGHT OF PACKAGE",
     },
     PRICE_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "PRICE OF PACKAGE",
     },
     PAYMENT_CANCELLED: {
       type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
       comment: "PRICE OF PACKAGE",
     },
     VOL_PACKAGE: {
       type: Sequelize.STRING(60),
-      allowNull: false,
-      defaultValue: " ",
       comment: "VOLUME FO PACKAGE",
     },
     IND_PACKAGE: {

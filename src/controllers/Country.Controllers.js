@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/handleError";
 
 export const GetCountries = async (req, res, next) => {
   try {
-    const cities = await PA_COUNTRIES.findAll();
+    const cities = await PA_COUNTRIES.findAll({where:{IND_COUNTRY:1}});
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);

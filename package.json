@@ -36,6 +36,7 @@
     "passport-local": "^1.0.0",
     "random-codes": "^0.0.10",
     "sequelize": "^6.12.4",
+    "twilio": "^3.76.0",
     "uuid": "^8.3.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
