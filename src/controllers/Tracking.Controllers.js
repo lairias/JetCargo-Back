@@ -36,6 +36,28 @@ export const TrackingNotOrdenType = async (req, res, next) => {
 };
 
 
+export const TrackingNotOrdenCustomer = async (req, res, next) => {
+  const { RECEIVED_TRACKING,COD_CUSTOMER,NUM_TRACKING} = req.params;
+  try {
+   
+    const tracking = await sequelize.query(
+      "CALL SHOW_TRACKING_NOT_ORDEN_CUSTOMER(:RECEIVED_TRACKING,:COD_CUSTOMER,:NUM_TRACKING)",
+      {
+        replacements: {
+          RECEIVED_TRACKING,
+          COD_CUSTOMER,
+          NUM_TRACKING
+        },
+      }
+          );
+    if (!JSON.stringify(tracking[0])) return res.status(203).json({ ok:false, tracking:false,  });
+    return res.status(203).json({ ok:true, tracking  });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+
 export const TrackingNotOrden = async (req, res, next) => {
   const { RECEIVED_TRACKING } = req.params;
   try {
@@ -125,22 +147,23 @@ export const GetTracking_not_orden = async (req, res, next) => {
 
 export const UpdateTracking = async (req, res, next) => {
   const {
-  WEIGHT_PACKAGE,
-  HEIGHT_PACKAGE,
+    HEIGHT_PACKAGE,
   WIDTH_PACKAGE,
+  WEIGHT_PACKAGE,
   COD_TYPEPACKAGE,
   VOL_PACKAGE,
-  NOM_PACKAGE,
+  NOM_PACKAGE ,
   COD_CATPACKAGE,
   COD_SERVICE,
   RECEIVED_TRACKING,
   NUM_TRACKING,
-  DES_TRACKING,
+  DES_TRACKING ,
+  COD_CUSTOMER,
   COD_PACKAGE,
-  COD_USER,
-  checbox,
+  checbox
   } = req.body;
   const {COD_TRACKING} = req.params;
+
   try {
     const CatPackage = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
     const tracking = await BO_TRACKING.update({
@@ -170,13 +193,13 @@ export const UpdateTracking = async (req, res, next) => {
         COD_PACKAGE
       }})
 
-      const User = await USERS.findByPk(COD_USER);
-      const people = await PA_POEPLE.findByPk(User.COD_PEOPLE);
-      const RelPhone = await REL_PEOPLE_PHONE.findOne({ where: { COD_PEOPLE:User.COD_PEOPLE }});
-      const phone = await PA_PHONES.findByPk(RelPhone.COD_PHONE);
-      const servicio = await DE_SERVICE.findByPk(COD_SERVICE)
-      const message = `Hola ${people.FRISTNAME} ${people.LASTNAME}, le saluda Jetcargo para informarle que su paquete ${NUM_TRACKING} por el servicio de ${servicio.SERVICE_NAME}, estaremos en espera a que usted realice el pago.`;
-      await SendMessage(message,`+${phone.NUM_AREA}${phone.NUM_PHONE}`);
+      // const User = await USERS.findByPk(COD_USER);
+      // const people = await PA_POEPLE.findByPk(User.COD_PEOPLE);
+      // const RelPhone = await REL_PEOPLE_PHONE.findOne({ where: { COD_PEOPLE:User.COD_PEOPLE }});
+      // const phone = await PA_PHONES.findByPk(RelPhone.COD_PHONE);
+      // const servicio = await DE_SERVICE.findByPk(COD_SERVICE)
+      // const message = `Hola ${people.FRISTNAME} ${people.LASTNAME}, le saluda Jetcargo para informarle que su paquete ${NUM_TRACKING} por el servicio de ${servicio.SERVICE_NAME}, estaremos en espera a que usted realice el pago.`;
+      // await SendMessage(message,`+${phone.NUM_AREA}${phone.NUM_PHONE}`);
   } catch (error) {
     console.log(error);
     HttpError(res, error);

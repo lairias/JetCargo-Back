@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateTracking, GetTrackingsNumberService,GetTrackingsNumber, UpdateTracking,GetTracking_not_orden,TrackingNotOrdenType, TrackingNotOrden} from "../controllers/Tracking.Controllers";
+import { CreateTracking, GetTrackingsNumberService,GetTrackingsNumber, UpdateTracking,GetTracking_not_orden,TrackingNotOrdenType, TrackingNotOrden,TrackingNotOrdenCustomer} from "../controllers/Tracking.Controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.get(
@@ -17,6 +17,11 @@ router.get(
   "/received/:RECEIVED_TRACKING",
   [verifyToken, verifyIndUser, ],
   TrackingNotOrden
+);
+router.get(
+  "/received/:RECEIVED_TRACKING/:COD_CUSTOMER/:NUM_TRACKING",
+  [verifyToken, verifyIndUser, ],
+  TrackingNotOrdenCustomer
 );
 
 router.get(
