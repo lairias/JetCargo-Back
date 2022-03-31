@@ -35,6 +35,11 @@ router.get(
   [verifyToken, verifyIndUser],
   GetTracking_not_orden
 );
+router.get(
+  "/:NUM_TRACKING",
+  [verifyToken, verifyIndUser],
+  GetTrackingsNumber
+);
 router.post(
   "/",
   [verifyToken, verifyIndUser],

@@ -62,6 +62,10 @@ const relaciones = async () => {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
+  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_ORDEN",
+    onDelete: "CASCADE",
+  });
   await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
     foreignKey: "COD_DESTINATION_COUNTRY",
     onDelete: "CASCADE",
@@ -72,13 +76,13 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
   
-  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION, {
-    foreignKey: "COD_DESTINATION_CITY",
+  await PA_STATES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_DESTINATION_STATE",
     onDelete: "CASCADE",
   });
   
-  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION, {
-    foreignKey: "COD_ORGIGIN_CITY",
+  await PA_STATES.hasMany(DE_TRACKING_INFORMATION, {
+    foreignKey: "COD_ORGIGIN_STATE",
     onDelete: "CASCADE",
   });
   

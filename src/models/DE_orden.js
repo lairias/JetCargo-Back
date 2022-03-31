@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const DE_ORDEN = db.define(
-  "DE_ordenes",
+  "DE_Ordenes",
   {
     COD_ORDEN: {
       type: Sequelize.BIGINT,

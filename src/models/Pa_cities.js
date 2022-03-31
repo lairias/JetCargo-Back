@@ -51,6 +51,16 @@ export const PA_CITIES = db.define(
       allowNull: false,
       comment: "TIMEZONE OF THE CITY",
     },
+    LATITUDE: {
+      type: Sequelize.STRING(20),
+      allowNull: false,
+      comment: "LATITUDE OF THE CITY",
+    },
+    LONGITUDE: {
+      type: Sequelize.STRING(20),
+      allowNull: false,
+      comment: "LONGITUDE OF THE CITY",
+    },
     DES_CITY: {
       type: Sequelize.STRING(2000),
       allowNull: false,

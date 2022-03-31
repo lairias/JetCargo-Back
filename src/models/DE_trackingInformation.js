@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/database";
 
 export const DE_TRACKING_INFORMATION = db.define(
-  "DE_trackingInformation",
+  "DE_TrackingInformation",
   {
     COD_TRACKINFORMATION: {
       type: Sequelize.BIGINT,
@@ -26,12 +26,12 @@ export const DE_TRACKING_INFORMATION = db.define(
         allowNull: false,
         comment: "COD OF THE ORIGIN COUNTRY",
     },
-    COD_DESTINATION_CITY: {
+    COD_DESTINATION_STATE: {
         type: Sequelize.BIGINT,
       allowNull: false,
-      comment: "COD OF THE DESTINATION CITY",
+      comment: "COD OF THE DESTINATION STATE ",
     },
-    COD_ORGIGIN_CITY: {
+    COD_ORGIGIN_STATE: {
         type: Sequelize.BIGINT,
         allowNull: false,
         comment: "COD OF THE ORIGIN CITY",

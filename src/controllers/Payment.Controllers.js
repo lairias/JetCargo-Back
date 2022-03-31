@@ -13,7 +13,6 @@ import { BO_PACKAGE } from "../models/BO_package";
 import { BO_TRACKING } from "../models/BO_tracking";
 export const CreateOrden = async (req, res, next) => {
   const {mensaje, DataTrackinNotOrden } = req.body;
-  console.log(mensaje,DataTrackinNotOrden);
   try {
     const orden = {
       intent: "CAPTURE",
@@ -68,6 +67,8 @@ export const CreateOrden = async (req, res, next) => {
     next();
   }
 };
+
+
 export const CaptureOrden = async (req, res, next) => {
   try {
     const { COD_CUSTOMER, COD_TRACKING, COD_PACKAGE } = req.params;
@@ -115,20 +116,25 @@ export const CaptureOrden = async (req, res, next) => {
       NUM_ORDEN : uuidv4(),
       CHECKPOINT_STATUS: "IN_PROGRESS",
     });
-    const tracking = await BO_TRACKING.update({
+    const tracking = await BO_TRACKING.findOne({
+      where: { COD_TRACKING },
+    });
+    await BO_TRACKING.update({
       RECEIVED_TRACKING: "IN_PROGRESS",
     },{where:{COD_TRACKING}});
  const boPackage = await  BO_PACKAGE.update({
       PAYMENT_CANCELLED : true
     },
     {where:{COD_PACKAGE}})
-
-     return res.redirect(`http://${process.env.API_FROND}:${process.env.PORT_FROND}/admin/locker/${tracking.NUM_TRACKING}`);
+    
+     return res.redirect(`${process.env.API_FROND}:${process.env.PORT_FROND}/admin/locker/${tracking.NUM_TRACKING}`);
   } catch (error) {
     HttpError(res, error);
     next();
   }
 };
+
+
 export const CancelCreateOrden = async (req, res, next) => {
   try {
     const typePackage = await BO_TYPEPACKAGE.findAll();

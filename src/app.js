@@ -25,6 +25,8 @@ import Permission from "./routes/Permission.routes";
 import Seguridad from "./routes/seguridad.routes";
 import Phone from "./routes/Phone.routes";
 import Message from "./routes/Messaje.routes";
+import Orden from "./routes/Orden.routes";
+import TrackinInformation from "./routes/TrackinInformation.routes";
 
 import sequelise from "./config/database/index";
 import { v4 as uuidv4 } from 'uuid';
@@ -46,17 +48,17 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // // // // // // // // // //----------------
+// // // // // // // // // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // // // // // // // // //----------------
+// // // // // // // // // // // // //----------------
 CreateStates();
-// // // // // // // // // //----------------
+// // // // // // // // // // // //----------------
 CreateCities();
-// // // // // // // // // //----------------
+// // // // // // // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // // // // // // // // //----------------
+// // // // // // // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();
@@ -74,6 +76,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(multer(storage).single("path_image"));
 app.use("/api/roles", Roles);
+app.use("/api/orden", Orden);
 app.use("/api/service", Service);
 app.use("/api/tracking", Tracking);
 app.use("/api/phone", Phone);
@@ -94,5 +97,6 @@ app.use("/api/email", Email);
 app.use("/api/people", People);
 app.use("/api/permission", Permission);
 app.use("/api/message", Message);
+app.use("/api/trackingInformation", TrackinInformation);
 
 export default app;
