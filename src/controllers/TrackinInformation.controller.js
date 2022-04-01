@@ -1,10 +1,10 @@
 import sequelize from "../config/database/index";
-
 import { HttpError } from "../helpers/handleError";
 import { DE_ORDEN } from "../models/DE_orden";
 import { DE_TRACKING_INFORMATION_ORIGEN } from "../models/DE_trackingInformationOrigin";
 import { DE_TRACKING_INFORMATION_DESTINO } from "../models/DE_trackingInformationDestino";
 import { REL_ORIGIN_DESTINO } from "../models/relations/REL_Origin_Destino";
+
 export const CreateTrackingInformation = async (req, res, next) => {
   const {Direcciones, OrdenTrankings} = req.body;
   try {
