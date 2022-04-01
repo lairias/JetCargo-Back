@@ -4,7 +4,8 @@ import { HttpError } from "../helpers/handleError";
 import { DE_ORDEN } from "../models/DE_orden";
 import { DE_TRACKING_INFORMATION } from "../models/DE_trackingInformation";
 export const CreateTrackingInformation = async (req, res, next) => {
-    const {COD_TRACKING} = req.params;
+  console.log(req.body);
+    const {} = req.params;
   try {
     const catPackage = await DE_TRACKING_INFORMATION.findOne({ where: { COD_TRACKING }});
     return res.status(200).json({ok:true, catPackage});
