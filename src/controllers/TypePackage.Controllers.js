@@ -4,7 +4,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetTypePackages = async (req, res, next) => {
   try {
     const typePackage = await BO_TYPEPACKAGE.findAll();
-    return res.status(200).json({ok: true, typePackage});
+    return res.status(200).json({ ok: true, typePackage });
   } catch (error) {
     HttpError(res, error);
     next();

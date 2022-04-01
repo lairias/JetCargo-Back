@@ -17,7 +17,7 @@ export const GetCitiesForState = async (req, res, next) => {
 };
 export const GetCities = async (req, res, next) => {
   try {
-    const cities = await PA_CITIES.findAll({where:{IND_CITY:1}});
+    const cities = await PA_CITIES.findAll({ where: { IND_CITY: 1 } });
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);

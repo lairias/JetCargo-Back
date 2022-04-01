@@ -20,14 +20,14 @@ export const REL_ORDEN_TRACKING = db.define(
       comment: "COD OF TYPE OF USER",
     },
     DAT_ADD_ORDENTRACKING: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-        comment: "DATE THAT THIS ROW WERE ADDED	",
-      },
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      comment: "DATE THAT THIS ROW WERE ADDED	",
+    },
     DAT_UPD_ORDENTRACKING: {
-        type: Sequelize.DATE,
-        comment: "DATE THIS ROW WAS MODIFIED	",
-      },
+      type: Sequelize.DATE,
+      comment: "DATE THIS ROW WAS MODIFIED	",
+    },
   },
   {
     createdAt: false,

@@ -1,5 +1,5 @@
 import sequelize from "../config/database";
-import {SE_PERMISOS} from "../models/security/SE_permisos";
+import { SE_PERMISOS } from "../models/security/SE_permisos";
 import { Op } from "sequelize";
 import { HttpError } from "../helpers/handleError";
 import { USERS } from "../models/Users";
@@ -30,10 +30,8 @@ export const GetPermissionUser = async (req, res, next) => {
   try {
     const PermissionUser = await SE_PERMISOS.findAll();
     if (!PermissionUser)
-      return res
-        .status(203)
-        .json({ message: "Erro de procesp", ok:false });
-    return res.status(200).json({PermissionUser, ok:true});
+      return res.status(203).json({ message: "Erro de procesp", ok: false });
+    return res.status(200).json({ PermissionUser, ok: true });
   } catch (error) {
     HttpError(res, error);
     next();

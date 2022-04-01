@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const PA_POEPLE = db.define( 
+export const PA_POEPLE = db.define(
   "PA_People",
   {
     COD_PEOPLE: {

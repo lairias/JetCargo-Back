@@ -1,5 +1,14 @@
 import { Router } from "express";
-import { CreateTracking, GetTrackingsNumberService,GetTrackingsNumber, UpdateTracking,GetTracking_not_orden,TrackingNotOrdenType, TrackingNotOrden,TrackingNotOrdenCustomer} from "../controllers/Tracking.Controllers";
+import {
+  CreateTracking,
+  GetTrackingsNumberService,
+  GetTrackingsNumber,
+  UpdateTracking,
+  GetTracking_not_orden,
+  TrackingNotOrdenType,
+  TrackingNotOrden,
+  TrackingNotOrdenCustomer,
+} from "../controllers/Tracking.Controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 router.get(
@@ -15,18 +24,18 @@ router.get(
 
 router.get(
   "/received/:RECEIVED_TRACKING",
-  [verifyToken, verifyIndUser, ],
+  [verifyToken, verifyIndUser],
   TrackingNotOrden
 );
 router.get(
   "/received/:RECEIVED_TRACKING/:COD_CUSTOMER/:NUM_TRACKING",
-  [verifyToken, verifyIndUser, ],
+  [verifyToken, verifyIndUser],
   TrackingNotOrdenCustomer
 );
 
 router.get(
   "/type/:COD_TYPEPACKAGE/:RECEIVED_TRACKING",
-  [verifyToken, verifyIndUser, ],
+  [verifyToken, verifyIndUser],
   TrackingNotOrdenType
 );
 
@@ -35,19 +44,7 @@ router.get(
   [verifyToken, verifyIndUser],
   GetTracking_not_orden
 );
-router.get(
-  "/:NUM_TRACKING",
-  [verifyToken, verifyIndUser],
-  GetTrackingsNumber
-);
-router.post(
-  "/",
-  [verifyToken, verifyIndUser],
-  CreateTracking
-);
-router.put(
-  "/:COD_TRACKING",
-  [verifyToken, verifyIndUser],
-  UpdateTracking
-);
+router.get("/:NUM_TRACKING", [verifyToken, verifyIndUser], GetTrackingsNumber);
+router.post("/", [verifyToken, verifyIndUser], CreateTracking);
+router.put("/:COD_TRACKING", [verifyToken, verifyIndUser], UpdateTracking);
 export default router;

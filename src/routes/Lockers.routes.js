@@ -22,9 +22,21 @@ router.get("/", [verifyToken, verifyIndUser, LockerView], GetLokers);
 router.get("/ind", [verifyToken, verifyIndUser, LockerView], GetLokersind);
 router.get("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerView], GetLoker);
 
-router.get("/people/:COD_PEOPLE", [verifyToken, verifyIndUser, LockerView], GetLokerByPeople);
-router.get("/customer/:COD_CUSTOMER", [verifyToken, verifyIndUser, LockerView], GetLokerByCustomer);
-router.post("/customer", [verifyToken, verifyIndUser, LockerCreate], CreateLokerCustomers);
+router.get(
+  "/people/:COD_PEOPLE",
+  [verifyToken, verifyIndUser, LockerView],
+  GetLokerByPeople
+);
+router.get(
+  "/customer/:COD_CUSTOMER",
+  [verifyToken, verifyIndUser, LockerView],
+  GetLokerByCustomer
+);
+router.post(
+  "/customer",
+  [verifyToken, verifyIndUser, LockerCreate],
+  CreateLokerCustomers
+);
 
 router.post("/", [verifyToken, verifyIndUser, LockerCreate], CreateLoker);
 router.delete(

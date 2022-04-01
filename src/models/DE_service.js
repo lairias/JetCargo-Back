@@ -30,14 +30,14 @@ export const DE_SERVICE = db.define(
       type: Sequelize.STRING(255),
     },
     DAT_ADD_SERVICE: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-        comment: "DATE THAT THIS ROW WERE ADDED	",
-      },
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      comment: "DATE THAT THIS ROW WERE ADDED	",
+    },
     DAT_UPD_SERVICE: {
-        type: Sequelize.DATE,
-        comment: "DATE THIS ROW WAS MODIFIED	",
-      },
+      type: Sequelize.DATE,
+      comment: "DATE THIS ROW WAS MODIFIED	",
+    },
   },
   {
     createdAt: false,

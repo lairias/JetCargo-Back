@@ -12,13 +12,11 @@ import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
 import { PA_CUSTOMES } from "../../models/Pa_customes";
 import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
 
-
 import { DE_ORDEN } from "../../models/DE_orden";
 import { DE_SERVICE } from "../../models/DE_service";
-import { DE_TRACKING_INFORMATION } from "../../models/DE_trackingInformation";
+import { DE_TRACKING_INFORMATION_ORIGEN } from "../../models/DE_trackingInformationOrigin";
+import { DE_TRACKING_INFORMATION_DESTINO } from "../../models/DE_trackingInformationDestino";
 import { REL_ORDEN_TRACKING } from "../../models/relations/REL_orden_tracking";
-
-
 
 import { SE_PERMISOS } from "../../models/security/SE_permisos";
 import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
@@ -46,6 +44,7 @@ import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
 import { REL_CUSTOMER_LOKER } from "../../models/relations/REL_customer_locker";
 import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
 import { REL_LOCKER_PHONE } from "../../models/relations/REL_locker_phone";
+import { REL_ORIGIN_DESTINO } from "../../models/relations/REL_Origin_Destino";
 
 const relaciones = async () => {
   await DE_ORDEN.belongsToMany(BO_TRACKING, {
@@ -62,35 +61,47 @@ const relaciones = async () => {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION, {
+  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_ORDEN",
     onDelete: "CASCADE",
   });
-  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
+  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+    foreignKey: "COD_ORDEN",
+    onDelete: "CASCADE",
+  });
+  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_DESTINATION_COUNTRY",
     onDelete: "CASCADE",
   });
-  
-  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION, {
-    foreignKey: "COD_ORGIGIN_COUNTRY",
+  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
+    foreignKey: "COD_DESTINATION_CITY",
     onDelete: "CASCADE",
   });
-  
-  await PA_STATES.hasMany(DE_TRACKING_INFORMATION, {
+  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+    foreignKey: "COD_ORIGIN_CITY",
+    onDelete: "CASCADE",
+  });
+
+  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+    foreignKey: "COD_ORIGIN_COUNTRY",
+    onDelete: "CASCADE",
+  });
+
+  await PA_STATES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_DESTINATION_STATE",
     onDelete: "CASCADE",
   });
-  
-  await PA_STATES.hasMany(DE_TRACKING_INFORMATION, {
-    foreignKey: "COD_ORGIGIN_STATE",
+
+  await PA_STATES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+    foreignKey: "COD_ORIGIN_STATE",
     onDelete: "CASCADE",
   });
-  
+
   await DE_SERVICE.hasMany(BO_TRACKING, {
     foreignKey: "COD_SERVICE",
     onDelete: "CASCADE",
   });
-  
+
   await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
@@ -117,12 +128,26 @@ const relaciones = async () => {
     foreignKey: "COD_CUSTOMER",
     onDelete: "CASCADE",
   });
-  
+
   await PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
     onDelete: "CASCADE",
   });
+  await DE_TRACKING_INFORMATION_DESTINO.hasMany(REL_ORIGIN_DESTINO, {
+    foreignKey: "COD_DESTINO",
+    onDelete: "CASCADE",
+  });
+
+  await DE_TRACKING_INFORMATION_ORIGEN.hasMany(REL_ORIGIN_DESTINO, {
+    foreignKey: "COD_ORIGIN",
+    onDelete: "CASCADE",
+  });
+  await DE_ORDEN.hasMany(REL_ORIGIN_DESTINO, {
+    foreignKey: "COD_ORDEN",
+    onDelete: "CASCADE",
+  });
+
   await PA_POEPLE.belongsToMany(PA_EMAIL, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_PEOPLE",
@@ -139,7 +164,6 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-
   await BO_LOCKER.belongsToMany(PA_PHONES, {
     through: REL_LOCKER_PHONE,
     foreignKey: "COD_LOCKER",
@@ -150,7 +174,6 @@ const relaciones = async () => {
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
   });
-
 
   await USERS.hasMany(LOGINFALLIDOS, {
     foreignKey: "COD_USER",

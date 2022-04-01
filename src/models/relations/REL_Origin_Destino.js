@@ -1,35 +1,30 @@
 import { Sequelize } from "sequelize";
 import db from "../../config/database";
 
-export const REL_PACKAGE_LOKER = db.define(
-  "REL_package_locker",
+export const REL_ORIGIN_DESTINO = db.define(
+  "REL_origin_destino",
   {
-    COD_REL_PACKAGELOCKER: {
+    COD_REL_ORIGIN_DESTINO: {
       type: Sequelize.BIGINT,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
       comment: "RELATIONSHIP BETWEEN PACKAGE AND LOCAKERS",
     },
-    COD_LOCKER: {
+    COD_ORDEN: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE LOCKER",
     },
-    COD_PACKAGE: {
+    COD_DESTINO: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE LOCKER",
+    },
+    COD_ORIGIN: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PACKAGE",
-    },
-    COD_CUSTOMER: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF TYPE OF CUTOMER",
-    },
-    COD_TRACKING: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF TYPE OF TRACKING",
     },
 
     DAT_ADD: {

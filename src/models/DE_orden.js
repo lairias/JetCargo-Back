@@ -17,14 +17,14 @@ export const DE_ORDEN = db.define(
       comment: "COD OF THE PEOPLE",
     },
     NUM_ORDEN: {
-        type: Sequelize.STRING(60),
+      type: Sequelize.STRING(60),
       allowNull: false,
       comment: "COD OF THE PEOPLE",
     },
     CHECKPOINT_STATUS: {
-        type: Sequelize.ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED'),
+      type: Sequelize.ENUM("PENDING", "IN_PROGRESS", "COMPLETED"),
       allowNull: false,
-      defaultValue: 'PENDING',
+      defaultValue: "PENDING",
       comment: "COD OF THE PEOPLE",
     },
     IND_ORDEN: {
@@ -34,9 +34,9 @@ export const DE_ORDEN = db.define(
       comment: "STATUS OF ORDEN",
     },
     ARCHIVED: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
       comment: "COD OF THE PEOPLE",
     },
     DAT_ADD_ORDEN: {
@@ -50,7 +50,7 @@ export const DE_ORDEN = db.define(
     },
   },
   {
-  createdAt: false,
-  updatedAt: false,
+    createdAt: false,
+    updatedAt: false,
   }
 );

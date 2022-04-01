@@ -42,7 +42,6 @@ export const CreateRole = async () => {
       console.log(error);
     }
   }
-  
 };
 
 export const CreatePemisoHasRol = async () => {
@@ -56,7 +55,8 @@ export const CreatePemisoHasRol = async () => {
         21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
-        75, 76,77,78,79,80,81,82,83,84,85,86,87,89,90,91,92,93,94,95,96,97
+        75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 90, 91, 92, 93,
+        94, 95, 96, 97,
       ];
       const cliente = [
         2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 68, 72,
@@ -97,7 +97,6 @@ export const CreatePermisos = async () => {
   } else {
     try {
       await Promise.all([
-     
         await SE_PERMISOS.create({
           NAM_PERMISOS: "dasboard.inicio",
           DES_PERMISOS: "Ver administrador",
@@ -167,9 +166,6 @@ export const CreatePermisos = async () => {
           NAM_PERMISOS: "profile.edit",
           DES_PERMISOS: "Ver administrador",
         }),
-        
-        
-
 
         await SE_PERMISOS.create({
           NAM_PERMISOS: "seguimiento.crear",
@@ -188,13 +184,11 @@ export const CreatePermisos = async () => {
           DES_PERMISOS: "Crear administrador",
         }),
 
-
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.crear",
           DES_PERMISOS: "Crear administrador",
         }),
 
-        
         await SE_PERMISOS.create({
           NAM_PERMISOS: "admin.view",
           DES_PERMISOS: "Ver administrador",
@@ -736,7 +730,7 @@ export const CreateStates = async () => {
         await PA_STATES.create({
           NAM_STATE: "Florida",
           DES_STATE: "Florida",
-          AREA_STATE : "32000 - 34999",
+          AREA_STATE: "32000 - 34999",
           USR_ADD: "admin",
           COD_COUNTRY: 3,
         }),
@@ -1178,38 +1172,37 @@ export const CreateUser = async () => {
     return;
   } else {
     try {
-      await Promise.all([ 
+      await Promise.all([
         PA_POEPLE.create({
-          ID:"08011999813042",
-          TIP_DOCUMENT:"PASSPORT",
-          FRISTNAME:"Alejandro",
-          MIDDLENAME:"Luis",
-          LASTNAME:"Gonzalez",
-          AGE:20,
-          DAT_BIRTH:"1999-01-01",
-          TIP_PERSON:"N",
-          USR_ADD:"admin",
+          ID: "08011999813042",
+          TIP_DOCUMENT: "PASSPORT",
+          FRISTNAME: "Alejandro",
+          MIDDLENAME: "Luis",
+          LASTNAME: "Gonzalez",
+          AGE: 20,
+          DAT_BIRTH: "1999-01-01",
+          TIP_PERSON: "N",
+          USR_ADD: "admin",
         }),
         USERS.create({
           COD_PEOPLE: 1,
           PROFILE_PHOTO_PATH: null,
-          EMAIL:"lairias@unah.hn",
+          EMAIL: "lairias@unah.hn",
           EMAIL_VERIFIED: true,
-          PAS_USER: "$2b$10$OMXC9dSjkSaNyF4PjQzPJObvw/SWnKlXCb7s2hlBzHhzTkk.gQzgm",
-          IND_USR:true,
-          IND_INS:true,
-          USR_ADD:"admin"
-         
+          PAS_USER:
+            "$2b$10$OMXC9dSjkSaNyF4PjQzPJObvw/SWnKlXCb7s2hlBzHhzTkk.gQzgm",
+          IND_USR: true,
+          IND_INS: true,
+          USR_ADD: "admin",
         }),
         MODEL_HAS_ROLES.create({
-          COD_TYPEUSERS : 1,
+          COD_TYPEUSERS: 1,
           COD_USER: 1,
-           }),
-           PA_CUSTOMES.create({
-            COD_USER: 1,
-            USR_ADD:"admin",
-
-           })
+        }),
+        PA_CUSTOMES.create({
+          COD_USER: 1,
+          USR_ADD: "admin",
+        }),
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1223,197 +1216,207 @@ export const CreateCatPackage = async () => {
     return;
   } else {
     try {
-     
-      await Promise.all([ 
+      await Promise.all([
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Accesorios Personales Reloj de puño Hombre y Mujer",
           DES_CATPACKAGE: "1",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Accesorios Personales Anillos y cadenas de oro,aritos",
+          NAM_CATPACKAGE:
+            "Accesorios Personales Anillos y cadenas de oro,aritos",
           DES_CATPACKAGE: "2",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Accesorios Personales Anillos y cadenas de plata,aritos",
+          NAM_CATPACKAGE:
+            "Accesorios Personales Anillos y cadenas de plata,aritos",
           DES_CATPACKAGE: "3",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Accesorios Personales Cadenas, Dijes, Anillos, Aritos ( Bisutería / Enchapado",
+          NAM_CATPACKAGE:
+            "Accesorios Personales Cadenas, Dijes, Anillos, Aritos ( Bisutería / Enchapado",
           DES_CATPACKAGE: "4",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Accesorio Para Celulares Cobertor, Fundas, Estuches.",
+          NAM_CATPACKAGE:
+            "Accesorio Para Celulares Cobertor, Fundas, Estuches.",
           DES_CATPACKAGE: "5",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Accesorios Personales Fajas",
           DES_CATPACKAGE: "6",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Articulos Varios Bolsones, Bolsos, Carteras, Maletas, Maletines.",
+          NAM_CATPACKAGE:
+            "Articulos Varios Bolsones, Bolsos, Carteras, Maletas, Maletines.",
           DES_CATPACKAGE: "7",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Articulos de Fiesta Mascaras, Disfraces, etc.",
           DES_CATPACKAGE: "8",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Articulos de Navidad Articulos de Navidad",
           DES_CATPACKAGE: "9",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Bicicleta / Motocicleta Pedales, Manubrios, Horquillas, Loderas, Asientos",
+          NAM_CATPACKAGE:
+            "Bicicleta / Motocicleta Pedales, Manubrios, Horquillas, Loderas, Asientos",
           DES_CATPACKAGE: "10",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Computadora Monitores LCD p/ computadoras",
           DES_CATPACKAGE: "11",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Computadora MotherBoard,discos duro interno,externo,tarjetas de sonido",
+          NAM_CATPACKAGE:
+            "Computadora MotherBoard,discos duro interno,externo,tarjetas de sonido",
           DES_CATPACKAGE: "12",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Computadora Mouse, Teclado",
           DES_CATPACKAGE: "13",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Computadora Tablet,Ipad,Laptop,y comp. de escritorio",
+          NAM_CATPACKAGE:
+            "Computadora Tablet,Ipad,Laptop,y comp. de escritorio",
           DES_CATPACKAGE: "14",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Computadora Router,Switch(tambien los extenda),lector de memoria Usb",
+          NAM_CATPACKAGE:
+            "Computadora Router,Switch(tambien los extenda),lector de memoria Usb",
           DES_CATPACKAGE: "15",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Herramientas para Manicura Herramientas para manicura",
+          NAM_CATPACKAGE:
+            "Herramientas para Manicura Herramientas para manicura",
           DES_CATPACKAGE: "16",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
 
-
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Herramientas Manuales formones,sierras manuales,martillos,desarmadores",
+          NAM_CATPACKAGE:
+            "Herramientas Manuales formones,sierras manuales,martillos,desarmadores",
           DES_CATPACKAGE: "17",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Herramientas Taladros,sierras,martillos electrivos",
           DES_CATPACKAGE: "17",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Hogar Alfombras plasticas,caucho o material textil para carros o casa",
+          NAM_CATPACKAGE:
+            "Hogar Alfombras plasticas,caucho o material textil para carros o casa",
           DES_CATPACKAGE: "18",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Hogar Adornos de metal,madera,yeso,bronce,plastico etc",
+          NAM_CATPACKAGE:
+            "Hogar Adornos de metal,madera,yeso,bronce,plastico etc",
           DES_CATPACKAGE: "19",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Adornos de ceramica(porcelana)",
           DES_CATPACKAGE: "20",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Sillas,asientos,muebles",
           DES_CATPACKAGE: "21",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Coches y sillas para el transporte de niños",
           DES_CATPACKAGE: "22",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar CD Musica,Audio",
           DES_CATPACKAGE: "23",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Videos,peliculas",
           DES_CATPACKAGE: "24",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
-          NAM_CATPACKAGE: "Hogar Video Juegos,Consola de video Juego,controles para video juego",
+          NAM_CATPACKAGE:
+            "Hogar Video Juegos,Consola de video Juego,controles para video juego",
           DES_CATPACKAGE: "25",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Cuadros",
           DES_CATPACKAGE: "26",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar DVD Player",
           DES_CATPACKAGE: "27",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Equipos de sonido",
           DES_CATPACKAGE: "28",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Camaras digitales,video camaras",
           DES_CATPACKAGE: "29",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Camaras fotograficas,video camaras",
           DES_CATPACKAGE: "30",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Camaras de seguridad",
           DES_CATPACKAGE: "31",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Camaras de video",
           DES_CATPACKAGE: "32",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Lamparas de mesa o sala",
           DES_CATPACKAGE: "33",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Lamparas de cocina",
           DES_CATPACKAGE: "34",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Lamparas de dormitorio",
           DES_CATPACKAGE: "35",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_CATPACKAGE.create({
           NAM_CATPACKAGE: "Hogar Lamparas de comedor",
           DES_CATPACKAGE: "36",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
-
-
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1427,28 +1430,26 @@ export const CreateTypePackage = async () => {
     return;
   } else {
     try {
-      await Promise.all([ 
+      await Promise.all([
         BO_TYPEPACKAGE.create({
           NAM_TYPEPACKAGE: "Envió en Aéreo",
           DES_TYPEPACKAGE: "Entrega en 3 semanas, mayor a 30 libras",
           PREC_TYPEPACKAGE: "4",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_TYPEPACKAGE.create({
           NAM_TYPEPACKAGE: "Envió en Marítimo",
           DES_TYPEPACKAGE: "Entrega en 2 semanas",
           PREC_TYPEPACKAGE: "6",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         BO_TYPEPACKAGE.create({
           NAM_TYPEPACKAGE: "Envió en Express",
-          DES_TYPEPACKAGE: "Entrega en 4 días, salida los jueves entregando los martes",
+          DES_TYPEPACKAGE:
+            "Entrega en 4 días, salida los jueves entregando los martes",
           PREC_TYPEPACKAGE: "10",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
-       
-
-
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1462,58 +1463,57 @@ export const CreateService = async () => {
     return;
   } else {
     try {
-      await Promise.all([ 
-
+      await Promise.all([
         DE_SERVICE.create({
           SERVICE_NAME: "Amazon",
           SERVICE_CODE: "amazon",
           SERVICE_PHONE: null,
-          SERVICE_URL:"https://track.amazon.in/tracking",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/amazon-in.png",
+          SERVICE_URL: "https://track.amazon.in/tracking",
+          SERVICE_LOGO:
+            "//s.trackingmore.com/images/icons/express/amazon-in.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "DHL Express",
           SERVICE_CODE: "dhl",
           SERVICE_PHONE: null,
-          SERVICE_URL:"http://www.dhl.com",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/dhl.png",
+          SERVICE_URL: "http://www.dhl.com",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/dhl.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "UPS",
           SERVICE_CODE: "ups",
           SERVICE_PHONE: "+1 800 742 5877",
-          SERVICE_URL:"https://www.ups.com/",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/ups.png",
+          SERVICE_URL: "https://www.ups.com/",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/ups.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "Fedex",
           SERVICE_CODE: "fedex",
           SERVICE_PHONE: "+1 800 247 4747",
-          SERVICE_URL:"https://www.fedex.com",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/fedex.png",
+          SERVICE_URL: "https://www.fedex.com",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/fedex.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "TNT",
           SERVICE_CODE: "tnt",
           SERVICE_PHONE: null,
-          SERVICE_URL:"http://www.tnt.com/",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/tnt.png",
+          SERVICE_URL: "http://www.tnt.com/",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/tnt.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "DHL Poland Domestic",
           SERVICE_CODE: "dhl-poland",
           SERVICE_PHONE: null,
-          SERVICE_URL:"https://www.logistics.dhl",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/dhl-es.png",
+          SERVICE_URL: "https://www.logistics.dhl",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/dhl-es.png",
         }),
         DE_SERVICE.create({
           SERVICE_NAME: "Mexico Post",
           SERVICE_CODE: "correos-mexico",
           SERVICE_PHONE: "(55) 5340 3300",
-          SERVICE_URL:"http://www.tnt.com/",
-          SERVICE_LOGO:"//s.trackingmore.com/images/icons/express/tnt.png",
+          SERVICE_URL: "http://www.tnt.com/",
+          SERVICE_LOGO: "//s.trackingmore.com/images/icons/express/tnt.png",
         }),
-        
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1527,19 +1527,19 @@ export const CreateLocker = async () => {
     return;
   } else {
     try {
-      await Promise.all([ 
+      await Promise.all([
         BO_LOCKER.create({
           COD_PEOPLE: 1,
           NUM_LOCKER: "TGU-00145",
           TYP_LOCKER: "8109 NW 60TH ST",
           ADDRES_LOCKER: "Miami, FL 33166",
           TEL_LOCKER: "6319133067",
-          USR_ADD:"admin",
+          USR_ADD: "admin",
         }),
         PA_PHONES.create({
           NUM_AREA: "305",
           NUM_PHONE: "8109",
-           }),
+        }),
         REL_LOCKER_PHONE.create({
           COD_LOCKER: 1,
           COD_PHONE: 1,

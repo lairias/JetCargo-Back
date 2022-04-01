@@ -5,7 +5,7 @@ import { HttpError } from "../helpers/handleError";
 export const GetCatPackages = async (req, res, next) => {
   try {
     const catPackage = await BO_CATPACKAGE.findAll();
-    return res.status(200).json({ok:true, catPackage});
+    return res.status(200).json({ ok: true, catPackage });
   } catch (error) {
     HttpError(res, error);
     next();
@@ -38,7 +38,7 @@ export const CreateCatPackage = async (req, res, next) => {
         HttpError(res, error);
         throw res.sendStatus(500);
       });
-    return res.status.json({ok:true});
+    return res.status.json({ ok: true });
   } catch (error) {
     HttpError(res, error);
     next();

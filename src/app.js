@@ -29,7 +29,7 @@ import Orden from "./routes/Orden.routes";
 import TrackinInformation from "./routes/TrackinInformation.routes";
 
 import sequelise from "./config/database/index";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import "./config/database/R_E";
 import {
   CreateRole,
@@ -43,31 +43,32 @@ import {
   CreateCatPackage,
   CreateTypePackage,
   CreateLocker,
-  CreateService
+  CreateService,
 } from "./config/database/Seeder";
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // //----------------
 CreateStates();
-// // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // //----------------
 CreateCities();
-// // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();
 CreateService();
 
-const storage = multer.diskStorage({destination: path.join(__dirname, "public/upload/img"),
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, "public/upload/img"),
   filename: (req, file, cb) => {
-    cb(null, "JetCargo_IMG"+"-" + uuidv4() + path.extname(file.originalname));
-  }
+    cb(null, "JetCargo_IMG" + "-" + uuidv4() + path.extname(file.originalname));
+  },
 });
 
 const app = express();

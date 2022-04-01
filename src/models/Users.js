@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/database";
 
-export const USERS = db.define( 
+export const USERS = db.define(
   "users",
   {
     COD_USER: {
@@ -16,7 +16,7 @@ export const USERS = db.define(
       allowNull: false,
       comment: "COD OF THE PERSON",
     },
-    
+
     PROFILE_PHOTO_PATH: {
       type: Sequelize.STRING(250),
       comment: " PROFILE PHOTO PATH",

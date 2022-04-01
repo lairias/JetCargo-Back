@@ -17,7 +17,9 @@ export const VeryEmail = async (req, res, next) => {
         },
       }
     );
-    return res.redirect(`${process.env.API_FROND}:${process.env.PORT_FROND}/very/email/`);
+    return res.redirect(
+      `${process.env.API_FROND}:${process.env.PORT_FROND}/very/email/`
+    );
   } catch (error) {
     HttpError(res, error);
     next();

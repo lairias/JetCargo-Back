@@ -1,19 +1,18 @@
-
-import {gql} from "apollo-server-express";
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
-type User{
+  type User {
     PROFILE_PHOTO_PATH: String
-}
+  }
 
-type Query{
+  type Query {
     hello: String
     getAllUsers: [User]
-}
-type Mutation{
-    createUser( PROFILE_PHOTO_PATH: String): User
-}
-`
+  }
+  type Mutation {
+    createUser(PROFILE_PHOTO_PATH: String): User
+  }
+`;
 module.exports = {
-    typeDefs
-}
+  typeDefs,
+};

@@ -12,16 +12,16 @@ export const REL_CUSTOMER_LOKER = db.define(
       comment: "RELATIONSHIP BETWEEN CUSTOMER AND LOCAKERS",
     },
     COD_CUSTOMER: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-        comment: "COD OF TYPE OF CUTOMER",
-      },
-      COD_LOCKER: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-        comment: "COD OF THE LOCKER",
-      },
-      
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF TYPE OF CUTOMER",
+    },
+    COD_LOCKER: {
+      type: Sequelize.BIGINT,
+      allowNull: false,
+      comment: "COD OF THE LOCKER",
+    },
+
     DAT_ADD: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
