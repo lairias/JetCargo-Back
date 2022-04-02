@@ -4,7 +4,8 @@ import {
   GetTrackinInformationOrden,
   GetTrackinInformationOrigen,
 GetTrackinInformationDestino,
-GetOrigenDestinoAllTracking
+GetOrigenDestinoAllTracking,
+GetTrackinInformationDestinoOrigenAll
 } from "../controllers/TrackinInformation.controller";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
@@ -20,6 +21,11 @@ router.get(
   "/origenDestino/:COD_ORDEN",
   [verifyToken, verifyIndUser],
   GetOrigenDestinoAllTracking
+);
+router.get(
+  "/origenDestinoAll/:COD_ORDEN",
+  [verifyToken, verifyIndUser],
+  GetTrackinInformationDestinoOrigenAll
 );
 
 router.get(

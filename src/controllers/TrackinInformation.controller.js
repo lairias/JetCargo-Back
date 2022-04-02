@@ -103,4 +103,21 @@ export const GetTrackinInformationDestino = async (req, res, next) => {
     next();
   }
 };
+export const GetTrackinInformationDestinoOrigenAll = async (req, res, next) => {
+  const { COD_ORDEN } = req.params;
+  try {
+    const OrigenDestino = await sequelize.query("CALL SHOW_ORIGEN_DESTINO_ORDEN_ALL(:COD_ORDEN)",{
+      replacements: { COD_ORDEN },
+    });
+   
+    if (OrigenDestino === null)
+      return res
+        .status(203)
+        .json({ ok: false, OrigenDestino: false });
+    return res.status(200).json( OrigenDestino );
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 
