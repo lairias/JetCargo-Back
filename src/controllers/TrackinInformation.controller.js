@@ -5,6 +5,37 @@ import { DE_TRACKING_INFORMATION_ORIGEN } from "../models/DE_trackingInformation
 import { DE_TRACKING_INFORMATION_DESTINO } from "../models/DE_trackingInformationDestino";
 import { REL_ORIGIN_DESTINO } from "../models/relations/REL_Origin_Destino";
 
+
+export const DestinoGetTrackinOne = async (req, res, next) => {
+  const {COD_DESTINO} = req.params;
+  console.log(COD_DESTINO);
+
+  try {
+  const Origen= await DE_TRACKING_INFORMATION_DESTINO.findOne({WHERE:{
+    COD_TRACKINFORMATION_DESTINO:COD_DESTINO
+  } });
+    return res.status(200).json({ Origen });
+  } catch (error) {
+    console.log(error);
+    HttpError(res, error);
+    next();
+  }
+};
+
+export const OrigenGetTrackinOne = async (req, res, next) => {
+  const {COD_INICIO} = req.params;
+  console.log(COD_INICIO);
+  try {
+  const Origen= await DE_TRACKING_INFORMATION_ORIGEN.findOne({WHERE:{
+    COD_TRACKINFORMATION_ORIGIN:COD_INICIO
+  }});
+    return res.status(200).json({ Origen });
+  } catch (error) {
+    console.log(error);
+    HttpError(res, error);
+    next();
+  }
+};
 export const CreateTrackingInformation = async (req, res, next) => {
   const {Direcciones, OrdenTrankings} = req.body;
   try {
