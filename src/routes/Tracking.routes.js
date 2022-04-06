@@ -8,6 +8,7 @@ import {
   TrackingNotOrdenType,
   TrackingNotOrden,
   TrackingNotOrdenCustomer,
+  GetTracking,
 } from "../controllers/Tracking.Controllers";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
@@ -45,6 +46,7 @@ router.get(
   GetTracking_not_orden
 );
 router.get("/:NUM_TRACKING", [verifyToken, verifyIndUser], GetTrackingsNumber);
+router.get("/GetBytracking/:COD_TRACKING", [verifyToken, verifyIndUser], GetTracking);
 router.post("/", [verifyToken, verifyIndUser], CreateTracking);
 router.put("/:COD_TRACKING", [verifyToken, verifyIndUser], UpdateTracking);
 export default router;

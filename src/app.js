@@ -26,6 +26,7 @@ import Seguridad from "./routes/seguridad.routes";
 import Phone from "./routes/Phone.routes";
 import Message from "./routes/Messaje.routes";
 import Orden from "./routes/Orden.routes";
+import Invoice from "./routes/Invoice.routes";
 import TrackinInformation from "./routes/TrackinInformation.routes";
 
 import sequelise from "./config/database/index";
@@ -48,17 +49,17 @@ import {
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // // // // // // // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // // // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // //----------------
 CreateStates();
-// // // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // //----------------
 CreateCities();
-// // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
 CreateLocker();
@@ -99,5 +100,6 @@ app.use("/api/people", People);
 app.use("/api/permission", Permission);
 app.use("/api/message", Message);
 app.use("/api/trackingInformation", TrackinInformation);
+app.use("/api/invoice", Invoice);
 
 export default app;

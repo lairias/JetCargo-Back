@@ -70,6 +70,41 @@ export const CreateTrackingInformation = async (req, res, next) => {
     next();
   }
 };
+export const UpdateTrackingInformation = async (req, res, next) => {
+  const { 
+    PaisOrigin,
+        PaisDestino,
+        StateOrigin,
+        StateDestino,
+        CityOrigin,
+        CityDestino,
+        COD_ORDEN,
+        STATUS_ORIGIN,
+        STATUS_DESTINO } = req.body;
+        console.log(req.body);
+  try {
+    const Origen = await DE_TRACKING_INFORMATION_ORIGEN.update({
+      COD_ORDEN: COD_ORDEN,
+      COD_ORIGIN_COUNTRY:parseInt(PaisOrigin),
+      COD_ORIGIN_STATE:parseInt(StateOrigin),
+      COD_ORIGIN_CITY:parseInt(CityOrigin),
+      CHECKPOINT_DELIVERY_STATUS: STATUS_ORIGIN,
+    },{where: {COD_ORDEN},});
+    const Destino = await DE_TRACKING_INFORMATION_DESTINO.create({
+      COD_ORDEN: COD_ORDEN,
+      COD_DESTINATION_COUNTRY: parseInt(PaisDestino),
+      COD_DESTINATION_STATE: parseInt(StateDestino),
+      COD_DESTINATION_CITY:parseInt(CityDestino),
+      CHECKPOINT_DELIVERY_STATUS: STATUS_DESTINO,
+    });
+    
+    return res.status(200).json({ ok: true });
+  } catch (error) {
+    console.log(error);
+    HttpError(res, error);
+    next();
+  }
+};
 
 export const GetTrackinInformationOrden = async (req, res, next) => {
   const { COD_ORDEN } = req.params;

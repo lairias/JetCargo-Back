@@ -9,11 +9,13 @@ import {
   GetOrigenDestinoAllTrackingAdministrador,
   OrigenGetTrackinOne,
   DestinoGetTrackinOne,
+  UpdateTrackingInformation,
 } from "../controllers/TrackinInformation.controller";
 import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
 const router = Router();
 
 router.post("/", [verifyToken, verifyIndUser], CreateTrackingInformation);
+router.put("/", [verifyToken, verifyIndUser], UpdateTrackingInformation);
 router.get(
   "/destino/:COD_DESTINO",
   [verifyToken, verifyIndUser],

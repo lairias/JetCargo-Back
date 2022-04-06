@@ -79,6 +79,15 @@ export const TrackingNotOrden = async (req, res, next) => {
 
 export const GetTracking = async (req, res, next) => {
   try {
+    const {COD_TRACKING} = req.params;
+    const tracking = await BO_TRACKING.findOne({
+      where: {
+        COD_TRACKING,
+      },
+    });
+    if (!tracking)
+      return res.status(203).json({ ok: false, tracking: false });
+    return res.status(203).json({ ok: true, tracking });
   } catch (error) {
     HttpError(res, error);
     next();
