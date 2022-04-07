@@ -30,7 +30,7 @@ export const CreateOrden = async (req, res, next) => {
         landing_page: "LOGIN",
         shipping_preference: "GET_FROM_FILE",
         user_action: "PAY_NOW",
-        return_url: `${process.env.API_BACK}:${process.env.PORT_API}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
+        return_url: `${process.env.API_BACK}:${process.env.PORT}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
         cancel_url: "http://localhost:3000/payment/cancel",
       },
     };
@@ -74,15 +74,15 @@ export const CaptureOrden = async (req, res, next) => {
     const { token, PayerID } = req.query;
 
     if (!COD_CUSTOMER)
-      return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!COD_TRACKING)
-      return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!COD_PACKAGE)
-      return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!token)
-      return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!PayerID)
-      return res.redirect(`${process.env.API_BACK}:${process.env.PORT_API}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
 
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bd-import": "node src/config/database/import.js",
+   
     "build": "babel src --out-dir build",
     "start": "nodemon  --exec npx   babel-node src/index.js "
 
