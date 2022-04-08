@@ -1,21 +1,21 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   GetStates,
   GetStatesForCountry,
   CreateState,
   DeleteState,
   UpdateState,
   GetState,
-} from "../controllers/States.Controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-import {
+} =require( "../controllers/States.Controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+const {
   StatesView,
   StatesCreate,
   StatesUpdate,
   StatesDelete,
-} from "../middleware/permissions/States.Permission";
+} =require( "../middleware/permissions/States.Permission")
 
-const router = Router();
 
 router.get("/country/:COD_COUNTRY", GetStatesForCountry);
 router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);
@@ -32,4 +32,5 @@ router.put(
 );
 router.get("/:COD_STATE", [verifyToken, verifyIndUser, StatesView], GetState);
 
-export default router;
+
+module.exports = router;

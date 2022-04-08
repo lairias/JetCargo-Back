@@ -1,21 +1,22 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   GetCatPackages,
   GetCatPackage,
   CreateCatPackage,
   UpdateCatPackage,
   DeleteCatPackage,
-} from "../controllers/CatPackage.Controllers";
+} =require( "../controllers/CatPackage.Controllers")
 
-import {
+const {
   CatPackageCreate,
   CatPackageView,
   CatPackageDelete,
   CatPackageUpdate,
-} from "../middleware/permissions/CatPackage.Permission";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
+} =require( "../middleware/permissions/CatPackage.Permission")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
-const router = Router();
+
 router.get("/", [verifyToken, verifyIndUser, CatPackageView], GetCatPackages);
 router.get(
   "/:COD_CATPACKAGE",
@@ -38,4 +39,5 @@ router.delete(
   DeleteCatPackage
 );
 
-export default router;
+
+module.exports = router;

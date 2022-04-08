@@ -1,19 +1,19 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Orden = require("../controllers/Orden.controllers");
+var _require = require("../controllers/Orden.controllers"),
+    GetOrdenTracking = _require.GetOrdenTracking,
+    GetOrdenByTracking = _require.GetOrdenByTracking,
+    GetOrdenByNumberTracking = _require.GetOrdenByNumberTracking;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyIndUser = _require2.verifyIndUser,
+    verifyToken = _require2.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/:COD_TRACKING", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Orden.GetOrdenTracking);
-router.get("/tracking_cod/:COD_TRACKING", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Orden.GetOrdenByTracking);
-router.get("/tracking_number/:NUM_TRACKING", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Orden.GetOrdenByNumberTracking);
-var _default = router;
-exports["default"] = _default;
+router.get("/:COD_TRACKING", [verifyToken, verifyIndUser], GetOrdenTracking);
+router.get("/tracking_cod/:COD_TRACKING", [verifyToken, verifyIndUser], GetOrdenByTracking);
+router.get("/tracking_number/:NUM_TRACKING", [verifyToken, verifyIndUser], GetOrdenByNumberTracking);
+module.exports = router;

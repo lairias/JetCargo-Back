@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken";
-import { USERS } from "../models/Users";
-import "dotenv/config";
-import { HttpError } from "../helpers/handleError";
-import { verifyTokenDate } from "./tokens/verifyToken.Date";
-export const verifyTokenPass = async (req, res, next) => {
+const jwt = require("jsonwebtoken");
+const { USERS } =require( "../models/Users")
+require('dotenv').config()
+const { HttpError } =require( "../helpers/handleError")
+const { verifyTokenDate } =require( "./tokens/verifyToken.Date")
+ const verifyTokenPass = async (req, res, next) => {
   const { TOKEN } = req.params;
   try {
     if (!verifyTokenDate(TOKEN))
@@ -22,4 +22,8 @@ export const verifyTokenPass = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  verifyTokenPass,
 };

@@ -1,17 +1,12 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.verifyTokenDate = void 0;
-
-var _jwtDecode = _interopRequireDefault(require("jwt-decode"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var jwt_decode = require("jwt-decode");
 
 var verifyTokenDate = function verifyTokenDate(token) {
-  if (Date.now() >= (0, _jwtDecode["default"])(token).exp * 1000) return false;
+  if (Date.now() >= jwt_decode(token).exp * 1000) return false;
   return true;
 };
 
-exports.verifyTokenDate = verifyTokenDate;
+module.exports = {
+  verifyTokenDate: verifyTokenDate
+};

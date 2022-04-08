@@ -1,23 +1,21 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.VeryEmail = exports.GetEmail = void 0;
-
-var _Users = require("../models/Users");
-
-var _sequelize = require("sequelize");
-
-var _handleError = require("../helpers/handleError");
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var VeryEmail = /*#__PURE__*/function () {
+var _require = require("../models/Users"),
+    USERS = _require.USERS;
+
+var _require2 = require("sequelize"),
+    Op = _require2.Op;
+
+var _require3 = require("../helpers/handleError"),
+    HttpError = _require3.HttpError;
+
+exports.VeryEmail = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var _req$params, EMAIL, TOKEN, COD_USER, User;
 
@@ -28,7 +26,7 @@ var VeryEmail = /*#__PURE__*/function () {
             _req$params = req.params, EMAIL = _req$params.EMAIL, TOKEN = _req$params.TOKEN, COD_USER = _req$params.COD_USER;
             _context.prev = 1;
             _context.next = 4;
-            return _Users.USERS.findOne({
+            return USERS.findOne({
               where: {
                 EMAIL: EMAIL
               }
@@ -48,14 +46,14 @@ var VeryEmail = /*#__PURE__*/function () {
 
           case 7:
             _context.next = 9;
-            return _Users.USERS.update({
+            return USERS.update({
               API_TOKEN: null,
               IND_USR: 1,
               EMAIL_VERIFIED: 1
             }, {
               where: _defineProperty({
                 API_TOKEN: TOKEN
-              }, _sequelize.Op.and, [{
+              }, Op.and, [{
                 EMAIL: EMAIL
               }, {
                 COD_USER: COD_USER
@@ -68,7 +66,7 @@ var VeryEmail = /*#__PURE__*/function () {
           case 12:
             _context.prev = 12;
             _context.t0 = _context["catch"](1);
-            (0, _handleError.HttpError)(res, _context.t0);
+            HttpError(res, _context.t0);
             next();
 
           case 16:
@@ -79,14 +77,12 @@ var VeryEmail = /*#__PURE__*/function () {
     }, _callee, null, [[1, 12]]);
   }));
 
-  return function VeryEmail(_x, _x2, _x3) {
+  return function (_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.VeryEmail = VeryEmail;
-
-var GetEmail = /*#__PURE__*/function () {
+exports.GetEmail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
     var EMAIL, User;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -96,7 +92,7 @@ var GetEmail = /*#__PURE__*/function () {
             EMAIL = req.params.EMAIL;
             _context2.prev = 1;
             _context2.next = 4;
-            return _Users.USERS.findByPk(EMAIL);
+            return USERS.findByPk(EMAIL);
 
           case 4:
             User = _context2.sent;
@@ -119,7 +115,7 @@ var GetEmail = /*#__PURE__*/function () {
           case 10:
             _context2.prev = 10;
             _context2.t0 = _context2["catch"](1);
-            (0, _handleError.HttpError)(res, _context2.t0);
+            HttpError(res, _context2.t0);
             next();
 
           case 14:
@@ -130,9 +126,7 @@ var GetEmail = /*#__PURE__*/function () {
     }, _callee2, null, [[1, 10]]);
   }));
 
-  return function GetEmail(_x4, _x5, _x6) {
+  return function (_x4, _x5, _x6) {
     return _ref2.apply(this, arguments);
   };
 }();
-
-exports.GetEmail = GetEmail;

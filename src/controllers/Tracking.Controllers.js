@@ -1,18 +1,12 @@
-import { PA_TypeUsers } from "../models/Pa_typeUsers";
-import { HttpError } from "../helpers/handleError";
-import sequelize from "../config/database";
-import RandomCode from "random-codes";
-import { BO_TRACKING } from "../models/Bo_tracking";
-import { BO_PACKAGE } from "../models/BO_package";
-import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
-import { SendMessage } from "../config/Twilio/Send_msm";
-import { PA_POEPLE } from "../models/Pa_people";
-import { REL_PEOPLE_PHONE } from "../models/relations/REL_people_phone";
-import { USERS } from "../models/Users";
-import { PA_PHONES } from "../models/Pa_phones";
-import { DE_SERVICE } from "../models/DE_service";
+const { PA_TypeUsers } =require( "../models/Pa_typeUsers")
+const { HttpError } =require( "../helpers/handleError")
+const sequelize =require( "../config/database")
+const RandomCode =require( "random-codes")
+const { BO_TRACKING } =require( "../models/Bo_tracking")
+const { BO_PACKAGE } =require( "../models/BO_package")
+const { BO_TYPEPACKAGE } =require( "../models/BO_typePackage")
 
-export const TrackingNotOrdenType = async (req, res, next) => {
+ exports.TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
   try {
     const count = await sequelize.query("CALL COUNT_TRACKING_NOT_ORDEN()");
@@ -34,7 +28,7 @@ export const TrackingNotOrdenType = async (req, res, next) => {
   }
 };
 
-export const TrackingNotOrdenCustomer = async (req, res, next) => {
+ exports.TrackingNotOrdenCustomer = async (req, res, next) => {
   const { RECEIVED_TRACKING, COD_CUSTOMER, NUM_TRACKING } = req.params;
   try {
     const tracking = await sequelize.query(
@@ -56,7 +50,7 @@ export const TrackingNotOrdenCustomer = async (req, res, next) => {
   }
 };
 
-export const TrackingNotOrden = async (req, res, next) => {
+ exports.TrackingNotOrden = async (req, res, next) => {
   const { RECEIVED_TRACKING } = req.params;
   try {
     const count = await sequelize.query("CALL COUNT_TRACKING_NOT_ORDEN()");
@@ -77,7 +71,7 @@ export const TrackingNotOrden = async (req, res, next) => {
   }
 };
 
-export const GetTracking = async (req, res, next) => {
+ exports.GetTracking = async (req, res, next) => {
   try {
     const {COD_TRACKING} = req.params;
     const tracking = await BO_TRACKING.findOne({
@@ -93,7 +87,7 @@ export const GetTracking = async (req, res, next) => {
     next();
   }
 };
-export const GetTrackings = async (req, res, next) => {
+ exports.GetTrackings = async (req, res, next) => {
   try {
     await PA_TypeUsers.findAll();
     return res.status(200).json();
@@ -102,7 +96,7 @@ export const GetTrackings = async (req, res, next) => {
     next();
   }
 };
-export const GetTrackingsNumber = async (req, res, next) => {
+ exports.GetTrackingsNumber = async (req, res, next) => {
   const { NUM_TRACKING } = req.params;
   try {
     const tracking = await BO_TRACKING.findOne({
@@ -114,7 +108,7 @@ export const GetTrackingsNumber = async (req, res, next) => {
     next();
   }
 };
-export const GetTrackingsNumberService = async (req, res, next) => {
+ exports.GetTrackingsNumberService = async (req, res, next) => {
   const { COD_SERVICE, NUM_TRACKING } = req.params;
   try {
     const resultado = await sequelize.query(
@@ -135,7 +129,7 @@ export const GetTrackingsNumberService = async (req, res, next) => {
   }
 };
 
-export const GetTracking_not_orden = async (req, res, next) => {
+ exports.GetTracking_not_orden = async (req, res, next) => {
   const { COD_TRACKING, COD_PACKAGE, NUM_LOCKER, COD_CUSTOMER } = req.params;
   console.log("funciona");
   try {
@@ -152,7 +146,7 @@ export const GetTracking_not_orden = async (req, res, next) => {
   }
 };
 
-export const UpdateTracking = async (req, res, next) => {
+ exports.UpdateTracking = async (req, res, next) => {
   const {
     HEIGHT_PACKAGE,
     WIDTH_PACKAGE,
@@ -221,14 +215,14 @@ export const UpdateTracking = async (req, res, next) => {
     next();
   }
 };
-export const DeleteTracking = async (req, res, next) => {
+ exports.DeleteTracking = async (req, res, next) => {
   try {
   } catch (error) {
     HttpError(res, error);
     next();
   }
 };
-export const CreateTracking = async (req, res, next) => {
+ exports.CreateTracking = async (req, res, next) => {
   const {
     COD_SERVICE,
     COD_CATPACKAGE,
@@ -283,10 +277,11 @@ var config = {
   // Size of each part
   part_size: 4,
 
-  // Function used to get a random char from the chars pool
+  // Function used to get a random char =require( the chars pool
   // (Please use a better one)
   getChar: function (pool) {
     var random = Math.floor(Math.random() * pool.length);
     return pool.charAt(random);
   },
 };
+

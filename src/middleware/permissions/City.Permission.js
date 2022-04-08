@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const CityView = async (req, res, next) => {
+ const CityView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -15,7 +15,7 @@ export const CityView = async (req, res, next) => {
     next();
   }
 };
-export const CityCreate = async (req, res, next) => {
+ const CityCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -29,7 +29,7 @@ export const CityCreate = async (req, res, next) => {
     next();
   }
 };
-export const CityUpdate = async (req, res, next) => {
+ const CityUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -43,7 +43,7 @@ export const CityUpdate = async (req, res, next) => {
     next();
   }
 };
-export const CityDelete = async (req, res, next) => {
+ const CityDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -56,4 +56,11 @@ export const CityDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  CityView,
+  CityCreate,
+  CityUpdate,
+  CityDelete,
 };

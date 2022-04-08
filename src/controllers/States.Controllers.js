@@ -1,9 +1,8 @@
-import { Op } from "sequelize";
-import { PA_STATES } from "../models/Pa_states";
-import { HttpError } from "../helpers/handleError";
-import sequelize from "../config/database/index";
+const { PA_STATES } =require( "../models/Pa_states")
+const { HttpError } =require( "../helpers/handleError")
+const sequelize =require( "../config/database/index")
 
-export const GetStates = async (req, res, next) => {
+ exports.GetStates = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({ where: { IND_STATE: 1 } });
     return res.status(200).json(cities);
@@ -12,7 +11,7 @@ export const GetStates = async (req, res, next) => {
     next();
   }
 };
-export const GetStatesForCountry = async (req, res, next) => {
+ exports.GetStatesForCountry = async (req, res, next) => {
   const { COD_COUNTRY } = req.params;
   try {
     const cities = await sequelize
@@ -30,7 +29,7 @@ export const GetStatesForCountry = async (req, res, next) => {
     next();
   }
 };
-export const DeleteState = async (req, res, next) => {
+ exports.DeleteState = async (req, res, next) => {
   const { COD_STATE } = req.params;
   try {
     await PA_STATES.destroy({ where: { COD_STATE } });
@@ -40,7 +39,7 @@ export const DeleteState = async (req, res, next) => {
     next();
   }
 };
-export const UpdateState = async (req, res, next) => {
+ exports.UpdateState = async (req, res, next) => {
   const { COD_STATE } = req.params;
   const { NAM_STATE, DES_STATE, USR_UPD, COD_COUNTRY } = req.body;
   try {
@@ -68,7 +67,7 @@ export const UpdateState = async (req, res, next) => {
     next();
   }
 };
-export const CreateState = async (req, res, next) => {
+ exports.CreateState = async (req, res, next) => {
   const { NAM_STATE, DES_STATE, USR_ADD, COD_COUNTRY } = req.body;
   console.log(req.body);
   try {
@@ -87,7 +86,7 @@ export const CreateState = async (req, res, next) => {
     next();
   }
 };
-export const GetState = async (req, res, next) => {
+ exports.GetState = async (req, res, next) => {
   const { COD_STATE } = req.params;
   try {
     const cities = await PA_STATES.findOne({ where: { COD_STATE } });
@@ -97,3 +96,4 @@ export const GetState = async (req, res, next) => {
     next();
   }
 };
+

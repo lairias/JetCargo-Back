@@ -1,10 +1,10 @@
-import { BO_LOCKER } from "../models/BO_locker";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-import { REL_CUSTOMER_LOKER } from "../models/relations/REL_customer_locker";
-import { AsignacionLokerCustomers, transport } from "../email";
+const { BO_LOCKER } =require("../models/BO_locker")
+const sequelize =require("../config/database/index")
+const { HttpError } =require("../helpers/handleError")
+const { REL_CUSTOMER_LOKER } =require("../models/relations/REL_customer_locker")
+const { AsignacionLokerCustomers, transport } =require("../email")
 
-export const GetLokers = async (req, res, next) => {
+ exports.GetLokers = async (req, res, next) => {
   try {
     const lockers = await BO_LOCKER.findAll();
     if (!lockers) return res.status(200).json({ ok: false, lockers });
@@ -14,7 +14,7 @@ export const GetLokers = async (req, res, next) => {
     next();
   }
 };
-export const GetLokersind = async (req, res, next) => {
+ exports.GetLokersind = async (req, res, next) => {
   try {
     const lockersInd = await BO_LOCKER.findAll({ where: { IND_LOCKER: true } });
     if (!lockersInd) return res.status(200).json({ ok: false, lockersInd });
@@ -25,7 +25,7 @@ export const GetLokersind = async (req, res, next) => {
   }
 };
 
-export const GetLoker = async (req, res, next) => {
+ exports.GetLoker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
     const cities = await BO_LOCKER.findByPk(COD_LOCKER);
@@ -35,7 +35,7 @@ export const GetLoker = async (req, res, next) => {
     next();
   }
 };
-export const GetLokerByPeople = async (req, res, next) => {
+ exports.GetLokerByPeople = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
     const cities = await BO_LOCKER.findByPk(COD_LOCKER);
@@ -46,7 +46,7 @@ export const GetLokerByPeople = async (req, res, next) => {
   }
 };
 
-export const GetLokerByCustomer = async (req, res, next) => {
+ exports.GetLokerByCustomer = async (req, res, next) => {
   const { COD_CUSTOMER } = req.params;
   try {
     const lokerCustomer = await sequelize.query(
@@ -64,7 +64,7 @@ export const GetLokerByCustomer = async (req, res, next) => {
   }
 };
 
-export const CreateLoker = async (req, res, next) => {
+ exports.CreateLoker = async (req, res, next) => {
   const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, USR_ADD } = req.body;
   try {
     await sequelize
@@ -88,7 +88,7 @@ export const CreateLoker = async (req, res, next) => {
   }
 };
 
-export const CreateLokerCustomers = async (req, res, next) => {
+ exports.CreateLokerCustomers = async (req, res, next) => {
   const { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME, EMAIL } = req.body;
   console.log(req.body);
   try {
@@ -113,7 +113,7 @@ export const CreateLokerCustomers = async (req, res, next) => {
   }
 };
 
-export const DeleteLoker = async (req, res, next) => {
+ exports.DeleteLoker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
     await BO_LOCKER.destroy({
@@ -128,7 +128,7 @@ export const DeleteLoker = async (req, res, next) => {
   }
 };
 
-export const UpdateLoker = async (req, res, next) => {
+ exports.UpdateLoker = async (req, res, next) => {
   const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, IND_LOCKER, USR_UPD } = req.body;
   const { COD_LOCKER } = req.params;
   try {
@@ -155,3 +155,4 @@ export const UpdateLoker = async (req, res, next) => {
     next();
   }
 };
+

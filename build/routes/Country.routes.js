@@ -1,23 +1,29 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Country = require("../controllers/Country.Controllers");
+var _require = require("../controllers/Country.Controllers"),
+    GetCountries = _require.GetCountries,
+    DeleteCountrie = _require.DeleteCountrie,
+    GetCountry = _require.GetCountry,
+    UpdateCountrie = _require.UpdateCountrie,
+    CreateCountry = _require.CreateCountry;
 
-var _County = require("../middleware/permissions/County.Permission");
+var _require2 = require("../middleware/permissions/County.Permission"),
+    CountryCreate = _require2.CountryCreate,
+    CountryDelete = _require2.CountryDelete,
+    CountryUpdate = _require2.CountryUpdate,
+    CountryView = _require2.CountryView;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require3 = require("../middleware/verifySignup"),
+    verifyIndUser = _require3.verifyIndUser,
+    verifyToken = _require3.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/", _Country.GetCountries);
-router.get("/:COD_COUNTRY", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _County.CountryView], _Country.GetCountry);
-router.post("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _County.CountryCreate], _Country.CreateCountry);
-router["delete"]("/:COD_COUNTRY", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _County.CountryDelete], _Country.DeleteCountrie);
-router.put("/:COD_COUNTRY", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _County.CountryUpdate], _Country.UpdateCountrie);
-var _default = router;
-exports["default"] = _default;
+router.get("/", GetCountries);
+router.get("/:COD_COUNTRY", [verifyToken, verifyIndUser, CountryView], GetCountry);
+router.post("/", [verifyToken, verifyIndUser, CountryCreate], CreateCountry);
+router["delete"]("/:COD_COUNTRY", [verifyToken, verifyIndUser, CountryDelete], DeleteCountrie);
+router.put("/:COD_COUNTRY", [verifyToken, verifyIndUser, CountryUpdate], UpdateCountrie);
+module.exports = router;

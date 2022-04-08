@@ -1,42 +1,35 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.LOGINFALLIDOS = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../config/database");
 
-var _database = _interopRequireDefault(require("../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var LOGINFALLIDOS = _database["default"].define("LOG_LoginFallidos", {
+var LOGINFALLIDOS = db.define("LOG_LoginFallidos", {
   COD_LOGINFALLIDOS: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "COD OF THE ERROR"
   },
   COD_USER: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "DESCRIPTION OF ERROR"
   },
   COUNT_ERROR: {
-    type: _sequelize.Sequelize.STRING(2000),
+    type: Sequelize.STRING(2000),
     allowNull: false,
     comment: "CURRENT ERROR COUNT"
   },
   DAT_ADD: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.LOGINFALLIDOS = LOGINFALLIDOS;
+module.exports = LOGINFALLIDOS;

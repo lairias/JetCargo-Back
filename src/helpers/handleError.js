@@ -1,5 +1,5 @@
-import { LOG_ERROR } from "../models/LOG_Errores";
-export const HttpError = async (res, error) => {
+const {LOG_ERROR} = require("../models/LOG_Errores");
+const HttpError = async (res, error) => {
   await LOG_ERROR.create({
     DES_ERROR: `${error}`,
     HTTP_ERROR: `${res.req.method} /  ${res.req.baseUrl}`,
@@ -7,3 +7,5 @@ export const HttpError = async (res, error) => {
   });
   return;
 };
+
+module.exports = {HttpError}

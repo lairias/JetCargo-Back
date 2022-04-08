@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const BO_SHIPPINGCOST = db.define(
+ const BO_SHIPPINGCOST = db.define(
   "BO_ShippingCost",
   {
     COD_SHIPPINGCOST: {
@@ -50,3 +50,5 @@ export const BO_SHIPPINGCOST = db.define(
     updatedAt: false,
   }
 );
+
+module.exports =BO_SHIPPINGCOST

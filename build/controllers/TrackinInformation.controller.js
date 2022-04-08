@@ -1,27 +1,24 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UpdateTrackingInformation = exports.OrigenGetTrackinOne = exports.GetTrackinInformationOrigen = exports.GetTrackinInformationOrden = exports.GetTrackinInformationDestinoOrigenAll = exports.GetTrackinInformationDestino = exports.GetOrigenDestinoAllTrackingAdministrador = exports.GetOrigenDestinoAllTracking = exports.DestinoGetTrackinOne = exports.CreateTrackingInformation = void 0;
-
-var _index = _interopRequireDefault(require("../config/database/index"));
-
-var _handleError = require("../helpers/handleError");
-
-var _DE_trackingInformationOrigin = require("../models/DE_trackingInformationOrigin");
-
-var _DE_trackingInformationDestino = require("../models/DE_trackingInformationDestino");
-
-var _REL_Origin_Destino = require("../models/relations/REL_Origin_Destino");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var DestinoGetTrackinOne = /*#__PURE__*/function () {
+var sequelize = require("../config/database/index");
+
+var _require = require("../helpers/handleError"),
+    HttpError = _require.HttpError;
+
+var _require2 = require("../models/DE_trackingInformationOrigin"),
+    DE_TRACKING_INFORMATION_ORIGEN = _require2.DE_TRACKING_INFORMATION_ORIGEN;
+
+var _require3 = require("../models/DE_trackingInformationDestino"),
+    DE_TRACKING_INFORMATION_DESTINO = _require3.DE_TRACKING_INFORMATION_DESTINO;
+
+var _require4 = require("../models/relations/REL_Origin_Destino"),
+    REL_ORIGIN_DESTINO = _require4.REL_ORIGIN_DESTINO;
+
+exports.DestinoGetTrackinOne = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var COD_DESTINO, Origen;
     return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -31,7 +28,7 @@ var DestinoGetTrackinOne = /*#__PURE__*/function () {
             COD_DESTINO = req.params.COD_DESTINO;
             _context.prev = 1;
             _context.next = 4;
-            return _index["default"].query("CALL SHOW_INFORMATION_TRACKIN_DESTINO_BY_ID(:COD_DESTINO)", {
+            return sequelize.query("CALL SHOW_INFORMATION_TRACKIN_DESTINO_BY_ID(:COD_DESTINO)", {
               replacements: {
                 COD_DESTINO: COD_DESTINO
               }
@@ -47,7 +44,7 @@ var DestinoGetTrackinOne = /*#__PURE__*/function () {
             _context.prev = 8;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0);
-            (0, _handleError.HttpError)(res, _context.t0);
+            HttpError(res, _context.t0);
             next();
 
           case 13:
@@ -58,14 +55,12 @@ var DestinoGetTrackinOne = /*#__PURE__*/function () {
     }, _callee, null, [[1, 8]]);
   }));
 
-  return function DestinoGetTrackinOne(_x, _x2, _x3) {
+  return function (_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.DestinoGetTrackinOne = DestinoGetTrackinOne;
-
-var OrigenGetTrackinOne = /*#__PURE__*/function () {
+exports.OrigenGetTrackinOne = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
     var COD_INICIO, Origen;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -75,7 +70,7 @@ var OrigenGetTrackinOne = /*#__PURE__*/function () {
             COD_INICIO = req.params.COD_INICIO;
             _context2.prev = 1;
             _context2.next = 4;
-            return _index["default"].query("CALL SHOW_INFORMATION_TRACKIN_ORIGIN_BY_ID(:COD_INICIO)", {
+            return sequelize.query("CALL SHOW_INFORMATION_TRACKIN_ORIGIN_BY_ID(:COD_INICIO)", {
               replacements: {
                 COD_INICIO: COD_INICIO
               }
@@ -91,7 +86,7 @@ var OrigenGetTrackinOne = /*#__PURE__*/function () {
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](1);
             console.log(_context2.t0);
-            (0, _handleError.HttpError)(res, _context2.t0);
+            HttpError(res, _context2.t0);
             next();
 
           case 13:
@@ -102,14 +97,12 @@ var OrigenGetTrackinOne = /*#__PURE__*/function () {
     }, _callee2, null, [[1, 8]]);
   }));
 
-  return function OrigenGetTrackinOne(_x4, _x5, _x6) {
+  return function (_x4, _x5, _x6) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.OrigenGetTrackinOne = OrigenGetTrackinOne;
-
-var CreateTrackingInformation = /*#__PURE__*/function () {
+exports.CreateTrackingInformation = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res, next) {
     var _req$body, Direcciones, COD_ORDEN, Origen, Destino;
 
@@ -120,7 +113,7 @@ var CreateTrackingInformation = /*#__PURE__*/function () {
             _req$body = req.body, Direcciones = _req$body.Direcciones, COD_ORDEN = _req$body.COD_ORDEN;
             _context3.prev = 1;
             _context3.next = 4;
-            return _DE_trackingInformationOrigin.DE_TRACKING_INFORMATION_ORIGEN.create({
+            return DE_TRACKING_INFORMATION_ORIGEN.create({
               COD_ORDEN: COD_ORDEN,
               COD_ORIGIN_COUNTRY: Direcciones.COD_COUNTRY_ORIGIN,
               COD_ORIGIN_STATE: Direcciones.COD_STATE_ORIGIN,
@@ -131,7 +124,7 @@ var CreateTrackingInformation = /*#__PURE__*/function () {
           case 4:
             Origen = _context3.sent;
             _context3.next = 7;
-            return _DE_trackingInformationDestino.DE_TRACKING_INFORMATION_DESTINO.create({
+            return DE_TRACKING_INFORMATION_DESTINO.create({
               COD_ORDEN: COD_ORDEN,
               COD_DESTINATION_COUNTRY: Direcciones.COD_COUNTRY_DESTINO,
               COD_DESTINATION_STATE: Direcciones.COD_STATE_DESTINO,
@@ -142,7 +135,7 @@ var CreateTrackingInformation = /*#__PURE__*/function () {
           case 7:
             Destino = _context3.sent;
             _context3.next = 10;
-            return _REL_Origin_Destino.REL_ORIGIN_DESTINO.create({
+            return REL_ORIGIN_DESTINO.create({
               COD_ORDEN: COD_ORDEN,
               COD_DESTINO: Destino.dataValues.COD_TRACKINFORMATION_DESTINO,
               COD_ORIGIN: Origen.dataValues.COD_TRACKINFORMATION_ORIGIN
@@ -157,7 +150,7 @@ var CreateTrackingInformation = /*#__PURE__*/function () {
             _context3.prev = 13;
             _context3.t0 = _context3["catch"](1);
             console.log(_context3.t0);
-            (0, _handleError.HttpError)(res, _context3.t0);
+            HttpError(res, _context3.t0);
             next();
 
           case 18:
@@ -168,14 +161,12 @@ var CreateTrackingInformation = /*#__PURE__*/function () {
     }, _callee3, null, [[1, 13]]);
   }));
 
-  return function CreateTrackingInformation(_x7, _x8, _x9) {
+  return function (_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.CreateTrackingInformation = CreateTrackingInformation;
-
-var UpdateTrackingInformation = /*#__PURE__*/function () {
+exports.UpdateTrackingInformation = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res, next) {
     var _req$body2, PaisOrigin, PaisDestino, StateOrigin, StateDestino, CityOrigin, CityDestino, COD_ORDEN, STATUS_ORIGIN, STATUS_DESTINO, Origen, Destino;
 
@@ -187,7 +178,7 @@ var UpdateTrackingInformation = /*#__PURE__*/function () {
             console.log(req.body);
             _context4.prev = 2;
             _context4.next = 5;
-            return _DE_trackingInformationOrigin.DE_TRACKING_INFORMATION_ORIGEN.update({
+            return DE_TRACKING_INFORMATION_ORIGEN.update({
               COD_ORDEN: COD_ORDEN,
               COD_ORIGIN_COUNTRY: parseInt(PaisOrigin),
               COD_ORIGIN_STATE: parseInt(StateOrigin),
@@ -202,7 +193,7 @@ var UpdateTrackingInformation = /*#__PURE__*/function () {
           case 5:
             Origen = _context4.sent;
             _context4.next = 8;
-            return _DE_trackingInformationDestino.DE_TRACKING_INFORMATION_DESTINO.create({
+            return DE_TRACKING_INFORMATION_DESTINO.create({
               COD_ORDEN: COD_ORDEN,
               COD_DESTINATION_COUNTRY: parseInt(PaisDestino),
               COD_DESTINATION_STATE: parseInt(StateDestino),
@@ -220,7 +211,7 @@ var UpdateTrackingInformation = /*#__PURE__*/function () {
             _context4.prev = 12;
             _context4.t0 = _context4["catch"](2);
             console.log(_context4.t0);
-            (0, _handleError.HttpError)(res, _context4.t0);
+            HttpError(res, _context4.t0);
             next();
 
           case 17:
@@ -231,14 +222,12 @@ var UpdateTrackingInformation = /*#__PURE__*/function () {
     }, _callee4, null, [[2, 12]]);
   }));
 
-  return function UpdateTrackingInformation(_x10, _x11, _x12) {
+  return function (_x10, _x11, _x12) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.UpdateTrackingInformation = UpdateTrackingInformation;
-
-var GetTrackinInformationOrden = /*#__PURE__*/function () {
+exports.GetTrackinInformationOrden = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res, next) {
     var COD_ORDEN;
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
@@ -266,14 +255,12 @@ var GetTrackinInformationOrden = /*#__PURE__*/function () {
     }, _callee5);
   }));
 
-  return function GetTrackinInformationOrden(_x13, _x14, _x15) {
+  return function (_x13, _x14, _x15) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.GetTrackinInformationOrden = GetTrackinInformationOrden;
-
-var GetOrigenDestinoAllTracking = /*#__PURE__*/function () {
+exports.GetOrigenDestinoAllTracking = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res, next) {
     var COD_ORDEN, OrriginDestino;
     return regeneratorRuntime.wrap(function _callee6$(_context6) {
@@ -283,7 +270,7 @@ var GetOrigenDestinoAllTracking = /*#__PURE__*/function () {
             COD_ORDEN = req.params.COD_ORDEN;
             _context6.prev = 1;
             _context6.next = 4;
-            return _REL_Origin_Destino.REL_ORIGIN_DESTINO.findOne({
+            return REL_ORIGIN_DESTINO.findOne({
               where: {
                 COD_ORDEN: COD_ORDEN
               }
@@ -311,7 +298,7 @@ var GetOrigenDestinoAllTracking = /*#__PURE__*/function () {
           case 10:
             _context6.prev = 10;
             _context6.t0 = _context6["catch"](1);
-            (0, _handleError.HttpError)(res, _context6.t0);
+            HttpError(res, _context6.t0);
             next();
 
           case 14:
@@ -322,14 +309,12 @@ var GetOrigenDestinoAllTracking = /*#__PURE__*/function () {
     }, _callee6, null, [[1, 10]]);
   }));
 
-  return function GetOrigenDestinoAllTracking(_x16, _x17, _x18) {
+  return function (_x16, _x17, _x18) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.GetOrigenDestinoAllTracking = GetOrigenDestinoAllTracking;
-
-var GetOrigenDestinoAllTrackingAdministrador = /*#__PURE__*/function () {
+exports.GetOrigenDestinoAllTrackingAdministrador = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res, next) {
     var COD_ORDEN, OrigenDestino;
     return regeneratorRuntime.wrap(function _callee7$(_context7) {
@@ -339,7 +324,7 @@ var GetOrigenDestinoAllTrackingAdministrador = /*#__PURE__*/function () {
             COD_ORDEN = req.params.COD_ORDEN;
             _context7.prev = 1;
             _context7.next = 4;
-            return _index["default"].query("CALL SHOW_ORIGEN_DESTINO_ORDEN_ALL(:COD_ORDEN)", {
+            return sequelize.query("CALL SHOW_ORIGEN_DESTINO_ORDEN_ALL(:COD_ORDEN)", {
               replacements: {
                 COD_ORDEN: COD_ORDEN
               }
@@ -367,7 +352,7 @@ var GetOrigenDestinoAllTrackingAdministrador = /*#__PURE__*/function () {
           case 10:
             _context7.prev = 10;
             _context7.t0 = _context7["catch"](1);
-            (0, _handleError.HttpError)(res, _context7.t0);
+            HttpError(res, _context7.t0);
             next();
 
           case 14:
@@ -378,14 +363,12 @@ var GetOrigenDestinoAllTrackingAdministrador = /*#__PURE__*/function () {
     }, _callee7, null, [[1, 10]]);
   }));
 
-  return function GetOrigenDestinoAllTrackingAdministrador(_x19, _x20, _x21) {
+  return function (_x19, _x20, _x21) {
     return _ref7.apply(this, arguments);
   };
 }();
 
-exports.GetOrigenDestinoAllTrackingAdministrador = GetOrigenDestinoAllTrackingAdministrador;
-
-var GetTrackinInformationOrigen = /*#__PURE__*/function () {
+exports.GetTrackinInformationOrigen = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(req, res, next) {
     var COD_ORDEN, OrigenOrden;
     return regeneratorRuntime.wrap(function _callee8$(_context8) {
@@ -395,7 +378,7 @@ var GetTrackinInformationOrigen = /*#__PURE__*/function () {
             COD_ORDEN = req.params.COD_ORDEN;
             _context8.prev = 1;
             _context8.next = 4;
-            return _index["default"].query("CALL SHOW_ORIGEN_ORDEN(:COD_ORDEN)", {
+            return sequelize.query("CALL SHOW_ORIGEN_ORDEN(:COD_ORDEN)", {
               replacements: {
                 COD_ORDEN: COD_ORDEN
               }
@@ -423,7 +406,7 @@ var GetTrackinInformationOrigen = /*#__PURE__*/function () {
           case 10:
             _context8.prev = 10;
             _context8.t0 = _context8["catch"](1);
-            (0, _handleError.HttpError)(res, _context8.t0);
+            HttpError(res, _context8.t0);
             next();
 
           case 14:
@@ -434,14 +417,12 @@ var GetTrackinInformationOrigen = /*#__PURE__*/function () {
     }, _callee8, null, [[1, 10]]);
   }));
 
-  return function GetTrackinInformationOrigen(_x22, _x23, _x24) {
+  return function (_x22, _x23, _x24) {
     return _ref8.apply(this, arguments);
   };
 }();
 
-exports.GetTrackinInformationOrigen = GetTrackinInformationOrigen;
-
-var GetTrackinInformationDestino = /*#__PURE__*/function () {
+exports.GetTrackinInformationDestino = /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(req, res, next) {
     var COD_ORDEN, DestinoOrden;
     return regeneratorRuntime.wrap(function _callee9$(_context9) {
@@ -451,7 +432,7 @@ var GetTrackinInformationDestino = /*#__PURE__*/function () {
             COD_ORDEN = req.params.COD_ORDEN;
             _context9.prev = 1;
             _context9.next = 4;
-            return _index["default"].query("CALL SHOW_DESTINO_ORDEN(:COD_ORDEN)", {
+            return sequelize.query("CALL SHOW_DESTINO_ORDEN(:COD_ORDEN)", {
               replacements: {
                 COD_ORDEN: COD_ORDEN
               }
@@ -479,7 +460,7 @@ var GetTrackinInformationDestino = /*#__PURE__*/function () {
           case 10:
             _context9.prev = 10;
             _context9.t0 = _context9["catch"](1);
-            (0, _handleError.HttpError)(res, _context9.t0);
+            HttpError(res, _context9.t0);
             next();
 
           case 14:
@@ -490,14 +471,12 @@ var GetTrackinInformationDestino = /*#__PURE__*/function () {
     }, _callee9, null, [[1, 10]]);
   }));
 
-  return function GetTrackinInformationDestino(_x25, _x26, _x27) {
+  return function (_x25, _x26, _x27) {
     return _ref9.apply(this, arguments);
   };
 }();
 
-exports.GetTrackinInformationDestino = GetTrackinInformationDestino;
-
-var GetTrackinInformationDestinoOrigenAll = /*#__PURE__*/function () {
+exports.GetTrackinInformationDestinoOrigenAll = /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(req, res, next) {
     var COD_ORDEN, OrigenDestino;
     return regeneratorRuntime.wrap(function _callee10$(_context10) {
@@ -507,7 +486,7 @@ var GetTrackinInformationDestinoOrigenAll = /*#__PURE__*/function () {
             COD_ORDEN = req.params.COD_ORDEN;
             _context10.prev = 1;
             _context10.next = 4;
-            return _index["default"].query("CALL SHOW_ORIGEN_DESTINO_ORDEN_ALL(:COD_ORDEN)", {
+            return sequelize.query("CALL SHOW_ORIGEN_DESTINO_ORDEN_ALL(:COD_ORDEN)", {
               replacements: {
                 COD_ORDEN: COD_ORDEN
               }
@@ -532,7 +511,7 @@ var GetTrackinInformationDestinoOrigenAll = /*#__PURE__*/function () {
           case 10:
             _context10.prev = 10;
             _context10.t0 = _context10["catch"](1);
-            (0, _handleError.HttpError)(res, _context10.t0);
+            HttpError(res, _context10.t0);
             next();
 
           case 14:
@@ -543,9 +522,7 @@ var GetTrackinInformationDestinoOrigenAll = /*#__PURE__*/function () {
     }, _callee10, null, [[1, 10]]);
   }));
 
-  return function GetTrackinInformationDestinoOrigenAll(_x28, _x29, _x30) {
+  return function (_x28, _x29, _x30) {
     return _ref10.apply(this, arguments);
   };
 }();
-
-exports.GetTrackinInformationDestinoOrigenAll = GetTrackinInformationDestinoOrigenAll;

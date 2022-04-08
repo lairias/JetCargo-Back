@@ -1,14 +1,15 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   CreatePassReset,
   DeletePassReset,
   ForgotPassword,
   GetPassReset,
   UpdatePassReset,
   VeryTokenReset,
-} from "../controllers/PassReset.Controllers";
-import { verifyTokenPass } from "../middleware/verifyPassReset";
-const router = Router();
+} =require( "../controllers/PassReset.Controllers")
+const { verifyTokenPass } =require( "../middleware/verifyPassReset")
+
 router.post("/", CreatePassReset);
 router.post(
   "/reset-password/:COD_USER/:CORREO/:TOKEN",
@@ -18,4 +19,5 @@ router.post(
 router.get("/:EMAIL", GetPassReset);
 router.delete("/:EMAIL", DeletePassReset);
 
-export default router;
+
+module.exports = router;

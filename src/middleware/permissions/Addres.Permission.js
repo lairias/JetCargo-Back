@@ -1,6 +1,6 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
-export const AddresView = async (req, res, next) => {
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
+ const AddresView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -14,7 +14,7 @@ export const AddresView = async (req, res, next) => {
     next();
   }
 };
-export const AddresCreate = async (req, res, next) => {
+ const AddresCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -28,7 +28,7 @@ export const AddresCreate = async (req, res, next) => {
     next();
   }
 };
-export const AddresUpdate = async (req, res, next) => {
+ const AddresUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -42,7 +42,7 @@ export const AddresUpdate = async (req, res, next) => {
     next();
   }
 };
-export const AddresDelete = async (req, res, next) => {
+ const AddresDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -55,4 +55,12 @@ export const AddresDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports =
+{
+  AddresView,
+  AddresCreate,
+  AddresUpdate,
+  AddresDelete
 };

@@ -1,17 +1,12 @@
-import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
-import { HttpError } from "../helpers/handleError";
-import { v4 as uuidv4 } from "uuid";
-import {
-  PAPAL_API,
-  PAPAL_API_CLIENTE,
-  PAPAL_API_SECRET,
-} from "../config/database/Paypal/config";
-import axios from "axios";
-import "dotenv/config";
-import { DE_ORDEN } from "../models/DE_orden";
-import { BO_PACKAGE } from "../models/BO_package";
-import { BO_TRACKING } from "../models/BO_tracking";
-export const CreateOrden = async (req, res, next) => {
+const  { BO_TYPEPACKAGE } =require( "../models/BO_typePackage")
+const  { HttpError } =require( "../helpers/handleError")
+const { v4: uuidv4 } = require('uuid');
+const  axios =require( "axios")
+require('dotenv').config()
+const  { DE_ORDEN } =require( "../models/DE_orden")
+const  { BO_PACKAGE } =require( "../models/BO_package")
+const  { BO_TRACKING } =require( "../models/BO_tracking")
+ exports.CreateOrden = async (req, res, next) => {
   const { mensaje, DataTrackinNotOrden } = req.body;
   try {
     const orden = {
@@ -28,7 +23,7 @@ export const CreateOrden = async (req, res, next) => {
       application_context: {
         brand_name: "Jetcargo.vip",
         landing_page: "LOGIN",
-        shipping_preference: "GET_FROM_FILE",
+        shipping_preference: "GET_=require(_FILE",
         user_action: "PAY_NOW",
         return_url: `${process.env.API_BACK}:${process.env.PORT}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
         cancel_url: "http://localhost:3000/payment/cancel",
@@ -46,13 +41,13 @@ export const CreateOrden = async (req, res, next) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
-          username: PAPAL_API_CLIENTE,
-          password: PAPAL_API_SECRET,
+          username: process.env.PAPAL_API_CLIENTE,
+          password: process.env.PAPAL_API_SECRET,
         },
       }
     );
     const { data } = await axios.post(
-      `${PAPAL_API}/v2/checkout/orders`,
+      `${preocess.env.PAPAL_API}/v2/checkout/orders`,
       orden,
       {
         headers: {
@@ -68,7 +63,7 @@ export const CreateOrden = async (req, res, next) => {
   }
 };
 
-export const CaptureOrden = async (req, res, next) => {
+ exports.CaptureOrden = async (req, res, next) => {
   try {
     const { COD_CUSTOMER, COD_TRACKING, COD_PACKAGE } = req.params;
     const { token, PayerID } = req.query;
@@ -96,13 +91,13 @@ export const CaptureOrden = async (req, res, next) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
-          username: PAPAL_API_CLIENTE,
-          password: PAPAL_API_SECRET,
+          username: process.env.PAPAL_API_CLIENTE,
+          password: process.env.PAPAL_API_SECRET,
         },
       }
     );
     const respuesta = await axios.post(
-      `${PAPAL_API}/v2/checkout/orders/${token}/capture`,
+      `${process.env.PAPAL_API}/v2/checkout/orders/${token}/capture`,
       {},
       {
         headers: {
@@ -140,7 +135,7 @@ export const CaptureOrden = async (req, res, next) => {
   }
 };
 
-export const CancelCreateOrden = async (req, res, next) => {
+ exports.CancelCreateOrden = async (req, res, next) => {
   try {
     const typePackage = await BO_TYPEPACKAGE.findAll();
     return res.status(200).json({ ok: true, typePackage });
@@ -149,3 +144,4 @@ export const CancelCreateOrden = async (req, res, next) => {
     next();
   }
 };
+

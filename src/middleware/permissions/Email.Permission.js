@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const EmailView = async (req, res, next) => {
+ const EmailView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -15,7 +15,7 @@ export const EmailView = async (req, res, next) => {
     next();
   }
 };
-export const EmailCreate = async (req, res, next) => {
+ const EmailCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -29,7 +29,7 @@ export const EmailCreate = async (req, res, next) => {
     next();
   }
 };
-export const EmailUpdate = async (req, res, next) => {
+ const EmailUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -43,7 +43,7 @@ export const EmailUpdate = async (req, res, next) => {
     next();
   }
 };
-export const EmailDelete = async (req, res, next) => {
+ const EmailDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -56,4 +56,10 @@ export const EmailDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+module.exports = {
+  EmailView,
+  EmailCreate,
+  EmailUpdate,
+  EmailDelete
 };

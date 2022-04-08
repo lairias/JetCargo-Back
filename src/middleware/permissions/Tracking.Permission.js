@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const TrackingView = async (req, res, next) => {
+ const TrackingView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -21,7 +21,7 @@ export const TrackingView = async (req, res, next) => {
   }
 };
 
-export const TrackingCreate = async (req, res, next) => {
+ const TrackingCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -40,7 +40,7 @@ export const TrackingCreate = async (req, res, next) => {
     next();
   }
 };
-export const TrackingUpdate = async (req, res, next) => {
+ const TrackingUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -59,7 +59,7 @@ export const TrackingUpdate = async (req, res, next) => {
     next();
   }
 };
-export const TrackingDelete = async (req, res, next) => {
+ const TrackingDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -77,4 +77,12 @@ export const TrackingDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports =
+{
+  TrackingView,
+  TrackingCreate,
+  TrackingUpdate,
+  TrackingDelete,
 };

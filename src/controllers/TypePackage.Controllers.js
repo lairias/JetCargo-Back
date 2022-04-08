@@ -1,7 +1,7 @@
-import { BO_TYPEPACKAGE } from "../models/BO_typePackage";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-export const GetTypePackages = async (req, res, next) => {
+const { BO_TYPEPACKAGE } =require( "../models/BO_typePackage")
+const sequelize =require( "../config/database/index")
+const { HttpError } =require( "../helpers/handleError")
+ exports.GetTypePackages = async (req, res, next) => {
   try {
     const typePackage = await BO_TYPEPACKAGE.findAll();
     return res.status(200).json({ ok: true, typePackage });
@@ -11,7 +11,7 @@ export const GetTypePackages = async (req, res, next) => {
   }
 };
 
-export const GetTypePackage = async (req, res, next) => {
+ exports.GetTypePackage = async (req, res, next) => {
   const { COD_TYPEPACKAGE } = req.params;
   try {
     const cities = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
@@ -22,7 +22,7 @@ export const GetTypePackage = async (req, res, next) => {
   }
 };
 
-export const CreateTypePackage = async (req, res, next) => {
+ exports.CreateTypePackage = async (req, res, next) => {
   const { NAM_TYPEPACKAGE, DES_TYPEPACKAGE, USR_ADD } = req.body;
   try {
     const cities = await sequelize
@@ -47,7 +47,7 @@ export const CreateTypePackage = async (req, res, next) => {
     next();
   }
 };
-export const DeleteTypePackage = async (req, res, next) => {
+ exports.DeleteTypePackage = async (req, res, next) => {
   const { COD_TYPEPACKAGE } = req.params;
   try {
     await BO_TYPEPACKAGE.destroy({
@@ -61,7 +61,7 @@ export const DeleteTypePackage = async (req, res, next) => {
     next();
   }
 };
-export const UpdateTypePackage = async (req, res, next) => {
+ exports.UpdateTypePackage = async (req, res, next) => {
   const { NAM_TYPEPACKAGE, DES_TYPEPACKAGE, USR_UPD } = req.body;
   const { COD_TYPEPACKAGE } = req.params;
   try {
@@ -88,3 +88,4 @@ export const UpdateTypePackage = async (req, res, next) => {
     next();
   }
 };
+

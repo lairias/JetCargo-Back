@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+const {Sequelize} = require("sequelize")
 module.exports = new Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
   host: "142.44.161.115",
   ports: "3306",

@@ -1,7 +1,9 @@
-import { Router } from "express";
-import { PostMenssge } from "../controllers/Messaje.Controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const { PostMenssge } =require( "../controllers/Messaje.Controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/new", PostMenssge);
 
-export default router;
+
+module.exports = router;

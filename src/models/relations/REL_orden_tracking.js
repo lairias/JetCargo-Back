@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_ORDEN_TRACKING = db.define(
+ const REL_ORDEN_TRACKING = db.define(
   "REL_orden_tracking",
   {
     COD_ORDENTRACKING: {
@@ -34,3 +34,5 @@ export const REL_ORDEN_TRACKING = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = REL_ORDEN_TRACKING;

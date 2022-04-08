@@ -1,18 +1,15 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Permission = require("../controllers/Permission.controllers");
+var _require = require("../controllers/Permission.controllers"),
+    GetPermissionUser = _require.GetPermissionUser;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyIndUser = _require2.verifyIndUser,
+    verifyToken = _require2.verifyToken;
 
-_Permission.GetPermissionUser;
-var router = (0, _express.Router)();
-router.get("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Permission.GetPermissionUser);
-var _default = router;
-exports["default"] = _default;
+router.get("/", [verifyToken, verifyIndUser], GetPermissionUser);
+module.exports = router;

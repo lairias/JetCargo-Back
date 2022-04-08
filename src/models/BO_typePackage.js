@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database/index";
+const {Sequelize} = require("sequelize")
+const db =require( "../config/database/index")
 
-export const BO_TYPEPACKAGE = db.define(
+ const BO_TYPEPACKAGE = db.define(
   "BO_TypePackage",
   {
     COD_TYPEPACKAGE: {
@@ -60,3 +60,4 @@ export const BO_TYPEPACKAGE = db.define(
     updatedAt: false,
   }
 );
+module.exports = BO_TYPEPACKAGE

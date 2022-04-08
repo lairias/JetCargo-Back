@@ -1,10 +1,10 @@
-import jwt from "jsonwebtoken";
-import { USERS } from "../models/Users";
+const jwt = require("jsonwebtoken");
 
-import "dotenv/config";
-import { HttpError } from "../helpers/handleError";
+const USERS = require("../models/Users")
+require('dotenv').config()
+const { HttpError } =require( "../helpers/handleError")
 
-export const verifyToken = async (req, res, next) => {
+ const verifyToken = async (req, res, next) => {
   try {
     const token = req.headers["x-access-token"];
     if (!token) return res.status(403).json({ message: "No token provided" });
@@ -19,7 +19,7 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 
-export const verifyIndUser = async (req, res, next) => {
+ const verifyIndUser = async (req, res, next) => {
   try {
     if (!req.userId)
       return res.status(203).json({ message: "Token no valido" });
@@ -33,3 +33,5 @@ export const verifyIndUser = async (req, res, next) => {
     next();
   }
 };
+
+module.exports  ={verifyToken,verifyIndUser }

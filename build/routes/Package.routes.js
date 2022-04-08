@@ -1,22 +1,25 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Package = require("../controllers/Package.Controllers");
+var _require = require("../controllers/Package.Controllers"),
+    GetPackages = _require.GetPackages,
+    DeletePackage = _require.DeletePackage,
+    GetPackage = _require.GetPackage,
+    UpdatePackage = _require.UpdatePackage,
+    CreatePackage = _require.CreatePackage,
+    GetPackageLokerByCustomer = _require.GetPackageLokerByCustomer;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyIndUser = _require2.verifyIndUser,
+    verifyToken = _require2.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/", _Package.GetPackages);
-router.get("/:COD_PACKAGE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Package.GetPackage);
-router.get("/:COD_CUSTOMER/:COD_LOCKER", [_verifySignup.verifyToken, _verifySignup.verifyIndUser], _Package.GetPackageLokerByCustomer);
-router.post("/", _Package.CreatePackage);
-router["delete"]("/:COD_PACKAGE", _Package.DeletePackage);
-router.put("/:COD_PACKAGE", _Package.UpdatePackage);
-var _default = router;
-exports["default"] = _default;
+router.get("/", GetPackages);
+router.get("/:COD_PACKAGE", [verifyToken, verifyIndUser], GetPackage);
+router.get("/:COD_CUSTOMER/:COD_LOCKER", [verifyToken, verifyIndUser], GetPackageLokerByCustomer);
+router.post("/", CreatePackage);
+router["delete"]("/:COD_PACKAGE", DeletePackage);
+router.put("/:COD_PACKAGE", UpdatePackage);
+module.exports = router;

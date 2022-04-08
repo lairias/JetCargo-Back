@@ -1,8 +1,8 @@
-import { USERS } from "../models/Users";
-import { Op } from "sequelize";
-import { HttpError } from "../helpers/handleError";
+const { USERS } = require( "../models/Users")
+const { Op } = require( "sequelize")
+const { HttpError } = require( "../helpers/handleError")
 
-export const VeryEmail = async (req, res, next) => {
+exports.VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;
   try {
     const User = await USERS.findOne({ where: { EMAIL } });
@@ -26,7 +26,7 @@ export const VeryEmail = async (req, res, next) => {
   }
 };
 
-export const GetEmail = async (req, res, next) => {
+exports.GetEmail = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
     const User = await USERS.findByPk(EMAIL);
@@ -41,3 +41,4 @@ export const GetEmail = async (req, res, next) => {
     next();
   }
 };
+

@@ -1,44 +1,37 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.REL_ORDEN_TRACKING = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../../config/database");
 
-var _database = _interopRequireDefault(require("../../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var REL_ORDEN_TRACKING = _database["default"].define("REL_orden_tracking", {
+var REL_ORDEN_TRACKING = db.define("REL_orden_tracking", {
   COD_ORDENTRACKING: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF TYPE OF PEOPLE"
   },
   COD_ORDEN: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF TYPE OF USER"
   },
   COD_TRACKING: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF TYPE OF USER"
   },
   DAT_ADD_ORDENTRACKING: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED	"
   },
   DAT_UPD_ORDENTRACKING: {
-    type: _sequelize.Sequelize.DATE,
+    type: Sequelize.DATE,
     comment: "DATE THIS ROW WAS MODIFIED	"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.REL_ORDEN_TRACKING = REL_ORDEN_TRACKING;
+module.exports = REL_ORDEN_TRACKING;

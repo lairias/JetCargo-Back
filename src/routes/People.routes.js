@@ -1,19 +1,20 @@
-import { Router } from "express";
-import { verifyToken, verifyIndUser } from "../middleware/verifySignup";
-import {
+const express = require("express");
+const router = express.Router();
+const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
+const {
   PeopleView,
   PeopleCreate,
   PeopleDelete,
   PeopleUpdate,
-} from "../middleware/permissions/People.Permission";
-import {
+} =require( "../middleware/permissions/People.Permission")
+const {
   GetPeoples,
   GetPeople,
   CreatePeople,
   UpdatePeople,
   DeletePeople,
-} from "../controllers/PA_people.Controllers";
-const router = Router();
+} =require( "../controllers/PA_people.Controllers")
+
 router.get("/", [verifyToken, verifyIndUser, PeopleView], GetPeoples);
 router.get("/:COD_PEOPLE", [verifyToken, verifyIndUser, PeopleView], GetPeople);
 router.put(
@@ -28,4 +29,5 @@ router.delete(
 );
 router.post("/", [verifyToken, verifyIndUser, PeopleCreate], CreatePeople);
 
-export default router;
+
+module.exports = router;

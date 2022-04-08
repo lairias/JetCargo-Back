@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-import "dotenv/config";
-import { HttpError } from "../../helpers/handleError";
-export const renewToken = async (req, res, next) => {
+require('dotenv').config()
+const { HttpError } =require( "../../helpers/handleError")
+ const renewToken = async (req, res, next) => {
   try {
     const token = req.headers["x-access-token"];
     if (!token)
@@ -14,4 +14,8 @@ export const renewToken = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  renewToken,
 };

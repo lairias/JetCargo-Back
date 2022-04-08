@@ -1,13 +1,13 @@
-import { PA_TypeUsers } from "../models/Pa_typeUsers";
-import { HttpError } from "../helpers/handleError";
-import { MODEL_TYPEUSER_HAS_PERMISOS } from "../models/relations/typeusers_has_permisos";
-import sequelize from "../config/database";
-import {
+const { PA_TypeUsers } = require( "../models/Pa_typeUsers")
+const { HttpError } = require( "../helpers/handleError")
+const { MODEL_TYPEUSER_HAS_PERMISOS } = require( "../models/relations/typeusers_has_permisos")
+const sequelize = require( "../config/database")
+const {
   RolesForeachPermiso,
   RolesForeachAllPermiso,
-} from "./helpers/Roles.Helpers";
+} = require( "./helpers/Roles.Helpers")
 
-export const GetRole = async (req, res, next) => {
+ exports.GetRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
@@ -20,7 +20,7 @@ export const GetRole = async (req, res, next) => {
   }
 };
 
-export const GetRoles = async (req, res, next) => {
+ exports.GetRoles = async (req, res, next) => {
   try {
     const role = await sequelize.query("CALL COUNT_TYPE_USERS_ALL_PERMISOS()");
     if (!role)
@@ -31,7 +31,7 @@ export const GetRoles = async (req, res, next) => {
     next();
   }
 };
-export const UpdateRole = async (req, res, next) => {
+ exports.UpdateRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
   const { NOM_TYPE, DES_TYPE, USR_UPD, PERMISSION, TODO } = req.body;
   try {
@@ -55,7 +55,7 @@ export const UpdateRole = async (req, res, next) => {
   }
 };
 
-export const DeleteRole = async (req, res, next) => {
+ exports.DeleteRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
   try {
     await PA_TypeUsers.destroy({
@@ -68,7 +68,7 @@ export const DeleteRole = async (req, res, next) => {
   }
 };
 
-export const CreateRole = async (req, res, next) => {
+ exports.CreateRole = async (req, res, next) => {
   const { NOM_TYPE, DES_TYPE, USR_ADD, PERMISSION, TODO } = req.body;
   try {
     const role = await PA_TypeUsers.create({ NOM_TYPE, DES_TYPE, USR_ADD });
@@ -84,3 +84,4 @@ export const CreateRole = async (req, res, next) => {
     next();
   }
 };
+

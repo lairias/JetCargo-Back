@@ -1,6 +1,8 @@
-import { Router } from "express";
-import { GetSeguridadID } from "../controllers/Seguridad.controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const { GetSeguridadID } =require( "../controllers/Seguridad.controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/:COD_SEGURIDAD", GetSeguridadID);
-export default router;
+
+module.exports = router;

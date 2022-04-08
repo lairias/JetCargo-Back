@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const InvoiceView = async (req, res, next) => {
+ const InvoiceView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -15,7 +15,7 @@ export const InvoiceView = async (req, res, next) => {
     next();
   }
 };
-export const InvoiceCreate = async (req, res, next) => {
+ const InvoiceCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -29,7 +29,7 @@ export const InvoiceCreate = async (req, res, next) => {
     next();
   }
 };
-export const InvoiceUpdate = async (req, res, next) => {
+ const InvoiceUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -43,7 +43,7 @@ export const InvoiceUpdate = async (req, res, next) => {
     next();
   }
 };
-export const InvoiceDelete = async (req, res, next) => {
+ const InvoiceDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -56,4 +56,12 @@ export const InvoiceDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports =
+{
+  InvoiceView,
+  InvoiceCreate,
+  InvoiceUpdate,
+  InvoiceDelete
 };

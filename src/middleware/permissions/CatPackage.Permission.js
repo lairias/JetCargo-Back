@@ -1,6 +1,6 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
-export const CatPackageView = async (req, res, next) => {
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
+ const CatPackageView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -16,7 +16,7 @@ export const CatPackageView = async (req, res, next) => {
     next();
   }
 };
-export const CatPackageCreate = async (req, res, next) => {
+ const CatPackageCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -35,7 +35,7 @@ export const CatPackageCreate = async (req, res, next) => {
     next();
   }
 };
-export const CatPackageUpdate = async (req, res, next) => {
+ const CatPackageUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -54,7 +54,7 @@ export const CatPackageUpdate = async (req, res, next) => {
     next();
   }
 };
-export const CatPackageDelete = async (req, res, next) => {
+ const CatPackageDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -73,3 +73,9 @@ export const CatPackageDelete = async (req, res, next) => {
     next();
   }
 };
+module.exports = {
+  CatPackageView,
+  CatPackageCreate,
+  CatPackageUpdate,
+  CatPackageDelete,
+}

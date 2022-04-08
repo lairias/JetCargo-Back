@@ -1,7 +1,6 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
-
-export const BO_CATPACKAGE = db.define(
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
+const BO_CATPACKAGE = db.define(
   "BO_CatPackage",
   {
     COD_CATPACKAGE: {
@@ -51,3 +50,5 @@ export const BO_CATPACKAGE = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = BO_CATPACKAGE

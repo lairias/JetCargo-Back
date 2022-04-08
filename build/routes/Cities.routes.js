@@ -1,23 +1,29 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Cities = require("../controllers/Cities.Controllers");
+var _require = require("../controllers/Cities.Controllers"),
+    GetCities = _require.GetCities,
+    CreateCity = _require.CreateCity,
+    UpdateCity = _require.UpdateCity,
+    DeleteCity = _require.DeleteCity,
+    GetCitiesForState = _require.GetCitiesForState;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyToken = _require2.verifyToken,
+    verifyIndUser = _require2.verifyIndUser;
 
-var _City = require("../middleware/permissions/City.Permission");
+var _require3 = require("../middleware/permissions/City.Permission"),
+    CityView = _require3.CityView,
+    CityCreate = _require3.CityCreate,
+    CityUpdate = _require3.CityUpdate,
+    CityDelete = _require3.CityDelete;
 
-var router = (0, _express.Router)();
-router.get("/", _Cities.GetCities);
-router.get("/state/:COD_STATE", _Cities.GetCitiesForState);
-router.post("/", [_verifySignup.verifyToken, _City.CityCreate], _Cities.CreateCity);
-router.put("/:COD_CITY", [_verifySignup.verifyToken, _City.CityUpdate], _Cities.UpdateCity);
-router["delete"]("/:COD_CITY", [_verifySignup.verifyToken, _City.CityDelete], _Cities.DeleteCity);
-var _default = router;
-exports["default"] = _default;
+router.get("/", GetCities);
+router.get("/state/:COD_STATE", GetCitiesForState);
+router.post("/", [verifyToken, CityCreate], CreateCity);
+router.put("/:COD_CITY", [verifyToken, CityUpdate], UpdateCity);
+router["delete"]("/:COD_CITY", [verifyToken, CityDelete], DeleteCity);
+module.exports = router;

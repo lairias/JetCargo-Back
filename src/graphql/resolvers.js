@@ -1,4 +1,4 @@
-import { USERS } from "../models/Users";
+const { USERS } =require( "../models/Users")
 const resolvers = {
   Query: {
     hello: () => "Hola",

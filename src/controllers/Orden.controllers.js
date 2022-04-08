@@ -1,8 +1,8 @@
-import sequelize from "../config/database/index";
+const sequelize =require( "../config/database/index")
 
-import { HttpError } from "../helpers/handleError";
-import { DE_ORDEN } from "../models/DE_orden";
-export const GetOrdenTracking = async (req, res, next) => {
+const { HttpError } =require( "../helpers/handleError")
+const { DE_ORDEN } =require( "../models/DE_orden")
+ exports.GetOrdenTracking = async (req, res, next) => {
   const { COD_TRACKING } = req.params;
   try {
     const OrdenTracking = await DE_ORDEN.findOne({ where: { COD_TRACKING } });
@@ -14,7 +14,7 @@ export const GetOrdenTracking = async (req, res, next) => {
     next();
   }
 };
-export const GetOrdenByTracking = async (req, res, next) => {
+ exports.GetOrdenByTracking = async (req, res, next) => {
   const { COD_TRACKING } = req.params;
   try {
     const OrdenTracking = await DE_ORDEN.findOne({ where: { COD_TRACKING } });
@@ -26,7 +26,7 @@ export const GetOrdenByTracking = async (req, res, next) => {
     next();
   }
 };
-export const GetOrdenByNumberTracking = async (req, res, next) => {
+ exports.GetOrdenByNumberTracking = async (req, res, next) => {
   const { NUM_TRACKING } = req.params;
   console.log(NUM_TRACKING);
   try {
@@ -39,3 +39,4 @@ export const GetOrdenByNumberTracking = async (req, res, next) => {
     next();
   }
 };
+

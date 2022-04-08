@@ -1,13 +1,15 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   singIn,
   singUp,
   RevalidarToken,
-} from "../controllers/Auth.controllers";
-import { CheckDuplicateEmail } from "../middleware/verifyEmail";
-import { renewToken } from "../middleware/tokens/renewToken";
-const router = Router();
+} =require( "../controllers/Auth.controllers")
+const { CheckDuplicateEmail } =require( "../middleware/verifyEmail")
+const { renewToken } =require( "../middleware/tokens/renewToken")
+
 router.post("/signup", CheckDuplicateEmail, singUp);
 router.post("/signin", singIn);
 router.get("/renew", renewToken, RevalidarToken);
-export default router;
+
+module.exports = router;

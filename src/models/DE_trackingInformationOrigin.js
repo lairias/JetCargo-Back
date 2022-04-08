@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const DE_TRACKING_INFORMATION_ORIGEN = db.define(
+ const DE_TRACKING_INFORMATION_ORIGEN = db.define(
   "DE_TrackingOrigen",
   {
     COD_TRACKINFORMATION_ORIGIN: {
@@ -55,3 +55,5 @@ export const DE_TRACKING_INFORMATION_ORIGEN = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = DE_TRACKING_INFORMATION_ORIGEN

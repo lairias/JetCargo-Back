@@ -1,9 +1,9 @@
-import app from "./app";
-import db from "./config/database";
-import "dotenv/config";
-// import { ApolloServer } from "apollo-server-express";
-// import { typeDefs } from "../src/types/typeDefs/typeDefs";
-// import { resolvers } from "../src/graphql/resolvers";
+const app =require( "./app")
+const db =require( "./config/database")
+require('dotenv').config()
+// const { ApolloServer } =require( "apollo-server-express";
+// const { typeDefs } =require( "../src/types/typeDefs/typeDefs";
+// const { resolvers } =require( "../src/graphql/resolvers";
 async function main() {
   // const apolloServer = new ApolloServer({
   //   typeDefs,

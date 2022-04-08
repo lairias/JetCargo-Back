@@ -1,17 +1,14 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RolesForeachPermiso = exports.RolesForeachAllPermiso = void 0;
-
-var _typeusers_has_permisos = require("../../models/relations/typeusers_has_permisos");
-
-var _SE_permisos = require("../../models/security/SE_permisos");
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var _require = require("../../models/relations/typeusers_has_permisos"),
+    MODEL_TYPEUSER_HAS_PERMISOS = _require.MODEL_TYPEUSER_HAS_PERMISOS;
+
+var _require2 = require("../../models/security/SE_permisos"),
+    SE_PERMISOS = _require2.SE_PERMISOS;
 
 var RolesForeachPermiso = function RolesForeachPermiso(PERMISSION, COD_TYPEUSERS) {
   try {
@@ -22,7 +19,7 @@ var RolesForeachPermiso = function RolesForeachPermiso(PERMISSION, COD_TYPEUSERS
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _typeusers_has_permisos.MODEL_TYPEUSER_HAS_PERMISOS.create({
+                return MODEL_TYPEUSER_HAS_PERMISOS.create({
                   COD_PERMISO: element,
                   COD_TYPEUSERS: COD_TYPEUSERS
                 });
@@ -45,8 +42,6 @@ var RolesForeachPermiso = function RolesForeachPermiso(PERMISSION, COD_TYPEUSERS
   }
 };
 
-exports.RolesForeachPermiso = RolesForeachPermiso;
-
 var RolesForeachAllPermiso = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(COD_TYPEUSERS) {
     var allPermisos;
@@ -56,7 +51,7 @@ var RolesForeachAllPermiso = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return _SE_permisos.SE_PERMISOS.findAll();
+            return SE_PERMISOS.findAll();
 
           case 3:
             allPermisos = _context3.sent;
@@ -67,7 +62,7 @@ var RolesForeachAllPermiso = /*#__PURE__*/function () {
                     switch (_context2.prev = _context2.next) {
                       case 0:
                         _context2.next = 2;
-                        return _typeusers_has_permisos.MODEL_TYPEUSER_HAS_PERMISOS.create({
+                        return MODEL_TYPEUSER_HAS_PERMISOS.create({
                           COD_PERMISO: element.COD_PERMISO,
                           COD_TYPEUSERS: COD_TYPEUSERS
                         });
@@ -106,4 +101,7 @@ var RolesForeachAllPermiso = /*#__PURE__*/function () {
   };
 }();
 
-exports.RolesForeachAllPermiso = RolesForeachAllPermiso;
+module.exports = {
+  RolesForeachPermiso: RolesForeachPermiso,
+  RolesForeachAllPermiso: RolesForeachAllPermiso
+};

@@ -1,37 +1,31 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SE_SEGURIDAD = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../../config/database");
 
-var _database = _interopRequireDefault(require("../../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var SE_SEGURIDAD = _database["default"].define("SE_Seguridad", {
+var SE_SEGURIDAD = db.define("SE_Seguridad", {
   COD_SEGURIDAD: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "COD OF THE SEGURIDAD"
   },
   NAM_SEGURIDAD: {
-    type: _sequelize.Sequelize.STRING(120),
+    type: Sequelize.STRING(120),
     allowNull: false,
     unique: true,
     comment: "NAME OF SEGURIDAD"
   },
   DATO_SEGURIDAD: {
-    type: _sequelize.Sequelize.STRING(120),
+    type: Sequelize.STRING(120),
     allowNull: false,
     comment: "DESCRIPTION OF SEGURIDAD"
   },
   DES_SEGURIDAD: {
-    type: _sequelize.Sequelize.STRING(120),
+    type: Sequelize.STRING(120),
     allowNull: false,
     comment: "DESCRIPTION OF SEGURIDAD"
   }
@@ -39,5 +33,4 @@ var SE_SEGURIDAD = _database["default"].define("SE_Seguridad", {
   createdAt: false,
   updatedAt: false
 });
-
-exports.SE_SEGURIDAD = SE_SEGURIDAD;
+module.exports = SE_SEGURIDAD;

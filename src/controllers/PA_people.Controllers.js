@@ -1,8 +1,8 @@
-import { PA_POEPLE } from "../models/Pa_people";
-import sequelize from "../config/database";
-import { HttpError } from "../helpers/handleError";
+const { PA_POEPLE } =require( "../models/Pa_people")
+const sequelize =require( "../config/database")
+const { HttpError } =require( "../helpers/handleError")
 
-export const GetPeoples = async (req, res, next) => {
+ exports.GetPeoples = async (req, res, next) => {
   try {
     const people = await PA_POEPLE.findAll();
     return res.status(200).json(people);
@@ -11,7 +11,7 @@ export const GetPeoples = async (req, res, next) => {
     next();
   }
 };
-export const GetPeople = async (req, res, next) => {
+ exports.GetPeople = async (req, res, next) => {
   const { COD_PEOPLE } = req.params;
   try {
     const people = await PA_POEPLE.findByPk(COD_PEOPLE);
@@ -21,7 +21,7 @@ export const GetPeople = async (req, res, next) => {
     next();
   }
 };
-export const DeletePeople = async (req, res, next) => {
+ exports.DeletePeople = async (req, res, next) => {
   const { COD_PEOPLE } = req.params;
   try {
     await PA_POEPLE.destroy({ where: { COD_PEOPLE } });
@@ -32,7 +32,7 @@ export const DeletePeople = async (req, res, next) => {
   }
 };
 
-export const CreatePeople = async (req, res, next) => {
+ exports.CreatePeople = async (req, res, next) => {
   const {
     ID,
     TIP_DOCUMENT,
@@ -71,7 +71,7 @@ export const CreatePeople = async (req, res, next) => {
     next();
   }
 };
-export const UpdatePeople = async (req, res, next) => {
+ exports.UpdatePeople = async (req, res, next) => {
   const {
     ID,
     TIP_DOCUMENT,
@@ -112,3 +112,4 @@ export const UpdatePeople = async (req, res, next) => {
     next();
   }
 };
+

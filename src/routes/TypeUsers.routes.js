@@ -1,13 +1,14 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   GetTypeUsers,
   CreateTypeUser,
   DeleteTypeUser,
   UpdateTypeUser,
   GetTypeUser,
-} from "../controllers/TypeUsers.Controllers";
+} =require( "../controllers/TypeUsers.Controllers")
 
-const router = Router();
+
 
 router.get(
   "/",
@@ -19,4 +20,5 @@ router.delete("/:COD_TYPEUSER", DeleteTypeUser);
 router.put("/:COD_TYPEUSER", UpdateTypeUser);
 router.get("/:COD_TYPEUSER", GetTypeUser);
 
-export default router;
+
+module.exports = router;

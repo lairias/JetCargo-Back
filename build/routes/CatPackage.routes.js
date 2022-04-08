@@ -1,23 +1,29 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _CatPackage = require("../controllers/CatPackage.Controllers");
+var _require = require("../controllers/CatPackage.Controllers"),
+    GetCatPackages = _require.GetCatPackages,
+    GetCatPackage = _require.GetCatPackage,
+    CreateCatPackage = _require.CreateCatPackage,
+    UpdateCatPackage = _require.UpdateCatPackage,
+    DeleteCatPackage = _require.DeleteCatPackage;
 
-var _CatPackage2 = require("../middleware/permissions/CatPackage.Permission");
+var _require2 = require("../middleware/permissions/CatPackage.Permission"),
+    CatPackageCreate = _require2.CatPackageCreate,
+    CatPackageView = _require2.CatPackageView,
+    CatPackageDelete = _require2.CatPackageDelete,
+    CatPackageUpdate = _require2.CatPackageUpdate;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require3 = require("../middleware/verifySignup"),
+    verifyIndUser = _require3.verifyIndUser,
+    verifyToken = _require3.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _CatPackage2.CatPackageView], _CatPackage.GetCatPackages);
-router.get("/:COD_CATPACKAGE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _CatPackage2.CatPackageView], _CatPackage.GetCatPackage);
-router.post("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _CatPackage2.CatPackageCreate], _CatPackage.CreateCatPackage);
-router.put("/:COD_CATPACKAGE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _CatPackage2.CatPackageUpdate], _CatPackage.UpdateCatPackage);
-router["delete"]("/:COD_CATPACKAGE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _CatPackage2.CatPackageDelete], _CatPackage.DeleteCatPackage);
-var _default = router;
-exports["default"] = _default;
+router.get("/", [verifyToken, verifyIndUser, CatPackageView], GetCatPackages);
+router.get("/:COD_CATPACKAGE", [verifyToken, verifyIndUser, CatPackageView], GetCatPackage);
+router.post("/", [verifyToken, verifyIndUser, CatPackageCreate], CreateCatPackage);
+router.put("/:COD_CATPACKAGE", [verifyToken, verifyIndUser, CatPackageUpdate], UpdateCatPackage);
+router["delete"]("/:COD_CATPACKAGE", [verifyToken, verifyIndUser, CatPackageDelete], DeleteCatPackage);
+module.exports = router;

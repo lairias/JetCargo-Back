@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_ORIGIN_DESTINO = db.define(
+ const REL_ORIGIN_DESTINO = db.define(
   "REL_origin_destino",
   {
     COD_REL_ORIGIN_DESTINO: {
@@ -38,3 +38,5 @@ export const REL_ORIGIN_DESTINO = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = REL_ORIGIN_DESTINO;

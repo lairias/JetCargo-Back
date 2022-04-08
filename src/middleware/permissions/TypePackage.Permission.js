@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const TypePackageView = async (req, res, next) => {
+ const TypePackageView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -17,7 +17,7 @@ export const TypePackageView = async (req, res, next) => {
     next();
   }
 };
-export const TypePackageCreate = async (req, res, next) => {
+ const TypePackageCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -36,7 +36,7 @@ export const TypePackageCreate = async (req, res, next) => {
     next();
   }
 };
-export const TypePackageUpdate = async (req, res, next) => {
+ const TypePackageUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -55,7 +55,7 @@ export const TypePackageUpdate = async (req, res, next) => {
     next();
   }
 };
-export const TypePackageDelete = async (req, res, next) => {
+ const TypePackageDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -73,4 +73,11 @@ export const TypePackageDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  TypePackageView,
+  TypePackageCreate,
+  TypePackageUpdate,
+  TypePackageDelete,
 };

@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const BO_TRACKING = db.define(
+ const BO_TRACKING = db.define(
   "BO_Tracking",
   {
     COD_TRACKING: {
@@ -63,3 +63,5 @@ export const BO_TRACKING = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = BO_TRACKING

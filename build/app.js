@@ -1,134 +1,137 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var poli = require("@babel/polyfill");
 
-require("@babel/polyfill");
+var express = require("express");
 
-var _express = _interopRequireDefault(require("express"));
+var morgan = require("morgan");
 
-var _morgan = _interopRequireDefault(require("morgan"));
+var cors = require("cors");
 
-var _cors = _interopRequireDefault(require("cors"));
+var multer = require("multer");
 
-var _multer = _interopRequireDefault(require("multer"));
+var path = require("path");
 
-var _path = _interopRequireDefault(require("path"));
+var Users = require("./routes/users.routes.js");
 
-var _users = _interopRequireDefault(require("./routes/users.routes"));
+var Auth = require("./routes/auth.routes.js");
 
-var _auth = _interopRequireDefault(require("./routes/auth.routes"));
+var Roles = require("./routes/Roles.routes.js");
 
-var _Roles = _interopRequireDefault(require("./routes/Roles.routes"));
+var Service = require("./routes/Service.routes.js");
 
-var _Service = _interopRequireDefault(require("./routes/Service.routes"));
+var Tracking = require("./routes/Tracking.routes.js");
 
-var _Tracking = _interopRequireDefault(require("./routes/Tracking.routes"));
+var Cities = require("./routes/Cities.routes.js");
 
-var _Cities = _interopRequireDefault(require("./routes/Cities.routes"));
+var State = require("./routes/States.routes.js");
 
-var _States = _interopRequireDefault(require("./routes/States.routes"));
+var Country = require("./routes/Country.routes.js");
 
-var _Country = _interopRequireDefault(require("./routes/Country.routes"));
+var Customers = require("./routes/Customers.routes.js");
 
-var _Customers = _interopRequireDefault(require("./routes/Customers.routes"));
+var CatPackage = require("./routes/CatPackage.routes.js");
 
-var _CatPackage = _interopRequireDefault(require("./routes/CatPackage.routes"));
+var Lockers = require("./routes/Lockers.routes.js");
 
-var _Lockers = _interopRequireDefault(require("./routes/Lockers.routes"));
+var TypePackage = require("./routes/TypePackage.routes.js");
 
-var _TypePackage = _interopRequireDefault(require("./routes/TypePackage.routes"));
+var Payment = require("./routes/payment.routes.js");
 
-var _payment = _interopRequireDefault(require("./routes/payment.routes"));
+var Package = require("./routes/Package.routes.js");
 
-var _Package = _interopRequireDefault(require("./routes/Package.routes"));
+var PassReset = require("./routes/PassReset.routes.js");
 
-var _PassReset = _interopRequireDefault(require("./routes/PassReset.routes"));
+var People = require("./routes/People.routes.js");
 
-var _People = _interopRequireDefault(require("./routes/People.routes"));
+var Email = require("./routes/Email.routes.js");
 
-var _Email = _interopRequireDefault(require("./routes/Email.routes"));
+var Permission = require("./routes/Permission.routes.js");
 
-var _Permission = _interopRequireDefault(require("./routes/Permission.routes"));
+var Seguridad = require("./routes/seguridad.routes.js");
 
-var _seguridad = _interopRequireDefault(require("./routes/seguridad.routes"));
+var Phone = require("./routes/Phone.routes.js");
 
-var _Phone = _interopRequireDefault(require("./routes/Phone.routes"));
+var Message = require("./routes/Messaje.routes.js");
 
-var _Messaje = _interopRequireDefault(require("./routes/Messaje.routes"));
+var Orden = require("./routes/Orden.routes.js");
 
-var _Orden = _interopRequireDefault(require("./routes/Orden.routes"));
+var Invoice = require("./routes/Invoice.routes.js");
 
-var _Invoice = _interopRequireDefault(require("./routes/Invoice.routes"));
+var TrackinInformation = require("./routes/TrackinInformation.routes.js");
 
-var _TrackinInformation = _interopRequireDefault(require("./routes/TrackinInformation.routes"));
+var sequelise = require("./config/database/index.js");
 
-var _index = _interopRequireDefault(require("./config/database/index"));
+var _require = require('uuid'),
+    uuidv4 = _require.v4;
 
-var _uuid = require("uuid");
+require("./config/database/R_E.js");
 
-require("./config/database/R_E");
+var _require2 = require("./config/database/Seeder.js"),
+    CreateRole = _require2.CreateRole,
+    CreatePermisos = _require2.CreatePermisos,
+    CreatePemisoHasRol = _require2.CreatePemisoHasRol,
+    CreateContries = _require2.CreateContries,
+    CreateStates = _require2.CreateStates,
+    CreateCities = _require2.CreateCities,
+    CreateSeguri = _require2.CreateSeguri,
+    CreateUser = _require2.CreateUser,
+    CreateCatPackage = _require2.CreateCatPackage,
+    CreateTypePackage = _require2.CreateTypePackage,
+    CreateLocker = _require2.CreateLocker,
+    CreateService = _require2.CreateService; // sequelise.sync({ force: true });
 
-var _Seeder = require("./config/database/Seeder");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+CreateRole();
+CreatePermisos(); // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 
-// sequelise.sync({ force: true });
-(0, _Seeder.CreateRole)();
-(0, _Seeder.CreatePermisos)(); // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
+CreatePemisoHasRol();
+CreateContries(); // // // // // // // // // // // // // // // // // // // // // // //----------------
 
-(0, _Seeder.CreatePemisoHasRol)();
-(0, _Seeder.CreateContries)(); // // // // // // // // // // // // // // // // // // // // // // //----------------
+CreateStates(); // // // // // // // // // // // // // // // // // // // // // //----------------
 
-(0, _Seeder.CreateStates)(); // // // // // // // // // // // // // // // // // // // // // //----------------
+CreateCities(); // // // // // // // // // // // // // // // // // // // //----------------
 
-(0, _Seeder.CreateCities)(); // // // // // // // // // // // // // // // // // // // //----------------
+CreateSeguri();
+CreateUser(); // // // // // // // // // // // // // // // // // // //----------------
 
-(0, _Seeder.CreateSeguri)();
-(0, _Seeder.CreateUser)(); // // // // // // // // // // // // // // // // // // //----------------
-
-(0, _Seeder.CreateCatPackage)();
-(0, _Seeder.CreateTypePackage)();
-(0, _Seeder.CreateLocker)();
-(0, _Seeder.CreateService)();
-
-var storage = _multer["default"].diskStorage({
-  destination: _path["default"].join(__dirname, "public/upload/img"),
+CreateCatPackage();
+CreateTypePackage();
+CreateLocker();
+CreateService();
+var storage = multer.diskStorage({
+  destination: path.join(__dirname, "public/upload/img"),
   filename: function filename(req, file, cb) {
-    cb(null, "JetCargo_IMG" + "-" + (0, _uuid.v4)() + _path["default"].extname(file.originalname));
+    cb(null, "JetCargo_IMG" + "-" + uuidv4() + path.extname(file.originalname));
   }
 });
-
-var app = (0, _express["default"])();
-app.use((0, _cors["default"])());
-app.use((0, _morgan["default"])("dev"));
-app.use(_express["default"].json());
-app.use((0, _multer["default"])(storage).single("path_image"));
-app.use("/api/roles", _Roles["default"]);
-app.use("/api/orden", _Orden["default"]);
-app.use("/api/service", _Service["default"]);
-app.use("/api/tracking", _Tracking["default"]);
-app.use("/api/phone", _Phone["default"]);
-app.use("/api/users", _users["default"]);
-app.use("/api/seguridad", _seguridad["default"]);
-app.use("/api/auth", _auth["default"]);
-app.use("/api/cities", _Cities["default"]);
-app.use("/api/states", _States["default"]);
-app.use("/api/country", _Country["default"]);
-app.use("/api/customers", _Customers["default"]);
-app.use("/api/catpackage", _CatPackage["default"]);
-app.use("/api/locker", _Lockers["default"]);
-app.use("/api/package", _Package["default"]);
-app.use("/api/typepackage", _TypePackage["default"]);
-app.use("/api/payment", _payment["default"]);
-app.use("/api/passreset", _PassReset["default"]);
-app.use("/api/email", _Email["default"]);
-app.use("/api/people", _People["default"]);
-app.use("/api/permission", _Permission["default"]);
-app.use("/api/message", _Messaje["default"]);
-app.use("/api/trackingInformation", _TrackinInformation["default"]);
-app.use("/api/invoice", _Invoice["default"]);
-var _default = app;
-exports["default"] = _default;
+var app = express();
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(multer(storage).single("path_image"));
+app.use("/api/roles", Roles);
+app.use("/api/orden", Orden);
+app.use("/api/service", Service);
+app.use("/api/tracking", Tracking);
+app.use("/api/phone", Phone);
+app.use("/api/users", Users);
+app.use("/api/seguridad", Seguridad);
+app.use("/api/auth", Auth);
+app.use("/api/cities", Cities);
+app.use("/api/states", State);
+app.use("/api/country", Country);
+app.use("/api/customers", Customers);
+app.use("/api/catpackage", CatPackage);
+app.use("/api/locker", Lockers);
+app.use("/api/package", Package);
+app.use("/api/typepackage", TypePackage);
+app.use("/api/payment", Payment);
+app.use("/api/passreset", PassReset);
+app.use("/api/email", Email);
+app.use("/api/people", People);
+app.use("/api/permission", Permission);
+app.use("/api/message", Message);
+app.use("/api/trackingInformation", TrackinInformation);
+app.use("/api/invoice", Invoice);
+module.exports = app;

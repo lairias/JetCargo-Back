@@ -1,5 +1,6 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   CreateTracking,
   GetTrackingsNumberService,
   GetTrackingsNumber,
@@ -9,9 +10,9 @@ import {
   TrackingNotOrden,
   TrackingNotOrdenCustomer,
   GetTracking,
-} from "../controllers/Tracking.Controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+} =require( "../controllers/Tracking.Controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get(
   "/search/:COD_SERVICE/:NUM_TRACKING",
   [verifyToken, verifyIndUser],
@@ -49,4 +50,5 @@ router.get("/:NUM_TRACKING", [verifyToken, verifyIndUser], GetTrackingsNumber);
 router.get("/GetBytracking/:COD_TRACKING", [verifyToken, verifyIndUser], GetTracking);
 router.post("/", [verifyToken, verifyIndUser], CreateTracking);
 router.put("/:COD_TRACKING", [verifyToken, verifyIndUser], UpdateTracking);
-export default router;
+
+module.exports = router;

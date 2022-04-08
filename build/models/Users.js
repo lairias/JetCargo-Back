@@ -1,88 +1,81 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.USERS = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../config/database");
 
-var _database = _interopRequireDefault(require("../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var USERS = _database["default"].define("users", {
+var USERS = db.define("users", {
   COD_USER: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "THE PRIMARY KEY OF THE USER"
   },
   COD_PEOPLE: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF THE PERSON"
   },
   PROFILE_PHOTO_PATH: {
-    type: _sequelize.Sequelize.STRING(250),
+    type: Sequelize.STRING(250),
     comment: " PROFILE PHOTO PATH"
   },
   EMAIL: {
-    type: _sequelize.Sequelize.STRING(120),
+    type: Sequelize.STRING(120),
     allowNull: false,
     unique: true,
     comment: "THE EMAIL OF THE USER"
   },
   EMAIL_VERIFIED: {
-    type: _sequelize.Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false,
     comment: "THE EMAIL OF THE USER"
   },
   PAS_USER: {
-    type: _sequelize.Sequelize.STRING(120),
+    type: Sequelize.STRING(120),
     allowNull: false,
     unique: true,
     comment: "THE EMAIL OF THE USER"
   },
   API_TOKEN: {
-    type: _sequelize.Sequelize.STRING(255),
+    type: Sequelize.STRING(255),
     comment: "TOKEN DE ACCESO"
   },
   IND_USR: {
-    type: _sequelize.Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false,
     comment: "IND OF THE USER TO ACCESS THE SYSTEM, 0=INACTIVE 1=ACTIVE"
   },
   IND_INS: {
-    type: _sequelize.Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false,
     comment: "IND OF THE FIRST TIME IN THE SYSTEM."
   },
   USR_ADD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     allowNull: false,
     comment: "USER THAT ADDED THIS ROW	"
   },
   USR_UPD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     comment: "USER WHO MODIFIED THIS ROW	"
   },
   DAT_ADD: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED	"
   },
   DAT_UPD: {
-    type: _sequelize.Sequelize.DATE,
+    type: Sequelize.DATE,
     comment: "DATE THIS ROW WAS MODIFIED	"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.USERS = USERS;
+module.exports = USERS;

@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_PEOPLE_ADDRES = db.define(
+ const REL_PEOPLE_ADDRES = db.define(
   "REL_people_addres",
   {
     COD_REL_PEOADDRES: {
@@ -23,3 +23,4 @@ export const REL_PEOPLE_ADDRES = db.define(
     updatedAt: false,
   }
 );
+module.exports = REL_PEOPLE_ADDRES;

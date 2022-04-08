@@ -1,12 +1,12 @@
-import { USERS } from "../models/Users";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-import { PA_POEPLE } from "../models/Pa_people";
-import { REL_PEOPLE_ADDRES } from "../models/relations/REL_people_addres";
-import { PA_PHONES } from "../models/Pa_phones";
-import { REL_PEOPLE_PHONE } from "../models/relations/REL_people_phone";
+const { USERS } =require( "../models/Users")
+const sequelize =require( "../config/database/index")
+const { HttpError } =require( "../helpers/handleError")
+const { PA_POEPLE } =require( "../models/Pa_people")
+const { REL_PEOPLE_ADDRES } =require( "../models/relations/REL_people_addres")
+const { PA_PHONES } =require( "../models/Pa_phones")
+const { REL_PEOPLE_PHONE } =require( "../models/relations/REL_people_phone")
 
-export const GetInformationInvoceByCustomer = async (req, res, next) => {
+exports.GetInformationInvoceByCustomer = async (req, res, next) => {
   const { COD_USER } = req.params;
   try {
     const User = await USERS.findOne({ where: { COD_USER } });
@@ -40,3 +40,4 @@ export const GetInformationInvoceByCustomer = async (req, res, next) => {
     next();
   }
 };
+

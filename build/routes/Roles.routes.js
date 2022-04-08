@@ -1,25 +1,32 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Roles = require("../controllers/Roles.controllers");
+var _require = require("../controllers/Roles.controllers"),
+    CreateRole = _require.CreateRole,
+    DeleteRole = _require.DeleteRole,
+    GetRole = _require.GetRole,
+    GetRoles = _require.GetRoles,
+    UpdateRole = _require.UpdateRole;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyToken = _require2.verifyToken,
+    verifyIndUser = _require2.verifyIndUser;
 
-var _verifyRoles = require("../middleware/verifyRoles");
+var _require3 = require("../middleware/verifyRoles"),
+    verifyRoles = _require3.verifyRoles;
 
-var _TypeUsers = require("../middleware/permissions/TypeUsers.Permission");
+var _require4 = require("../middleware/permissions/TypeUsers.Permission"),
+    TypeUserCreate = _require4.TypeUserCreate,
+    TypeUserView = _require4.TypeUserView,
+    TypeUserUpdate = _require4.TypeUserUpdate,
+    TypeUserDelete = _require4.TypeUserDelete;
 
-var router = (0, _express.Router)();
-router.post("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _TypeUsers.TypeUserCreate], _Roles.CreateRole);
-router.get("/:COD_TYPEUSERS", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _TypeUsers.TypeUserView], _Roles.GetRole);
-router.get("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _TypeUsers.TypeUserView], _Roles.GetRoles);
-router.put("/:COD_TYPEUSERS", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _TypeUsers.TypeUserUpdate], _Roles.UpdateRole);
-router["delete"]("/:COD_TYPEUSERS", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _TypeUsers.TypeUserDelete], _Roles.DeleteRole);
-var _default = router;
-exports["default"] = _default;
+router.post("/", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
+router.get("/:COD_TYPEUSERS", [verifyToken, verifyIndUser, TypeUserView], GetRole);
+router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);
+router.put("/:COD_TYPEUSERS", [verifyToken, verifyIndUser, TypeUserUpdate], UpdateRole);
+router["delete"]("/:COD_TYPEUSERS", [verifyToken, verifyIndUser, TypeUserDelete], DeleteRole);
+module.exports = router;

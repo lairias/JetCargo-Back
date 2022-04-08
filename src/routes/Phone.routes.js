@@ -1,8 +1,10 @@
-import { Router } from "express";
-import { GetPhoneLocker } from "../controllers/Phone.controllers";
-import { verifyToken, verifyIndUser } from "../middleware/verifySignup";
+const express = require("express");
+const router = express.Router();
+const { GetPhoneLocker } =require( "../controllers/Phone.controllers")
+const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
 
-const router = Router();
+
 router.get("/locker/:COD_LOCKER", [verifyToken, verifyIndUser], GetPhoneLocker);
 
-export default router;
+
+module.exports = router;

@@ -1,8 +1,8 @@
-import { PA_COUNTRIES } from "../models/Pa_countries";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
+const { PA_COUNTRIES } = require( "../models/Pa_countries")
+const sequelize = require( "../config/database/index")
+const { HttpError } = require( "../helpers/handleError")
 
-export const GetCountries = async (req, res, next) => {
+exports.GetCountries = async (req, res, next) => {
   try {
     const cities = await PA_COUNTRIES.findAll({ where: { IND_COUNTRY: 1 } });
     return res.status(200).json(cities);
@@ -12,7 +12,7 @@ export const GetCountries = async (req, res, next) => {
   }
 };
 
-export const GetCountry = async (req, res, next) => {
+exports.GetCountry = async (req, res, next) => {
   const { COD_COUNTRY } = req.params;
   try {
     const cities = await PA_COUNTRIES.findByPk(COD_COUNTRY);
@@ -23,7 +23,7 @@ export const GetCountry = async (req, res, next) => {
   }
 };
 
-export const CreateCountry = async (req, res, next) => {
+exports.CreateCountry = async (req, res, next) => {
   const { NAM_COUNTRY, DES_COUNTRY, USR_ADD } = req.body;
   try {
     const cities = await sequelize
@@ -45,7 +45,7 @@ export const CreateCountry = async (req, res, next) => {
     next();
   }
 };
-export const DeleteCountrie = async (req, res, next) => {
+exports.DeleteCountrie = async (req, res, next) => {
   const { COD_COUNTRY } = req.params;
   try {
     const cities = await PA_COUNTRIES.destroy({
@@ -63,7 +63,7 @@ export const DeleteCountrie = async (req, res, next) => {
     next();
   }
 };
-export const UpdateCountrie = async (req, res, next) => {
+exports.UpdateCountrie = async (req, res, next) => {
   const { NAM_COUNTRY, DES_COUNTRY, USR_UPD } = req.body;
   const { COD_COUNTRY } = req.params;
   try {
@@ -84,3 +84,4 @@ export const UpdateCountrie = async (req, res, next) => {
     next();
   }
 };
+

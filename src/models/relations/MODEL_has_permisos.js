@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const MODEL_HAS_PERMISOS = db.define(
+ const MODEL_HAS_PERMISOS = db.define(
   "MOD_has_permisos",
   {},
   {
@@ -9,3 +9,4 @@ export const MODEL_HAS_PERMISOS = db.define(
     updatedAt: false,
   }
 );
+module.exports = MODEL_HAS_PERMISOS;

@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const MODEL_TYPEUSER_HAS_PERMISOS = db.define(
+ const MODEL_TYPEUSER_HAS_PERMISOS = db.define(
   "MOD_typeusers_has_permisos",
   {
     COD_PERMISO: {
@@ -20,3 +20,5 @@ export const MODEL_TYPEUSER_HAS_PERMISOS = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = MODEL_TYPEUSER_HAS_PERMISOS;

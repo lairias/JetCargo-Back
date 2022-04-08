@@ -1,7 +1,7 @@
-import { PA_TypeUsers } from "../models/Pa_typeUsers";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-export const GetTypeUsers = async (req, res, next) => {
+const { PA_TypeUsers } =require( "../models/Pa_typeUsers")
+const sequelize =require( "../config/database/index")
+const { HttpError } =require( "../helpers/handleError")
+ exports.GetTypeUsers = async (req, res, next) => {
   try {
     const cities = await PA_TypeUsers.findAll();
     return res.status(200).json(cities);
@@ -10,7 +10,7 @@ export const GetTypeUsers = async (req, res, next) => {
     next();
   }
 };
-export const CreateTypeUser = async (req, res, next) => {
+ exports.CreateTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
     return res.status(200).json(cities);
@@ -18,7 +18,7 @@ export const CreateTypeUser = async (req, res, next) => {
     next();
   }
 };
-export const DeleteTypeUser = async (req, res, next) => {
+ exports.DeleteTypeUser = async (req, res, next) => {
   try {
     await PA_TypeUsers.destroy({});
     return res.sendStatus(200);
@@ -26,7 +26,7 @@ export const DeleteTypeUser = async (req, res, next) => {
     next();
   }
 };
-export const UpdateTypeUser = async (req, res, next) => {
+ exports.UpdateTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
     return res.status(200).json(cities);
@@ -34,7 +34,7 @@ export const UpdateTypeUser = async (req, res, next) => {
     next();
   }
 };
-export const GetTypeUser = async (req, res, next) => {
+ exports.GetTypeUser = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({});
     return res.status(200).json(cities);
@@ -42,3 +42,4 @@ export const GetTypeUser = async (req, res, next) => {
     next();
   }
 };
+

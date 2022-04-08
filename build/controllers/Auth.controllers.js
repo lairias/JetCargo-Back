@@ -1,35 +1,37 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.singUp = exports.singIn = exports.RevalidarToken = void 0;
-
-var _Users = require("../models/Users");
-
-var _Pa_people = require("../models/Pa_people");
-
-var _handleError = require("../helpers/handleError");
-
-var _email = require("../email");
-
-var _bcrypt = require("../helpers/bcrypt");
-
-var _database = _interopRequireDefault(require("../config/database"));
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-require("dotenv/config");
-
-var _Pa_customes = require("../models/Pa_customes");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var singUp = /*#__PURE__*/function () {
+//
+var _require = require("../models/Users"),
+    USERS = _require.USERS;
+
+var _require2 = require("../models/Pa_people"),
+    PA_POEPLE = _require2.PA_POEPLE;
+
+var _require3 = require("../helpers/handleError"),
+    HttpError = _require3.HttpError;
+
+var _require4 = require("../email"),
+    transport = _require4.transport,
+    configTransportVery = _require4.configTransportVery;
+
+var _require5 = require("../helpers/bcrypt"),
+    encrptPassword = _require5.encrptPassword,
+    compararPassword = _require5.compararPassword;
+
+var sequelize = require("../config/database");
+
+var jwt = require("jsonwebtoken");
+
+require('dotenv').config();
+
+var _require6 = require("../models/Pa_customes"),
+    PA_CUSTOMES = _require6.PA_CUSTOMES;
+
+exports.singUp = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var _req$body, ID, TIP_DOCUMENT, FRISTNAME, MIDDLENAME, LASTNAME, AGE, EMAIL, PAS_USER, ROL, DAT_BIRTH, COD_COUNTRY, COD_STATE, COD_CITY, DES_ADDRESS, NUM_AREA, NUM_PHONE, USR_ADD, User, token;
 
@@ -39,7 +41,7 @@ var singUp = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _req$body = req.body, ID = _req$body.ID, TIP_DOCUMENT = _req$body.TIP_DOCUMENT, FRISTNAME = _req$body.FRISTNAME, MIDDLENAME = _req$body.MIDDLENAME, LASTNAME = _req$body.LASTNAME, AGE = _req$body.AGE, EMAIL = _req$body.EMAIL, PAS_USER = _req$body.PAS_USER, ROL = _req$body.ROL, DAT_BIRTH = _req$body.DAT_BIRTH, COD_COUNTRY = _req$body.COD_COUNTRY, COD_STATE = _req$body.COD_STATE, COD_CITY = _req$body.COD_CITY, DES_ADDRESS = _req$body.DES_ADDRESS, NUM_AREA = _req$body.NUM_AREA, NUM_PHONE = _req$body.NUM_PHONE, USR_ADD = _req$body.USR_ADD;
-            _context.t0 = _database["default"];
+            _context.t0 = sequelize;
             _context.t1 = ID;
             _context.t2 = TIP_DOCUMENT;
             _context.t3 = FRISTNAME;
@@ -48,7 +50,7 @@ var singUp = /*#__PURE__*/function () {
             _context.t6 = AGE;
             _context.t7 = EMAIL;
             _context.next = 12;
-            return (0, _bcrypt.encrptPassword)(PAS_USER);
+            return encrptPassword(PAS_USER);
 
           case 12:
             _context.t8 = _context.sent;
@@ -86,13 +88,13 @@ var singUp = /*#__PURE__*/function () {
             _context.next = 26;
             return _context.t0.query.call(_context.t0, "CALL INS_USER(:ID,:TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:EMAIL,:PAS_USER,:ROL,:DAT_BIRTH,:COD_COUNTRY,:COD_STATE,:COD_CITY,:DES_ADDRESS,:NUM_AREA,:NUM_PHONE, :USR_ADD)", _context.t19)["catch"](function (error) {
               console.log(error);
-              (0, _handleError.HttpError)(res, error);
+              HttpError(res, error);
               throw res.sendStatus(500);
             });
 
           case 26:
             _context.next = 28;
-            return _Users.USERS.findOne({
+            return USERS.findOne({
               where: {
                 EMAIL: EMAIL
               }
@@ -101,23 +103,21 @@ var singUp = /*#__PURE__*/function () {
           case 28:
             User = _context.sent;
             _context.next = 31;
-            return _jsonwebtoken["default"].sign({
+            return JWT.sign({
               id: User.COD_USER
             }, process.env.JWTSECRET);
 
           case 31:
             token = _context.sent;
-
-            _Users.USERS.update({
+            USERS.update({
               API_TOKEN: token
             }, {
               where: {
                 EMAIL: EMAIL
               }
             });
-
             _context.next = 35;
-            return _email.transport.sendMail((0, _email.configTransportVery)(FRISTNAME, LASTNAME, EMAIL.replace("@", "%40"), token, req.headers.host, User.COD_USER));
+            return transport.sendMail(configTransportVery(FRISTNAME, LASTNAME, EMAIL.replace("@", "%40"), token, req.headers.host, User.COD_USER));
 
           case 35:
             return _context.abrupt("return", res.status(201).json({
@@ -127,7 +127,7 @@ var singUp = /*#__PURE__*/function () {
           case 38:
             _context.prev = 38;
             _context.t20 = _context["catch"](0);
-            (0, _handleError.HttpError)(res, _context.t20);
+            HttpError(res, _context.t20);
             next();
 
           case 42:
@@ -138,14 +138,12 @@ var singUp = /*#__PURE__*/function () {
     }, _callee, null, [[0, 38]]);
   }));
 
-  return function singUp(_x, _x2, _x3) {
+  return function (_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.singUp = singUp;
-
-var singIn = /*#__PURE__*/function () {
+exports.singIn = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
     var _req$body2, EMAIL, PAS_USER, UserFond, PermissionUser, CustomerUser, PeopleFond, token;
 
@@ -156,7 +154,7 @@ var singIn = /*#__PURE__*/function () {
             _req$body2 = req.body, EMAIL = _req$body2.EMAIL, PAS_USER = _req$body2.PAS_USER;
             _context2.prev = 1;
             _context2.next = 4;
-            return _Users.USERS.findOne({
+            return USERS.findOne({
               where: {
                 EMAIL: EMAIL
               }
@@ -177,7 +175,7 @@ var singIn = /*#__PURE__*/function () {
 
           case 7:
             _context2.next = 9;
-            return (0, _bcrypt.compararPassword)(PAS_USER, UserFond.PAS_USER);
+            return compararPassword(PAS_USER, UserFond.PAS_USER);
 
           case 9:
             if (_context2.sent) {
@@ -214,7 +212,7 @@ var singIn = /*#__PURE__*/function () {
 
           case 15:
             _context2.next = 17;
-            return _database["default"].query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)", {
+            return sequelize.query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)", {
               replacements: {
                 COD_USER: UserFond.COD_USER
               }
@@ -223,7 +221,7 @@ var singIn = /*#__PURE__*/function () {
           case 17:
             PermissionUser = _context2.sent;
             _context2.next = 20;
-            return _Pa_customes.PA_CUSTOMES.findOne({
+            return PA_CUSTOMES.findOne({
               where: {
                 COD_USER: UserFond.COD_USER
               }
@@ -232,7 +230,7 @@ var singIn = /*#__PURE__*/function () {
           case 20:
             CustomerUser = _context2.sent;
             _context2.next = 23;
-            return _Pa_people.PA_POEPLE.findOne({
+            return PA_POEPLE.findOne({
               where: {
                 COD_PEOPLE: UserFond.COD_PEOPLE
               }
@@ -240,7 +238,7 @@ var singIn = /*#__PURE__*/function () {
 
           case 23:
             PeopleFond = _context2.sent;
-            token = _jsonwebtoken["default"].sign({
+            token = JWT.sign({
               id: UserFond.COD_USER
             }, process.env.JWTSECRET);
             return _context2.abrupt("return", res.status(200).json({
@@ -258,7 +256,7 @@ var singIn = /*#__PURE__*/function () {
           case 28:
             _context2.prev = 28;
             _context2.t0 = _context2["catch"](1);
-            (0, _handleError.HttpError)(res, _context2.t0);
+            HttpError(res, _context2.t0);
             next();
 
           case 32:
@@ -269,14 +267,12 @@ var singIn = /*#__PURE__*/function () {
     }, _callee2, null, [[1, 28]]);
   }));
 
-  return function singIn(_x4, _x5, _x6) {
+  return function (_x4, _x5, _x6) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.singIn = singIn;
-
-var RevalidarToken = /*#__PURE__*/function () {
+exports.RevalidarToken = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res, next) {
     var User, PermissionUser, CustomerUser, PeopleFond, token;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
@@ -297,7 +293,7 @@ var RevalidarToken = /*#__PURE__*/function () {
 
           case 3:
             _context3.next = 5;
-            return _Users.USERS.findByPk(req.userId);
+            return USERS.findByPk(req.userId);
 
           case 5:
             User = _context3.sent;
@@ -314,7 +310,7 @@ var RevalidarToken = /*#__PURE__*/function () {
 
           case 8:
             _context3.next = 10;
-            return _database["default"].query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)", {
+            return sequelize.query("CALL SHOW_PERMISOS_USER_ID(:COD_USER)", {
               replacements: {
                 COD_USER: User.COD_USER
               }
@@ -323,7 +319,7 @@ var RevalidarToken = /*#__PURE__*/function () {
           case 10:
             PermissionUser = _context3.sent;
             _context3.next = 13;
-            return _Pa_customes.PA_CUSTOMES.findOne({
+            return PA_CUSTOMES.findOne({
               where: {
                 COD_USER: User.COD_USER
               }
@@ -332,7 +328,7 @@ var RevalidarToken = /*#__PURE__*/function () {
           case 13:
             CustomerUser = _context3.sent;
             _context3.next = 16;
-            return _Pa_people.PA_POEPLE.findOne({
+            return PA_POEPLE.findOne({
               where: {
                 COD_PEOPLE: User.COD_PEOPLE
               }
@@ -340,7 +336,7 @@ var RevalidarToken = /*#__PURE__*/function () {
 
           case 16:
             PeopleFond = _context3.sent;
-            token = _jsonwebtoken["default"].sign({
+            token = JWT.sign({
               id: User.COD_USER
             }, process.env.JWTSECRET);
             return _context3.abrupt("return", res.status(200).json({
@@ -358,7 +354,7 @@ var RevalidarToken = /*#__PURE__*/function () {
           case 21:
             _context3.prev = 21;
             _context3.t0 = _context3["catch"](0);
-            (0, _handleError.HttpError)(res, _context3.t0);
+            HttpError(res, _context3.t0);
             next();
 
           case 25:
@@ -369,9 +365,7 @@ var RevalidarToken = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 21]]);
   }));
 
-  return function RevalidarToken(_x7, _x8, _x9) {
+  return function (_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
   };
 }();
-
-exports.RevalidarToken = RevalidarToken;

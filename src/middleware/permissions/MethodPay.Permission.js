@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const MethoPayView = async (req, res, next) => {
+ const MethoPayView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -16,7 +16,7 @@ export const MethoPayView = async (req, res, next) => {
   }
 };
 
-export const MethoPayCreate = async (req, res, next) => {
+ const MethoPayCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -30,7 +30,7 @@ export const MethoPayCreate = async (req, res, next) => {
     next();
   }
 };
-export const MethoPayUpdate = async (req, res, next) => {
+ const MethoPayUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -44,7 +44,7 @@ export const MethoPayUpdate = async (req, res, next) => {
     next();
   }
 };
-export const MethoPayDelete = async (req, res, next) => {
+ const MethoPayDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -57,4 +57,11 @@ export const MethoPayDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  MethoPayView,
+  MethoPayCreate,
+  MethoPayUpdate,
+  MethoPayDelete
 };

@@ -1,60 +1,53 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.BO_SHIPPINGCOST = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../config/database");
 
-var _database = _interopRequireDefault(require("../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var BO_SHIPPINGCOST = _database["default"].define("BO_ShippingCost", {
+var BO_SHIPPINGCOST = db.define("BO_ShippingCost", {
   COD_SHIPPINGCOST: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "COD OF THE SHIPPING COST "
   },
   COD_PACKAGE: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF THE PACKAGE"
   },
   COST_DELIVERY: {
-    type: _sequelize.Sequelize.STRING(60),
+    type: Sequelize.STRING(60),
     allowNull: false,
     comment: "COST DELIVERY OF THE SHIPPING COST"
   },
   COST_INTRODUCTION: {
-    type: _sequelize.Sequelize.STRING(60),
+    type: Sequelize.STRING(60),
     allowNull: false,
     comment: "COST OF INTRODUCTION OF THE SHIPPING COST"
   },
   USR_ADD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     allowNull: false,
     comment: "USER THAT ADDED THIS ROW	"
   },
   USR_UPD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     comment: "USER WHO MODIFIED THIS ROW	"
   },
   DAT_ADD_SHIPPINGCOST: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED	"
   },
   DAT_UPD_SHIPPINGCOST: {
-    type: _sequelize.Sequelize.DATE,
+    type: Sequelize.DATE,
     comment: "DATE THIS ROW WAS MODIFIED	"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.BO_SHIPPINGCOST = BO_SHIPPINGCOST;
+module.exports = BO_SHIPPINGCOST;

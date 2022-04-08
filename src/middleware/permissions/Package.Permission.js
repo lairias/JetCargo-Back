@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const PackageView = async (req, res, next) => {
+ const PackageView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -15,7 +15,7 @@ export const PackageView = async (req, res, next) => {
     next();
   }
 };
-export const PackageCreate = async (req, res, next) => {
+ const PackageCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -29,7 +29,7 @@ export const PackageCreate = async (req, res, next) => {
     next();
   }
 };
-export const PackageUpdate = async (req, res, next) => {
+ const PackageUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -43,7 +43,7 @@ export const PackageUpdate = async (req, res, next) => {
     next();
   }
 };
-export const PackageDelete = async (req, res, next) => {
+ const PackageDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -56,4 +56,12 @@ export const PackageDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports =
+{
+  PackageView,
+  PackageCreate,
+  PackageUpdate,
+  PackageDelete
 };

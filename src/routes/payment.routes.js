@@ -1,11 +1,12 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   CancelCreateOrden,
   CaptureOrden,
   CreateOrden,
-} from "../controllers/Payment.Controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+} =require( "../controllers/Payment.Controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.post("/create-orden", CreateOrden);
 router.get(
   "/capture-orden/:COD_CUSTOMER/:COD_TRACKING/:COD_PACKAGE",
@@ -13,4 +14,5 @@ router.get(
 );
 router.get("/cancel-create-orden", CancelCreateOrden);
 
-export default router;
+
+module.exports = router;

@@ -1,8 +1,8 @@
-import sequelize from "../config/database/index";
-import { BO_CATPACKAGE } from "../models/BO_catPackage";
+const sequelize =require("../config/database/index")
+const { BO_CATPACKAGE } =require("../models/BO_catPackage")
 
-import { HttpError } from "../helpers/handleError";
-export const GetCatPackages = async (req, res, next) => {
+const { HttpError } =require("../helpers/handleError")
+exports.GetCatPackages = async (req, res, next) => {
   try {
     const catPackage = await BO_CATPACKAGE.findAll();
     return res.status(200).json({ ok: true, catPackage });
@@ -11,7 +11,7 @@ export const GetCatPackages = async (req, res, next) => {
     next();
   }
 };
-export const GetCatPackage = async (req, res, next) => {
+exports.GetCatPackage = async (req, res, next) => {
   const { COD_CATPACKAGE } = req.params;
   try {
     const cities = await BO_CATPACKAGE.findByPk(COD_CATPACKAGE);
@@ -21,7 +21,7 @@ export const GetCatPackage = async (req, res, next) => {
     next();
   }
 };
-export const CreateCatPackage = async (req, res, next) => {
+exports.CreateCatPackage = async (req, res, next) => {
   const { NAM_CATPACKAGE, DES_CATPACKAGE, USR_ADD } = req.body;
   console.log(req.body);
   try {
@@ -44,7 +44,7 @@ export const CreateCatPackage = async (req, res, next) => {
     next();
   }
 };
-export const UpdateCatPackage = async (req, res, next) => {
+exports.UpdateCatPackage = async (req, res, next) => {
   const { NAM_CATPACKAGE, DES_CATPACKAGE, USR_UPD } = req.body;
   const { COD_CATPACKAGE } = req.params;
   try {
@@ -71,7 +71,7 @@ export const UpdateCatPackage = async (req, res, next) => {
     next();
   }
 };
-export const DeleteCatPackage = async (req, res, next) => {
+exports.DeleteCatPackage = async (req, res, next) => {
   const { COD_CATPACKAGE } = req.params;
 
   try {
@@ -86,3 +86,4 @@ export const DeleteCatPackage = async (req, res, next) => {
     next();
   }
 };
+

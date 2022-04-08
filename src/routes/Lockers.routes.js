@@ -1,5 +1,6 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   GetLokers,
   DeleteLoker,
   GetLoker,
@@ -9,15 +10,15 @@ import {
   GetLokersind,
   CreateLoker,
   CreateLokerCustomers,
-} from "../controllers/Locker.Controllers";
-import {
+} =require( "../controllers/Locker.Controllers")
+const {
   LockerCreate,
   LockerDelete,
   LockerUpdate,
   LockerView,
-} from "../middleware/permissions/Lockers.Permission";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+} =require( "../middleware/permissions/Lockers.Permission")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/", [verifyToken, verifyIndUser, LockerView], GetLokers);
 router.get("/ind", [verifyToken, verifyIndUser, LockerView], GetLokersind);
 router.get("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerView], GetLoker);
@@ -50,4 +51,5 @@ router.put(
   UpdateLoker
 );
 
-export default router;
+
+module.exports = router;

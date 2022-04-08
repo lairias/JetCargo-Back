@@ -1,21 +1,21 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Auth = require("../controllers/Auth.controllers");
+var _require = require("../controllers/Auth.controllers"),
+    singIn = _require.singIn,
+    singUp = _require.singUp,
+    RevalidarToken = _require.RevalidarToken;
 
-var _verifyEmail = require("../middleware/verifyEmail");
+var _require2 = require("../middleware/verifyEmail"),
+    CheckDuplicateEmail = _require2.CheckDuplicateEmail;
 
-var _renewToken = require("../middleware/tokens/renewToken");
+var _require3 = require("../middleware/tokens/renewToken"),
+    renewToken = _require3.renewToken;
 
-var router = (0, _express.Router)();
-router.post("/signup", _verifyEmail.CheckDuplicateEmail, _Auth.singUp);
-router.post("/signin", _Auth.singIn);
-router.get("/renew", _renewToken.renewToken, _Auth.RevalidarToken);
-var _default = router;
-exports["default"] = _default;
+router.post("/signup", CheckDuplicateEmail, singUp);
+router.post("/signin", singIn);
+router.get("/renew", renewToken, RevalidarToken);
+module.exports = router;

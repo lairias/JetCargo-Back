@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const PAY_PAYMENTMETHOD = db.define(
+ const PAY_PAYMENTMETHOD = db.define(
   "PAY_PaymentMethod",
   {
     COD_PAYMENTMETHOD: {
@@ -44,3 +44,4 @@ export const PAY_PAYMENTMETHOD = db.define(
     updatedAt: false,
   }
 );
+module.exports =PAY_PAYMENTMETHOD

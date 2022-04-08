@@ -1,13 +1,13 @@
 //
-import { USERS } from "../models/Users";
-import { HttpError } from "../helpers/handleError";
-import { transport, configTransportVery } from "../email";
-import { encrptPassword, compararPassword } from "../helpers/bcrypt";
-import sequelize from "../config/database";
-import JWT from "jsonwebtoken";
-import "dotenv/config";
+const  { USERS } =require( "../models/Users")
+const  { HttpError } =require( "../helpers/handleError")
+const  { transport, configTransportVery } =require( "../email")
+const  { encrptPassword, compararPassword } =require( "../helpers/bcrypt")
+const  sequelize =require( "../config/database")
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
 
-export const UpdateUser = async (req, res, next) => {
+exports.UpdateUser = async (req, res, next) => {
   const { PROFILE_PHOTO_PATH, EMAIL } = req.body;
   const { COD_USER } = req.params;
   try {

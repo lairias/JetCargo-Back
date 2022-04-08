@@ -1,7 +1,6 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
-
-export const BO_LOCKER = db.define(
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
+const BO_LOCKER = db.define(
   "BO_Loker",
   {
     COD_LOCKER: {
@@ -66,3 +65,5 @@ export const BO_LOCKER = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = BO_LOCKER

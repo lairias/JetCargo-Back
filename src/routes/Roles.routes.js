@@ -1,21 +1,22 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   CreateRole,
   DeleteRole,
   GetRole,
   GetRoles,
   UpdateRole,
-} from "../controllers/Roles.controllers";
-import { verifyToken, verifyIndUser } from "../middleware/verifySignup";
-import { verifyRoles } from "../middleware/verifyRoles";
-import {
+} =require( "../controllers/Roles.controllers")
+const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
+const { verifyRoles } =require( "../middleware/verifyRoles")
+const {
   TypeUserCreate,
   TypeUserView,
   TypeUserUpdate,
   TypeUserDelete,
-} from "../middleware/permissions/TypeUsers.Permission";
+} =require( "../middleware/permissions/TypeUsers.Permission")
 
-const router = Router();
+
 router.post("/", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
 router.get(
   "/:COD_TYPEUSERS",
@@ -36,4 +37,4 @@ router.delete(
   DeleteRole
 );
 
-export default router;
+module.exports = router;

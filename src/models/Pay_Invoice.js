@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const PAY_INVOICE = db.define(
+ const PAY_INVOICE = db.define(
   "PAY_Invoice",
   {
     COD_INVOICE: {
@@ -74,3 +74,4 @@ export const PAY_INVOICE = db.define(
     updatedAt: false,
   }
 );
+module.exports = PAY_INVOICE

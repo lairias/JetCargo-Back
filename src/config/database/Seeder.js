@@ -1,21 +1,21 @@
-import { BO_CATPACKAGE } from "../../models/BO_catPackage";
-import { BO_LOCKER } from "../../models/BO_locker";
-import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
-import { DE_SERVICE } from "../../models/DE_service";
-import { PA_CITIES } from "../../models/Pa_cities";
-import { PA_COUNTRIES } from "../../models/Pa_countries";
-import { PA_CUSTOMES } from "../../models/Pa_customes";
-import { PA_POEPLE } from "../../models/Pa_people";
-import { PA_PHONES } from "../../models/Pa_phones";
-import { PA_STATES } from "../../models/Pa_states";
-import { PA_TypeUsers } from "../../models/Pa_typeUsers";
-import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
-import { REL_LOCKER_PHONE } from "../../models/relations/REL_locker_phone";
-import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
-import { SE_PERMISOS } from "../../models/security/SE_permisos";
-import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
-import { USERS } from "../../models/Users";
-export const CreateRole = async () => {
+const  BO_CATPACKAGE  = require( "../../models/BO_catPackage")
+const  BO_LOCKER  = require( "../../models/BO_locker")
+const  BO_TYPEPACKAGE  = require( "../../models/BO_typePackage")
+const  DE_SERVICE  = require( "../../models/DE_service")
+const  PA_CITIES  = require( "../../models/Pa_cities")
+const  PA_COUNTRIES  = require( "../../models/Pa_countries")
+const  PA_CUSTOMES  = require( "../../models/Pa_customes")
+const  PA_POEPLE  = require( "../../models/Pa_people")
+const  PA_PHONES  = require( "../../models/Pa_phones")
+const  PA_STATES  = require( "../../models/Pa_states")
+const  PA_TypeUsers  = require( "../../models/Pa_typeUsers")
+const  MODEL_HAS_ROLES  = require( "../../models/relations/MODEL_has_typeUser")
+const  REL_LOCKER_PHONE  = require( "../../models/relations/REL_locker_phone")
+const  MODEL_TYPEUSER_HAS_PERMISOS  = require( "../../models/relations/typeusers_has_permisos")
+const  SE_PERMISOS  = require( "../../models/security/SE_permisos")
+const  SE_SEGURIDAD  = require( "../../models/security/Se_seguridad")
+const  USERS  = require( "../../models/Users")
+ const CreateRole = async () => {
   const count = await PA_TypeUsers.count();
   if (count > 0) {
     return;
@@ -44,7 +44,7 @@ export const CreateRole = async () => {
   }
 };
 
-export const CreatePemisoHasRol = async () => {
+ const CreatePemisoHasRol = async () => {
   const count = await MODEL_TYPEUSER_HAS_PERMISOS.count();
   if (count > 0) {
     return;
@@ -90,7 +90,7 @@ export const CreatePemisoHasRol = async () => {
   }
 };
 
-export const CreatePermisos = async () => {
+ const CreatePermisos = async () => {
   const count = await SE_PERMISOS.count();
   if (count > 0) {
     return;
@@ -496,7 +496,7 @@ export const CreatePermisos = async () => {
   }
 };
 
-export const CreateContries = async () => {
+ const CreateContries = async () => {
   const count = await PA_COUNTRIES.count();
   if (count > 0) {
     return;
@@ -528,7 +528,7 @@ export const CreateContries = async () => {
   }
 };
 
-export const CreateStates = async () => {
+ const CreateStates = async () => {
   const count = await PA_STATES.count();
   if (count > 0) {
     return;
@@ -741,7 +741,7 @@ export const CreateStates = async () => {
   }
 };
 
-export const CreateCities = async () => {
+ const CreateCities = async () => {
   const count = await PA_CITIES.count();
   if (count > 0) {
     return;
@@ -1107,7 +1107,7 @@ export const CreateCities = async () => {
   }
 };
 
-export const CreateSeguri = async () => {
+ const CreateSeguri = async () => {
   const count = await SE_SEGURIDAD.count();
   if (count > 0) {
     return;
@@ -1166,7 +1166,7 @@ export const CreateSeguri = async () => {
   }
 };
 
-export const CreateUser = async () => {
+ const CreateUser = async () => {
   const count = await USERS.count();
   if (count > 0) {
     return;
@@ -1210,7 +1210,7 @@ export const CreateUser = async () => {
   }
 };
 
-export const CreateCatPackage = async () => {
+ const CreateCatPackage = async () => {
   const count = await BO_CATPACKAGE.count();
   if (count > 0) {
     return;
@@ -1424,7 +1424,7 @@ export const CreateCatPackage = async () => {
   }
 };
 
-export const CreateTypePackage = async () => {
+ const CreateTypePackage = async () => {
   const count = await BO_TYPEPACKAGE.count();
   if (count > 0) {
     return;
@@ -1457,7 +1457,7 @@ export const CreateTypePackage = async () => {
   }
 };
 
-export const CreateService = async () => {
+ const CreateService = async () => {
   const count = await DE_SERVICE.count();
   if (count > 0) {
     return;
@@ -1521,7 +1521,7 @@ export const CreateService = async () => {
   }
 };
 
-export const CreateLocker = async () => {
+ const CreateLocker = async () => {
   const count = await BO_LOCKER.count();
   if (count > 0) {
     return;
@@ -1550,3 +1550,16 @@ export const CreateLocker = async () => {
     }
   }
 };
+
+module.exports = {CreateRole,
+  CreatePemisoHasRol,
+  CreatePermisos,
+  CreateContries,
+  CreateStates,
+  CreateCities,
+  CreateSeguri,
+  CreateUser,
+  CreateCatPackage,
+  CreateTypePackage,
+  CreateService,
+  CreateLocker,}

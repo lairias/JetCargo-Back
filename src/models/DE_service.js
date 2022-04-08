@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const DE_SERVICE = db.define(
+ const DE_SERVICE = db.define(
   "DE_service",
   {
     COD_SERVICE: {
@@ -44,3 +44,4 @@ export const DE_SERVICE = db.define(
     updatedAt: false,
   }
 );
+module.exports =DE_SERVICE

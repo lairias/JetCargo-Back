@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const LOG_ERROR = db.define(
+ const LOG_ERROR = db.define(
   "LOG_Error",
   {
     COD_ERROR: {
@@ -37,3 +37,4 @@ export const LOG_ERROR = db.define(
     updatedAt: false,
   }
 );
+module.exports = {LOG_ERROR}

@@ -1,24 +1,31 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _States = require("../controllers/States.Controllers");
+var _require = require("../controllers/States.Controllers"),
+    GetStates = _require.GetStates,
+    GetStatesForCountry = _require.GetStatesForCountry,
+    CreateState = _require.CreateState,
+    DeleteState = _require.DeleteState,
+    UpdateState = _require.UpdateState,
+    GetState = _require.GetState;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyIndUser = _require2.verifyIndUser,
+    verifyToken = _require2.verifyToken;
 
-var _States2 = require("../middleware/permissions/States.Permission");
+var _require3 = require("../middleware/permissions/States.Permission"),
+    StatesView = _require3.StatesView,
+    StatesCreate = _require3.StatesCreate,
+    StatesUpdate = _require3.StatesUpdate,
+    StatesDelete = _require3.StatesDelete;
 
-var router = (0, _express.Router)();
-router.get("/country/:COD_COUNTRY", _States.GetStatesForCountry);
-router.get("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _States2.StatesView], _States.GetStates);
-router.post("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _States2.StatesCreate], _States.CreateState);
-router["delete"]("/:COD_STATE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _States2.StatesDelete], _States.DeleteState);
-router.put("/:COD_STATE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _States2.StatesUpdate], _States.UpdateState);
-router.get("/:COD_STATE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _States2.StatesView], _States.GetState);
-var _default = router;
-exports["default"] = _default;
+router.get("/country/:COD_COUNTRY", GetStatesForCountry);
+router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);
+router.post("/", [verifyToken, verifyIndUser, StatesCreate], CreateState);
+router["delete"]("/:COD_STATE", [verifyToken, verifyIndUser, StatesDelete], DeleteState);
+router.put("/:COD_STATE", [verifyToken, verifyIndUser, StatesUpdate], UpdateState);
+router.get("/:COD_STATE", [verifyToken, verifyIndUser, StatesView], GetState);
+module.exports = router;

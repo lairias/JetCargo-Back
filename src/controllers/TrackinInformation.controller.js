@@ -1,10 +1,10 @@
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-import { DE_TRACKING_INFORMATION_ORIGEN } from "../models/DE_trackingInformationOrigin";
-import { DE_TRACKING_INFORMATION_DESTINO } from "../models/DE_trackingInformationDestino";
-import { REL_ORIGIN_DESTINO } from "../models/relations/REL_Origin_Destino";
+const sequelize =require( "../config/database/index")
+const { HttpError } =require( "../helpers/handleError")
+const { DE_TRACKING_INFORMATION_ORIGEN } =require( "../models/DE_trackingInformationOrigin")
+const { DE_TRACKING_INFORMATION_DESTINO } =require( "../models/DE_trackingInformationDestino")
+const { REL_ORIGIN_DESTINO } =require( "../models/relations/REL_Origin_Destino")
 
-export const DestinoGetTrackinOne = async (req, res, next) => {
+ exports.DestinoGetTrackinOne = async (req, res, next) => {
   const { COD_DESTINO } = req.params;
   try {
     const Origen = await sequelize.query(
@@ -23,7 +23,7 @@ export const DestinoGetTrackinOne = async (req, res, next) => {
   }
 };
 
-export const OrigenGetTrackinOne = async (req, res, next) => {
+ exports.OrigenGetTrackinOne = async (req, res, next) => {
   const { COD_INICIO } = req.params;
   try {
     const Origen = await sequelize.query(
@@ -41,7 +41,7 @@ export const OrigenGetTrackinOne = async (req, res, next) => {
     next();
   }
 };
-export const CreateTrackingInformation = async (req, res, next) => {
+ exports.CreateTrackingInformation = async (req, res, next) => {
   const { Direcciones, COD_ORDEN } = req.body;
   try {
     const Origen = await DE_TRACKING_INFORMATION_ORIGEN.create({
@@ -70,7 +70,7 @@ export const CreateTrackingInformation = async (req, res, next) => {
     next();
   }
 };
-export const UpdateTrackingInformation = async (req, res, next) => {
+ exports.UpdateTrackingInformation = async (req, res, next) => {
   const { 
     PaisOrigin,
         PaisDestino,
@@ -106,7 +106,7 @@ export const UpdateTrackingInformation = async (req, res, next) => {
   }
 };
 
-export const GetTrackinInformationOrden = async (req, res, next) => {
+ exports.GetTrackinInformationOrden = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   // try {
   //   const TrackinInformationOrden = await DE_TRACKING_INFORMATION_DESTINO.findOne({
@@ -122,7 +122,7 @@ export const GetTrackinInformationOrden = async (req, res, next) => {
   //   next();
   // }
 };
-export const GetOrigenDestinoAllTracking = async (req, res, next) => {
+ exports.GetOrigenDestinoAllTracking = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   try {
     const OrriginDestino = await REL_ORIGIN_DESTINO.findOne({
@@ -137,7 +137,7 @@ export const GetOrigenDestinoAllTracking = async (req, res, next) => {
     next();
   }
 };
-export const GetOrigenDestinoAllTrackingAdministrador = async (
+exports.GetOrigenDestinoAllTrackingAdministrador = async (
   req,
   res,
   next
@@ -159,7 +159,7 @@ export const GetOrigenDestinoAllTrackingAdministrador = async (
     next();
   }
 };
-export const GetTrackinInformationOrigen = async (req, res, next) => {
+ exports.GetTrackinInformationOrigen = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   try {
     const OrigenOrden = await sequelize.query(
@@ -177,7 +177,7 @@ export const GetTrackinInformationOrigen = async (req, res, next) => {
     next();
   }
 };
-export const GetTrackinInformationDestino = async (req, res, next) => {
+ exports.GetTrackinInformationDestino = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   try {
     const DestinoOrden = await sequelize.query(
@@ -195,7 +195,7 @@ export const GetTrackinInformationDestino = async (req, res, next) => {
     next();
   }
 };
-export const GetTrackinInformationDestinoOrigenAll = async (req, res, next) => {
+ exports.GetTrackinInformationDestinoOrigenAll = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   try {
     const OrigenDestino = await sequelize.query(
@@ -213,3 +213,4 @@ export const GetTrackinInformationDestinoOrigenAll = async (req, res, next) => {
     next();
   }
 };
+

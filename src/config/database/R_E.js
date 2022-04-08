@@ -1,211 +1,210 @@
-import { PA_POEPLE } from "../../models/Pa_people";
-import { PA_TypeUsers } from "../../models/Pa_typeUsers"; //roles
-import { USERS } from "../../models/Users";
-import { PA_ADDRES } from "../../models/Pa_addres";
-import { PA_CITIES } from "../../models/Pa_cities";
-import { PA_STATES } from "../../models/Pa_states";
-import { PA_COUNTRIES } from "../../models/Pa_countries";
-import { PA_EMAIL } from "../../models/Pa_email";
-import { PA_PHONES } from "../../models/Pa_phones";
-import { SE_SEGURIDAD } from "../../models/security/Se_seguridad";
+const  PA_POEPLE  =require( "../../models/Pa_people.js")
+const   PA_TypeUsers  =require( "../../models/Pa_typeUsers.js")//roles
+const   USERS  =require( "../../models/Users.js")
+const   PA_ADDRES  =require( "../../models/Pa_addres.js")
+const   PA_CITIES  =require( "../../models/Pa_cities.js")
+const   PA_STATES  =require( "../../models/Pa_states.js")
+const   PA_COUNTRIES  =require( "../../models/Pa_countries.js")
+const   PA_EMAIL  =require( "../../models/Pa_email.js")
+const   PA_PHONES  =require( "../../models/Pa_phones.js")
+const   SE_SEGURIDAD  =require( "../../models/security/Se_seguridad.js")
 
-import { PA_CUSTOMES } from "../../models/Pa_customes";
-import { Se_PASS_RESET } from "../../models/security/SE_pass_reset";
+const   PA_CUSTOMES  =require( "../../models/Pa_customes.js")
+const   Se_PASS_RESET  =require( "../../models/security/SE_pass_reset.js")
 
-import { DE_ORDEN } from "../../models/DE_orden";
-import { DE_SERVICE } from "../../models/DE_service";
-import { DE_TRACKING_INFORMATION_ORIGEN } from "../../models/DE_trackingInformationOrigin";
-import { DE_TRACKING_INFORMATION_DESTINO } from "../../models/DE_trackingInformationDestino";
-import { REL_ORDEN_TRACKING } from "../../models/relations/REL_orden_tracking";
+const   DE_ORDEN  =require( "../../models/DE_orden.js")
+const   DE_SERVICE  =require( "../../models/DE_service.js")
+const   DE_TRACKING_INFORMATION_ORIGEN  =require( "../../models/DE_trackingInformationOrigin.js")
+const   DE_TRACKING_INFORMATION_DESTINO  =require( "../../models/DE_trackingInformationDestino.js")
+const   REL_ORDEN_TRACKING  =require( "../../models/relations/REL_orden_tracking.js")
 
-import { SE_PERMISOS } from "../../models/security/SE_permisos";
-import { MODEL_HAS_PERMISOS } from "../../models/relations/MODEL_has_permisos";
-import { MODEL_HAS_ROLES } from "../../models/relations/MODEL_has_typeUser";
-import { MODEL_TYPEUSER_HAS_PERMISOS } from "../../models/relations/typeusers_has_permisos";
+const   SE_PERMISOS  =require( "../../models/security/SE_permisos.js")
+const   MODEL_HAS_PERMISOS  =require( "../../models/relations/MODEL_has_permisos.js")
+const   MODEL_HAS_ROLES  =require( "../../models/relations/MODEL_has_typeUser.js")
+const   MODEL_TYPEUSER_HAS_PERMISOS  =require( "../../models/relations/typeusers_has_permisos.js")
 
 /**Entidad Relacioens de tablas */
-import { REL_PEOPLE_PHONE } from "../../models/relations/REL_people_phone";
-import { REL_PEOPLE_EMAIL } from "../../models/relations/REL_people_email";
-import { REL_PEOPLE_ADDRES } from "../../models/relations/REL_people_addres";
+const   REL_PEOPLE_PHONE  =require( "../../models/relations/REL_people_phone.js")
+const   REL_PEOPLE_EMAIL  =require( "../../models/relations/REL_people_email.js")
+const   REL_PEOPLE_ADDRES  =require( "../../models/relations/REL_people_addres.js")
 
 //**Tablas de paquetes */
-import { BO_SHIPPINGCOST } from "../../models/BO_ShippingCost";
-import { BO_CATPACKAGE } from "../../models/BO_catPackage";
-import { BO_LOCKER } from "../../models/BO_locker";
-import { BO_PACKAGE } from "../../models/BO_package";
-import { BO_TRACKING } from "../../models/BO_tracking";
-import { BO_TYPEPACKAGE } from "../../models/BO_typePackage";
+const   BO_SHIPPINGCOST  =require( "../../models/BO_ShippingCost.js")
+const   BO_CATPACKAGE  =require( "../../models/BO_catPackage.js")
+const   BO_LOCKER  =require( "../../models/BO_locker.js")
+const   BO_PACKAGE  =require( "../../models/BO_package.js")
+const   BO_TRACKING  =require( "../../models/BO_tracking.js")
+const   BO_TYPEPACKAGE  =require( "../../models/BO_typePackage.js")
 
 //Tablas de Pago
-import { PAY_INVOICE } from "../../models/Pay_Invoice";
-import { PAY_PAYMENTMETHOD } from "../../models/Pay_PaymentMethod";
-import { LOG_ERROR } from "../../models/LOG_Errores";
-import { LOGINFALLIDOS } from "../../models/LOG_LoginFallidos";
-import { REL_CUSTOMER_LOKER } from "../../models/relations/REL_customer_locker";
-import { REL_PACKAGE_LOKER } from "../../models/relations/REL_package_lokers";
-import { REL_LOCKER_PHONE } from "../../models/relations/REL_locker_phone";
-import { REL_ORIGIN_DESTINO } from "../../models/relations/REL_Origin_Destino";
+const   PAY_INVOICE  =require( "../../models/Pay_Invoice.js")
+const   PAY_PAYMENTMETHOD  =require( "../../models/Pay_PaymentMethod.js")
+const   LOG_ERROR  =require( "../../models/LOG_Errores.js")
+const   LOGINFALLIDOS  =require( "../../models/LOG_LoginFallidos.js")
+const   REL_CUSTOMER_LOKER  =require( "../../models/relations/REL_customer_locker.js")
+const   REL_PACKAGE_LOKER  =require( "../../models/relations/REL_package_lokers.js")
+const   REL_LOCKER_PHONE  =require( "../../models/relations/REL_locker_phone.js")
+const   REL_ORIGIN_DESTINO  =require( "../../models/relations/REL_Origin_Destino.js")
 
-const relaciones = async () => {
-  await DE_ORDEN.belongsToMany(BO_TRACKING, {
+   DE_ORDEN.belongsToMany(BO_TRACKING, {
     through: REL_ORDEN_TRACKING,
     foreignKey: "COD_ORDEN",
     onDelete: "CASCADE",
   });
-  await BO_TRACKING.belongsToMany(DE_ORDEN, {
+   BO_TRACKING.belongsToMany(DE_ORDEN, {
     through: REL_ORDEN_TRACKING,
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-  await BO_TRACKING.hasMany(DE_ORDEN, {
+   BO_TRACKING.hasMany(DE_ORDEN, {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
+   DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_ORDEN",
     onDelete: "CASCADE",
   });
-  await DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+   DE_ORDEN.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
     foreignKey: "COD_ORDEN",
     onDelete: "CASCADE",
   });
-  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
+   PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_DESTINATION_COUNTRY",
     onDelete: "CASCADE",
   });
-  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
+   PA_CITIES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_DESTINATION_CITY",
     onDelete: "CASCADE",
   });
-  await PA_CITIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+   PA_CITIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
     foreignKey: "COD_ORIGIN_CITY",
     onDelete: "CASCADE",
   });
 
-  await PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+   PA_COUNTRIES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
     foreignKey: "COD_ORIGIN_COUNTRY",
     onDelete: "CASCADE",
   });
 
-  await PA_STATES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
+   PA_STATES.hasMany(DE_TRACKING_INFORMATION_DESTINO, {
     foreignKey: "COD_DESTINATION_STATE",
     onDelete: "CASCADE",
   });
 
-  await PA_STATES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
+   PA_STATES.hasMany(DE_TRACKING_INFORMATION_ORIGEN, {
     foreignKey: "COD_ORIGIN_STATE",
     onDelete: "CASCADE",
   });
 
-  await DE_SERVICE.hasMany(BO_TRACKING, {
+   DE_SERVICE.hasMany(BO_TRACKING, {
     foreignKey: "COD_SERVICE",
     onDelete: "CASCADE",
   });
 
-  await BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
+   BO_PACKAGE.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
   });
-  await PA_CUSTOMES.hasMany(REL_PACKAGE_LOKER, {
+   PA_CUSTOMES.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_CUSTOMER",
     onDelete: "CASCADE",
   });
-  await BO_LOCKER.hasMany(REL_PACKAGE_LOKER, {
+   BO_LOCKER.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_LOCKER",
     onDelete: "CASCADE",
   });
-  await BO_TRACKING.hasMany(REL_PACKAGE_LOKER, {
+   BO_TRACKING.hasMany(REL_PACKAGE_LOKER, {
     foreignKey: "COD_TRACKING",
     onDelete: "CASCADE",
   });
-  await BO_LOCKER.belongsToMany(PA_CUSTOMES, {
+   BO_LOCKER.belongsToMany(PA_CUSTOMES, {
     through: REL_CUSTOMER_LOKER,
     foreignKey: "COD_LOCKER",
     onDelete: "CASCADE",
   });
-  await PA_CUSTOMES.belongsToMany(BO_LOCKER, {
+   PA_CUSTOMES.belongsToMany(BO_LOCKER, {
     through: REL_CUSTOMER_LOKER,
     foreignKey: "COD_CUSTOMER",
     onDelete: "CASCADE",
   });
 
-  await PA_EMAIL.belongsToMany(PA_POEPLE, {
+   PA_EMAIL.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_EMAIL",
     onDelete: "CASCADE",
   });
-  await DE_TRACKING_INFORMATION_DESTINO.hasMany(REL_ORIGIN_DESTINO, {
+   DE_TRACKING_INFORMATION_DESTINO.hasMany(REL_ORIGIN_DESTINO, {
     foreignKey: "COD_DESTINO",
     onDelete: "CASCADE",
   });
 
-  await DE_TRACKING_INFORMATION_ORIGEN.hasMany(REL_ORIGIN_DESTINO, {
+   DE_TRACKING_INFORMATION_ORIGEN.hasMany(REL_ORIGIN_DESTINO, {
     foreignKey: "COD_ORIGIN",
     onDelete: "CASCADE",
   });
-  await DE_ORDEN.hasMany(REL_ORIGIN_DESTINO, {
+   DE_ORDEN.hasMany(REL_ORIGIN_DESTINO, {
     foreignKey: "COD_ORDEN",
     onDelete: "CASCADE",
   });
 
-  await PA_POEPLE.belongsToMany(PA_EMAIL, {
+   PA_POEPLE.belongsToMany(PA_EMAIL, {
     through: REL_PEOPLE_EMAIL,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-  await PA_PHONES.belongsToMany(PA_POEPLE, {
+   PA_PHONES.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
   });
-  await PA_POEPLE.belongsToMany(PA_PHONES, {
+   PA_POEPLE.belongsToMany(PA_PHONES, {
     through: REL_PEOPLE_PHONE,
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
 
-  await BO_LOCKER.belongsToMany(PA_PHONES, {
+   BO_LOCKER.belongsToMany(PA_PHONES, {
     through: REL_LOCKER_PHONE,
     foreignKey: "COD_LOCKER",
     onDelete: "CASCADE",
   });
-  await PA_PHONES.belongsToMany(BO_LOCKER, {
+   PA_PHONES.belongsToMany(BO_LOCKER, {
     through: REL_LOCKER_PHONE,
     foreignKey: "COD_PHONE",
     onDelete: "CASCADE",
   });
 
-  await USERS.hasMany(LOGINFALLIDOS, {
+   USERS.hasMany(LOGINFALLIDOS, {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
-  await PA_CITIES.hasMany(PA_ADDRES, {
+   PA_CITIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_CITY",
     onDelete: "CASCADE",
   });
 
-  await PA_COUNTRIES.hasMany(PA_ADDRES, {
+   PA_COUNTRIES.hasMany(PA_ADDRES, {
     foreignKey: "COD_COUNTRY",
     onDelete: "CASCADE",
   });
 
-  await PA_STATES.hasMany(PA_ADDRES, {
+   PA_STATES.hasMany(PA_ADDRES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
   });
 
-  await PA_STATES.hasMany(PA_CITIES, {
+   PA_STATES.hasMany(PA_CITIES, {
     foreignKey: "COD_STATE",
     onDelete: "CASCADE",
   });
-  await PA_COUNTRIES.hasMany(PA_STATES, {
+   PA_COUNTRIES.hasMany(PA_STATES, {
     foreignKey: "COD_COUNTRY",
     onDelete: "CASCADE",
   });
 
   // Relaciones de tablas de roles
 
-  await SE_PERMISOS.belongsToMany(USERS, {
+   SE_PERMISOS.belongsToMany(USERS, {
     through: MODEL_HAS_PERMISOS,
     foreignKey: {
       name: "COD_PERMISO",
@@ -213,7 +212,7 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await USERS.belongsToMany(SE_PERMISOS, {
+   USERS.belongsToMany(SE_PERMISOS, {
     through: MODEL_HAS_PERMISOS,
     foreignKey: {
       name: "COD_USER",
@@ -221,19 +220,19 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await SE_PERMISOS.hasMany(MODEL_HAS_PERMISOS, {
+   SE_PERMISOS.hasMany(MODEL_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_PERMISO",
     },
   });
-  await USERS.hasMany(MODEL_HAS_PERMISOS, {
+   USERS.hasMany(MODEL_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_USER",
     },
   });
 
   //***************** */
-  await PA_ADDRES.belongsToMany(PA_POEPLE, {
+   PA_ADDRES.belongsToMany(PA_POEPLE, {
     through: REL_PEOPLE_ADDRES,
     foreignKey: {
       name: "COD_ADDRESS",
@@ -241,7 +240,7 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await PA_POEPLE.belongsToMany(PA_ADDRES, {
+   PA_POEPLE.belongsToMany(PA_ADDRES, {
     through: REL_PEOPLE_ADDRES,
     foreignKey: {
       name: "COD_PEOPLE",
@@ -249,19 +248,19 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await PA_ADDRES.hasMany(REL_PEOPLE_ADDRES, {
+   PA_ADDRES.hasMany(REL_PEOPLE_ADDRES, {
     foreignKey: {
       name: "COD_ADDRESS",
     },
   });
-  await PA_POEPLE.hasMany(REL_PEOPLE_ADDRES, {
+   PA_POEPLE.hasMany(REL_PEOPLE_ADDRES, {
     foreignKey: {
       name: "COD_PEOPLE",
     },
   });
 
   /********** ********************************************************************************/
-  await SE_PERMISOS.belongsToMany(PA_TypeUsers, {
+   SE_PERMISOS.belongsToMany(PA_TypeUsers, {
     through: MODEL_TYPEUSER_HAS_PERMISOS,
     foreignKey: {
       name: "COD_PERMISO",
@@ -269,7 +268,7 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await PA_TypeUsers.belongsToMany(SE_PERMISOS, {
+   PA_TypeUsers.belongsToMany(SE_PERMISOS, {
     through: MODEL_TYPEUSER_HAS_PERMISOS,
     foreignKey: {
       name: "COD_TYPEUSERS",
@@ -277,20 +276,20 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await SE_PERMISOS.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
+   SE_PERMISOS.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_PERMISO",
     },
   });
 
-  await PA_TypeUsers.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
+   PA_TypeUsers.hasMany(MODEL_TYPEUSER_HAS_PERMISOS, {
     foreignKey: {
       name: "COD_TYPEUSERS",
     },
   });
 
   /********************************************************************* */
-  await PA_TypeUsers.belongsToMany(USERS, {
+   PA_TypeUsers.belongsToMany(USERS, {
     through: MODEL_HAS_ROLES,
     foreignKey: {
       name: "COD_TYPEUSERS",
@@ -298,7 +297,7 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await USERS.belongsToMany(PA_TypeUsers, {
+   USERS.belongsToMany(PA_TypeUsers, {
     through: MODEL_HAS_ROLES,
     foreignKey: {
       name: "COD_USER",
@@ -306,59 +305,57 @@ const relaciones = async () => {
     onDelete: "CASCADE",
   });
 
-  await PA_TypeUsers.hasMany(MODEL_HAS_ROLES, {
+   PA_TypeUsers.hasMany(MODEL_HAS_ROLES, {
     foreignKey: {
       name: "COD_TYPEUSERS",
     },
   });
-  await USERS.hasMany(MODEL_HAS_ROLES, {
+   USERS.hasMany(MODEL_HAS_ROLES, {
     foreignKey: {
       name: "COD_USER",
     },
   });
 
   /******************************* */
-  await PA_POEPLE.hasMany(BO_LOCKER, {
+   PA_POEPLE.hasMany(BO_LOCKER, {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-  await USERS.hasMany(PA_CUSTOMES, {
+   USERS.hasMany(PA_CUSTOMES, {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
-  await BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
+   BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
   });
-  await BO_PACKAGE.hasMany(BO_TRACKING, {
+   BO_PACKAGE.hasMany(BO_TRACKING, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",
   });
-  await PA_POEPLE.hasMany(PAY_PAYMENTMETHOD, {
+   PA_POEPLE.hasMany(PAY_PAYMENTMETHOD, {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-  await PA_POEPLE.hasMany(PAY_INVOICE, {
+   PA_POEPLE.hasMany(PAY_INVOICE, {
     foreignKey: "COD_PEOPLE",
     onDelete: "CASCADE",
   });
-  await BO_SHIPPINGCOST.hasMany(PAY_INVOICE, {
+   BO_SHIPPINGCOST.hasMany(PAY_INVOICE, {
     foreignKey: "COD_SHIPPINGCOST",
     onDelete: "CASCADE",
   });
-  await PAY_PAYMENTMETHOD.hasMany(PAY_INVOICE, {
+   PAY_PAYMENTMETHOD.hasMany(PAY_INVOICE, {
     foreignKey: "COD_PAYMENTMETHOD",
     onDelete: "CASCADE",
   });
 
-  await BO_CATPACKAGE.hasMany(BO_PACKAGE, {
+   BO_CATPACKAGE.hasMany(BO_PACKAGE, {
     foreignKey: "COD_CATPACKAGE",
     onDelete: "CASCADE",
   });
-  await BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
+   BO_TYPEPACKAGE.hasMany(BO_PACKAGE, {
     foreignKey: "COD_TYPEPACKAGE",
     onDelete: "CASCADE",
   });
-};
 
-relaciones();

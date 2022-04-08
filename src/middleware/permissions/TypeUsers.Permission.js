@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const TypeUserView = async (req, res, next) => {
+ const TypeUserView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -21,7 +21,7 @@ export const TypeUserView = async (req, res, next) => {
   }
 };
 
-export const TypeUserCreate = async (req, res, next) => {
+ const TypeUserCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -40,7 +40,7 @@ export const TypeUserCreate = async (req, res, next) => {
     next();
   }
 };
-export const TypeUserUpdate = async (req, res, next) => {
+ const TypeUserUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -59,7 +59,7 @@ export const TypeUserUpdate = async (req, res, next) => {
     next();
   }
 };
-export const TypeUserDelete = async (req, res, next) => {
+ const TypeUserDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -77,4 +77,11 @@ export const TypeUserDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  TypeUserView,
+  TypeUserCreate,
+  TypeUserUpdate,
+  TypeUserDelete,
 };

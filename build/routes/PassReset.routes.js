@@ -1,20 +1,22 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _PassReset = require("../controllers/PassReset.Controllers");
+var _require = require("../controllers/PassReset.Controllers"),
+    CreatePassReset = _require.CreatePassReset,
+    DeletePassReset = _require.DeletePassReset,
+    ForgotPassword = _require.ForgotPassword,
+    GetPassReset = _require.GetPassReset,
+    UpdatePassReset = _require.UpdatePassReset,
+    VeryTokenReset = _require.VeryTokenReset;
 
-var _verifyPassReset = require("../middleware/verifyPassReset");
+var _require2 = require("../middleware/verifyPassReset"),
+    verifyTokenPass = _require2.verifyTokenPass;
 
-var router = (0, _express.Router)();
-router.post("/", _PassReset.CreatePassReset);
-router.post("/reset-password/:COD_USER/:CORREO/:TOKEN", [_verifyPassReset.verifyTokenPass], _PassReset.ForgotPassword);
-router.get("/:EMAIL", _PassReset.GetPassReset);
-router["delete"]("/:EMAIL", _PassReset.DeletePassReset);
-var _default = router;
-exports["default"] = _default;
+router.post("/", CreatePassReset);
+router.post("/reset-password/:COD_USER/:CORREO/:TOKEN", [verifyTokenPass], ForgotPassword);
+router.get("/:EMAIL", GetPassReset);
+router["delete"]("/:EMAIL", DeletePassReset);
+module.exports = router;

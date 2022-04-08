@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_PACKAGE_LOKER = db.define(
+ const REL_PACKAGE_LOKER = db.define(
   "REL_package_locker",
   {
     COD_REL_PACKAGELOCKER: {
@@ -43,3 +43,5 @@ export const REL_PACKAGE_LOKER = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = REL_PACKAGE_LOKER;

@@ -1,24 +1,18 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MODEL_TYPEUSER_HAS_PERMISOS = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../../config/database");
 
-var _database = _interopRequireDefault(require("../../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var MODEL_TYPEUSER_HAS_PERMISOS = _database["default"].define("MOD_typeusers_has_permisos", {
+var MODEL_TYPEUSER_HAS_PERMISOS = db.define("MOD_typeusers_has_permisos", {
   COD_PERMISO: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF THE PERMISOS"
   },
   COD_TYPEUSERS: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "THE PRIMARY KEY OF TYPE OF USER"
   }
@@ -26,5 +20,4 @@ var MODEL_TYPEUSER_HAS_PERMISOS = _database["default"].define("MOD_typeusers_has
   createdAt: false,
   updatedAt: false
 });
-
-exports.MODEL_TYPEUSER_HAS_PERMISOS = MODEL_TYPEUSER_HAS_PERMISOS;
+module.exports = MODEL_TYPEUSER_HAS_PERMISOS;

@@ -1,10 +1,9 @@
-import sequelize from "../config/database";
-import { SE_PERMISOS } from "../models/security/SE_permisos";
-import { Op } from "sequelize";
-import { HttpError } from "../helpers/handleError";
-import { USERS } from "../models/Users";
+const { SE_PERMISOS } = require("../models/security/SE_permisos")
+const { Op } = require("sequelize")
+const { HttpError } = require("../helpers/handleError")
+const { USERS } = require("../models/Users")
 
-export const VeryEmail = async (req, res, next) => {
+ exports.VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;
   try {
     const User = await USERS.findOne({ where: { EMAIL } });
@@ -26,7 +25,7 @@ export const VeryEmail = async (req, res, next) => {
   }
 };
 
-export const GetPermissionUser = async (req, res, next) => {
+ exports.GetPermissionUser = async (req, res, next) => {
   try {
     const PermissionUser = await SE_PERMISOS.findAll();
     if (!PermissionUser)
@@ -37,3 +36,4 @@ export const GetPermissionUser = async (req, res, next) => {
     next();
   }
 };
+

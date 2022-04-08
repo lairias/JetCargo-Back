@@ -1,15 +1,15 @@
 //
-import { USERS } from "../models/Users";
-import { PA_POEPLE } from "../models/Pa_people";
-import { HttpError } from "../helpers/handleError";
-import { transport, configTransportVery } from "../email";
-import { encrptPassword, compararPassword } from "../helpers/bcrypt";
-import sequelize from "../config/database";
-import JWT from "jsonwebtoken";
-import "dotenv/config";
-import { PA_CUSTOMES } from "../models/Pa_customes";
+const { USERS } =require("../models/Users")
+const { PA_POEPLE } =require("../models/Pa_people")
+const { HttpError } =require("../helpers/handleError")
+const { transport, configTransportVery } =require("../email")
+const { encrptPassword, compararPassword } =require("../helpers/bcrypt")
+const sequelize =require("../config/database")
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
+const { PA_CUSTOMES } =require("../models/Pa_customes")
 
-export const singUp = async (req, res, next) => {
+exports.singUp = async (req, res, next) => {
   try {
     const {
       ID,
@@ -88,7 +88,7 @@ export const singUp = async (req, res, next) => {
     next();
   }
 };
-export const singIn = async (req, res, next) => {
+exports.singIn = async (req, res, next) => {
   const { EMAIL, PAS_USER } = req.body;
   try {
     const UserFond = await USERS.findOne({
@@ -143,7 +143,7 @@ export const singIn = async (req, res, next) => {
   }
 };
 
-export const RevalidarToken = async (req, res, next) => {
+exports.RevalidarToken = async (req, res, next) => {
   try {
     if (!req.userId)
       return res.status(203).json({ ok: false, message: "Token no valido" });
@@ -181,3 +181,4 @@ export const RevalidarToken = async (req, res, next) => {
     next();
   }
 };
+

@@ -1,17 +1,15 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Seguridad = require("../controllers/Seguridad.controllers");
+var _require = require("../controllers/Seguridad.controllers"),
+    GetSeguridadID = _require.GetSeguridadID;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require2 = require("../middleware/verifySignup"),
+    verifyIndUser = _require2.verifyIndUser,
+    verifyToken = _require2.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/:COD_SEGURIDAD", _Seguridad.GetSeguridadID);
-var _default = router;
-exports["default"] = _default;
+router.get("/:COD_SEGURIDAD", GetSeguridadID);
+module.exports = router;

@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const MODEL_HAS_ROLES = db.define(
+ const MODEL_HAS_ROLES = db.define(
   "MOD_has_typeuser",
   {
     COD_TYPEUSERS: {
@@ -20,3 +20,4 @@ export const MODEL_HAS_ROLES = db.define(
     updatedAt: false,
   }
 );
+module.exports = MODEL_HAS_ROLES;

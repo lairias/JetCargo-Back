@@ -1,8 +1,9 @@
 "use strict";
 
-var _sequelize = require("sequelize");
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-module.exports = new _sequelize.Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
+module.exports = new Sequelize("jetcargo", "jetcargo", "JetCargo##985.3", {
   host: "142.44.161.115",
   ports: "3306",
   dialect: "mysql",

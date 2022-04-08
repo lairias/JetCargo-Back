@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const Sequelize = require('sequelize');
+const db = require("../config/database");
 
-export const DE_ORDEN = db.define(
+ const DE_ORDEN = db.define(
   "DE_Ordenes",
   {
     COD_ORDEN: {
@@ -54,3 +54,4 @@ export const DE_ORDEN = db.define(
     updatedAt: false,
   }
 );
+ module.exports =DE_ORDEN

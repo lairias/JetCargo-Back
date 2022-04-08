@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const PA_CITIES = db.define(
+ const PA_CITIES = db.define(
   "PA_City",
   {
     COD_CITY: {
@@ -88,3 +88,5 @@ export const PA_CITIES = db.define(
     updatedAt: false,
   }
 );
+
+module.exports = PA_CITIES

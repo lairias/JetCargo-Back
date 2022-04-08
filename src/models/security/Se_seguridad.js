@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const SE_SEGURIDAD = db.define(
+ const SE_SEGURIDAD = db.define(
   "SE_Seguridad",
   {
     COD_SEGURIDAD: {
@@ -33,3 +33,4 @@ export const SE_SEGURIDAD = db.define(
     updatedAt: false,
   }
 );
+module.exports = SE_SEGURIDAD;

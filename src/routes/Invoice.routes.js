@@ -1,8 +1,10 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
  GetInformationInvoceByCustomer
-} from "../controllers/Invoice.Controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+} =require( "../controllers/Invoice.Controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/:COD_USER",[verifyToken, verifyIndUser], GetInformationInvoceByCustomer);
-export default router;
+
+module.exports = router;

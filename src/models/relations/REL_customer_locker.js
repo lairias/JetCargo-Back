@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_CUSTOMER_LOKER = db.define(
+ const REL_CUSTOMER_LOKER = db.define(
   "REL_customer_locker",
   {
     COD_REL_CUSTOMERLOCKER: {
@@ -33,3 +33,4 @@ export const REL_CUSTOMER_LOKER = db.define(
     updatedAt: false,
   }
 );
+module.exports = REL_CUSTOMER_LOKER;

@@ -1,7 +1,7 @@
-import sequelize from "../config/database";
-import { HttpError } from "../helpers/handleError";
+const sequelize =require("../config/database")
+const { HttpError } =require("../helpers/handleError")
 
-export const GetPhoneLocker = async (req, res, next) => {
+exports.GetPhoneLocker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;
   try {
     const PhoneLocker = await sequelize.query(
@@ -19,3 +19,4 @@ export const GetPhoneLocker = async (req, res, next) => {
     next();
   }
 };
+

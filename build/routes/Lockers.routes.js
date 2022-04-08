@@ -1,27 +1,37 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Locker = require("../controllers/Locker.Controllers");
+var _require = require("../controllers/Locker.Controllers"),
+    GetLokers = _require.GetLokers,
+    DeleteLoker = _require.DeleteLoker,
+    GetLoker = _require.GetLoker,
+    GetLokerByPeople = _require.GetLokerByPeople,
+    GetLokerByCustomer = _require.GetLokerByCustomer,
+    UpdateLoker = _require.UpdateLoker,
+    GetLokersind = _require.GetLokersind,
+    CreateLoker = _require.CreateLoker,
+    CreateLokerCustomers = _require.CreateLokerCustomers;
 
-var _Lockers = require("../middleware/permissions/Lockers.Permission");
+var _require2 = require("../middleware/permissions/Lockers.Permission"),
+    LockerCreate = _require2.LockerCreate,
+    LockerDelete = _require2.LockerDelete,
+    LockerUpdate = _require2.LockerUpdate,
+    LockerView = _require2.LockerView;
 
-var _verifySignup = require("../middleware/verifySignup");
+var _require3 = require("../middleware/verifySignup"),
+    verifyIndUser = _require3.verifyIndUser,
+    verifyToken = _require3.verifyToken;
 
-var router = (0, _express.Router)();
-router.get("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerView], _Locker.GetLokers);
-router.get("/ind", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerView], _Locker.GetLokersind);
-router.get("/:COD_LOCKER", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerView], _Locker.GetLoker);
-router.get("/people/:COD_PEOPLE", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerView], _Locker.GetLokerByPeople);
-router.get("/customer/:COD_CUSTOMER", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerView], _Locker.GetLokerByCustomer);
-router.post("/customer", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerCreate], _Locker.CreateLokerCustomers);
-router.post("/", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerCreate], _Locker.CreateLoker);
-router["delete"]("/:COD_LOCKER", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerDelete], _Locker.DeleteLoker);
-router.put("/:COD_LOCKER", [_verifySignup.verifyToken, _verifySignup.verifyIndUser, _Lockers.LockerUpdate], _Locker.UpdateLoker);
-var _default = router;
-exports["default"] = _default;
+router.get("/", [verifyToken, verifyIndUser, LockerView], GetLokers);
+router.get("/ind", [verifyToken, verifyIndUser, LockerView], GetLokersind);
+router.get("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerView], GetLoker);
+router.get("/people/:COD_PEOPLE", [verifyToken, verifyIndUser, LockerView], GetLokerByPeople);
+router.get("/customer/:COD_CUSTOMER", [verifyToken, verifyIndUser, LockerView], GetLokerByCustomer);
+router.post("/customer", [verifyToken, verifyIndUser, LockerCreate], CreateLokerCustomers);
+router.post("/", [verifyToken, verifyIndUser, LockerCreate], CreateLoker);
+router["delete"]("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerDelete], DeleteLoker);
+router.put("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerUpdate], UpdateLoker);
+module.exports = router;

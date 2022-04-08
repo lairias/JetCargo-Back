@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const StatesView = async (req, res, next) => {
+ const StatesView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -21,7 +21,7 @@ export const StatesView = async (req, res, next) => {
   }
 };
 
-export const StatesCreate = async (req, res, next) => {
+ const StatesCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -40,7 +40,7 @@ export const StatesCreate = async (req, res, next) => {
     next();
   }
 };
-export const StatesUpdate = async (req, res, next) => {
+ const StatesUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -59,7 +59,7 @@ export const StatesUpdate = async (req, res, next) => {
     next();
   }
 };
-export const StatesDelete = async (req, res, next) => {
+ const StatesDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -77,4 +77,11 @@ export const StatesDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports = {
+  StatesView,
+  StatesCreate,
+  StatesUpdate,
+  StatesDelete,
 };

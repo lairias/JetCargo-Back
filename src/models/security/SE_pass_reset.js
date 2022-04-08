@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const Se_PASS_RESET = db.define(
+ const Se_PASS_RESET = db.define(
   "SE_PassReset",
   {
     EMAIL: {
@@ -27,3 +27,5 @@ export const Se_PASS_RESET = db.define(
     updatedAt: false,
   }
 );
+
+module.exports =Se_PASS_RESET

@@ -1,20 +1,21 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   GetCountries,
   DeleteCountrie,
   GetCountry,
   UpdateCountrie,
   CreateCountry,
-} from "../controllers/Country.Controllers";
-import {
+} =require( "../controllers/Country.Controllers")
+const {
   CountryCreate,
   CountryDelete,
   CountryUpdate,
   CountryView,
-} from "../middleware/permissions/County.Permission";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
+} =require( "../middleware/permissions/County.Permission")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
-const router = Router();
+
 router.get("/", GetCountries);
 router.get(
   "/:COD_COUNTRY",
@@ -32,4 +33,5 @@ router.put(
   [verifyToken, verifyIndUser, CountryUpdate],
   UpdateCountrie
 );
-export default router;
+
+module.exports = router;

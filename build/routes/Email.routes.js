@@ -1,16 +1,13 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _Email = require("../controllers/Email.Controllers");
+var _require = require("../controllers/Email.Controllers"),
+    VeryEmail = _require.VeryEmail,
+    GetEmail = _require.GetEmail;
 
-var router = (0, _express.Router)();
-router.get("/very/:COD_USER/:EMAIL/:TOKEN", _Email.VeryEmail);
-router.get("/:EMAIL", _Email.GetEmail);
-var _default = router;
-exports["default"] = _default;
+router.get("/very/:COD_USER/:EMAIL/:TOKEN", VeryEmail);
+router.get("/:EMAIL", GetEmail);
+module.exports = router;

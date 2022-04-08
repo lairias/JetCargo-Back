@@ -1,6 +1,6 @@
-import { PA_TypeUsers } from "../models/Pa_typeUsers";
+const { PA_TypeUsers } =require( "../models/Pa_typeUsers")
 
-export const verifyRoles = async (req, res, next) => {
+ const verifyRoles = async (req, res, next) => {
   const { NOM_TYPE } = req.body;
   try {
     if (await PA_TypeUsers.findOne({ where: { NOM_TYPE } }))
@@ -11,3 +11,7 @@ export const verifyRoles = async (req, res, next) => {
     return res.status(501).json({ message: "Erro al procesar la petición" });
   }
 };
+
+  module.exports = {
+    verifyRoles,
+  };

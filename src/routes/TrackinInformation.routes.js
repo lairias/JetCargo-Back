@@ -1,5 +1,6 @@
-import { Router } from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   CreateTrackingInformation,
   GetTrackinInformationOrden,
   GetTrackinInformationOrigen,
@@ -10,9 +11,9 @@ import {
   OrigenGetTrackinOne,
   DestinoGetTrackinOne,
   UpdateTrackingInformation,
-} from "../controllers/TrackinInformation.controller";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+} =require( "../controllers/TrackinInformation.controller")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 
 router.post("/", [verifyToken, verifyIndUser], CreateTrackingInformation);
 router.put("/", [verifyToken, verifyIndUser], UpdateTrackingInformation);
@@ -59,4 +60,5 @@ router.get(
   GetTrackinInformationDestino
 );
 
-export default router;
+
+module.exports = router;

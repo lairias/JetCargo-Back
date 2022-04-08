@@ -1,54 +1,47 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.PA_PHONES = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../config/database");
 
-var _database = _interopRequireDefault(require("../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var PA_PHONES = _database["default"].define("PA_Phone", {
+var PA_PHONES = db.define("PA_Phone", {
   COD_PHONE: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "COD OF A PHONE NUMBER"
   },
   NUM_AREA: {
-    type: _sequelize.Sequelize.STRING(60),
+    type: Sequelize.STRING(60),
     allowNull: false,
     comment: "NUMBER OF AREA TO CALL"
   },
   NUM_PHONE: {
-    type: _sequelize.Sequelize.INTEGER(10),
+    type: Sequelize.INTEGER(10),
     allowNull: false,
     comment: "PHONE NUMBER OF THE PERSON"
   },
   USR_ADD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     comment: "USER THAT ADDED THIS ROW"
   },
   USR_UPD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     comment: "USER WHO MODIFIED THIS ROW"
   },
   DAT_ADD: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED"
   },
   DAT_UPD: {
-    type: _sequelize.Sequelize.DATE,
+    type: Sequelize.DATE,
     comment: "DATE THIS ROW WAS MODIFIED"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.PA_PHONES = PA_PHONES;
+module.exports = PA_PHONES;

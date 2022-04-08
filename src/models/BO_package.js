@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../config/database");
 
-export const BO_PACKAGE = db.define(
+ const BO_PACKAGE = db.define(
   "BO_Package",
   {
     COD_PACKAGE: {
@@ -88,3 +88,4 @@ export const BO_PACKAGE = db.define(
     updatedAt: false,
   }
 );
+ module.exports = BO_PACKAGE

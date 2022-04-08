@@ -1,6 +1,8 @@
-import { Router } from "express";
-import { GetService } from "../controllers/Service.controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const { GetService } =require( "../controllers/Service.controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/", [verifyToken, verifyIndUser], GetService);
-export default router;
+
+module.exports = router;

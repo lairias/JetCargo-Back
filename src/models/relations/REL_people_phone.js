@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from "../../config/database";
+const {Sequelize} = require("sequelize")
+const db = require("../../config/database");
 
-export const REL_PEOPLE_PHONE = db.define(
+ const REL_PEOPLE_PHONE = db.define(
   "REL_people_phone",
   {
     COD_REL_PEOPHO: {
@@ -25,3 +25,4 @@ export const REL_PEOPLE_PHONE = db.define(
 );
 
 //**/SET FOREIGN_KEY_CHECKS = OFF */
+module.exports = REL_PEOPLE_PHONE;

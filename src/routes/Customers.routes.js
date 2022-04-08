@@ -1,13 +1,12 @@
-import { Router } from "express";
-import { GetCustomers } from "../controllers/Customers.Controllers";
-import {
-  CustomerCreate,
-  CustomerDelete,
-  CustomerUpdate,
-  CustomerView,
-} from "../middleware/permissions/Customer.Permission";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
+const express = require("express");
+const router = express.Router();
 
-const router = Router();
+const { GetCustomers } =require( "../controllers/Customers.Controllers.js")
+const {
+  CustomerView,
+} =require( "../middleware/permissions/Customer.Permission.js")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup.js")
+
+
 router.get("/", [verifyToken, verifyIndUser, CustomerView], GetCustomers);
-export default router;
+module.exports = router;

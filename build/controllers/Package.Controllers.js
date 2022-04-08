@@ -1,23 +1,18 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UpdatePackage = exports.GetPackages = exports.GetPackageLokerByCustomer = exports.GetPackage = exports.DeletePackage = exports.CreatePackage = void 0;
-
-var _BO_package = require("../models/BO_package");
-
-var _index = _interopRequireDefault(require("../config/database/index"));
-
-var _handleError = require("../helpers/handleError");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var GetPackages = /*#__PURE__*/function () {
+var _require = require("../models/BO_package"),
+    BO_PACKAGE = _require.BO_PACKAGE;
+
+var sequelize = require("../config/database/index");
+
+var _require2 = require("../helpers/handleError"),
+    HttpError = _require2.HttpError;
+
+exports.GetPackages = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var cities;
     return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -26,7 +21,7 @@ var GetPackages = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _BO_package.BO_PACKAGE.findAll();
+            return BO_PACKAGE.findAll();
 
           case 3:
             cities = _context.sent;
@@ -35,7 +30,7 @@ var GetPackages = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            (0, _handleError.HttpError)(res, _context.t0);
+            HttpError(res, _context.t0);
             next();
 
           case 11:
@@ -46,14 +41,12 @@ var GetPackages = /*#__PURE__*/function () {
     }, _callee, null, [[0, 7]]);
   }));
 
-  return function GetPackages(_x, _x2, _x3) {
+  return function (_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.GetPackages = GetPackages;
-
-var GetPackageLokerByCustomer = /*#__PURE__*/function () {
+exports.GetPackageLokerByCustomer = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
     var _req$params, COD_CUSTOMER, COD_LOCKER, packageLokerCustomer;
 
@@ -65,7 +58,7 @@ var GetPackageLokerByCustomer = /*#__PURE__*/function () {
             console.log(req.params);
             _context2.prev = 2;
             _context2.next = 5;
-            return _index["default"].query("CALL SHOW_PACKAGE_CUSTOMER(:COD_CUSTOMER,:COD_LOCKER)", {
+            return sequelize.query("CALL SHOW_PACKAGE_CUSTOMER(:COD_CUSTOMER,:COD_LOCKER)", {
               replacements: {
                 COD_CUSTOMER: COD_CUSTOMER,
                 COD_LOCKER: COD_LOCKER
@@ -94,7 +87,7 @@ var GetPackageLokerByCustomer = /*#__PURE__*/function () {
           case 11:
             _context2.prev = 11;
             _context2.t0 = _context2["catch"](2);
-            (0, _handleError.HttpError)(res, _context2.t0);
+            HttpError(res, _context2.t0);
             next();
 
           case 15:
@@ -105,14 +98,12 @@ var GetPackageLokerByCustomer = /*#__PURE__*/function () {
     }, _callee2, null, [[2, 11]]);
   }));
 
-  return function GetPackageLokerByCustomer(_x4, _x5, _x6) {
+  return function (_x4, _x5, _x6) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.GetPackageLokerByCustomer = GetPackageLokerByCustomer;
-
-var GetPackage = /*#__PURE__*/function () {
+exports.GetPackage = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res, next) {
     var COD_PACKAGE, cities;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
@@ -122,7 +113,7 @@ var GetPackage = /*#__PURE__*/function () {
             COD_PACKAGE = req.params.COD_PACKAGE;
             _context3.prev = 1;
             _context3.next = 4;
-            return _BO_package.BO_PACKAGE.findByPk(COD_PACKAGE);
+            return BO_PACKAGE.findByPk(COD_PACKAGE);
 
           case 4:
             cities = _context3.sent;
@@ -131,7 +122,7 @@ var GetPackage = /*#__PURE__*/function () {
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](1);
-            (0, _handleError.HttpError)(res, _context3.t0);
+            HttpError(res, _context3.t0);
             next();
 
           case 12:
@@ -142,14 +133,12 @@ var GetPackage = /*#__PURE__*/function () {
     }, _callee3, null, [[1, 8]]);
   }));
 
-  return function GetPackage(_x7, _x8, _x9) {
+  return function (_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.GetPackage = GetPackage;
-
-var CreatePackage = /*#__PURE__*/function () {
+exports.CreatePackage = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res, next) {
     var _req$body, COD_CATPACKAGE, COD_TYPEPACKAGE, COD_LOCKER, NOM_PACKAGE, NUM_PACKAGE, HEIGHT_PACKAGE, WIDTH_PACKAGE, LENGTH_PACKAGE, WEIGHT_PACKAGE, PRICE_PACKAGE, VOL_PACKAGE, USR_ADD;
 
@@ -160,7 +149,7 @@ var CreatePackage = /*#__PURE__*/function () {
             _req$body = req.body, COD_CATPACKAGE = _req$body.COD_CATPACKAGE, COD_TYPEPACKAGE = _req$body.COD_TYPEPACKAGE, COD_LOCKER = _req$body.COD_LOCKER, NOM_PACKAGE = _req$body.NOM_PACKAGE, NUM_PACKAGE = _req$body.NUM_PACKAGE, HEIGHT_PACKAGE = _req$body.HEIGHT_PACKAGE, WIDTH_PACKAGE = _req$body.WIDTH_PACKAGE, LENGTH_PACKAGE = _req$body.LENGTH_PACKAGE, WEIGHT_PACKAGE = _req$body.WEIGHT_PACKAGE, PRICE_PACKAGE = _req$body.PRICE_PACKAGE, VOL_PACKAGE = _req$body.VOL_PACKAGE, USR_ADD = _req$body.USR_ADD;
             _context4.prev = 1;
             _context4.next = 4;
-            return _index["default"].query("CALL INS_PACKAGE(:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:USR_ADD)", {
+            return sequelize.query("CALL INS_PACKAGE(:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:USR_ADD)", {
               replacements: {
                 COD_CATPACKAGE: COD_CATPACKAGE,
                 COD_TYPEPACKAGE: COD_TYPEPACKAGE,
@@ -177,7 +166,7 @@ var CreatePackage = /*#__PURE__*/function () {
               }
             })["catch"](function (error) {
               console.log(error);
-              (0, _handleError.HttpError)(res, error);
+              HttpError(res, error);
               throw res.sendStatus(500);
             });
 
@@ -187,7 +176,7 @@ var CreatePackage = /*#__PURE__*/function () {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](1);
-            (0, _handleError.HttpError)(res, _context4.t0);
+            HttpError(res, _context4.t0);
             next();
 
           case 11:
@@ -198,14 +187,12 @@ var CreatePackage = /*#__PURE__*/function () {
     }, _callee4, null, [[1, 7]]);
   }));
 
-  return function CreatePackage(_x10, _x11, _x12) {
+  return function (_x10, _x11, _x12) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.CreatePackage = CreatePackage;
-
-var DeletePackage = /*#__PURE__*/function () {
+exports.DeletePackage = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res, next) {
     var COD_PACKAGE;
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
@@ -215,7 +202,7 @@ var DeletePackage = /*#__PURE__*/function () {
             COD_PACKAGE = req.params.COD_PACKAGE;
             _context5.prev = 1;
             _context5.next = 4;
-            return _BO_package.BO_PACKAGE.destroy({
+            return BO_PACKAGE.destroy({
               where: {
                 COD_PACKAGE: COD_PACKAGE
               }
@@ -227,7 +214,7 @@ var DeletePackage = /*#__PURE__*/function () {
           case 7:
             _context5.prev = 7;
             _context5.t0 = _context5["catch"](1);
-            (0, _handleError.HttpError)(res, _context5.t0);
+            HttpError(res, _context5.t0);
             next();
 
           case 11:
@@ -238,14 +225,12 @@ var DeletePackage = /*#__PURE__*/function () {
     }, _callee5, null, [[1, 7]]);
   }));
 
-  return function DeletePackage(_x13, _x14, _x15) {
+  return function (_x13, _x14, _x15) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.DeletePackage = DeletePackage;
-
-var UpdatePackage = /*#__PURE__*/function () {
+exports.UpdatePackage = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res, next) {
     var _req$body2, COD_CATPACKAGE, COD_TYPEPACKAGE, COD_LOCKER, NOM_PACKAGE, NUM_PACKAGE, HEIGHT_PACKAGE, WIDTH_PACKAGE, LENGTH_PACKAGE, WEIGHT_PACKAGE, PRICE_PACKAGE, VOL_PACKAGE, IND_PACKAGE, USR_UPD, COD_PACKAGE;
 
@@ -257,7 +242,7 @@ var UpdatePackage = /*#__PURE__*/function () {
             COD_PACKAGE = req.params.COD_PACKAGE;
             _context6.prev = 2;
             _context6.next = 5;
-            return _index["default"].query("CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)", {
+            return sequelize.query("CALL UPD_PACKAGE(:COD_PACKAGE,:COD_CATPACKAGE,:COD_TYPEPACKAGE,:COD_LOCKER,:NOM_PACKAGE,:NUM_PACKAGE,:HEIGHT_PACKAGE,:WIDTH_PACKAGE,:LENGTH_PACKAGE,:WEIGHT_PACKAGE,:PRICE_PACKAGE,:VOL_PACKAGE,:IND_PACKAGE,:USR_UPD)", {
               replacements: {
                 COD_PACKAGE: COD_PACKAGE,
                 COD_CATPACKAGE: COD_CATPACKAGE,
@@ -276,7 +261,7 @@ var UpdatePackage = /*#__PURE__*/function () {
               }
             })["catch"](function (error) {
               console.log(error);
-              (0, _handleError.HttpError)(res, error);
+              HttpError(res, error);
               throw res.sendStatus(500);
             });
 
@@ -286,7 +271,7 @@ var UpdatePackage = /*#__PURE__*/function () {
           case 8:
             _context6.prev = 8;
             _context6.t0 = _context6["catch"](2);
-            (0, _handleError.HttpError)(res, _context6.t0);
+            HttpError(res, _context6.t0);
             next();
 
           case 12:
@@ -297,9 +282,7 @@ var UpdatePackage = /*#__PURE__*/function () {
     }, _callee6, null, [[2, 8]]);
   }));
 
-  return function UpdatePackage(_x16, _x17, _x18) {
+  return function (_x16, _x17, _x18) {
     return _ref6.apply(this, arguments);
   };
 }();
-
-exports.UpdatePackage = UpdatePackage;

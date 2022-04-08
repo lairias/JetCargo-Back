@@ -1,76 +1,69 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.BO_LOCKER = void 0;
+var _require = require("sequelize"),
+    Sequelize = _require.Sequelize;
 
-var _sequelize = require("sequelize");
+var db = require("../config/database");
 
-var _database = _interopRequireDefault(require("../config/database"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var BO_LOCKER = _database["default"].define("BO_Loker", {
+var BO_LOCKER = db.define("BO_Loker", {
   COD_LOCKER: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
     comment: "COD OF THE LOCKER"
   },
   COD_PEOPLE: {
-    type: _sequelize.Sequelize.BIGINT,
+    type: Sequelize.BIGINT,
     allowNull: false,
     comment: "COD OF THE PEOPLE"
   },
   NUM_LOCKER: {
-    type: _sequelize.Sequelize.STRING(60),
+    type: Sequelize.STRING(60),
     allowNull: false,
     comment: "NUM OF LOCKER"
   },
   ADDRES_LOCKER: {
-    type: _sequelize.Sequelize.STRING(255),
+    type: Sequelize.STRING(255),
     allowNull: false,
     comment: "ADDRES OF LOCKER"
   },
   TEL_LOCKER: {
-    type: _sequelize.Sequelize.STRING(255),
+    type: Sequelize.STRING(255),
     allowNull: false,
     comment: "ADDRES OF LOCKER"
   },
   IND_LOCKER: {
-    type: _sequelize.Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: true,
     comment: "STATUS OF LOCKER"
   },
   TYP_LOCKER: {
-    type: _sequelize.Sequelize.STRING(80),
+    type: Sequelize.STRING(80),
     allowNull: false,
     comment: "TYPE OF LOCKER"
   },
   USR_ADD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     allowNull: false,
     comment: "USER THAT ADDED THIS ROW	"
   },
   USR_UPD: {
-    type: _sequelize.Sequelize.STRING(30),
+    type: Sequelize.STRING(30),
     comment: "USER WHO MODIFIED THIS ROW	"
   },
   DAT_ADD_COD_LOCKER: {
-    type: _sequelize.Sequelize.DATE,
-    defaultValue: _sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     comment: "DATE THAT THIS ROW WERE ADDED	"
   },
   DAT_UPD_COD_LOCKER: {
-    type: _sequelize.Sequelize.DATE,
+    type: Sequelize.DATE,
     comment: "DATE THIS ROW WAS MODIFIED	"
   }
 }, {
   createdAt: false,
   updatedAt: false
 });
-
-exports.BO_LOCKER = BO_LOCKER;
+module.exports = BO_LOCKER;

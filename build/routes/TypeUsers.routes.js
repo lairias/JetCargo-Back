@@ -1,19 +1,19 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+var express = require("express");
 
-var _express = require("express");
+var router = express.Router();
 
-var _TypeUsers = require("../controllers/TypeUsers.Controllers");
+var _require = require("../controllers/TypeUsers.Controllers"),
+    GetTypeUsers = _require.GetTypeUsers,
+    CreateTypeUser = _require.CreateTypeUser,
+    DeleteTypeUser = _require.DeleteTypeUser,
+    UpdateTypeUser = _require.UpdateTypeUser,
+    GetTypeUser = _require.GetTypeUser;
 
-var router = (0, _express.Router)();
-router.get("/", [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles], _TypeUsers.GetTypeUsers);
-router.post("/", _TypeUsers.CreateTypeUser);
-router["delete"]("/:COD_TYPEUSER", _TypeUsers.DeleteTypeUser);
-router.put("/:COD_TYPEUSER", _TypeUsers.UpdateTypeUser);
-router.get("/:COD_TYPEUSER", _TypeUsers.GetTypeUser);
-var _default = router;
-exports["default"] = _default;
+router.get("/", [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles], GetTypeUsers);
+router.post("/", CreateTypeUser);
+router["delete"]("/:COD_TYPEUSER", DeleteTypeUser);
+router.put("/:COD_TYPEUSER", UpdateTypeUser);
+router.get("/:COD_TYPEUSER", GetTypeUser);
+module.exports = router;

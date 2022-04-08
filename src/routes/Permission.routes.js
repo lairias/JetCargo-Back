@@ -1,9 +1,10 @@
-GetPermissionUser;
-import { Router } from "express";
-import { GetPermissionUser } from "../controllers/Permission.controllers";
+const express = require("express");
+const router = express.Router();
+const { GetPermissionUser } =require( "../controllers/Permission.controllers")
 
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+
 router.get("/", [verifyToken, verifyIndUser], GetPermissionUser);
 
-export default router;
+
+module.exports = router;

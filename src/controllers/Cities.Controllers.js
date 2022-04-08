@@ -1,9 +1,9 @@
-import { PA_CITIES } from "../models/Pa_cities";
-import { PA_STATES } from "../models/Pa_states";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
+const { PA_CITIES } = require( "../models/Pa_cities")
+const { PA_STATES } = require( "../models/Pa_states")
+const sequelize = require( "../config/database/index")
+const { HttpError } = require( "../helpers/handleError")
 
-export const GetCitiesForState = async (req, res, next) => {
+exports.GetCitiesForState = async (req, res, next) => {
   const { COD_STATE } = req.params;
   try {
     const cities = await sequelize.query("CALL SHOW_CITY_STATE(:COD_STATE)", {
@@ -15,7 +15,7 @@ export const GetCitiesForState = async (req, res, next) => {
     next();
   }
 };
-export const GetCities = async (req, res, next) => {
+exports.GetCities = async (req, res, next) => {
   try {
     const cities = await PA_CITIES.findAll({ where: { IND_CITY: 1 } });
     return res.status(200).json(cities);
@@ -25,7 +25,7 @@ export const GetCities = async (req, res, next) => {
   }
 };
 
-export const CreateCity = async (req, res, next) => {
+exports.CreateCity = async (req, res, next) => {
   const {
     NAM_CITY,
     ZIP_CODE,
@@ -77,7 +77,7 @@ export const CreateCity = async (req, res, next) => {
   }
 };
 
-export const UpdateCity = async (req, res, next) => {
+exports.UpdateCity = async (req, res, next) => {
   const {
     NAM_CITY,
     ZIP_CODE,
@@ -132,7 +132,7 @@ export const UpdateCity = async (req, res, next) => {
   }
 };
 
-export const DeleteCity = async (req, res, next) => {
+exports.DeleteCity = async (req, res, next) => {
   const { COD_CITY } = req.params;
   try {
     const cities = await PA_CITIES.destroy({
@@ -147,7 +147,7 @@ export const DeleteCity = async (req, res, next) => {
   }
 };
 
-export const GetCity = async (req, res, next) => {
+exports.GetCity = async (req, res, next) => {
   const { COD_CITY } = req.params;
   try {
     const cities = await PA_CITIES.findByPk({
@@ -161,3 +161,4 @@ export const GetCity = async (req, res, next) => {
     next();
   }
 };
+

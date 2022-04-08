@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const CustomerView = async (req, res, next) => {
+ exports.CustomerView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -15,7 +15,7 @@ export const CustomerView = async (req, res, next) => {
     next();
   }
 };
-export const CustomerCreate = async (req, res, next) => {
+ exports.CustomerCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -29,7 +29,7 @@ export const CustomerCreate = async (req, res, next) => {
     next();
   }
 };
-export const CustomerUpdate = async (req, res, next) => {
+ exports.CustomerUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -43,7 +43,7 @@ export const CustomerUpdate = async (req, res, next) => {
     next();
   }
 };
-export const CustomerDelete = async (req, res, next) => {
+ exports.CustomerDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -57,3 +57,4 @@ export const CustomerDelete = async (req, res, next) => {
     next();
   }
 };
+

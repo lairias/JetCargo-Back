@@ -1,15 +1,15 @@
-import { Se_PASS_RESET } from "../models/security/SE_pass_reset";
-import { USERS } from "../models/Users";
-import { PA_POEPLE } from "../models/Pa_people";
-import JWT from "jsonwebtoken";
-import { encrptPassword } from "../helpers/bcrypt";
-import { transport, configTransportResetPass } from "../email";
-import "dotenv/config";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
-import { SE_SEGURIDAD } from "../models/security/Se_seguridad";
+const { Se_PASS_RESET } = require( "../models/security/SE_pass_reset")
+const { USERS } = require( "../models/Users")
+const { PA_POEPLE } = require( "../models/Pa_people")
+const jwt = require("jsonwebtoken");
+const { encrptPassword } = require( "../helpers/bcrypt")
+const { transport, configTransportResetPass } = require( "../email")
+require('dotenv').config()
+const sequelize = require( "../config/database/index")
+const { HttpError } = require( "../helpers/handleError")
+const { SE_SEGURIDAD } = require( "../models/security/Se_seguridad")
 
-export const CreatePassReset = async (req, res, next) => {
+ exports.CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
     const UserFond = await USERS.findOne({ where: { EMAIL } });
@@ -64,7 +64,7 @@ export const CreatePassReset = async (req, res, next) => {
     next();
   }
 };
-export const ForgotPassword = async (req, res, next) => {
+ exports.ForgotPassword = async (req, res, next) => {
   const { TOKEN, COD_USER, CORREO } = req.params;
   const { PASS } = req.body;
   try {
@@ -94,7 +94,7 @@ export const ForgotPassword = async (req, res, next) => {
     next();
   }
 };
-export const GetPassReset = async (req, res, next) => {
+ exports.GetPassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
     const cities = await Se_PASS_RESET.findByPk(EMAIL);
@@ -106,7 +106,7 @@ export const GetPassReset = async (req, res, next) => {
   }
 };
 
-export const UpdatePassReset = async (req, res, next) => {
+ exports.UpdatePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   const { API_TOKEN } = req.body;
   try {
@@ -129,7 +129,7 @@ export const UpdatePassReset = async (req, res, next) => {
   }
 };
 
-export const DeletePassReset = async (req, res, next) => {
+ exports.DeletePassReset = async (req, res, next) => {
   const { EMAIL } = req.params;
   try {
     await Se_PASS_RESET.destroy({
@@ -141,3 +141,4 @@ export const DeletePassReset = async (req, res, next) => {
     next();
   }
 };
+

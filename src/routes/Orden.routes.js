@@ -1,9 +1,10 @@
-import { Router } from "express";
-import { GetOrdenTracking,GetOrdenByTracking,GetOrdenByNumberTracking} from "../controllers/Orden.controllers";
-import { verifyIndUser, verifyToken } from "../middleware/verifySignup";
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const { GetOrdenTracking,GetOrdenByTracking,GetOrdenByNumberTracking} =require( "../controllers/Orden.controllers")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 router.get("/:COD_TRACKING", [verifyToken, verifyIndUser], GetOrdenTracking);
 router.get("/tracking_cod/:COD_TRACKING", [verifyToken, verifyIndUser], GetOrdenByTracking);
 router.get("/tracking_number/:NUM_TRACKING", [verifyToken, verifyIndUser], GetOrdenByNumberTracking);
 
-export default router;
+
+module.exports = router;

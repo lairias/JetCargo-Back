@@ -1,7 +1,7 @@
-import sequelize from "../../config/database";
-import { HttpError } from "../../helpers/handleError";
+const sequelize =require( "../../config/database")
+const { HttpError } =require( "../../helpers/handleError")
 
-export const ShoppingView = async (req, res, next) => {
+ const ShoppingView = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -21,7 +21,7 @@ export const ShoppingView = async (req, res, next) => {
   }
 };
 
-export const ShoppingCreate = async (req, res, next) => {
+ const ShoppingCreate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -40,7 +40,7 @@ export const ShoppingCreate = async (req, res, next) => {
     next();
   }
 };
-export const ShoppingUpdate = async (req, res, next) => {
+ const ShoppingUpdate = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -59,7 +59,7 @@ export const ShoppingUpdate = async (req, res, next) => {
     next();
   }
 };
-export const ShoppingDelete = async (req, res, next) => {
+ const ShoppingDelete = async (req, res, next) => {
   try {
     const permiso = await sequelize.query(
       "CALL SHOW_PERMISOS_USER(:COD_USER,:NAM_PERMISO)",
@@ -77,4 +77,12 @@ export const ShoppingDelete = async (req, res, next) => {
     HttpError(res, error);
     next();
   }
+};
+
+module.exports =
+{
+  ShoppingView,
+  ShoppingCreate,
+  ShoppingUpdate,
+  ShoppingDelete,
 };

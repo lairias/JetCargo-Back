@@ -1,38 +1,38 @@
-import "@babel/polyfill";
-import express from "express";
-import morgan from "morgan";
-import cors from "cors";
-import multer from "multer";
-import path from "path";
-import Users from "./routes/users.routes";
-import Auth from "./routes/auth.routes";
-import Roles from "./routes/Roles.routes";
-import Service from "./routes/Service.routes";
-import Tracking from "./routes/Tracking.routes";
-import Cities from "./routes/Cities.routes";
-import State from "./routes/States.routes";
-import Country from "./routes/Country.routes";
-import Customers from "./routes/Customers.routes";
-import CatPackage from "./routes/CatPackage.routes";
-import Lockers from "./routes/Lockers.routes";
-import TypePackage from "./routes/TypePackage.routes";
-import Payment from "./routes/payment.routes";
-import Package from "./routes/Package.routes";
-import PassReset from "./routes/PassReset.routes";
-import People from "./routes/People.routes";
-import Email from "./routes/Email.routes";
-import Permission from "./routes/Permission.routes";
-import Seguridad from "./routes/seguridad.routes";
-import Phone from "./routes/Phone.routes";
-import Message from "./routes/Messaje.routes";
-import Orden from "./routes/Orden.routes";
-import Invoice from "./routes/Invoice.routes";
-import TrackinInformation from "./routes/TrackinInformation.routes";
+const poli = require("@babel/polyfill")
+const express =require( "express")
+const morgan =require( "morgan")
+const cors =require( "cors")
+const multer =require( "multer")
+const path =require( "path")
+const Users =require( "./routes/users.routes.js")
+const Auth =require( "./routes/auth.routes.js")
+const Roles =require( "./routes/Roles.routes.js")
+const Service =require( "./routes/Service.routes.js")
+const Tracking =require( "./routes/Tracking.routes.js")
+const Cities =require( "./routes/Cities.routes.js")
+const State =require( "./routes/States.routes.js")
+const Country =require( "./routes/Country.routes.js")
+const Customers =require( "./routes/Customers.routes.js")
+const CatPackage =require( "./routes/CatPackage.routes.js")
+const Lockers =require( "./routes/Lockers.routes.js")
+const TypePackage =require( "./routes/TypePackage.routes.js")
+const Payment =require( "./routes/payment.routes.js")
+const Package =require( "./routes/Package.routes.js")
+const PassReset =require( "./routes/PassReset.routes.js")
+const People =require( "./routes/People.routes.js")
+const Email =require( "./routes/Email.routes.js")
+const Permission =require( "./routes/Permission.routes.js")
+const Seguridad =require( "./routes/seguridad.routes.js")
+const Phone =require( "./routes/Phone.routes.js")
+const Message =require( "./routes/Messaje.routes.js")
+const Orden =require( "./routes/Orden.routes.js")
+const Invoice =require( "./routes/Invoice.routes.js")
+const TrackinInformation =require( "./routes/TrackinInformation.routes.js")
 
-import sequelise from "./config/database/index";
-import { v4 as uuidv4 } from "uuid";
-import "./config/database/R_E";
-import {
+const sequelise =require( "./config/database/index.js")
+const { v4: uuidv4 } = require('uuid');
+require("./config/database/R_E.js")
+const {
   CreateRole,
   CreatePermisos,
   CreatePemisoHasRol,
@@ -45,7 +45,7 @@ import {
   CreateTypePackage,
   CreateLocker,
   CreateService,
-} from "./config/database/Seeder";
+} =require( "./config/database/Seeder.js")
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
@@ -102,4 +102,4 @@ app.use("/api/message", Message);
 app.use("/api/trackingInformation", TrackinInformation);
 app.use("/api/invoice", Invoice);
 
-export default app;
+module.exports = app;

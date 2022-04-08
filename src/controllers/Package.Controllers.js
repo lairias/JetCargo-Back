@@ -1,8 +1,8 @@
-import { BO_PACKAGE } from "../models/BO_package";
-import sequelize from "../config/database/index";
-import { HttpError } from "../helpers/handleError";
+const { BO_PACKAGE } =require("../models/BO_package")
+const sequelize =require("../config/database/index")
+const { HttpError } =require("../helpers/handleError")
 
-export const GetPackages = async (req, res, next) => {
+ exports.GetPackages = async (req, res, next) => {
   try {
     const cities = await BO_PACKAGE.findAll();
     return res.status(200).json(cities);
@@ -12,7 +12,7 @@ export const GetPackages = async (req, res, next) => {
   }
 };
 
-export const GetPackageLokerByCustomer = async (req, res, next) => {
+ exports.GetPackageLokerByCustomer = async (req, res, next) => {
   const { COD_CUSTOMER, COD_LOCKER } = req.params;
   console.log(req.params);
   try {
@@ -32,7 +32,7 @@ export const GetPackageLokerByCustomer = async (req, res, next) => {
   }
 };
 
-export const GetPackage = async (req, res, next) => {
+ exports.GetPackage = async (req, res, next) => {
   const { COD_PACKAGE } = req.params;
   try {
     const cities = await BO_PACKAGE.findByPk(COD_PACKAGE);
@@ -43,7 +43,7 @@ export const GetPackage = async (req, res, next) => {
   }
 };
 
-export const CreatePackage = async (req, res, next) => {
+ exports.CreatePackage = async (req, res, next) => {
   const {
     COD_CATPACKAGE,
     COD_TYPEPACKAGE,
@@ -90,7 +90,7 @@ export const CreatePackage = async (req, res, next) => {
     next();
   }
 };
-export const DeletePackage = async (req, res, next) => {
+ exports.DeletePackage = async (req, res, next) => {
   const { COD_PACKAGE } = req.params;
   try {
     await BO_PACKAGE.destroy({
@@ -104,7 +104,7 @@ export const DeletePackage = async (req, res, next) => {
     next();
   }
 };
-export const UpdatePackage = async (req, res, next) => {
+ exports.UpdatePackage = async (req, res, next) => {
   const {
     COD_CATPACKAGE,
     COD_TYPEPACKAGE,
@@ -155,3 +155,4 @@ export const UpdatePackage = async (req, res, next) => {
     next();
   }
 };
+
