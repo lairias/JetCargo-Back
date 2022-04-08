@@ -1,9 +1,7 @@
-const poli = require("@babel/polyfill")
 const express =require( "express")
-const morgan =require( "morgan")
 const cors =require( "cors")
-const multer =require( "multer")
-const path =require( "path")
+// const multer =require( "multer")
+// const path =require( "path")
 const Users =require( "./routes/users.routes.js")
 const Auth =require( "./routes/auth.routes.js")
 const Roles =require( "./routes/Roles.routes.js")
@@ -65,18 +63,17 @@ CreateTypePackage();
 CreateLocker();
 CreateService();
 
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, "public/upload/img"),
-  filename: (req, file, cb) => {
-    cb(null, "JetCargo_IMG" + "-" + uuidv4() + path.extname(file.originalname));
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: path.join(__dirname, "public/upload/img"),
+//   filename: (req, file, cb) => {
+//     cb(null, "JetCargo_IMG" + "-" + uuidv4() + path.extname(file.originalname));
+//   },
+// });
 
 const app = express();
 app.use(cors());
-app.use(morgan("dev"));
 app.use(express.json());
-app.use(multer(storage).single("path_image"));
+// app.use(multer(storage).single("path_image"));
 app.use("/api/roles", Roles);
 app.use("/api/orden", Orden);
 app.use("/api/service", Service);

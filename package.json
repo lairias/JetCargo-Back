@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
    
-    "bd-import": "node src/config/database/import.js",
-    "dev": "nodemon  --exec npx   babel-node src/index.js ",
     "start": "node src/index.js"
 
   },
