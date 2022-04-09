@@ -1,6 +1,6 @@
-const { PA_TypeUsers } =require( "../models/Pa_typeUsers")
+const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
 const sequelize =require( "../config/database/index")
-const { HttpError } =require( "../helpers/handleError")
+const  HttpError  =require( "../helpers/handleError")
  exports.GetTypeUsers = async (req, res, next) => {
   try {
     const cities = await PA_TypeUsers.findAll();

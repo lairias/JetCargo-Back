@@ -1,5 +1,5 @@
-const { PA_TypeUsers } =require("../models/Pa_typeUsers")
-const { HttpError } =require("../helpers/handleError")
+const  PA_TypeUsers  =require("../models/Pa_typeUsers")
+const  HttpError  =require("../helpers/handleError")
 
  exports.GetShippingCost = async (req, res, next) => {
   try {

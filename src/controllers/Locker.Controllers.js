@@ -1,8 +1,8 @@
-const { BO_LOCKER } =require("../models/BO_locker")
+const  BO_LOCKER  =require("../models/BO_locker")
 const sequelize =require("../config/database/index")
-const { HttpError } =require("../helpers/handleError")
-const { REL_CUSTOMER_LOKER } =require("../models/relations/REL_customer_locker")
-const { AsignacionLokerCustomers, transport } =require("../email")
+const  HttpError  =require("../helpers/handleError")
+const  REL_CUSTOMER_LOKER  =require("../models/relations/REL_customer_locker")
+const  {AsignacionLokerCustomers, transport } =require("../email")
 
  exports.GetLokers = async (req, res, next) => {
   try {

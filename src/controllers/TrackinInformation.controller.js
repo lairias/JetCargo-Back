@@ -1,8 +1,8 @@
 const sequelize =require( "../config/database/index")
-const { HttpError } =require( "../helpers/handleError")
-const { DE_TRACKING_INFORMATION_ORIGEN } =require( "../models/DE_trackingInformationOrigin")
-const { DE_TRACKING_INFORMATION_DESTINO } =require( "../models/DE_trackingInformationDestino")
-const { REL_ORIGIN_DESTINO } =require( "../models/relations/REL_Origin_Destino")
+const  HttpError  =require( "../helpers/handleError")
+const  DE_TRACKING_INFORMATION_ORIGEN  =require( "../models/DE_trackingInformationOrigin")
+const  DE_TRACKING_INFORMATION_DESTINO  =require( "../models/DE_trackingInformationDestino")
+const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
 
  exports.DestinoGetTrackinOne = async (req, res, next) => {
   const { COD_DESTINO } = req.params;

@@ -1,13 +1,13 @@
 //
-const { USERS } =require("../models/Users")
-const { PA_POEPLE } =require("../models/Pa_people")
-const { HttpError } =require("../helpers/handleError")
+const  USERS  =require("../models/Users")
+const  PA_POEPLE  =require("../models/Pa_people")
+const  HttpError  =require("../helpers/handleError")
 const { transport, configTransportVery } =require("../email")
 const { encrptPassword, compararPassword } =require("../helpers/bcrypt")
 const sequelize =require("../config/database")
-const jwt = require("jsonwebtoken");
+const JWT = require("jsonwebtoken");
 require('dotenv').config()
-const { PA_CUSTOMES } =require("../models/Pa_customes")
+const  PA_CUSTOMES  =require("../models/Pa_customes")
 
 exports.singUp = async (req, res, next) => {
   try {

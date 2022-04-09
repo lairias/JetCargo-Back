@@ -1,7 +1,6 @@
-const { PA_CITIES } = require( "../models/Pa_cities")
-const { PA_STATES } = require( "../models/Pa_states")
+const  PA_CITIES  = require( "../models/Pa_cities")
 const sequelize = require( "../config/database/index")
-const { HttpError } = require( "../helpers/handleError")
+const  HttpError  = require( "../helpers/handleError")
 
 exports.GetCitiesForState = async (req, res, next) => {
   const { COD_STATE } = req.params;

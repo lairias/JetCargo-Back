@@ -1,10 +1,10 @@
-const { USERS } =require( "../models/Users")
+const  USERS  =require( "../models/Users")
 const sequelize =require( "../config/database/index")
-const { HttpError } =require( "../helpers/handleError")
-const { PA_POEPLE } =require( "../models/Pa_people")
-const { REL_PEOPLE_ADDRES } =require( "../models/relations/REL_people_addres")
-const { PA_PHONES } =require( "../models/Pa_phones")
-const { REL_PEOPLE_PHONE } =require( "../models/relations/REL_people_phone")
+const  HttpError  =require( "../helpers/handleError")
+const  PA_POEPLE  =require( "../models/Pa_people")
+const  REL_PEOPLE_ADDRES  =require( "../models/relations/REL_people_addres")
+const  PA_PHONES  =require( "../models/Pa_phones")
+const  REL_PEOPLE_PHONE  =require( "../models/relations/REL_people_phone")
 
 exports.GetInformationInvoceByCustomer = async (req, res, next) => {
   const { COD_USER } = req.params;
@@ -36,6 +36,7 @@ exports.GetInformationInvoceByCustomer = async (req, res, next) => {
         });
         
   } catch (error) {
+    console.log(error)
     HttpError(res, error);
     next();
   }

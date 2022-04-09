@@ -1,7 +1,7 @@
-const { SE_PERMISOS } = require("../models/security/SE_permisos")
+const SE_PERMISOS = require("../models/security/SE_permisos")
 const { Op } = require("sequelize")
-const { HttpError } = require("../helpers/handleError")
-const { USERS } = require("../models/Users")
+const  HttpError  = require("../helpers/handleError")
+const  USERS  = require("../models/Users")
 
  exports.VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;

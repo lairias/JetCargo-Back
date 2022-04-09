@@ -1,13 +1,13 @@
-const { Se_PASS_RESET } = require( "../models/security/SE_pass_reset")
-const { USERS } = require( "../models/Users")
-const { PA_POEPLE } = require( "../models/Pa_people")
-const jwt = require("jsonwebtoken");
+const  Se_PASS_RESET  = require( "../models/security/SE_pass_reset")
+const  USERS  = require( "../models/Users")
+const  PA_POEPLE  = require( "../models/Pa_people")
+const JWT = require("jsonwebtoken");
 const { encrptPassword } = require( "../helpers/bcrypt")
 const { transport, configTransportResetPass } = require( "../email")
 require('dotenv').config()
 const sequelize = require( "../config/database/index")
-const { HttpError } = require( "../helpers/handleError")
-const { SE_SEGURIDAD } = require( "../models/security/Se_seguridad")
+const  HttpError  = require( "../helpers/handleError")
+const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
 
  exports.CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;

@@ -1,5 +1,5 @@
-const { HttpError } = require("../helpers/handleError")
-const { SE_SEGURIDAD } = require("../models/security/Se_seguridad")
+const  HttpError  = require("../helpers/handleError")
+const  SE_SEGURIDAD  = require("../models/security/Se_seguridad")
 
 exports.GetSeguridadID = async (req, res, next) => {
   const { COD_SEGURIDAD } = req.params;

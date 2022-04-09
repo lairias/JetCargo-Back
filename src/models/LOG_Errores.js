@@ -37,4 +37,4 @@ const db = require("../config/database");
     updatedAt: false,
   }
 );
-module.exports = {LOG_ERROR}
+module.exports = LOG_ERROR

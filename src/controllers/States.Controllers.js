@@ -1,5 +1,5 @@
-const { PA_STATES } =require( "../models/Pa_states")
-const { HttpError } =require( "../helpers/handleError")
+const  PA_STATES  =require( "../models/Pa_states")
+const  HttpError  =require( "../helpers/handleError")
 const sequelize =require( "../config/database/index")
 
  exports.GetStates = async (req, res, next) => {

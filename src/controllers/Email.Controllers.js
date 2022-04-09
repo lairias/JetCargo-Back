@@ -1,6 +1,6 @@
-const { USERS } = require( "../models/Users")
+const  USERS  = require( "../models/Users")
 const { Op } = require( "sequelize")
-const { HttpError } = require( "../helpers/handleError")
+const  HttpError  = require( "../helpers/handleError")
 
 exports.VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;

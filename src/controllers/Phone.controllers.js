@@ -1,5 +1,5 @@
 const sequelize =require("../config/database")
-const { HttpError } =require("../helpers/handleError")
+const  HttpError  =require("../helpers/handleError")
 
 exports.GetPhoneLocker = async (req, res, next) => {
   const { COD_LOCKER } = req.params;

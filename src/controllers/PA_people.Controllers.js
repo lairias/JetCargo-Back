@@ -1,6 +1,6 @@
-const { PA_POEPLE } =require( "../models/Pa_people")
+const  PA_POEPLE  =require( "../models/Pa_people")
 const sequelize =require( "../config/database")
-const { HttpError } =require( "../helpers/handleError")
+const  HttpError  =require( "../helpers/handleError")
 
  exports.GetPeoples = async (req, res, next) => {
   try {

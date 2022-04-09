@@ -1,7 +1,7 @@
 const sequelize =require("../config/database/index")
-const { BO_CATPACKAGE } =require("../models/BO_catPackage")
+const  BO_CATPACKAGE  =require("../models/BO_catPackage")
 
-const { HttpError } =require("../helpers/handleError")
+const  HttpError  =require("../helpers/handleError")
 exports.GetCatPackages = async (req, res, next) => {
   try {
     const catPackage = await BO_CATPACKAGE.findAll();

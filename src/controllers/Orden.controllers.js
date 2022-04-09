@@ -1,7 +1,7 @@
 const sequelize =require( "../config/database/index")
 
-const { HttpError } =require( "../helpers/handleError")
-const { DE_ORDEN } =require( "../models/DE_orden")
+const  HttpError  =require( "../helpers/handleError")
+const  DE_ORDEN  =require( "../models/DE_orden")
  exports.GetOrdenTracking = async (req, res, next) => {
   const { COD_TRACKING } = req.params;
   try {

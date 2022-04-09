@@ -16,7 +16,7 @@ async function main() {
     .then(() => console.log("Conectado a la base de datos"))
     .catch((error) => console.log(error));
   await app.listen(process.env.PORT, () => {
-    console.log("Server puesto 4000");
+    console.log(`Server puesto ${process.env.PORT}`);	
   });
 }
 main();

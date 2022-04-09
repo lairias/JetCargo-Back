@@ -1,6 +1,6 @@
-const { PA_TypeUsers } = require( "../models/Pa_typeUsers")
-const { HttpError } = require( "../helpers/handleError")
-const { MODEL_TYPEUSER_HAS_PERMISOS } = require( "../models/relations/typeusers_has_permisos")
+const  PA_TypeUsers  = require( "../models/Pa_typeUsers")
+const  HttpError  = require( "../helpers/handleError")
+const  MODEL_TYPEUSER_HAS_PERMISOS  = require( "../models/relations/typeusers_has_permisos")
 const sequelize = require( "../config/database")
 const {
   RolesForeachPermiso,

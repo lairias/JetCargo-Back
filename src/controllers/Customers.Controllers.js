@@ -1,5 +1,5 @@
 const sequelize =require( "../config/database/index")
-const { HttpError } =require( "../helpers/handleError")
+const  HttpError  =require( "../helpers/handleError")
 
 exports.GetCustomers = async (req, res, next) => {
   try {

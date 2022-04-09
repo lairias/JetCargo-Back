@@ -1,11 +1,11 @@
-const  { BO_TYPEPACKAGE } =require( "../models/BO_typePackage")
-const  { HttpError } =require( "../helpers/handleError")
+const   BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
+const   HttpError  =require( "../helpers/handleError")
 const { v4: uuidv4 } = require('uuid');
 const  axios =require( "axios")
 require('dotenv').config()
-const  { DE_ORDEN } =require( "../models/DE_orden")
-const  { BO_PACKAGE } =require( "../models/BO_package")
-const  { BO_TRACKING } =require( "../models/BO_tracking")
+const   DE_ORDEN  =require( "../models/DE_orden")
+const   BO_PACKAGE  =require( "../models/BO_package")
+const   BO_TRACKING  =require( "../models/BO_tracking")
  exports.CreateOrden = async (req, res, next) => {
   const { mensaje, DataTrackinNotOrden } = req.body;
   try {
@@ -13,17 +13,16 @@ const  { BO_TRACKING } =require( "../models/BO_tracking")
       intent: "CAPTURE",
       purchase_units: [
         {
-          amount: {
-            value: parseFloat(DataTrackinNotOrden[0].PRICE_PACKAGE),
+          amount: { 
             currency_code: "USD",
+            value: parseFloat(DataTrackinNotOrden[0].PRICE_PACKAGE),
           },
           description: mensaje,
         },
       ],
       application_context: {
         brand_name: "Jetcargo.vip",
-        landing_page: "LOGIN",
-        shipping_preference: "GET_=require(_FILE",
+        landing_page: "NO_REFERENCE",
         user_action: "PAY_NOW",
         return_url: `${process.env.API_BACK}:${process.env.PORT}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
         cancel_url: "http://localhost:3000/payment/cancel",
@@ -47,7 +46,7 @@ const  { BO_TRACKING } =require( "../models/BO_tracking")
       }
     );
     const { data } = await axios.post(
-      `${preocess.env.PAPAL_API}/v2/checkout/orders`,
+      `${process.env.PAPAL_API}/v2/checkout/orders`,
       orden,
       {
         headers: {

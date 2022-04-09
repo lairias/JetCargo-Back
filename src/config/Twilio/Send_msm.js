@@ -17,4 +17,4 @@ async function SendMessage(body, phone) {
     console.log(erro);
   }
 }
-module.exports = { SendMessage };
+module.exports = SendMessage ;

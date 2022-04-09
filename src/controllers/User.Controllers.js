@@ -1,10 +1,10 @@
 //
-const  { USERS } =require( "../models/Users")
-const  { HttpError } =require( "../helpers/handleError")
+const   USERS  =require( "../models/Users")
+const   HttpError  =require( "../helpers/handleError")
 const  { transport, configTransportVery } =require( "../email")
 const  { encrptPassword, compararPassword } =require( "../helpers/bcrypt")
 const  sequelize =require( "../config/database")
-const jwt = require("jsonwebtoken");
+const JWT = require("jsonwebtoken");
 require('dotenv').config()
 
 exports.UpdateUser = async (req, res, next) => {

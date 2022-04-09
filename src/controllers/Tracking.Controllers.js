@@ -1,10 +1,10 @@
-const { PA_TypeUsers } =require( "../models/Pa_typeUsers")
-const { HttpError } =require( "../helpers/handleError")
+const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
+const  HttpError  =require( "../helpers/handleError")
 const sequelize =require( "../config/database")
 const RandomCode =require( "random-codes")
-const { BO_TRACKING } =require( "../models/Bo_tracking")
-const { BO_PACKAGE } =require( "../models/BO_package")
-const { BO_TYPEPACKAGE } =require( "../models/BO_typePackage")
+const  BO_TRACKING  =require( "../models/Bo_tracking")
+const  BO_PACKAGE  =require( "../models/BO_package")
+const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
 
  exports.TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;

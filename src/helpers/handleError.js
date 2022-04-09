@@ -1,4 +1,4 @@
-const {LOG_ERROR} = require("../models/LOG_Errores");
+const LOG_ERROR = require("../models/LOG_Errores");
 const HttpError = async (res, error) => {
   await LOG_ERROR.create({
     DES_ERROR: `${error}`,
