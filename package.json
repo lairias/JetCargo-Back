@@ -1,14 +1,17 @@
 {
   "name": "graphql",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description":  "a really cool app",
+  "main": "./src/index.js",
+    "engines": {
+      "node": ">=16.0.0"
+      },
   "scripts": {
    
     "start": "node ./src/index.js"
 
   },
-  "author": "",
+  "author": "Luis",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^3.6.3",
