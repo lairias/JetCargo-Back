@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-const { USERS } =require( "../models/Users")
-require('dotenv').config()
-const { HttpError } =require( "../helpers/handleError")
+const  USERS  =require( "../models/Users")
+const {JWTSECRETPASSWORD} = require('../config')
+const  HttpError  =require( "../helpers/handleError")
 const { verifyTokenDate } =require( "./tokens/verifyToken.Date")
  const verifyTokenPass = async (req, res, next) => {
   const { TOKEN } = req.params;
@@ -11,7 +11,7 @@ const { verifyTokenDate } =require( "./tokens/verifyToken.Date")
         message:
           "Tiempo de recuperación de contraseña caducado. Intenta de nuevo",
       });
-    const { id } = jwt.verify(TOKEN, process.env.JWTSECRETPASSWORD);
+    const { id } = jwt.verify(TOKEN, JWTSECRETPASSWORD);
     const lock = await USERS.findByPk(id);
     req.userIdR = id;
     if (!lock) return res.status(202).json({ message: "no user found" });

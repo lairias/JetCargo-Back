@@ -1,5 +1,6 @@
 const app =require( "./app")
 const db =require( "./config/database")
+const {PORT} = require( "./config")
 require('dotenv').config()
 // const { ApolloServer } =require( "apollo-server-express";
 // const { typeDefs } =require( "../src/types/typeDefs/typeDefs";
@@ -15,8 +16,8 @@ async function main() {
     .authenticate()
     .then(() => console.log("Conectado a la base de datos"))
     .catch((error) => console.log(error));
-  await app.listen(process.env.PORT, () => {
-    console.log(`Server puesto ${process.env.PORT}`);	
+  await app.listen(PORT, () => {
+    console.log(`Server puesto ${PORT}`);	
   });
 }
 main();

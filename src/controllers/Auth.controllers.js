@@ -6,7 +6,7 @@ const { transport, configTransportVery } =require("../email")
 const { encrptPassword, compararPassword } =require("../helpers/bcrypt")
 const sequelize =require("../config/database")
 const JWT = require("jsonwebtoken");
-require('dotenv').config()
+const {JWTSECRET} = require("../config")
 const  PA_CUSTOMES  =require("../models/Pa_customes")
 
 exports.singUp = async (req, res, next) => {
@@ -61,7 +61,7 @@ exports.singUp = async (req, res, next) => {
         throw res.sendStatus(500);
       });
     const User = await USERS.findOne({ where: { EMAIL } });
-    const token = await JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET);
+    const token = await JWT.sign({ id: User.COD_USER }, JWTSECRET);
     USERS.update(
       { API_TOKEN: token },
       {
@@ -125,7 +125,7 @@ exports.singIn = async (req, res, next) => {
     const PeopleFond = await PA_POEPLE.findOne({
       where: { COD_PEOPLE: UserFond.COD_PEOPLE },
     });
-    const token = JWT.sign({ id: UserFond.COD_USER }, process.env.JWTSECRET);
+    const token = JWT.sign({ id: UserFond.COD_USER }, JWTSECRET);
     return res.status(200).json({
       ok: true,
       COD_USER: UserFond.COD_USER,
@@ -164,7 +164,7 @@ exports.RevalidarToken = async (req, res, next) => {
     const PeopleFond = await PA_POEPLE.findOne({
       where: { COD_PEOPLE: User.COD_PEOPLE },
     });
-    const token = JWT.sign({ id: User.COD_USER }, process.env.JWTSECRET);
+    const token = JWT.sign({ id: User.COD_USER }, JWTSECRET);
     return res.status(200).json({
       ok: true,
       COD_USER: User.COD_USER,

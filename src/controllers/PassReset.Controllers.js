@@ -4,7 +4,7 @@ const  PA_POEPLE  = require( "../models/Pa_people")
 const JWT = require("jsonwebtoken");
 const { encrptPassword } = require( "../helpers/bcrypt")
 const { transport, configTransportResetPass } = require( "../email")
-require('dotenv').config()
+const {JWTSECRETPASSWORD} = require("../config")
 const sequelize = require( "../config/database/index")
 const  HttpError  = require( "../helpers/handleError")
 const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
@@ -18,7 +18,7 @@ const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     const token = JWT.sign(
       { email: UserFond.EMAIL, id: UserFond.COD_USER },
-      process.env.JWTSECRETPASSWORD,
+    JWTSECRETPASSWORD,
       { expiresIn: parseInt(timeToken.DATO_SEGURIDAD) }
     );
     const time = timeToken.DATO_SEGURIDAD / 3600;

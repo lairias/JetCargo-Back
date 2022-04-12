@@ -1,7 +1,7 @@
 const  USERS  = require( "../models/Users")
 const { Op } = require( "sequelize")
 const  HttpError  = require( "../helpers/handleError")
-
+const {PORT_FROND,API_FROND} = require( "../config")
 exports.VeryEmail = async (req, res, next) => {
   const { EMAIL, TOKEN, COD_USER } = req.params;
   try {
@@ -18,7 +18,7 @@ exports.VeryEmail = async (req, res, next) => {
       }
     );
     return res.redirect(
-      `${process.env.API_FROND}:${process.env.PORT_FROND}/very/email/`
+      `${API_FROND}:${PORT_FROND}/very/email/`
     );
   } catch (error) {
     HttpError(res, error);
