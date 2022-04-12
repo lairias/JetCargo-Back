@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const USERS = require("../models/Users")
-require('dotenv').config()
+const {JWTSECRET} = require('../config')
 const { HttpError } =require( "../helpers/handleError")
 
  const verifyToken = async (req, res, next) => {
@@ -9,7 +9,7 @@ const { HttpError } =require( "../helpers/handleError")
     const token = req.headers["x-access-token"];
     if (!token) return res.status(403).json({ message: "No token provided" });
 
-    const { id } = jwt.verify(token, process.env.JWTSECRET);
+    const { id } = jwt.verify(JWTSECRET);
 
     req.userId = id;
     next();
