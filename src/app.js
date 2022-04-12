@@ -65,6 +65,9 @@ CreateService();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/", (req,res)=>{
+  res.send("Bienvenido a la API")
+});
 app.use("/api/roles", Roles);
 app.use("/api/orden", Orden);
 app.use("/api/service", Service);
