@@ -1,6 +1,6 @@
 const app =require( "./app")
 const db =require( "./config/database")
-const {PORT} = require( "./config")
+require('dotenv').config()
 require('dotenv').config()
 // const { ApolloServer } =require( "apollo-server-express";
 // const { typeDefs } =require( "../src/types/typeDefs/typeDefs";
@@ -12,6 +12,7 @@ require('dotenv').config()
   // await apolloServer.start();
   // apolloServer.applyMiddleware({ app });
   
-   app.listen(PORT, () => {
-    console.log(`Server puesto ${PORT}`);	
+  const portApit = process.env.PORT || 4000
+   app.listen(portApit, () => {
+    console.log(`Server puesto ${portApit}`);	
   });
