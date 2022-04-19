@@ -8,7 +8,7 @@ const {
   // GetTracking_not_orden,
   TrackingNotOrdenType,
   // TrackingNotOrden,
-  // TrackingNotOrdenCustomer,
+  TrackingNotOrdenCustomer,
   // GetTracking,
 } =require( "../controllers/Tracking.Controllers")
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
@@ -29,11 +29,11 @@ const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 //   [verifyToken, verifyIndUser],
 //   TrackingNotOrden
 // );
-// router.get(
-//   "/received/:RECEIVED_TRACKING/:COD_CUSTOMER/:NUM_TRACKING",
-//   [verifyToken, verifyIndUser],
-//   TrackingNotOrdenCustomer
-// );
+router.get(
+  "/received/:RECEIVED_TRACKING/:COD_CUSTOMER/:NUM_TRACKING",
+  [verifyToken, verifyIndUser],
+  TrackingNotOrdenCustomer
+);
 
 router.get(
   "/type/:COD_TYPEPACKAGE/:RECEIVED_TRACKING",

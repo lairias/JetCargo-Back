@@ -31,27 +31,27 @@ const PA_POEPLE = require("../models/Pa_people")
   }
 };
 
-//  exports.TrackingNotOrdenCustomer = async (req, res, next) => {
-//   const { RECEIVED_TRACKING, COD_CUSTOMER, NUM_TRACKING } = req.params;
-//   try {
-//     const tracking = await sequelize.query(
-//       "CALL SHOW_TRACKING_NOT_ORDEN_CUSTOMER(:RECEIVED_TRACKING,:COD_CUSTOMER,:NUM_TRACKING)",
-//       {
-//         replacements: {
-//           RECEIVED_TRACKING,
-//           COD_CUSTOMER,
-//           NUM_TRACKING,
-//         },
-//       }
-//     );
-//     if (!JSON.stringify(tracking[0]))
-//       return res.status(203).json({ ok: false, tracking: false });
-//     return res.status(203).json({ ok: true, tracking });
-//   } catch (error) {
-//     HttpError(res, error);
-//     next();
-//   }
-// };
+ exports.TrackingNotOrdenCustomer = async (req, res, next) => {
+  const { RECEIVED_TRACKING, COD_CUSTOMER, NUM_TRACKING } = req.params;
+  try {
+    const tracking = await sequelize.query(
+      "CALL SHOW_TRACKING_NOT_ORDEN_CUSTOMER(:RECEIVED_TRACKING,:COD_CUSTOMER,:NUM_TRACKING)",
+      {
+        replacements: {
+          RECEIVED_TRACKING,
+          COD_CUSTOMER,
+          NUM_TRACKING,
+        },
+      }
+    );
+    if (!JSON.stringify(tracking[0]))
+      return res.status(203).json({ ok: false, tracking: false });
+    return res.status(203).json({ ok: true, tracking });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 
 //  exports.TrackingNotOrden = async (req, res, next) => {
 //   const { RECEIVED_TRACKING } = req.params;
