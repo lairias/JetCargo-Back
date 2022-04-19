@@ -1,10 +1,9 @@
 const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
 const  {HttpError}  =require( "../helpers/handleError")
+const { v4: uuidv4 } = require('uuid');
 const sequelize =require( "../config/database")
-const RandomCode =require( "random-codes")
 const  BO_TRACKING  =require( "../models/Bo_tracking")
 const  BO_PACKAGE  =require( "../models/BO_package")
-const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
 const { transport, ResivedTracking,RegistroPackageAdmin } =require("../email")
 const PA_CUSTOMES = require("../models/Pa_customes")
 const USERS = require("../models/Users")
@@ -292,9 +291,7 @@ console.log(caculuVolumetrico > calculoDolares)
     
   } = req.body;
   try {
-    console.log(req.body)
-    const rc = new RandomCode(config);
-    const NUM_PACKAGE = rc.generate();
+    const NUM_PACKAGE = uuidv4();
 
     const tracking = sequelize.query(
       "CALL INS_TRACKIN_ORDEN(:COD_CATPACKAGE,:COD_SERVICE,:COD_TYPEPACKAGE,:NOM_PACKAGE,:NUM_PACKAGE,:DES_TRACKING,:NUM_TRACKING,:COD_LOCKER,:COD_CUSTOMER)",
@@ -334,27 +331,4 @@ console.log(caculuVolumetrico > calculoDolares)
   }
 };
 
-var config = {
-  // A string containing available chars
-  chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-
-  // Separator char used to divide code parts
-  separator: "-",
-
-  // Char used to mask code
-  mask: "*",
-
-  // Number of parts the code contains
-  parts: 2,
-
-  // Size of each part
-  part_size: 4,
-
-  // Function used to get a random char =require( the chars pool
-  // (Please use a better one)
-  getChar: function (pool) {
-    var random = Math.floor(Math.random() * pool.length);
-    return pool.charAt(random);
-  },
-};
 
