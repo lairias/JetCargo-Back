@@ -1,7 +1,7 @@
 const {Sequelize} = require("sequelize")
 const db = require("../config/database");
 
- exports.BO_TRACKING = db.define(
+ const BO_TRACKING = db.define(
   "BO_Tracking",
   {
     COD_TRACKING: {
@@ -59,3 +59,5 @@ const db = require("../config/database");
     updatedAt: false,
   }
 );
+
+module.exports = BO_TRACKING
