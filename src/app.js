@@ -4,7 +4,7 @@ const Users =require( "./routes/users.routes.js")
 const Auth =require( "./routes/auth.routes.js")
 const Roles =require( "./routes/Roles.routes.js")
 const Service =require( "./routes/Service.routes.js")
-const Tracking =require( "./routes/Tracking.routes.js")
+// const Tracking =require( "./routes/Tracking.routes.js")
 const Cities =require( "./routes/Cities.routes.js")
 const State =require( "./routes/States.routes.js")
 const Country =require( "./routes/Country.routes.js")
@@ -74,7 +74,7 @@ app.use("/api/roles", Roles);
 app.use("/api/shopping", Shopping);
 app.use("/api/orden", Orden);
 app.use("/api/service", Service);
-app.use("/api/tracking", Tracking);
+// app.use("/api/tracking", Tracking);
 app.use("/api/phone", Phone);
 app.use("/api/users", Users);
 app.use("/api/seguridad", Seguridad);
