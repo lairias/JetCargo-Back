@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const {
-  CreateTracking,
-  GetTrackingsNumberService,
-  GetTrackingsNumber,
-  UpdateTracking,
-  GetTracking_not_orden,
+  // CreateTracking,
+  // GetTrackingsNumberService,
+  // GetTrackingsNumber,
+  // UpdateTracking,
+  // GetTracking_not_orden,
   TrackingNotOrdenType,
-  TrackingNotOrden,
-  TrackingNotOrdenCustomer,
-  GetTracking,
+  // TrackingNotOrden,
+  // TrackingNotOrdenCustomer,
+  // GetTracking,
 } =require( "../controllers/Tracking.Controllers")
-// const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
+const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 // router.get(
 //   "/search/:COD_SERVICE/:NUM_TRACKING",
@@ -35,11 +35,11 @@ const {
 //   TrackingNotOrdenCustomer
 // );
 
-// router.get(
-//   "/type/:COD_TYPEPACKAGE/:RECEIVED_TRACKING",
-//   [verifyToken, verifyIndUser],
-//   TrackingNotOrdenType
-// );
+router.get(
+  "/type/:COD_TYPEPACKAGE/:RECEIVED_TRACKING",
+  [verifyToken, verifyIndUser],
+  TrackingNotOrdenType
+);
 
 // router.get(
 //   "/:COD_TRACKING/:COD_PACKAGE/:NUM_LOCKER/:COD_CUSTOMER",

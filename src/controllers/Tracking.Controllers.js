@@ -2,34 +2,34 @@ const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
 const  {HttpError}  =require( "../helpers/handleError")
 const { v4: uuidv4 } = require('uuid');
 const sequelize =require( "../config/database")
-const  BO_TRACKING  =require( "../models/Bo_tracking")
 const  BO_PACKAGE  =require( "../models/BO_package")
 const { transport, ResivedTracking,RegistroPackageAdmin } =require("../email")
 const PA_CUSTOMES = require("../models/Pa_customes")
 const USERS = require("../models/Users")
 const PA_POEPLE = require("../models/Pa_people")
+const  BO_TRACKING  =require( "../models/Bo_tracking")
 
-//  exports.TrackingNotOrdenType = async (req, res, next) => {
-//   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
-//   try {
-//     const count = await sequelize.query("CALL COUNT_TRACKING_NOT_ORDEN()");
-//     const tracking = await sequelize.query(
-//       "CALL SHOW_TRACKING_NOT_ORDEN_TYPEPACKAGE(:COD_TYPEPACKAGE,:RECEIVED_TRACKING)",
-//       {
-//         replacements: {
-//           COD_TYPEPACKAGE,
-//           RECEIVED_TRACKING,
-//         },
-//       }
-//     );
-//     if (!JSON.stringify(tracking[0]))
-//       return res.status(203).json({ ok: false, tracking: false, count: 0 });
-//     return res.status(203).json({ ok: true, tracking, count });
-//   } catch (error) {
-//     HttpError(res, error);
-//     next();
-//   }
-// };
+ exports.TrackingNotOrdenType = async (req, res, next) => {
+  const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
+  try {
+    const count = await sequelize.query("CALL COUNT_TRACKING_NOT_ORDEN()");
+    const tracking = await sequelize.query(
+      "CALL SHOW_TRACKING_NOT_ORDEN_TYPEPACKAGE(:COD_TYPEPACKAGE,:RECEIVED_TRACKING)",
+      {
+        replacements: {
+          COD_TYPEPACKAGE,
+          RECEIVED_TRACKING,
+        }
+      }
+    );
+    if (!JSON.stringify(tracking[0]))
+      return res.status(203).json({ ok: false, tracking: false, count: 0 });
+    return res.status(203).json({ ok: true, tracking, count });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 
 //  exports.TrackingNotOrdenCustomer = async (req, res, next) => {
 //   const { RECEIVED_TRACKING, COD_CUSTOMER, NUM_TRACKING } = req.params;
