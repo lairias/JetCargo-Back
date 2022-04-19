@@ -1,10 +1,14 @@
 const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
-const  HttpError  =require( "../helpers/handleError")
+const  {HttpError}  =require( "../helpers/handleError")
 const sequelize =require( "../config/database")
 const RandomCode =require( "random-codes")
 const  BO_TRACKING  =require( "../models/Bo_tracking")
 const  BO_PACKAGE  =require( "../models/BO_package")
 const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
+const { transport, ResivedTracking,RegistroPackageAdmin } =require("../email")
+const PA_CUSTOMES = require("../models/Pa_customes")
+const USERS = require("../models/Users")
+const PA_POEPLE = require("../models/Pa_people")
 
  exports.TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
@@ -159,21 +163,28 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
     RECEIVED_TRACKING,
     NUM_TRACKING,
     DES_TRACKING,
+    ALTURA_PACKAGE,
+  ANCHO_PACKAGE,
+  LARGO_PACKAGE,
     COD_CUSTOMER,
     COD_PACKAGE,
+    caculuVolumetrico,
+    calculoDolares,
+    IND_TRACKING,
     checbox,
   } = req.body;
   const { COD_TRACKING } = req.params;
 
   try {
-    const CatPackage = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
-    const tracking = await BO_TRACKING.update(
+console.log(caculuVolumetrico > calculoDolares)
+    if(caculuVolumetrico > calculoDolares){
+     await BO_TRACKING.update(
       {
         COD_SERVICE,
         DES_TRACKING,
         NUM_TRACKING,
         RECEIVED_TRACKING,
-        IND_TRACKING: checbox,
+        IND_TRACKING: parseInt(IND_TRACKING),
       },
       {
         where: {
@@ -181,8 +192,7 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
         },
       }
     );
-    const PRICE_PACKAGE =
-      parseFloat(CatPackage.PREC_TYPEPACKAGE) * parseFloat(WEIGHT_PACKAGE);
+   
     await BO_PACKAGE.update(
       {
         COD_CATPACKAGE,
@@ -191,9 +201,12 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
         HEIGHT_PACKAGE,
         WIDTH_PACKAGE,
         WEIGHT_PACKAGE,
-        PRICE_PACKAGE,
+        PRICE_PACKAGE : parseFloat(caculuVolumetrico),
         VOL_PACKAGE,
-        IND_PACKAGE: checbox,
+        ALTURA_PACKAGE,
+        LARGO_PACKAGE,
+        ANCHO_PACKAGE,
+        IND_PACKAGE:parseInt(IND_TRACKING)
       },
       {
         where: {
@@ -201,14 +214,58 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
         },
       }
     );
+    }else{
+      await BO_TRACKING.update(
+        {
+          COD_SERVICE,
+          DES_TRACKING,
+          NUM_TRACKING,
+          RECEIVED_TRACKING,
+          IND_TRACKING: parseInt(IND_TRACKING),
+        },
+        {
+          where: {
+            COD_TRACKING,
+          },
+        }
+      );
+     
+      await BO_PACKAGE.update(
+        {
+          COD_CATPACKAGE,
+          COD_TYPEPACKAGE,
+          NOM_PACKAGE,
+          HEIGHT_PACKAGE,
+          WIDTH_PACKAGE,
+          WEIGHT_PACKAGE,
+          PRICE_PACKAGE : parseFloat(calculoDolares),
+          VOL_PACKAGE,
+          ALTURA_PACKAGE,
+          LARGO_PACKAGE,
+          ANCHO_PACKAGE,
+          IND_PACKAGE:parseInt(IND_TRACKING)
+        },
+        {
+          where: {
+            COD_PACKAGE,
+          },
+        }
+      );
+    }
+    
+    const customer = await PA_CUSTOMES.findOne({where: { COD_CUSTOMER }})
+    const User = await USERS.findOne({where: {COD_USER:customer.COD_USER}})
+    const People = await PA_POEPLE.findOne({where: {COD_PEOPLE:User.COD_PEOPLE}})
 
-    // const User = await USERS.findByPk(COD_USER);
-    // const people = await PA_POEPLE.findByPk(User.COD_PEOPLE);
-    // const RelPhone = await REL_PEOPLE_PHONE.findOne({ where: { COD_PEOPLE:User.COD_PEOPLE }});
-    // const phone = await PA_PHONES.findByPk(RelPhone.COD_PHONE);
-    // const servicio = await DE_SERVICE.findByPk(COD_SERVICE)
-    // const message = `Hola ${people.FRISTNAME} ${people.LASTNAME}, le saluda Jetcargo para informarle que su paquete ${NUM_TRACKING} por el servicio de ${servicio.SERVICE_NAME}, estaremos en espera a que usted realice el pago.`;
-    // await SendMessage(message,`+${phone.NUM_AREA}${phone.NUM_PHONE}`);
+    await transport.sendMail(
+      ResivedTracking(
+      People.FRISTNAME,
+      People.LASTNAME,
+        User.EMAIL.replace("@", "%40"),
+        req.headers.host,
+        NUM_TRACKING
+      )
+    );
   } catch (error) {
     console.log(error);
     HttpError(res, error);
@@ -232,9 +289,10 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
     NUM_TRACKING,
     COD_LOCKER,
     COD_CUSTOMER,
+    
   } = req.body;
-  console.log(req.body);
   try {
+    console.log(req.body)
     const rc = new RandomCode(config);
     const NUM_PACKAGE = rc.generate();
 
@@ -254,8 +312,23 @@ const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
         },
       }
     );
+    const customer = await PA_CUSTOMES.findOne({where: { COD_CUSTOMER }})
+    const User = await USERS.findOne({where: {COD_USER:customer.COD_USER}})
+    const People = await PA_POEPLE.findOne({where: {COD_PEOPLE:User.COD_PEOPLE}})
+
+    await transport.sendMail(
+      ResivedTracking(
+      People.FRISTNAME,
+      People.LASTNAME,
+        User.EMAIL.replace("@", "%40"),
+        req.headers.host,
+        NUM_TRACKING
+      )
+    );
+    
     return res.status(200).json({ ok: true, TrackingNumber: tracking });
   } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }

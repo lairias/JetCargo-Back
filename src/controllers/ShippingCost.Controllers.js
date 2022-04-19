@@ -1,8 +1,15 @@
 const  PA_TypeUsers  =require("../models/Pa_typeUsers")
-const  HttpError  =require("../helpers/handleError")
-
+const  {HttpError}  =require("../helpers/handleError")
+const BO_SHIPPINGCOST = require("../models/BO_ShippingCost")
  exports.GetShippingCost = async (req, res, next) => {
   try {
+    const {COD_SHIPPINGCOST} = req.params;
+    const costoType = await BO_SHIPPINGCOST.findOne({
+      where:{
+        COD_SHIPPINGCOST
+      }
+    })
+    return res.status(200).json(costoType)
   } catch (error) {
     HttpError(res, error);
     next();

@@ -1,6 +1,6 @@
 const  BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
 const sequelize =require( "../config/database/index")
-const  HttpError  =require( "../helpers/handleError")
+const  {HttpError}  =require( "../helpers/handleError")
  exports.GetTypePackages = async (req, res, next) => {
   try {
     const typePackage = await BO_TYPEPACKAGE.findAll();

@@ -1,5 +1,5 @@
 //
-const  HttpError  =require( "../helpers/handleError")
+const  {HttpError}  =require( "../helpers/handleError")
 require('dotenv').config()
 const  DE_SERVICE  =require( "../models/DE_service")
 

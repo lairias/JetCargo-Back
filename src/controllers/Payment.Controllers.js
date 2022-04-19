@@ -1,8 +1,8 @@
 const   BO_TYPEPACKAGE  =require( "../models/BO_typePackage")
-const   HttpError  =require( "../helpers/handleError")
+const   {HttpError}  =require( "../helpers/handleError")
 const { v4: uuidv4 } = require('uuid');
 const  axios =require( "axios")
-const {API_BACK,PORT,PAPAL_API_CLIENTE,PAPAL_API_SECRET,PORT_FROND,API_FROND} = require( "../config")
+require('dotenv').config();
 const   DE_ORDEN  =require( "../models/DE_orden")
 const   BO_PACKAGE  =require( "../models/BO_package")
 const   BO_TRACKING  =require( "../models/BO_tracking")
@@ -24,7 +24,7 @@ const   BO_TRACKING  =require( "../models/BO_tracking")
         brand_name: "Jetcargo.vip",
         landing_page: "NO_REFERENCE",
         user_action: "PAY_NOW",
-        return_url: `${API_BACK}:${PORT}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
+        return_url: `${process.env.API_BACK}:${process.env.PORT}/api/payment/capture-orden/${DataTrackinNotOrden[0].COD_CUSTOMER}/${DataTrackinNotOrden[0].COD_TRACKING}/${DataTrackinNotOrden[0].COD_PACKAGE}`,
         cancel_url: "http://localhost:3000/payment/cancel",
       },
     };
@@ -40,13 +40,13 @@ const   BO_TRACKING  =require( "../models/BO_tracking")
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
-          username: PAPAL_API_CLIENTE,
-          password: PAPAL_API_SECRET,
+          username: process.env.PAPAL_API_CLIENTE,
+          password: process.env.PAPAL_API_SECRET,
         },
       }
     );
     const { data } = await axios.post(
-      `${PAPAL_API}/v2/checkout/orders`,
+      `${process.env.PAPAL_API}/v2/checkout/orders`,
       orden,
       {
         headers: {
@@ -68,15 +68,15 @@ const   BO_TRACKING  =require( "../models/BO_tracking")
     const { token, PayerID } = req.query;
 
     if (!COD_CUSTOMER)
-      return res.redirect(`${API_BACK}:${PORT}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!COD_TRACKING)
-      return res.redirect(`${API_BACK}:${PORT}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!COD_PACKAGE)
-      return res.redirect(`${API_BACK}:${PORT}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!token)
-      return res.redirect(`${API_BACK}:${PORT}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
     if (!PayerID)
-      return res.redirect(`${API_BACK}:${PORT}`);
+      return res.redirect(`${process.env.API_BACK}:${process.env.PORT}`);
 
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");
@@ -90,13 +90,13 @@ const   BO_TRACKING  =require( "../models/BO_tracking")
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
-          username: PAPAL_API_CLIENTE,
-          password: PAPAL_API_SECRET,
+          username: process.env.PAPAL_API_CLIENTE,
+          password: process.env.PAPAL_API_SECRET,
         },
       }
     );
     const respuesta = await axios.post(
-      `${PAPAL_API}/v2/checkout/orders/${token}/capture`,
+      `${process.env.PAPAL_API}/v2/checkout/orders/${token}/capture`,
       {},
       {
         headers: {
@@ -126,7 +126,7 @@ const   BO_TRACKING  =require( "../models/BO_tracking")
     );
 
     return res.redirect(
-      `${API_FROND}:${PORT_FROND}/admin/locker/${tracking.NUM_TRACKING}`
+      `${process.env.API_FROND}:${process.env.PORT_FROND}/admin/locker/${tracking.NUM_TRACKING}`
     );
   } catch (error) {
     HttpError(res, error);

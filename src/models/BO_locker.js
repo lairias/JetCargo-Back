@@ -10,11 +10,7 @@ const BO_LOCKER = db.define(
       allowNull: false,
       comment: "COD OF THE LOCKER",
     },
-    COD_PEOPLE: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF THE PEOPLE",
-    },
+    
     NUM_LOCKER: {
       type: Sequelize.STRING(60),
       allowNull: false,

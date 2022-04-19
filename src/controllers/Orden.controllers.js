@@ -1,6 +1,6 @@
 const sequelize =require( "../config/database/index")
 
-const  HttpError  =require( "../helpers/handleError")
+const  {HttpError}  =require( "../helpers/handleError")
 const  DE_ORDEN  =require( "../models/DE_orden")
  exports.GetOrdenTracking = async (req, res, next) => {
   const { COD_TRACKING } = req.params;
@@ -28,11 +28,11 @@ const  DE_ORDEN  =require( "../models/DE_orden")
 };
  exports.GetOrdenByNumberTracking = async (req, res, next) => {
   const { NUM_TRACKING } = req.params;
-  console.log(NUM_TRACKING);
   try {
     const OrdenTracking = await sequelize.query("CALL SHOW_ORDEN_NUMBER_TRACKIN(:NUM_TRACKING)", {
       replacements: { NUM_TRACKING },
     });
+    console.log(OrdenTracking)
     return res.status(200).json( OrdenTracking );
   } catch (error) {
     HttpError(res, error);

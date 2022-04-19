@@ -24,6 +24,8 @@ const Message =require( "./routes/Messaje.routes.js")
 const Orden =require( "./routes/Orden.routes.js")
 const Invoice =require( "./routes/Invoice.routes.js")
 const TrackinInformation =require( "./routes/TrackinInformation.routes.js")
+const Shopping =require( "./routes/Shopping.routes.js")
+const TypeUser =require( "./routes/TypeUsers.routes")
 
 const sequelise =require( "./config/database/index.js")
 const { v4: uuidv4 } = require('uuid');
@@ -40,35 +42,36 @@ const {
   CreateCatPackage,
   CreateTypePackage,
   CreateLocker,
+  CreateShippinCost,
   CreateService,
 } =require( "./config/database/Seeder.js")
 // sequelise.sync({ force: true });
 CreateRole();
 CreatePermisos();
-// // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreatePemisoHasRol();
 CreateContries();
-// // // // // // // // // // // // // // // // // // // // // // //----------------
+CreateLocker();
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreateStates();
-// // // // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreateCities();
-// // // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreateSeguri();
 CreateUser();
-// // // // // // // // // // // // // // // // // // //----------------
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //----------------
 CreateCatPackage();
 CreateTypePackage();
-CreateLocker();
 CreateService();
+CreateShippinCost()
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/", (req,res)=>{
-  res.send("Bienvenido a la API")
-});
+
 app.use("/api/roles", Roles);
+app.use("/api/shopping", Shopping);
 app.use("/api/orden", Orden);
 app.use("/api/service", Service);
 app.use("/api/tracking", Tracking);
@@ -92,5 +95,6 @@ app.use("/api/permission", Permission);
 app.use("/api/message", Message);
 app.use("/api/trackingInformation", TrackinInformation);
 app.use("/api/invoice", Invoice);
+app.use("/api/typeuser", TypeUser);
 
 module.exports = app;

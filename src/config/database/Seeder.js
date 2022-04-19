@@ -1,5 +1,6 @@
 const  BO_CATPACKAGE  = require( "../../models/BO_catPackage")
 const  BO_LOCKER  = require( "../../models/BO_locker")
+const BO_SHIPPINGCOST = require("../../models/BO_ShippingCost")
 const  BO_TYPEPACKAGE  = require( "../../models/BO_typePackage")
 const  DE_SERVICE  = require( "../../models/DE_service")
 const  PA_CITIES  = require( "../../models/Pa_cities")
@@ -1432,24 +1433,77 @@ const  USERS  = require( "../../models/Users")
     try {
       await Promise.all([
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en Aéreo",
+          NAM_TYPEPACKAGE: "Aéreo abrir",
           DES_TYPEPACKAGE: "Entrega en 3 semanas, mayor a 30 libras",
-          PREC_TYPEPACKAGE: "4",
-          USR_ADD: "admin",
-        }),
-        BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en Marítimo",
-          DES_TYPEPACKAGE: "Entrega en 2 semanas",
+          ABBRE_TYPEPACKAGE: "CER",
+          COD_SHIPPINGCOST:1,
           PREC_TYPEPACKAGE: "6",
           USR_ADD: "admin",
         }),
         BO_TYPEPACKAGE.create({
-          NAM_TYPEPACKAGE: "Envió en Express",
-          DES_TYPEPACKAGE:
-            "Entrega en 4 días, salida los jueves entregando los martes",
-          PREC_TYPEPACKAGE: "10",
+          NAM_TYPEPACKAGE: "Aéreo no abrir",
+          DES_TYPEPACKAGE: "Entrega en 3 semanas, mayor a 30 libras",
+          ABBRE_TYPEPACKAGE: "CKA",
+          COD_SHIPPINGCOST:1,
+          PREC_TYPEPACKAGE: "6",
           USR_ADD: "admin",
         }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Maritimo no abrir",
+          DES_TYPEPACKAGE: "Entrega en 2 semanas",
+          ABBRE_TYPEPACKAGE: "CEM",
+          PREC_TYPEPACKAGE: "4",
+          COD_SHIPPINGCOST:2,
+          USR_ADD: "admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Maritimo  abrir",
+          DES_TYPEPACKAGE: "Entrega en 2 semanas",
+          ABBRE_TYPEPACKAGE: "CKM",
+          PREC_TYPEPACKAGE: "4",
+          COD_SHIPPINGCOST:2,
+          USR_ADD: "admin",
+        }),
+        BO_TYPEPACKAGE.create({
+          NAM_TYPEPACKAGE: "Express",
+          DES_TYPEPACKAGE:"Entrega en 4 días, salida los jueves entregando los martes",
+          ABBRE_TYPEPACKAGE: "EXP",
+          PREC_TYPEPACKAGE: "10",
+          COD_SHIPPINGCOST:2,
+          USR_ADD: "admin",
+        }),
+      ]);
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
+};
+ const CreateShippinCost = async () => {
+  const count = await BO_SHIPPINGCOST.count();
+  if (count > 0) {
+    return;
+  } else {
+    try {
+      await Promise.all([
+        BO_SHIPPINGCOST.create({
+          COD_TYPEPACKAGE: 1,
+          NOM_METRICO:"Cálculo de Flete Aéreo",
+          DATA_METRICO: "166",
+          DES_METRICO:"Para los envíos aéreos se toma en cuenta el mayor de los valores entre peso volumétrico o peso en libras",
+          SPAN_METRICO:"Mínimo aéreo: menores a 4 lbs. $30",
+          MIN_SHIPPINGCOST:"30"
+        }),
+       
+        BO_SHIPPINGCOST.create({
+          COD_TYPEPACKAGE: 2,
+          NOM_METRICO:"Cálculo de Flete Marítimo / Marítimo Express.",
+          DATA_METRICO: "1728",
+          DES_METRICO:"Para los embarques marítimos no se toma en cuenta el peso de la carga lo que importa únicamente son los Pies Cúbicos. a menos que sea una equipo que sobrepase las 1000 lbs que se tiene una consideración especial",
+          SPAN_METRICO:"Mínimos:  Marítimo $50 / Marítimo Express $50",
+          MIN_SHIPPINGCOST:"50"
+        }),
+     
+       
       ]);
     } catch (erro) {
       console.log(erro);
@@ -1529,7 +1583,6 @@ const  USERS  = require( "../../models/Users")
     try {
       await Promise.all([
         BO_LOCKER.create({
-          COD_PEOPLE: 1,
           NUM_LOCKER: "TGU-00145",
           TYP_LOCKER: "8109 NW 60TH ST",
           ADDRES_LOCKER: "Miami, FL 33166",
@@ -1549,6 +1602,8 @@ const  USERS  = require( "../../models/Users")
       console.log(erro);
     }
   }
+     
+  
 };
 
 module.exports = {CreateRole,
@@ -1562,4 +1617,5 @@ module.exports = {CreateRole,
   CreateCatPackage,
   CreateTypePackage,
   CreateService,
+  CreateShippinCost,
   CreateLocker,}

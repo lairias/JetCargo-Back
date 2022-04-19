@@ -11,13 +11,11 @@ const BO_CATPACKAGE = db.define(
       comment: "COD OF THE PACKAGE CATEGORY ",
     },
     NAM_CATPACKAGE: {
-      type: Sequelize.STRING(60),
-      allowNull: false,
+      type: Sequelize.STRING(120),
       comment: "NAME OF THE PACKAGE CATEGORY",
     },
     DES_CATPACKAGE: {
       type: Sequelize.STRING(120),
-      allowNull: false,
       comment: "DESCRIPTION OF THE PACKAGE CATEGORY",
     },
     IND_CATPACKAGE: {
@@ -26,9 +24,9 @@ const BO_CATPACKAGE = db.define(
       defaultValue: true,
       comment: "STATUS OF THE PACKAGE CATEGORY",
     },
+  
     USR_ADD: {
       type: Sequelize.STRING(30),
-      allowNull: false,
       comment: "USER THAT ADDED THIS ROW	",
     },
     USR_UPD: {

@@ -6,19 +6,24 @@ const {
   DeleteTypeUser,
   UpdateTypeUser,
   GetTypeUser,
-} =require( "../controllers/TypeUsers.Controllers")
+} =require( "../controllers/TypeUsers.Controllers");
+const { verifyToken, verifyIndUser } = require("../middleware/verifySignup");
 
 
 
 router.get(
   "/",
-  [verifyToken, verifyIndUser, TypeUserCreate, verifyRoles],
+  [verifyToken, verifyIndUser],
   GetTypeUsers
 );
-router.post("/", CreateTypeUser);
-router.delete("/:COD_TYPEUSER", DeleteTypeUser);
-router.put("/:COD_TYPEUSER", UpdateTypeUser);
-router.get("/:COD_TYPEUSER", GetTypeUser);
+router.post("/",
+[verifyToken, verifyIndUser], CreateTypeUser);
+router.delete("/:COD_TYPEUSERS",
+[verifyToken, verifyIndUser], DeleteTypeUser);
+router.put("/:COD_TYPEUSERS",
+[verifyToken, verifyIndUser], UpdateTypeUser);
+router.get("/:COD_TYPEUSERS",
+[verifyToken, verifyIndUser], GetTypeUser);
 
 
 module.exports = router;

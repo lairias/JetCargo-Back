@@ -65,6 +65,19 @@ const db = require("../config/database");
       defaultValue: true,
       comment: "STATUS OF PACKAGE",
     },
+    ALTURA_PACKAGE: {
+      type: Sequelize.STRING(120),
+      comment: "STATUS OF THE PACKAGE EGORY",
+    },
+    LARGO_PACKAGE: {
+      type: Sequelize.STRING(120),
+      comment: "STATUS OF THE PACKAGE EGORY",
+    },
+    ANCHO_PACKAGE: {
+      type: Sequelize.STRING(120),
+      comment: "STATUS OF THE PACKAGE EGORY",
+    },
+    
     USR_ADD: {
       type: Sequelize.STRING(30),
       comment: "USER THAT ADDED THIS ROW	",

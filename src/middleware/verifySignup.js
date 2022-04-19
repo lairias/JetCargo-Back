@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 const USERS = require("../models/Users")
-const {JWTSECRET} = require('../config')
 const { HttpError } =require( "../helpers/handleError")
 
  const verifyToken = async (req, res, next) => {
@@ -9,8 +8,7 @@ const { HttpError } =require( "../helpers/handleError")
     const token = req.headers["x-access-token"];
     if (!token) return res.status(403).json({ message: "No token provided" });
 
-    const { id } = jwt.verify(JWTSECRET);
-
+    const { id } = jwt.verify(token,process.env.JWTSECRET);
     req.userId = id;
     next();
   } catch (error) {
@@ -22,6 +20,7 @@ const { HttpError } =require( "../helpers/handleError")
  const verifyIndUser = async (req, res, next) => {
   try {
     if (!req.userId)
+    
       return res.status(203).json({ message: "Token no valido" });
     const User = await USERS.findByPk(req.userId);
     if (!User) return res.status(203).json({ message: "no user found" });

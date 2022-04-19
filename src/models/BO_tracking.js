@@ -16,11 +16,7 @@ const db = require("../config/database");
       allowNull: false,
       comment: "COD OF THE PACKAGE",
     },
-    COD_SERVICE: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "DESCRICTION  OF TRACKING",
-    },
+    
     DES_TRACKING: {
       type: Sequelize.STRING(255),
       allowNull: false,

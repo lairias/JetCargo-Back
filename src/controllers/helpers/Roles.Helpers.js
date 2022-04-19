@@ -1,7 +1,7 @@
-const { MODEL_TYPEUSER_HAS_PERMISOS } = require("../../models/relations/typeusers_has_permisos")
-const { SE_PERMISOS } = require("../../models/security/SE_permisos")
+const  MODEL_TYPEUSER_HAS_PERMISOS  = require("../../models/relations/typeusers_has_permisos")
+const  SE_PERMISOS  = require("../../models/security/SE_permisos")
 
- const RolesForeachPermiso = (PERMISSION, COD_TYPEUSERS) => {
+exports.RolesForeachPermiso = (PERMISSION, COD_TYPEUSERS) => {
   try {
     PERMISSION.forEach(async (element) => {
       await MODEL_TYPEUSER_HAS_PERMISOS.create({
@@ -14,7 +14,7 @@ const { SE_PERMISOS } = require("../../models/security/SE_permisos")
     return;
   }
 };
- const RolesForeachAllPermiso = async (COD_TYPEUSERS) => {
+exports.RolesForeachAllPermiso = async (COD_TYPEUSERS) => {
   try {
     const allPermisos = await SE_PERMISOS.findAll();
     allPermisos.forEach(async (element) => {
@@ -28,5 +28,3 @@ const { SE_PERMISOS } = require("../../models/security/SE_permisos")
     return;
   }
 };
-
-module.exports= {RolesForeachPermiso,RolesForeachAllPermiso }

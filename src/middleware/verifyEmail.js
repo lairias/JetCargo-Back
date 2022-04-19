@@ -1,7 +1,7 @@
 const { HttpError } =require( "../helpers/handleError")
-const { USERS } =require( "../models/Users")
+const  USERS  =require( "../models/Users")
 
- const CheckDuplicateEmail = async (req, res, next) => {
+ exports.CheckDuplicateEmail = async (req, res, next) => {
   const { EMAIL } = req.body;
   try {
     if (await USERS.findOne({ where: { EMAIL } }))
@@ -15,6 +15,3 @@ const { USERS } =require( "../models/Users")
   }
 };
 
-module.exports = {
-  CheckDuplicateEmail,
-};

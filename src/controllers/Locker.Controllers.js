@@ -1,6 +1,6 @@
 const  BO_LOCKER  =require("../models/BO_locker")
 const sequelize =require("../config/database/index")
-const  HttpError  =require("../helpers/handleError")
+const  {HttpError}  =require("../helpers/handleError")
 const  REL_CUSTOMER_LOKER  =require("../models/relations/REL_customer_locker")
 const  {AsignacionLokerCustomers, transport } =require("../email")
 
@@ -14,12 +14,22 @@ const  {AsignacionLokerCustomers, transport } =require("../email")
     next();
   }
 };
+ exports.GetLokersAdmin = async (req, res, next) => {
+  try {
+    const lockers = await BO_LOCKER.findAll();
+    return res.status(200).json( lockers );
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
  exports.GetLokersind = async (req, res, next) => {
   try {
     const lockersInd = await BO_LOCKER.findAll({ where: { IND_LOCKER: true } });
     if (!lockersInd) return res.status(200).json({ ok: false, lockersInd });
     return res.status(200).json({ ok: true, lockersInd });
   } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -65,24 +75,17 @@ const  {AsignacionLokerCustomers, transport } =require("../email")
 };
 
  exports.CreateLoker = async (req, res, next) => {
-  const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, USR_ADD } = req.body;
+  const {  NUM_LOCKER, ADDRES_LOCKER,TEL_LOCKER,   TYP_LOCKER } = req.body;
   try {
-    await sequelize
-      .query("CALL INS_LOCKER(:COD_PEOPLE,:NUM_LOCKER,:TYP_LOCKER, :USR_ADD)", {
-        replacements: {
-          COD_PEOPLE,
-          NUM_LOCKER,
-          TYP_LOCKER,
-          USR_ADD,
-        },
-      })
-      .catch((error) => {
-        HttpError(res, error);
-        throw res.sendStatus(500);
-      });
+    BO_LOCKER.create({
+      NUM_LOCKER,
+      ADDRES_LOCKER,
+      TEL_LOCKER,
+      TYP_LOCKER,
+      USR_ADD: "sistema"
+    })
     return res.sendStatus(200);
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -90,7 +93,6 @@ const  {AsignacionLokerCustomers, transport } =require("../email")
 
  exports.CreateLokerCustomers = async (req, res, next) => {
   const { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME, EMAIL } = req.body;
-  console.log(req.body);
   try {
     const locker = await REL_CUSTOMER_LOKER.create({
       COD_CUSTOMER,
@@ -108,6 +110,7 @@ const  {AsignacionLokerCustomers, transport } =require("../email")
     );
     return res.status(200).json({ ok: true, locker });
   } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -129,26 +132,11 @@ const  {AsignacionLokerCustomers, transport } =require("../email")
 };
 
  exports.UpdateLoker = async (req, res, next) => {
-  const { COD_PEOPLE, NUM_LOCKER, TYP_LOCKER, IND_LOCKER, USR_UPD } = req.body;
+  const {  NUM_LOCKER,ADDRES_LOCKER, TYP_LOCKER, IND_LOCKER, USR_UPD } = req.body;
   const { COD_LOCKER } = req.params;
   try {
-    const cities = await sequelize
-      .query(
-        "CALL UPD_LOCKER(:COD_LOCKER,:COD_PEOPLE,:NUM_LOCKER,:TYP_LOCKER,:USR_UPD,:IND_LOCKER)",
-        {
-          replacements: {
-            COD_LOCKER,
-            COD_PEOPLE,
-            NUM_LOCKER,
-            TYP_LOCKER,
-            USR_UPD,
-            IND_LOCKER,
-          },
-        }
-      )
-      .catch((_) => {
-        throw res.sendStatus(500);
-      });
+  await   BO_LOCKER.update({NUM_LOCKER,ADDRES_LOCKER, TYP_LOCKER, IND_LOCKER,
+       USR_UPD : "sistema"},{where: {COD_LOCKER}})
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);

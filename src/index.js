@@ -10,7 +10,7 @@ const db =require( "./config/database")
   // await apolloServer.start();
   // apolloServer.applyMiddleware({ app });
   
-  const portApit = process.env.PORT || 4001
+  const portApit = process.env.PORT || 4000
    app.listen(portApit, () => {
     console.log(`Server puesto ${portApit}`);	
   });

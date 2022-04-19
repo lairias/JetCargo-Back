@@ -1,6 +1,6 @@
 const  PA_COUNTRIES  = require( "../models/Pa_countries")
 const sequelize = require( "../config/database/index")
-const  HttpError  = require( "../helpers/handleError")
+const  {HttpError}  = require( "../helpers/handleError")
 
 exports.GetCountries = async (req, res, next) => {
   try {

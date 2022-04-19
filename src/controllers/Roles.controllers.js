@@ -1,5 +1,5 @@
 const  PA_TypeUsers  = require( "../models/Pa_typeUsers")
-const  HttpError  = require( "../helpers/handleError")
+const  {HttpError}  = require( "../helpers/handleError")
 const  MODEL_TYPEUSER_HAS_PERMISOS  = require( "../models/relations/typeusers_has_permisos")
 const sequelize = require( "../config/database")
 const {
@@ -9,12 +9,25 @@ const {
 
  exports.GetRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
+  console.log(COD_TYPEUSERS)
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
     const permisos = await sequelize.query(
       `CALL SHOW_PERMISOS_TYPEUSER(${COD_TYPEUSERS}) `
     );
     res.status(200).json({ ok: true, role, permisos });
+  } catch (error) {
+    console.log(error);
+  }
+};
+ exports.GetRoleDisting = async (req, res, next) => {
+  const { COD_TYPEUSERS } = req.params;
+  try {
+    const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
+    const permisosDis = await sequelize.query(
+      `CALL SHOW_PERMISOS_TYPEUSER_DISTIN(${COD_TYPEUSERS}) `
+    );
+    res.status(200).json({ ok: true, role, permisosDis });
   } catch (error) {
     console.log(error);
   }
@@ -33,10 +46,10 @@ const {
 };
  exports.UpdateRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
-  const { NOM_TYPE, DES_TYPE, USR_UPD, PERMISSION, TODO } = req.body;
+  const { NOM_TYPE, DES_TYPE, PERMISSION, TODO } = req.body;
   try {
     await PA_TypeUsers.update(
-      { NOM_TYPE, DES_TYPE, USR_UPD },
+      { NOM_TYPE, DES_TYPE },
       { where: { COD_TYPEUSERS } }
     );
 

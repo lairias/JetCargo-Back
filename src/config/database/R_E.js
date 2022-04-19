@@ -315,20 +315,17 @@ const   REL_ORIGIN_DESTINO  =require( "../../models/relations/REL_Origin_Destino
       name: "COD_USER",
     },
   });
-
+  
   /******************************* */
-   PA_POEPLE.hasMany(BO_LOCKER, {
-    foreignKey: "COD_PEOPLE",
+  BO_SHIPPINGCOST.hasMany(BO_TYPEPACKAGE, {
+    foreignKey: "COD_SHIPPINGCOST",
     onDelete: "CASCADE",
   });
    USERS.hasMany(PA_CUSTOMES, {
     foreignKey: "COD_USER",
     onDelete: "CASCADE",
   });
-   BO_PACKAGE.hasMany(BO_SHIPPINGCOST, {
-    foreignKey: "COD_PACKAGE",
-    onDelete: "CASCADE",
-  });
+  
    BO_PACKAGE.hasMany(BO_TRACKING, {
     foreignKey: "COD_PACKAGE",
     onDelete: "CASCADE",

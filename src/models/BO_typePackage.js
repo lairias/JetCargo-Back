@@ -11,11 +11,21 @@ const db =require( "../config/database/index")
       allowNull: false,
       comment: "COD OF THE TYPE OF PACKAGE",
     },
+    COD_SHIPPINGCOST: {
+      type: Sequelize.BIGINT,
+      comment: "COD OF THE TYPE OF PACKAGE",
+    },
     NAM_TYPEPACKAGE: {
       type: Sequelize.STRING(120),
       allowNull: false,
       comment: "NAME OF THE TYPE OF PACKAGE",
     },
+    ABBRE_TYPEPACKAGE: {
+      type: Sequelize.STRING(120),
+      allowNull: false,
+      comment: "NAME OF THE TYPE OF PACKAGE",
+    },
+    
     DES_TYPEPACKAGE: {
       type: Sequelize.STRING(120),
       allowNull: false,

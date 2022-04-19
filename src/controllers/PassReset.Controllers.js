@@ -6,7 +6,7 @@ const { encrptPassword } = require( "../helpers/bcrypt")
 const { transport, configTransportResetPass } = require( "../email")
 const {JWTSECRETPASSWORD} = require("../config")
 const sequelize = require( "../config/database/index")
-const  HttpError  = require( "../helpers/handleError")
+const  {HttpError}  = require( "../helpers/handleError")
 const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
 
  exports.CreatePassReset = async (req, res, next) => {

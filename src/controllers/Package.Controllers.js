@@ -1,6 +1,6 @@
 const  BO_PACKAGE  =require("../models/BO_package")
 const sequelize =require("../config/database/index")
-const  HttpError  =require("../helpers/handleError")
+const  {HttpError}  =require("../helpers/handleError")
 
  exports.GetPackages = async (req, res, next) => {
   try {

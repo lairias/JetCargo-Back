@@ -1,6 +1,6 @@
 const  PA_TypeUsers  =require( "../models/Pa_typeUsers")
 const sequelize =require( "../config/database/index")
-const  HttpError  =require( "../helpers/handleError")
+const  {HttpError}  =require( "../helpers/handleError")
  exports.GetTypeUsers = async (req, res, next) => {
   try {
     const cities = await PA_TypeUsers.findAll();
@@ -35,8 +35,14 @@ const  HttpError  =require( "../helpers/handleError")
   }
 };
  exports.GetTypeUser = async (req, res, next) => {
+  const {COD_TYPEUSERS} = req.params;
   try {
-    const cities = await PA_STATES.findAll({});
+
+    const cities = await PA_TypeUsers.findOne({
+      where: {
+        COD_TYPEUSERS
+      }
+    });
     return res.status(200).json(cities);
   } catch (error) {
     next();

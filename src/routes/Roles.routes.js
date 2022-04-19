@@ -5,6 +5,7 @@ const {
   DeleteRole,
   GetRole,
   GetRoles,
+  GetRoleDisting,
   UpdateRole,
 } =require( "../controllers/Roles.controllers")
 const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
@@ -22,6 +23,11 @@ router.get(
   "/:COD_TYPEUSERS",
   [verifyToken, verifyIndUser, TypeUserView],
   GetRole
+);
+router.get(
+  "/disting/:COD_TYPEUSERS",
+  [verifyToken, verifyIndUser, TypeUserView],
+  GetRoleDisting
 );
 
 router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);

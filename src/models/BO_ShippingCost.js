@@ -11,26 +11,38 @@ const db = require("../config/database");
       allowNull: false,
       comment: "COD OF THE SHIPPING COST ",
     },
-    COD_PACKAGE: {
+    COD_TYPEPACKAGE: {
       type: Sequelize.BIGINT,
       allowNull: false,
       comment: "COD OF THE PACKAGE",
     },
-    COST_DELIVERY: {
+    NOM_METRICO: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "COST DELIVERY OF THE SHIPPING COST",
+    },
+    DATA_METRICO: {
       type: Sequelize.STRING(60),
       allowNull: false,
       comment: "COST DELIVERY OF THE SHIPPING COST",
     },
-    COST_INTRODUCTION: {
+    DES_METRICO: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "COST DELIVERY OF THE SHIPPING COST",
+    },
+    SPAN_METRICO: {
+      type: Sequelize.STRING(255),
+      allowNull: false,
+      comment: "COST DELIVERY OF THE SHIPPING COST",
+    },
+    MIN_SHIPPINGCOST: {
       type: Sequelize.STRING(60),
       allowNull: false,
-      comment: "COST OF INTRODUCTION OF THE SHIPPING COST",
+      comment: "COST DELIVERY OF THE SHIPPING COST",
     },
-    USR_ADD: {
-      type: Sequelize.STRING(30),
-      allowNull: false,
-      comment: "USER THAT ADDED THIS ROW	",
-    },
+    
+   
     USR_UPD: {
       type: Sequelize.STRING(30),
       comment: "USER WHO MODIFIED THIS ROW	",

@@ -7,6 +7,7 @@ const {
   GetLokerByPeople,
   GetLokerByCustomer,
   UpdateLoker,
+  GetLokersAdmin,
   GetLokersind,
   CreateLoker,
   CreateLokerCustomers,
@@ -20,6 +21,7 @@ const {
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 router.get("/", [verifyToken, verifyIndUser, LockerView], GetLokers);
+router.get("/admin", [verifyToken, verifyIndUser, LockerView], GetLokersAdmin);
 router.get("/ind", [verifyToken, verifyIndUser, LockerView], GetLokersind);
 router.get("/:COD_LOCKER", [verifyToken, verifyIndUser, LockerView], GetLoker);
 
@@ -39,14 +41,14 @@ router.post(
   CreateLokerCustomers
 );
 
-router.post("/", [verifyToken, verifyIndUser, LockerCreate], CreateLoker);
+router.post("/admin", [verifyToken, verifyIndUser, LockerCreate], CreateLoker);
 router.delete(
   "/:COD_LOCKER",
   [verifyToken, verifyIndUser, LockerDelete],
   DeleteLoker
 );
 router.put(
-  "/:COD_LOCKER",
+  "/admin/:COD_LOCKER",
   [verifyToken, verifyIndUser, LockerUpdate],
   UpdateLoker
 );
