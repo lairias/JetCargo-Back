@@ -7,7 +7,7 @@ const { transport, ResivedTracking,RegistroPackageAdmin } =require("../email")
 const PA_CUSTOMES = require("../models/Pa_customes")
 const USERS = require("../models/Users")
 const PA_POEPLE = require("../models/Pa_people")
-const  {BO_TRACKING}  =require( "../models/Bo_tracking")
+// const  {BO_TRACKING}  =require( "../models/Bo_tracking")
 
  exports.TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
