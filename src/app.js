@@ -26,6 +26,7 @@ const Invoice =require( "./routes/Invoice.routes.js")
 const TrackinInformation =require( "./routes/TrackinInformation.routes.js")
 const Shopping =require( "./routes/Shopping.routes.js")
 const TypeUser =require( "./routes/TypeUsers.routes")
+const ShippingCost =require( "./routes/Shippincost.routes")
 
 const sequelise =require( "./config/database/index.js")
 const { v4: uuidv4 } = require('uuid');
@@ -87,6 +88,7 @@ app.use("/api/catpackage", CatPackage);
 app.use("/api/locker", Lockers);
 app.use("/api/package", Package);
 app.use("/api/typepackage", TypePackage);
+app.use("/api/shippingcost", ShippingCost);
 app.use("/api/payment", Payment);
 app.use("/api/passreset", PassReset);
 app.use("/api/email", Email);

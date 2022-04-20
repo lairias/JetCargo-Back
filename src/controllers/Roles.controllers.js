@@ -9,7 +9,6 @@ const {
 
  exports.GetRole = async (req, res, next) => {
   const { COD_TYPEUSERS } = req.params;
-  console.log(COD_TYPEUSERS)
   try {
     const role = await PA_TypeUsers.findByPk(COD_TYPEUSERS);
     const permisos = await sequelize.query(
@@ -82,9 +81,10 @@ const {
 };
 
  exports.CreateRole = async (req, res, next) => {
-  const { NOM_TYPE, DES_TYPE, USR_ADD, PERMISSION, TODO } = req.body;
+  const { NOM_TYPE, DES_TYPE, PERMISSION, TODO } = req.body;
+  console.log(req.body)
   try {
-    const role = await PA_TypeUsers.create({ NOM_TYPE, DES_TYPE, USR_ADD });
+    const role = await PA_TypeUsers.create({ NOM_TYPE, DES_TYPE, USR_ADD:"sistema" });
     if (TODO) {
       RolesForeachAllPermiso(role.COD_TYPEUSERS);
       return res.sendStatus(200);
@@ -93,6 +93,7 @@ const {
       return res.sendStatus(200);
     }
   } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }

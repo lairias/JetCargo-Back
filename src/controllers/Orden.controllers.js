@@ -32,7 +32,15 @@ const  DE_ORDEN  =require( "../models/DE_orden")
     const OrdenTracking = await sequelize.query("CALL SHOW_ORDEN_NUMBER_TRACKIN(:NUM_TRACKING)", {
       replacements: { NUM_TRACKING },
     });
-    console.log(OrdenTracking)
+    return res.status(200).json( OrdenTracking );
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+ exports.GetOrden = async (req, res, next) => {
+  try {
+    const OrdenTracking = DE_ORDEN.findAll();
     return res.status(200).json( OrdenTracking );
   } catch (error) {
     HttpError(res, error);

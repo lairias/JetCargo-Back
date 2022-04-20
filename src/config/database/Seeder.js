@@ -1486,7 +1486,6 @@ const  USERS  = require( "../../models/Users")
     try {
       await Promise.all([
         BO_SHIPPINGCOST.create({
-          COD_TYPEPACKAGE: 1,
           NOM_METRICO:"Cálculo de Flete Aéreo",
           DATA_METRICO: "166",
           DES_METRICO:"Para los envíos aéreos se toma en cuenta el mayor de los valores entre peso volumétrico o peso en libras",
@@ -1495,7 +1494,6 @@ const  USERS  = require( "../../models/Users")
         }),
        
         BO_SHIPPINGCOST.create({
-          COD_TYPEPACKAGE: 2,
           NOM_METRICO:"Cálculo de Flete Marítimo / Marítimo Express.",
           DATA_METRICO: "1728",
           DES_METRICO:"Para los embarques marítimos no se toma en cuenta el peso de la carga lo que importa únicamente son los Pies Cúbicos. a menos que sea una equipo que sobrepase las 1000 lbs que se tiene una consideración especial",

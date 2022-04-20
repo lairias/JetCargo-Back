@@ -10,37 +10,38 @@ const  {HttpError}  =require( "../helpers/handleError")
     next();
   }
 };
-
  exports.GetTypePackage = async (req, res, next) => {
   const { COD_TYPEPACKAGE } = req.params;
+  console.log(COD_TYPEPACKAGE);
   try {
     const cities = await BO_TYPEPACKAGE.findByPk(COD_TYPEPACKAGE);
+    console.log(cities);
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);
     next();
   }
 };
-
- exports.CreateTypePackage = async (req, res, next) => {
-  const { NAM_TYPEPACKAGE, DES_TYPEPACKAGE, USR_ADD } = req.body;
+ exports.GetTypePackageShipping = async (req, res, next) => {
+  const { COD_TYPEPACKAGE } = req.params;
   try {
-    const cities = await sequelize
-      .query(
-        "CALL INS_TYPEPACKAGE(:NAM_TYPEPACKAGE,:DES_TYPEPACKAGE,:USR_ADD)",
-        {
-          replacements: {
-            NAM_TYPEPACKAGE,
-            DES_TYPEPACKAGE,
-            USR_ADD,
-          },
-        }
-      )
-      .catch((error) => {
-        console.log(error);
-        HttpError(res, error);
-        throw res.sendStatus(500);
-      });
+    const cities = await sequelize.query("CALL SHOW_TYPEPACKAGE_SHOPPING(:COD_TYPEPACKAGE)",{
+      replacements:{
+        COD_TYPEPACKAGE
+      }
+    });
+    return res.status(200).json(cities);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+ exports.CreateTypePackage = async (req, res, next) => {
+  const { COD_SHIPPINGCOST,NAM_TYPEPACKAGE, DES_TYPEPACKAGE,ABBRE_TYPEPACKAGE,PREC_TYPEPACKAGE } = req.body;
+  try {
+  await  BO_TYPEPACKAGE.create({
+      COD_SHIPPINGCOST,NAM_TYPEPACKAGE,ABBRE_TYPEPACKAGE,DES_TYPEPACKAGE,PREC_TYPEPACKAGE, USR_ADD: "admin",
+    });
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);

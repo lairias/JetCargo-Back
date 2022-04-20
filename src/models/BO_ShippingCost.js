@@ -11,11 +11,7 @@ const db = require("../config/database");
       allowNull: false,
       comment: "COD OF THE SHIPPING COST ",
     },
-    COD_TYPEPACKAGE: {
-      type: Sequelize.BIGINT,
-      allowNull: false,
-      comment: "COD OF THE PACKAGE",
-    },
+    
     NOM_METRICO: {
       type: Sequelize.STRING(255),
       allowNull: false,

@@ -18,7 +18,7 @@ const {
 } =require( "../middleware/permissions/TypeUsers.Permission")
 
 
-router.post("/", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
+router.post("/admin", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
 router.get(
   "/:COD_TYPEUSERS",
   [verifyToken, verifyIndUser, TypeUserView],

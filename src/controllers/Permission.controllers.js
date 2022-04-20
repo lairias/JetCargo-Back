@@ -36,4 +36,29 @@ const  USERS  = require("../models/Users")
     next();
   }
 };
+ exports.GetPermissionUserID = async (req, res, next) => {
+   const { COD_PERMISO } = req.params;
+  try {
+    const PermissionUser = await SE_PERMISOS.findByPk(COD_PERMISO);
+    if (!PermissionUser)
+      return res.status(203).json({ message: "Erro de procesp" });
+    return res.status(200).json({ PermissionUser });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+ exports.PutPermissionUser = async (req, res, next) => {
+   const { COD_PERMISO } = req.params;
+   const {DES_PERMISOS} = req.body;
+  try {
+     await SE_PERMISOS.update({
+      DES_PERMISOS
+    },{where:{COD_PERMISO}});
+    return res.status(200);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 
