@@ -6,6 +6,7 @@ const {
   GetCountry,
   UpdateCountrie,
   CreateCountry,
+  GetCountriesAdmin
 } =require( "../controllers/Country.Controllers")
 const {
   CountryCreate,
@@ -17,6 +18,7 @@ const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 
 router.get("/", GetCountries);
+router.get("/admin",[verifyToken, verifyIndUser], GetCountriesAdmin);
 router.get(
   "/:COD_COUNTRY",
   [verifyToken, verifyIndUser, CountryView],

@@ -29,6 +29,12 @@ const db = require("../config/database");
     SERVICE_LOGO: {
       type: Sequelize.STRING(255),
     },
+    IND_SERVICE: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+      comment: "STATUS OF COUNTRY",
+    },
     DAT_ADD_SERVICE: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

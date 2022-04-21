@@ -3,11 +3,12 @@ const  USERS  =require("../models/Users")
 const  PA_POEPLE  =require("../models/Pa_people")
 const  {HttpError}  =require("../helpers/handleError")
 require('dotenv').config();
-const { transport, configTransportVery } =require("../email")
+const { transport, configTransportVeryAdmin,configTransportVery } =require("../email")
 const { encrptPassword, compararPassword } =require("../helpers/bcrypt")
 const sequelize =require("../config/database")
 const JWT = require("jsonwebtoken");
 const  PA_CUSTOMES  =require("../models/Pa_customes")
+const generator = require('generate-password');
 
 exports.singUp = async (req, res, next) => {
   try {
@@ -100,7 +101,6 @@ exports.singUpAdmin = async (req, res, next) => {
       LASTNAME,
       AGE,
       EMAIL,
-      PAS_USER,
       ROL,
       DAT_BIRTH,
       COD_COUNTRY,
@@ -111,7 +111,11 @@ exports.singUpAdmin = async (req, res, next) => {
       NUM_PHONE,
       USR_ADD,
     } = req.body;
-    console.log(req.body)
+    const PAS_USER = generator.generate({
+      length: 10,
+      numbers: true
+    });
+    console.log(PAS_USER);
     await sequelize.query(
         "CALL INS_USER(:ID,:TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:EMAIL,:PAS_USER,:ROL,:DAT_BIRTH,:COD_COUNTRY,:COD_STATE,:COD_CITY,:DES_ADDRESS,:NUM_AREA,:NUM_PHONE, :USR_ADD)",
         {
@@ -151,9 +155,10 @@ exports.singUpAdmin = async (req, res, next) => {
       }
     );
     await transport.sendMail(
-      configTransportVery(
+      configTransportVeryAdmin(
         FRISTNAME,
         LASTNAME,
+        PAS_USER,
         EMAIL.replace("@", "%40"),
         token,
         req.headers.host,
@@ -211,6 +216,7 @@ exports.singIn = async (req, res, next) => {
       COD_USER: UserFond.COD_USER,
       IMG_FHOTO: UserFond.PROFILE_PHOTO_PATH,
       EMAIL: UserFond.EMAIL,
+      IND_INS: UserFond.IND_INS,
       NAME: PeopleFond.FRISTNAME,
       LASTNAME: PeopleFond.LASTNAME,
       token,
@@ -250,6 +256,7 @@ exports.RevalidarToken = async (req, res, next) => {
       COD_USER: User.COD_USER,
       IMG_FHOTO: User.PROFILE_PHOTO_PATH,
       EMAIL: User.EMAIL,
+      IND_INS: User.IND_INS,
       NAME: PeopleFond.FRISTNAME,
       LASTNAME: PeopleFond.LASTNAME,
       token,

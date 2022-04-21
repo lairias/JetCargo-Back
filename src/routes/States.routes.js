@@ -7,6 +7,7 @@ const {
   DeleteState,
   UpdateState,
   GetState,
+  GetStatesAdmin
 } =require( "../controllers/States.Controllers")
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 const {
@@ -19,6 +20,7 @@ const {
 
 router.get("/country/:COD_COUNTRY", GetStatesForCountry);
 router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);
+router.get("/admin", [verifyToken, verifyIndUser, StatesView], GetStatesAdmin);
 router.post("/", [verifyToken, verifyIndUser, StatesCreate], CreateState);
 router.delete(
   "/:COD_STATE",

@@ -57,7 +57,7 @@ const  USERS  = require( "../../models/Users")
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
         75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 90, 91, 92, 93,
-        94, 95, 96, 97,
+        94, 95, 96, 97,98,99,100,101,102,103,104
       ];
       const cliente = [
         2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 68, 72,
@@ -115,11 +115,11 @@ const  USERS  = require( "../../models/Users")
           DES_PERMISOS: "Crear administrador",
         }),
         await SE_PERMISOS.create({
-          NAM_PERMISOS: "dasboard.seguimiento.maritimo",
+          NAM_PERMISOS: "dasboard.roles",
           DES_PERMISOS: "Crear administrador",
         }),
         await SE_PERMISOS.create({
-          NAM_PERMISOS: "dasboard.roles",
+          NAM_PERMISOS: "dasboard.orden",
           DES_PERMISOS: "Crear administrador",
         }),
         await SE_PERMISOS.create({
@@ -130,10 +130,13 @@ const  USERS  = require( "../../models/Users")
           NAM_PERMISOS: "dasboard.seguridad",
           DES_PERMISOS: "Crear administrador",
         }),
+
+       
         await SE_PERMISOS.create({
-          NAM_PERMISOS: "dasboard.paypal",
+          NAM_PERMISOS: "dasboard.costos",
           DES_PERMISOS: "Crear administrador",
         }),
+
         await SE_PERMISOS.create({
           NAM_PERMISOS: "dasboard.usurario",
           DES_PERMISOS: "Crear administrador",
@@ -490,6 +493,39 @@ const  USERS  = require( "../../models/Users")
           NAM_PERMISOS: "invoice.delete",
           DES_PERMISOS: "Eliminar factura",
         }),
+
+
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "permisos.view",
+          DES_PERMISOS: "ver Permisos",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "permisos.update",
+          DES_PERMISOS: "Actualizar Permisos",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguridad.view",
+          DES_PERMISOS: "ver Seguridad",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "seguridad.update",
+          DES_PERMISOS: "Actualizar Seguridad",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "shipping.view",
+          DES_PERMISOS: "ver costos de paquetes",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "shipping.crear",
+          DES_PERMISOS: "Crear costos de paquetes",
+        }),
+        await SE_PERMISOS.create({
+          NAM_PERMISOS: "shipping.update",
+          DES_PERMISOS: "Actualizar costos de paquetes",
+        }),
+
+
+        
       ]);
     } catch (error) {
       console.log(error);

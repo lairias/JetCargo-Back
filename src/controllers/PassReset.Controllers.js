@@ -4,10 +4,10 @@ const  PA_POEPLE  = require( "../models/Pa_people")
 const JWT = require("jsonwebtoken");
 const { encrptPassword } = require( "../helpers/bcrypt")
 const { transport, configTransportResetPass } = require( "../email")
-const {JWTSECRETPASSWORD} = require("../config")
 const sequelize = require( "../config/database/index")
 const  {HttpError}  = require( "../helpers/handleError")
 const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
+require('dotenv').config();
 
  exports.CreatePassReset = async (req, res, next) => {
   const { EMAIL } = req.body;
@@ -18,7 +18,7 @@ const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
     const UserReset = await Se_PASS_RESET.findOne({ where: { EMAIL } });
     const token = JWT.sign(
       { email: UserFond.EMAIL, id: UserFond.COD_USER },
-    JWTSECRETPASSWORD,
+    process.env.JWTSECRETPASSWORD,
       { expiresIn: parseInt(timeToken.DATO_SEGURIDAD) }
     );
     const time = timeToken.DATO_SEGURIDAD / 3600;
@@ -123,6 +123,17 @@ const  SE_SEGURIDAD  = require( "../models/security/Se_seguridad")
         throw res.sendStatus(500);
       });
     return res.sendStatus(200);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+ exports.UpdatePassResetAdmin = async (req, res, next) => {
+  const { COD_USER } = req.params;
+  const { PASS_RESET } = req.body;
+  try {
+   await USERS.update({PASS_RESET:await encrptPassword(PASS_RESET),IND_INS:true},{where:{COD_USER}})
+    return res.status(200).json({ok: true});
   } catch (error) {
     HttpError(res, error);
     next();

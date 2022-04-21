@@ -5,7 +5,7 @@ const {
   DeletePassReset,
   ForgotPassword,
   GetPassReset,
-  UpdatePassReset,
+  UpdatePassResetAdmin,
   VeryTokenReset,
 } =require( "../controllers/PassReset.Controllers")
 const { verifyTokenPass } =require( "../middleware/verifyPassReset")
@@ -18,6 +18,7 @@ router.post(
 );
 router.get("/:EMAIL", GetPassReset);
 router.delete("/:EMAIL", DeletePassReset);
+router.put("/:COD_USER", UpdatePassResetAdmin);
 
 
 module.exports = router;

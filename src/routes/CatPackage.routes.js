@@ -4,6 +4,7 @@ const {
   GetCatPackages,
   GetCatPackage,
   CreateCatPackage,
+  GetCatPackagesind,
   UpdateCatPackage,
   DeleteCatPackage,
 } =require( "../controllers/CatPackage.Controllers")
@@ -18,6 +19,7 @@ const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 
 router.get("/", [verifyToken, verifyIndUser, CatPackageView], GetCatPackages);
+router.get("/ind", [verifyToken, verifyIndUser, CatPackageView], GetCatPackagesind);
 router.get(
   "/:COD_CATPACKAGE",
   [verifyToken, verifyIndUser, CatPackageView],

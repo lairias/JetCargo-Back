@@ -11,6 +11,15 @@ exports.GetCatPackages = async (req, res, next) => {
     next();
   }
 };
+exports.GetCatPackagesind = async (req, res, next) => {
+  try {
+    const catPackage = await BO_CATPACKAGE.findAll({where:{IND_CATPACKAGE:1}});
+    return res.status(200).json({ ok: true, catPackage });
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 exports.GetCatPackage = async (req, res, next) => {
   const { COD_CATPACKAGE } = req.params;
   try {

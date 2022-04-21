@@ -1,12 +1,29 @@
 const  PA_STATES  =require( "../models/Pa_states")
 const  {HttpError}  =require( "../helpers/handleError")
-const sequelize =require( "../config/database/index")
+const sequelize =require( "../config/database/index");
+const PA_COUNTRIES = require("../models/Pa_countries");
 
  exports.GetStates = async (req, res, next) => {
   try {
     const cities = await PA_STATES.findAll({ where: { IND_STATE: 1 } });
     return res.status(200).json(cities);
   } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
+ exports.GetStatesAdmin = async (req, res, next) => {
+  try {
+    const cities = await sequelize
+      .query("CALL SHOW_STATES_COUNTRYALL()")
+      .catch((error) => {
+        console.log(error);
+        HttpError(res, error);
+        throw res.sendStatus(500);
+      });
+    return res.status(200).json(cities);
+  } catch (error) {
+    console.log(error);
     HttpError(res, error);
     next();
   }
