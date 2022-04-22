@@ -16,9 +16,13 @@ exports.GetCitiesForState = async (req, res, next) => {
 };
 exports.GetCitiesAdmin = async (req, res, next) => {
   try {
+<<<<<<< HEAD
     const cities = await sequelize.query("CALL SHOW_CITY_STATE(:COD_STATE)", {
       replacements: { COD_STATE },
     });
+=======
+    const cities = await sequelize.query("CALL SHOW_CITY_STATEALL()");
+>>>>>>> 7cdafee6871a5ca0f94f4005bf0709312123d968
     return res.status(200).json(cities);
   } catch (error) {
     HttpError(res, error);
