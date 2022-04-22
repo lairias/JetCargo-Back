@@ -52,6 +52,7 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
       CHECKPOINT_DELIVERY_STATUS: "DELIVERED",
     });
     const Destino = await DE_TRACKING_INFORMATION_DESTINO.create({
+      COD_TRACKINFORMATION_DESTINO: Origen.dataValues.COD_TRACKINFORMATION_ORIGIN,
       COD_ORDEN: COD_ORDEN,
       COD_DESTINATION_COUNTRY: Direcciones.COD_COUNTRY_DESTINO,
       COD_DESTINATION_STATE: Direcciones.COD_STATE_DESTINO,
@@ -63,6 +64,7 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
       COD_DESTINO: Destino.dataValues.COD_TRACKINFORMATION_DESTINO,
       COD_ORIGIN: Origen.dataValues.COD_TRACKINFORMATION_ORIGIN,
     });
+    console.log(Origen,Destino);
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.log(error);
@@ -81,16 +83,15 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
         COD_ORDEN,
         STATUS_ORIGIN,
         STATUS_DESTINO } = req.body;
-        console.log(req.body);
   try {
-    const Origen = await DE_TRACKING_INFORMATION_ORIGEN.update({
+ await DE_TRACKING_INFORMATION_ORIGEN.update({
       COD_ORDEN: COD_ORDEN,
       COD_ORIGIN_COUNTRY:parseInt(PaisOrigin),
       COD_ORIGIN_STATE:parseInt(StateOrigin),
       COD_ORIGIN_CITY:parseInt(CityOrigin),
       CHECKPOINT_DELIVERY_STATUS: STATUS_ORIGIN,
     },{where: {COD_ORDEN},});
-    const Destino = await DE_TRACKING_INFORMATION_DESTINO.create({
+     await DE_TRACKING_INFORMATION_DESTINO.create({
       COD_ORDEN: COD_ORDEN,
       COD_DESTINATION_COUNTRY: parseInt(PaisDestino),
       COD_DESTINATION_STATE: parseInt(StateDestino),

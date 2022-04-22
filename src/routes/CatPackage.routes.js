@@ -9,35 +9,29 @@ const {
   DeleteCatPackage,
 } =require( "../controllers/CatPackage.Controllers")
 
-const {
-  CatPackageCreate,
-  CatPackageView,
-  CatPackageDelete,
-  CatPackageUpdate,
-} =require( "../middleware/permissions/CatPackage.Permission")
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 
-router.get("/", [verifyToken, verifyIndUser, CatPackageView], GetCatPackages);
-router.get("/ind", [verifyToken, verifyIndUser, CatPackageView], GetCatPackagesind);
+router.get("/", [verifyToken, verifyIndUser], GetCatPackages);
+router.get("/ind", [verifyToken, verifyIndUser], GetCatPackagesind);
 router.get(
   "/:COD_CATPACKAGE",
-  [verifyToken, verifyIndUser, CatPackageView],
+  [verifyToken, verifyIndUser],
   GetCatPackage
 );
 router.post(
   "/",
-  [verifyToken, verifyIndUser, CatPackageCreate],
+  [verifyToken, verifyIndUser],
   CreateCatPackage
 );
 router.put(
   "/:COD_CATPACKAGE",
-  [verifyToken, verifyIndUser, CatPackageUpdate],
+  [verifyToken, verifyIndUser],
   UpdateCatPackage
 );
 router.delete(
   "/:COD_CATPACKAGE",
-  [verifyToken, verifyIndUser, CatPackageDelete],
+  [verifyToken, verifyIndUser],
   DeleteCatPackage
 );
 

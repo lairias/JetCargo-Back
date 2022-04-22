@@ -8,12 +8,7 @@ const {
   CreateCountry,
   GetCountriesAdmin
 } =require( "../controllers/Country.Controllers")
-const {
-  CountryCreate,
-  CountryDelete,
-  CountryUpdate,
-  CountryView,
-} =require( "../middleware/permissions/County.Permission")
+
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 
@@ -21,18 +16,18 @@ router.get("/", GetCountries);
 router.get("/admin",[verifyToken, verifyIndUser], GetCountriesAdmin);
 router.get(
   "/:COD_COUNTRY",
-  [verifyToken, verifyIndUser, CountryView],
+  [verifyToken, verifyIndUser],
   GetCountry
 );
-router.post("/", [verifyToken, verifyIndUser, CountryCreate], CreateCountry);
+router.post("/", [verifyToken, verifyIndUser], CreateCountry);
 router.delete(
   "/:COD_COUNTRY",
-  [verifyToken, verifyIndUser, CountryDelete],
+  [verifyToken, verifyIndUser],
   DeleteCountrie
 );
 router.put(
   "/:COD_COUNTRY",
-  [verifyToken, verifyIndUser, CountryUpdate],
+  [verifyToken, verifyIndUser],
   UpdateCountrie
 );
 

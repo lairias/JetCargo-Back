@@ -9,22 +9,13 @@ const {
 } =require( "../controllers/Cities.Controllers")
 
 const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
-const {
-  CityView,
-  CityCreate,
-  CityUpdate,
-  CityDelete,
-} =require( "../middleware/permissions/City.Permission")
-
-
 
 router.get("/", GetCities);
-
+router.get("/admin", GetCities);
 router.get("/state/:COD_STATE", GetCitiesForState);
-
-router.post("/", [verifyToken, CityCreate], CreateCity);
-router.put("/:COD_CITY", [verifyToken, CityUpdate], UpdateCity);
-router.delete("/:COD_CITY", [verifyToken, CityDelete], DeleteCity);
+router.post("/", [verifyToken, verifyIndUser], CreateCity);
+router.put("/:COD_CITY", [verifyToken, verifyIndUser], UpdateCity);
+router.delete("/:COD_CITY", [verifyToken, verifyIndUser], DeleteCity);
 
 
 module.exports = router;

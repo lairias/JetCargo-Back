@@ -1,12 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
-const {
-  PeopleView,
-  PeopleCreate,
-  PeopleDelete,
-  PeopleUpdate,
-} =require( "../middleware/permissions/People.Permission")
+
 const {
   GetPeoples,
   GetPeople,
@@ -15,19 +10,19 @@ const {
   DeletePeople,
 } =require( "../controllers/PA_people.Controllers")
 
-router.get("/", [verifyToken, verifyIndUser, PeopleView], GetPeoples);
-router.get("/:COD_PEOPLE", [verifyToken, verifyIndUser, PeopleView], GetPeople);
+router.get("/", [verifyToken, verifyIndUser], GetPeoples);
+router.get("/:COD_PEOPLE", [verifyToken, verifyIndUser], GetPeople);
 router.put(
   "/:COD_PEOPLE",
-  [verifyToken, verifyIndUser, PeopleUpdate],
+  [verifyToken, verifyIndUser],
   UpdatePeople
 );
 router.delete(
   "/:COD_PEOPLE",
-  [verifyToken, verifyIndUser, PeopleDelete],
+  [verifyToken, verifyIndUser],
   DeletePeople
 );
-router.post("/", [verifyToken, verifyIndUser, PeopleCreate], CreatePeople);
+router.post("/", [verifyToken, verifyIndUser], CreatePeople);
 
 
 module.exports = router;

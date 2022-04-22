@@ -15,7 +15,7 @@ const {
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
 
-router.post("/", [verifyToken, verifyIndUser], CreateTrackingInformation);
+router.post("/admin", [verifyToken, verifyIndUser], CreateTrackingInformation);
 router.put("/", [verifyToken, verifyIndUser], UpdateTrackingInformation);
 router.get(
   "/destino/:COD_DESTINO",

@@ -10,29 +10,24 @@ const {
   GetStatesAdmin
 } =require( "../controllers/States.Controllers")
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
-const {
-  StatesView,
-  StatesCreate,
-  StatesUpdate,
-  StatesDelete,
-} =require( "../middleware/permissions/States.Permission")
+
 
 
 router.get("/country/:COD_COUNTRY", GetStatesForCountry);
-router.get("/", [verifyToken, verifyIndUser, StatesView], GetStates);
-router.get("/admin", [verifyToken, verifyIndUser, StatesView], GetStatesAdmin);
-router.post("/", [verifyToken, verifyIndUser, StatesCreate], CreateState);
+router.get("/", [verifyToken, verifyIndUser], GetStates);
+router.get("/admin", [verifyToken, verifyIndUser], GetStatesAdmin);
+router.post("/", [verifyToken, verifyIndUser], CreateState);
 router.delete(
   "/:COD_STATE",
-  [verifyToken, verifyIndUser, StatesDelete],
+  [verifyToken, verifyIndUser],
   DeleteState
 );
 router.put(
   "/:COD_STATE",
-  [verifyToken, verifyIndUser, StatesUpdate],
+  [verifyToken, verifyIndUser],
   UpdateState
 );
-router.get("/:COD_STATE", [verifyToken, verifyIndUser, StatesView], GetState);
+router.get("/:COD_STATE", [verifyToken, verifyIndUser], GetState);
 
 
 module.exports = router;

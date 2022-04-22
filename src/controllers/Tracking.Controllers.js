@@ -7,7 +7,7 @@ const PA_CUSTOMES = require("../models/Pa_customes")
 const USERS = require("../models/Users")
 const PA_POEPLE = require("../models/Pa_people")
 const  BO_TRACKING  =require( "../models/Bo_tracking")
-var RandomCodes = require('random-codes');
+const generator = require('generate-password');
  exports.TrackingNotOrdenType = async (req, res, next) => {
   const { COD_TYPEPACKAGE, RECEIVED_TRACKING } = req.params;
   try {
@@ -127,7 +127,6 @@ var RandomCodes = require('random-codes');
 
  exports.GetTracking_not_orden = async (req, res, next) => {
   const { COD_TRACKING, COD_PACKAGE, NUM_LOCKER, COD_CUSTOMER } = req.params;
-  console.log("funciona");
   try {
     const cities = await sequelize.query(
       "CALL SHOW_TRACKING_PACKAGE_NOT_ORDEN_ID(:COD_TRACKING,:COD_PACKAGE,:NUM_LOCKER,:COD_CUSTOMER)",
@@ -168,7 +167,6 @@ var RandomCodes = require('random-codes');
   const { COD_TRACKING } = req.params;
 
   try {
-console.log(caculuVolumetrico > calculoDolares)
     if(caculuVolumetrico > calculoDolares){
      await BO_TRACKING.update(
       {
@@ -193,7 +191,7 @@ console.log(caculuVolumetrico > calculoDolares)
         HEIGHT_PACKAGE,
         WIDTH_PACKAGE,
         WEIGHT_PACKAGE,
-        PRICE_PACKAGE : parseFloat(caculuVolumetrico),
+        PRICE_PACKAGE : parseInt(caculuVolumetrico),
         VOL_PACKAGE,
         ALTURA_PACKAGE,
         LARGO_PACKAGE,
@@ -230,7 +228,7 @@ console.log(caculuVolumetrico > calculoDolares)
           HEIGHT_PACKAGE,
           WIDTH_PACKAGE,
           WEIGHT_PACKAGE,
-          PRICE_PACKAGE : parseFloat(calculoDolares),
+          PRICE_PACKAGE : parseInt(calculoDolares),
           VOL_PACKAGE,
           ALTURA_PACKAGE,
           LARGO_PACKAGE,
@@ -284,8 +282,10 @@ console.log(caculuVolumetrico > calculoDolares)
     
   } = req.body;
   try {
-    const NUM_PACKAGE = new RandomCodes(config);
-
+    const NUM_PACKAGE = generator.generate({
+      length: 10,
+      numbers: true
+    });
     const tracking = sequelize.query(
       "CALL INS_TRACKIN_ORDEN(:COD_CATPACKAGE,:COD_SERVICE,:COD_TYPEPACKAGE,:NOM_PACKAGE,:NUM_PACKAGE,:DES_TRACKING,:NUM_TRACKING,:COD_LOCKER,:COD_CUSTOMER)",
       {

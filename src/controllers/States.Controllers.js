@@ -58,26 +58,10 @@ const PA_COUNTRIES = require("../models/Pa_countries");
 };
  exports.UpdateState = async (req, res, next) => {
   const { COD_STATE } = req.params;
-  const { NAM_STATE, DES_STATE, USR_UPD, COD_COUNTRY } = req.body;
+  const { NAM_STATE, DES_STATE, USR_UPD, COD_COUNTRY,IND_STATE } = req.body;
+  console.log(req.body)
   try {
-    await sequelize
-      .query(
-        "CALL UPD_STATE(:COD_STATE, :NAM_STATE,:DES_STATE ,:USR_UPD ,:COD_COUNTRY ) ",
-        {
-          replacements: {
-            COD_STATE,
-            NAM_STATE,
-            DES_STATE,
-            USR_UPD,
-            COD_COUNTRY,
-          },
-        }
-      )
-      .catch((error) => {
-        console.log(error);
-        HttpError(res, error);
-        throw res.sendStatus(500);
-      });
+    await PA_STATES.update({COD_COUNTRY,NAM_STATE,DES_STATE,IND_STATE,USR_UPD},{where:{COD_STATE}})
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);
@@ -85,18 +69,11 @@ const PA_COUNTRIES = require("../models/Pa_countries");
   }
 };
  exports.CreateState = async (req, res, next) => {
-  const { NAM_STATE, DES_STATE, USR_ADD, COD_COUNTRY } = req.body;
-  console.log(req.body);
+  const { NAM_STATE, DES_STATE, COD_COUNTRY,USR_ADD} = req.body;
   try {
-    const cities = await sequelize
-      .query("CALL INS_STATE(:NAM_STATE,:DES_STATE,:USR_ADD,:COD_COUNTRY)", {
-        replacements: { NAM_STATE, DES_STATE, USR_ADD, COD_COUNTRY },
-      })
-      .catch((error) => {
-        console.log(error);
-        HttpError(res, error);
-        throw res.sendStatus(500);
-      });
+    await PA_STATES.create({
+      NAM_STATE, DES_STATE, USR_ADD, COD_COUNTRY
+    })
     return res.sendStatus(200);
   } catch (error) {
     HttpError(res, error);

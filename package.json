@@ -34,6 +34,7 @@
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "random-codes": "^0.0.10",
+    "request": "^2.88.2",
     "sequelize": "^6.12.4",
     "twilio": "^3.76.0",
     "uuid": "^8.3.2",

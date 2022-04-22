@@ -10,36 +10,29 @@ const {
 } =require( "../controllers/Roles.controllers")
 const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
 const { verifyRoles } =require( "../middleware/verifyRoles")
-const {
-  TypeUserCreate,
-  TypeUserView,
-  TypeUserUpdate,
-  TypeUserDelete,
-} =require( "../middleware/permissions/TypeUsers.Permission")
 
-
-router.post("/admin", [verifyToken, verifyIndUser, TypeUserCreate], CreateRole);
+router.post("/admin", [verifyToken, verifyIndUser], CreateRole);
 router.get(
   "/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser, TypeUserView],
+  [verifyToken, verifyIndUser],
   GetRole
 );
 router.get(
   "/disting/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser, TypeUserView],
+  [verifyToken, verifyIndUser],
   GetRoleDisting
 );
 
-router.get("/", [verifyToken, verifyIndUser, TypeUserView], GetRoles);
+router.get("/", [verifyToken, verifyIndUser], GetRoles);
 
 router.put(
   "/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser, TypeUserUpdate],
+  [verifyToken, verifyIndUser],
   UpdateRole
 );
 router.delete(
   "/:COD_TYPEUSERS",
-  [verifyToken, verifyIndUser, TypeUserDelete],
+  [verifyToken, verifyIndUser],
   DeleteRole
 );
 
