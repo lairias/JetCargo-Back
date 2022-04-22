@@ -14,6 +14,15 @@ exports.GetCitiesForState = async (req, res, next) => {
     next();
   }
 };
+exports.GetCitiesAdmin = async (req, res, next) => {
+  try {
+    const cities = await sequelize.query("CALL SHOW_CITY_STATEALL()");
+    return res.status(200).json(cities);
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};
 exports.GetCities = async (req, res, next) => {
   try {
     const cities = await PA_CITIES.findAll({ where: { IND_CITY: 1 } });

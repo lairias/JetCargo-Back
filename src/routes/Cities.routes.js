@@ -5,6 +5,7 @@ const {
   CreateCity,
   UpdateCity,
   DeleteCity,
+  GetCitiesAdmin,
   GetCitiesForState,
 } =require( "../controllers/Cities.Controllers")
 
@@ -19,6 +20,8 @@ const {
 
 
 router.get("/", GetCities);
+
+router.get("/admin", GetCitiesAdmin);
 
 router.get("/state/:COD_STATE", GetCitiesForState);
 
