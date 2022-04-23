@@ -10,6 +10,7 @@ const {
   TrackingNotOrden,
   TrackingNotOrdenCustomer,
   GetTracking,
+  GetTrackingId
 } =require( "../controllers/Tracking.Controllers")
 const { verifyIndUser, verifyToken } =require( "../middleware/verifySignup")
 
@@ -50,5 +51,6 @@ router.get("/:NUM_TRACKING", [verifyToken, verifyIndUser], GetTrackingsNumber);
 router.get("/GetBytracking/:COD_TRACKING", [verifyToken, verifyIndUser], GetTracking);
 router.post("/", [verifyToken, verifyIndUser], CreateTracking);
 router.put("/:COD_TRACKING", [verifyToken, verifyIndUser], UpdateTracking);
+router.get("/admin/:COD_TRACKING", [verifyToken, verifyIndUser], GetTrackingId);
 
 module.exports = router;

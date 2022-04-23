@@ -17,7 +17,6 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
     );
     return res.status(200).json({ Origen });
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -36,7 +35,6 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
     );
     return res.status(200).json({ Origen });
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -64,10 +62,8 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
       COD_DESTINO: Destino.dataValues.COD_TRACKINFORMATION_DESTINO,
       COD_ORIGIN: Origen.dataValues.COD_TRACKINFORMATION_ORIGIN,
     });
-    console.log(Origen,Destino);
     return res.status(200).json({ ok: true });
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }
@@ -84,45 +80,29 @@ const  REL_ORIGIN_DESTINO  =require( "../models/relations/REL_Origin_Destino")
         STATUS_ORIGIN,
         STATUS_DESTINO } = req.body;
   try {
+
  await DE_TRACKING_INFORMATION_ORIGEN.update({
-      COD_ORDEN: COD_ORDEN,
-      COD_ORIGIN_COUNTRY:parseInt(PaisOrigin),
-      COD_ORIGIN_STATE:parseInt(StateOrigin),
-      COD_ORIGIN_CITY:parseInt(CityOrigin),
+      COD_ORIGIN_COUNTRY:PaisOrigin,
+      COD_ORIGIN_STATE:StateOrigin,
+      COD_ORIGIN_CITY:CityOrigin,
       CHECKPOINT_DELIVERY_STATUS: STATUS_ORIGIN,
-    },{where: {COD_ORDEN},});
-     await DE_TRACKING_INFORMATION_DESTINO.create({
+    },{where: {COD_ORDEN}});
+     await DE_TRACKING_INFORMATION_DESTINO.update({
+       
       COD_ORDEN: COD_ORDEN,
-      COD_DESTINATION_COUNTRY: parseInt(PaisDestino),
-      COD_DESTINATION_STATE: parseInt(StateDestino),
-      COD_DESTINATION_CITY:parseInt(CityDestino),
+      COD_DESTINATION_COUNTRY: PaisDestino,
+      COD_DESTINATION_STATE: StateDestino,
+      COD_DESTINATION_CITY:CityDestino,
       CHECKPOINT_DELIVERY_STATUS: STATUS_DESTINO,
-    });
+    },{where: {COD_ORDEN}});
     
     return res.status(200).json({ ok: true });
   } catch (error) {
-    console.log(error);
     HttpError(res, error);
     next();
   }
 };
 
- exports.GetTrackinInformationOrden = async (req, res, next) => {
-  const { COD_ORDEN } = req.params;
-  // try {
-  //   const TrackinInformationOrden = await DE_TRACKING_INFORMATION_DESTINO.findOne({
-  //   });
-
-  //   if (TrackinInformationOrden === null)
-  //     return res
-  //       .status(203)
-  //       .json({ ok: false, TrackinInformationOrden: false });
-  //   return res.status(200).json({ ok: true, TrackinInformationOrden });
-  // } catch (error) {
-  //   HttpError(res, error);
-  //   next();
-  // }
-};
  exports.GetOrigenDestinoAllTracking = async (req, res, next) => {
   const { COD_ORDEN } = req.params;
   try {

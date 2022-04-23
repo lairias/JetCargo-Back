@@ -27,6 +27,7 @@ const TrackinInformation =require( "./routes/TrackinInformation.routes.js")
 const Shopping =require( "./routes/Shopping.routes.js")
 const TypeUser =require( "./routes/TypeUsers.routes")
 const ShippingCost =require( "./routes/Shippincost.routes")
+const Errores =require( "./routes/Errores.routes")
 
 const sequelise =require( "./config/database/index.js")
 const { v4: uuidv4 } = require('uuid');
@@ -98,5 +99,6 @@ app.use("/api/message", Message);
 app.use("/api/trackingInformation", TrackinInformation);
 app.use("/api/invoice", Invoice);
 app.use("/api/typeuser", TypeUser);
+app.use("/api/errores", Errores);
 
 module.exports = app;

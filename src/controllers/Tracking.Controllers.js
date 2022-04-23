@@ -141,6 +141,19 @@ const generator = require('generate-password');
   }
 };
 
+ exports.GetTrackingId = async (req, res, next) => {
+  const { COD_TRACKING } = req.params;
+
+  try {
+    const tracking =  await BO_TRACKING.findByPk(COD_TRACKING);
+   return res.status(200).json({ tracking });
+    
+  } catch (error) {
+    console.log(error);
+    HttpError(res, error);
+    next();
+  }
+};
  exports.UpdateTracking = async (req, res, next) => {
   const {
     HEIGHT_PACKAGE,
@@ -262,6 +275,9 @@ const generator = require('generate-password');
     next();
   }
 };
+
+
+
  exports.DeleteTracking = async (req, res, next) => {
   try {
   } catch (error) {

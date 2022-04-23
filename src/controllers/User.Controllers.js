@@ -83,3 +83,16 @@ exports.GetUserAdmin = async (req, res, next) => {
     next();
   }
 };
+
+exports.GetUserCustomerAdmin = async (req, res, next) => {
+  const {COD_CUSTOMER} = req.params
+  try {
+    const ususarios = await sequelize.query("CALL SHOW_CUSTOMER_ADMIN(:COD_CUSTOMER)",{
+      replacements:{ COD_CUSTOMER}
+    });
+    return res.status(200).json(ususarios)
+  } catch (error) {
+    HttpError(res, error);
+    next();
+  }
+};

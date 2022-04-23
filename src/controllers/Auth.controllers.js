@@ -115,7 +115,6 @@ exports.singUpAdmin = async (req, res, next) => {
       length: 10,
       numbers: true
     });
-    console.log(PAS_USER);
     await sequelize.query(
         "CALL INS_USER(:ID,:TIP_DOCUMENT,:FRISTNAME,:MIDDLENAME,:LASTNAME,:AGE,:EMAIL,:PAS_USER,:ROL,:DAT_BIRTH,:COD_COUNTRY,:COD_STATE,:COD_CITY,:DES_ADDRESS,:NUM_AREA,:NUM_PHONE, :USR_ADD)",
         {

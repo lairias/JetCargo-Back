@@ -32,7 +32,6 @@ exports.GetCatPackage = async (req, res, next) => {
 };
 exports.CreateCatPackage = async (req, res, next) => {
   const { NAM_CATPACKAGE, DES_CATPACKAGE, USR_ADD } = req.body;
-  console.log(req.body);
   try {
     const cities = await sequelize
       .query("CALL INS_CATPACKAGES(:NAM_CATPACKAGE,:DES_CATPACKAGE,:USR_ADD)", {
@@ -57,7 +56,6 @@ exports.UpdateCatPackage = async (req, res, next) => {
   const {  DES_CATPACKAGE,IND_CATPACKAGE } = req.body;
   const { COD_CATPACKAGE } = req.params;
   try {
-    console.log(req.body)
     
      await BO_CATPACKAGE.update({
       NAM_CATPACKAGE: DES_CATPACKAGE,

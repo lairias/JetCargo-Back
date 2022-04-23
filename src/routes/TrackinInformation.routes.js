@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const {
   CreateTrackingInformation,
-  GetTrackinInformationOrden,
   GetTrackinInformationOrigen,
   GetTrackinInformationDestino,
   GetOrigenDestinoAllTracking,
@@ -26,11 +25,6 @@ router.get(
   "/inicio/:COD_INICIO",
   [verifyToken, verifyIndUser],
   OrigenGetTrackinOne
-);
-router.get(
-  "/orden/:COD_ORDEN",
-  [verifyToken, verifyIndUser],
-  GetTrackinInformationOrden
 );
 router.get(
   "/origenDestino/:COD_ORDEN",

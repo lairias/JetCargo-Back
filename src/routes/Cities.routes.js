@@ -12,13 +12,9 @@ const {
 const { verifyToken, verifyIndUser } =require( "../middleware/verifySignup")
 
 router.get("/", GetCities);
-<<<<<<< HEAD
-router.get("/admin", GetCities);
-=======
 
 router.get("/admin", GetCitiesAdmin);
 
->>>>>>> 7cdafee6871a5ca0f94f4005bf0709312123d968
 router.get("/state/:COD_STATE", GetCitiesForState);
 router.post("/", [verifyToken, verifyIndUser], CreateCity);
 router.put("/:COD_CITY", [verifyToken, verifyIndUser], UpdateCity);
